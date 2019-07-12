@@ -1,0 +1,29 @@
+/* .image {
+    background-image: url(http://i61.tinypic.com/2mg7csh.png);
+    height: 310px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: -154px;
+    z-index: 1;
+} */
+
+.me {
+    height: auto;
+    max-width: 20%;
+    margin-top: -20px;
+}
+
+/* -------------- Laptops ---------------*/
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+}
+
+/* ----------- Laptops (Retina Screens) ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+}

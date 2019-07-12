@@ -15,3 +15,6 @@ def project_detail(request, pk):
         'project': project
     }
     return render(request, 'project_detail.html', context)
+
+def site_index(request):
+    return render(request, 'site_index.html')
