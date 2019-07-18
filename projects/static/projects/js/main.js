@@ -10,10 +10,15 @@ $(window).on("load", function (e) {
 //toggle between nav links and buttons based on viewport width
 window.matchMedia("(max-width:992px)").matches ? $(".pills").toggle() : window.matchMedia('(min-width:993px)').matches ? $(".btn-info").toggle() : null;
 
-// $(document).ready(function() {
-//     function o() {
-//         const o = [$("#About"), $(".abt"), $("#SkillsExperience"), $(".skills"), $(".xp"), $("#Projects"), $(".p1"), $(".p2"), $(".p3")];
-//         for ( const l = 0; l < o.length; l++) o[l].css("display", "inline");
-//     }
-// })
 
+//nav link animated display
+if (window.matchMedia("(min-width:992px)").matches) {
+  $(".pills").hover(  
+        function(){
+          $(".nav-item").toggleClass('d-lg-none');
+          $(".nav-img").toggleClass('d-lg-block');
+      }, function(){
+          $(".nav-item").toggleClass('d-lg-none');
+          $(".nav-img").toggleClass('d-lg-block');
+      });
+}
