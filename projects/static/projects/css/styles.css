@@ -18,6 +18,23 @@
         max-width: 20%;
         margin-top: -20px;
     }
+
+
+    #res-nav {
+        height: auto;
+        max-width: 100%;
+    }
+
+    #proj-nav {
+        height: auto;
+        max-width: 100%;
+    }
+
+    #conn-nav {
+        height: auto;
+        max-width: 100%;
+    }
+
 }
 
 
@@ -41,6 +58,22 @@
         max-width: 100%;
         height: auto;
     }
+
+
+    #res-nav {
+        height: auto;
+        max-width: 100%;
+    }
+
+    #proj-nav {
+        height: auto;
+        max-width: 100%;
+    }
+
+    #conn-nav {
+        height: auto;
+        max-width: 100%;
+    }
 }
 
 /* ----------- Laptops (Retina Screens) ----------- */
@@ -63,5 +96,21 @@
     #resume-nav {
         max-width: 100%;
         height: auto;
+    }
+
+
+    #res-nav {
+        height: auto;
+        max-width: 100%;
+    }
+
+    #proj-nav {
+        height: auto;
+        max-width: 100%;
+    }
+
+    #conn-nav {
+        height: auto;
+        max-width: 100%;
     }
 }
