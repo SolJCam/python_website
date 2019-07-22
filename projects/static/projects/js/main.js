@@ -9,7 +9,7 @@ $(window).on("load", function (e) {
 
 
 //toggle between nav links and buttons based on viewport width
-window.matchMedia("(max-width:992px)").matches ? $(".pills").toggle() : window.matchMedia('(min-width:993px)').matches ? $(".btn-info").toggle() : null;
+// window.matchMedia("(max-width:992px)").matches ? $(".pills").toggle() : window.matchMedia('(min-width:993px)').matches ? $(".btn-info").toggle() : null;
 
 
 //nav link animated display
@@ -17,11 +17,11 @@ if (window.matchMedia("(min-width:992px)").matches) {
 
   $("#resume-nav").hover(
     function(){
-      $("#S").toggleClass('d-lg-none');
+      $("#R").toggleClass('d-lg-none');
       $("#res-nav").toggleClass('d-lg-block');
     },
     function(){
-      $("#S").toggleClass('d-lg-none');
+      $("#R").toggleClass('d-lg-none');
       $("#res-nav").toggleClass('d-lg-block');
     }
   );

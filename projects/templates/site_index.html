@@ -10,29 +10,37 @@
             <div class="row align-items-end one">
                 <div class="col">
                     <img class="img-fluid mx-auto d-block rounded-circle me" style="display:none;" src="http://i62.tinypic.com/1z5rr5y.jpg" alt="Responsive image">
-                    <h1 id="myname" class="text-primary text-center">Sol Cameron</h1>
-                    <h3 id="mydevtype" class="text-center">Full Stack Software Developer</h3>
+                </div>
+                <div class = "col">
+                    <p class="font-italic">"An accounting major looking to enter the tech industry, my goal is to place my keen eye for detail and inquisitive qualities to use building efficient, automated back end systems and sleek, user friendly front end applications."</p>
                 </div>
             </div>
             <div class="row align-items-start two">
                 <div class="col"></div>
-                <nav class="navbar btns">
-                    <button id="Ab" class="first btn btn-info btn-xs">About</button><button id="SE" class="btn btn-info btn-xs">Skills & Experience</button><button id="Pj" class="btn btn-info btn-xs">Projects</button><button id="Cn" class="first btn btn-info btn-xs">Connect</button>
-                </nav>
+                <div class="col">
+                    <h1 id="myname" class="text-primary text-center">Sol Cameron</h1>
+                    <h3 id="mydevtype" class="text-center">Full Stack Software Developer</h3>
+                </div>
                 <nav class="navbar pills">
                     <ul class="center-block nav">
-                        <div id="resume-nav" class="col">
-                        <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="res-nav" src="{% static 'img/icons8-resume-80.png' %}" alt="Responsive image">
-                        </div>
-                        <li role="button" id="S" class="nav-item d-lg-none d-block"><a class="nav-link active" href="#SkillsExperience">Skills & Experience</a></li>
-                        <div id="project-nav" class="col">
-                        <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="proj-nav" src="{% static 'img/icons8-project-80.png' %}" alt="Responsive image">
-                        </div>
-                        <li role="button" id="P" class="nav-item d-lg-none d-block"><a class="nav-link active" href="#Projects">Projects</a></li>
-                        <div id="connect-nav" class="col">
-                        <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="conn-nav" src="{% static 'img/icons8-connect-80.png' %}" alt="Responsive image">
-                        </div>
-                        <li role="button" id="C" class="nav-item d-lg-none d-block"><a class="nav-link active" href="#follow">Connect</a></li>
+                        <li role="button" id="project-nav">
+                            <div class="col">
+                                <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="proj-nav" src="{% static 'img/icons8-application-window-60 (2).png' %}" alt="Responsive image">
+                                <a id="P" class="nav-item d-lg-none d-block nav-link active text-success" href="#Projects">Projects</a>
+                            </div>
+                        </li>
+                        <li role="button" id="resume-nav" >
+                            <div class="col">
+                                <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="res-nav" src="{% static 'img/icons8-resume-60.png' %}" alt="Responsive image">
+                                <a  id="R" class="nav-item d-lg-none d-block nav-link active text-success" href="#Resume">Resume</a>
+                            </div> 
+                        </li>
+                        <li role="button" id="connect-nav">                       
+                            <div class="col">
+                                <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="conn-nav" src="{% static 'img/icons8-connect-50 (2).png' %}" alt="Responsive image">
+                                <a  id="C" class="nav-item d-lg-none d-block nav-link active text-success" href="#follow">Connect</a>
+                            </div>
+                        </li>
                     </ul>
                 </nav>
                 <div class="col"></div>
