@@ -2,26 +2,27 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Bilbo+Swash+Caps|Rouge+Script|Sofia|Flamenco|Geo|Stint+Ultra+Expanded|Linden+Hill|Balthazar' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{% static 'projects/css/styles.css' %}">
     </head>
     <body>
         <div class="container-fluid main">
-            <div class="row align-items-end one">
+            <div class="row one align-items-center">
                 <div class="col">
-                    <img class="img-fluid mx-auto d-block rounded-circle me" style="display:none;" src="http://i62.tinypic.com/1z5rr5y.jpg" alt="Responsive image">
+                    <img id="me" class="img-fluid mx-auto d-block rounded-circle" style="display:none;" src="http://i62.tinypic.com/1z5rr5y.jpg" alt="Responsive image">
                 </div>
                 <div class = "col">
-                    <p class="font-italic">"An accounting major looking to enter the tech industry, my goal is to place my keen eye for detail and inquisitive qualities to use building efficient, automated back end systems and sleek, user friendly front end applications."</p>
+                    <h4 id="blurb" class="font-italic" style="display:none;">"An accounting major looking to enter the tech industry, my goal is to place my keen eye for detail and inquisitive qualities to use building efficient, automated back end systems and sleek, user friendly front end applications."</h4>
                 </div>
             </div>
-            <div class="row align-items-start two">
-                <div class="col"></div>
+            <div class="row two">
                 <div class="col">
                     <h1 id="myname" class="text-primary text-center">Sol Cameron</h1>
                     <h3 id="mydevtype" class="text-center">Full Stack Software Developer</h3>
                 </div>
-                <nav class="navbar pills">
+                <nav class="col navbar pills">
                     <ul class="center-block nav">
                         <li role="button" id="project-nav">
                             <div class="col">
@@ -43,7 +44,6 @@
                         </li>
                     </ul>
                 </nav>
-                <div class="col"></div>
             </div>
         </div>
     </body> 

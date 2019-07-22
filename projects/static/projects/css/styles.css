@@ -13,10 +13,14 @@
         height: 500px;
     }
       
-    .me {
+    #me {
         height: auto;
         max-width: 20%;
         margin-top: -20px;
+    }
+
+    #blurb {
+        font-family: 'Ubuntu', sans-serif;
     }
 
 
@@ -131,12 +135,15 @@
         height: 500px;
     }
 
-    .me {
+    #me {
         height: auto;
-        max-width: 20%;
+        max-width: 45%;
         margin-top: -20px;
     }
 
+    #blurb {
+        font-family: 'Rouge+Script';
+    }
 
     #res-nav {
         height: auto;
@@ -222,22 +229,25 @@
 
 
 /* ----------- Laptops (Retina Screens) ----------- */
-@media screen 
+/* @media screen 
   and (min-device-width: 1200px) 
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 2)
-  and (min-resolution: 192dpi) { 
+  and (min-resolution: 192dpi) {  */
       
     .one {
         height: 500px;
     }
 
-    .me {
+    #me {
         height: auto;
-        max-width: 20%;
+        max-width: 45%;
         margin-top: -20px;
     }
 
+    #blurb {
+        font-family: 'Rouge+Script';
+    }
 
     #res-nav {
         height: auto;
@@ -310,4 +320,4 @@
           0%  {top:250px;}
           100%   {top:0px;}
       }
-}
+/* } */

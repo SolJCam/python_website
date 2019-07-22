@@ -1,20 +1,17 @@
 console.log("scripts are being read");
 
-//fade in my image
+//fade in my image and blurb
 $(window).on("load", function (e) {
-  $(".me").fadeIn(2e3);
+  $("#me").fadeIn(2e3);
+  $("#blurb").fadeIn(2e3);
     
   console.log('2ndplz!');
 });
 
 
-//toggle between nav links and buttons based on viewport width
-// window.matchMedia("(max-width:992px)").matches ? $(".pills").toggle() : window.matchMedia('(min-width:993px)').matches ? $(".btn-info").toggle() : null;
-
-
-//nav link animated display
 if (window.matchMedia("(min-width:992px)").matches) {
 
+//nav links animated display
   $("#resume-nav").hover(
     function(){
       $("#R").toggleClass('d-lg-none');
@@ -44,5 +41,9 @@ if (window.matchMedia("(min-width:992px)").matches) {
       $("#C",).toggleClass('d-lg-none');
       $("#conn-nav").toggleClass('d-lg-block');
     }
-  );  
+  );
+  
+// toggle nav links and img layout
+  $('#me').toggleClass("float-right")
+  
 }
