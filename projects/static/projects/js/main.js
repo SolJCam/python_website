@@ -9,6 +9,11 @@ $(window).on("load", function (e) {
 });
 
 
+// if (window.matchMedia("(max-width:992px)").matches) {
+//   $(".two").toggleClass("offset-sm-2");
+//   $(".two").toggleClass("no-gutters");
+// }
+ 
 if (window.matchMedia("(min-width:992px)").matches) {
 
 //nav links animated display
@@ -43,7 +48,7 @@ if (window.matchMedia("(min-width:992px)").matches) {
     }
   );
   
-// toggle nav links and img layout
+// toggle img layout
   $('#me').toggleClass("float-right")
-  
+
 }
