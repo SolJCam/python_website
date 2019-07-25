@@ -7,16 +7,14 @@ $(window).on("load", function (e) {
     
   console.log('2ndplz!');
 });
-
-
-// if (window.matchMedia("(max-width:992px)").matches) {
-//   $(".two").toggleClass("offset-sm-2");
-//   $(".two").toggleClass("no-gutters");
-// }
  
 if (window.matchMedia("(min-width:992px)").matches) {
 
-//nav links animated display
+  //shift name and nav depending on screen size
+  $(".two").toggleClass("offset-sm-1");
+  $(".two").toggleClass("offset-sm-2");
+
+  //nav links animated display
   $("#resume-nav").hover(
     function(){
       $("#R").toggleClass('d-lg-none');
