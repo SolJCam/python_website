@@ -10,43 +10,45 @@
     <body>
         <div class="container-fluid main">
             <div class="row one align-items-center">
-                <div class="col">
-                    <img id="me" class="img-fluid mx-auto d-block rounded-circle" style="display:none;" src="http://i62.tinypic.com/1z5rr5y.jpg" alt="Responsive image">
+                <div class="col-sm">
+                    <div class="row">
+                        <div class="col">
+                            <img id="me" class="img-fluid mx-auto d-block rounded-circle" style="display:none;" src="http://i62.tinypic.com/1z5rr5y.jpg" alt="Responsive image">
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <h1 id="myname" class="text-primary col offset-3 mt-3 text-center">Sol Cameron</h1>
+                            <h3 id="mydevtype" class="col offset-3 text-center">Full Stack Software Developer</h3>
+                        </div>
+                    </div>
                 </div>
-                <div class = "col">
-                    <h4 id="blurb" class="font-italic" style="display:none;">"An accounting major looking to enter the tech industry, my goal is to place my keen eye for detail and inquisitive qualities to use building efficient, automated back end systems and sleek, user friendly front end applications."</h4>
-                </div>
-            </div>
-            <div class="row two container offset-sm-1">
-                <div class="col-5">
-                    <h1 id="myname" class="text-primary text-center">Sol Cameron</h1>
-                    <h3 id="mydevtype" class="text-center">Full Stack Software Developer</h3>
-                </div>
-                <nav class="col-7 navbar pills">
-                    <ul class="nav">
-                        <li role="button" id="project-nav">
-                            <div class="col">
-                                <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="proj-nav" src="{% static 'img/icons8-application-window-60 (2).png' %}" alt="Responsive image">
-                                <a id="P" class="nav-item d-lg-none d-block nav-link active text-success" href="#Projects">Projects</a>
-                            </div>
-                        </li>
-                        <li role="button" id="resume-nav" >
-                            <div class="col">
-                                <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="res-nav" src="{% static 'img/icons8-resume-60.png' %}" alt="Responsive image">
-                                <a  id="R" class="nav-item d-lg-none d-block nav-link active text-success" href="#Resume">Resume</a>
-                            </div> 
-                        </li>
-                        <li role="button" id="connect-nav">                       
-                            <div class="col">
-                                <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="conn-nav" src="{% static 'img/icons8-connect-50 (2).png' %}" alt="Responsive image">
-                                <a  id="C" class="nav-item d-lg-none d-block nav-link active text-success" href="#follow">Connect</a>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
+                <div class = "col-sm">
+                    <h4 id="blurb" class="font-italic mt-5 pb-5" style="display:none;">"An accounting major looking to enter the tech industry, my goal is to place my keen eye for detail and inquisitive qualities to use building efficient, automated back end systems and sleek, user friendly front end applications."</h4>
+                    <nav class="navbar pills col mt-5 offset-2">
+                        <ul class="nav">
+                            <li role="button" id="project-nav">
+                                <div class="col">
+                                    <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="proj-nav" src="{% static 'img/icons8-application-window-60 (2).png' %}" alt="Responsive image">
+                                    <a id="P" class="nav-item d-lg-none d-block nav-link active text-success" href="#Projects">Projects</a>
+                                </div>
+                            </li>
+                            <li role="button" id="resume-nav" >
+                                <div class="col">
+                                    <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="res-nav" src="{% static 'img/icons8-resume-60.png' %}" alt="Responsive image">
+                                    <a  id="R" class="nav-item d-lg-none d-block nav-link active text-success" href="#Resume">Resume</a>
+                                </div> 
+                            </li>
+                            <li role="button" id="connect-nav">                       
+                                <div class="col">
+                                    <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="conn-nav" src="{% static 'img/icons8-connect-50 (2).png' %}" alt="Responsive image">
+                                    <a  id="C" class="nav-item d-lg-none d-block nav-link active text-success" href="#follow">Connect</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>                
             </div>
         </div>
-        <div class="container"></div>
         <div class="container">
             <div class="row align-items-end">
                 <div class="carousel carousel-fade col-6 offset-sm-3">
