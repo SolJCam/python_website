@@ -37,11 +37,11 @@ if (window.matchMedia("(min-width:992px)").matches) {
   );
   $("#connect-nav").hover(
     function(){
-      $("#C",).toggleClass('d-lg-none');
+      $("#C").toggleClass('d-lg-none');
       $("#conn-nav").toggleClass('d-lg-block');
     },
     function(){
-      $("#C",).toggleClass('d-lg-none');
+      $("#C").toggleClass('d-lg-none');
       $("#conn-nav").toggleClass('d-lg-block');
     }
   );
@@ -49,4 +49,11 @@ if (window.matchMedia("(min-width:992px)").matches) {
 // toggle img layout
   $('#me').toggleClass("float-right")
 
+}
+
+
+if (window.matchMedia("(max-width:992px)").matches) {
+  $("#myname").toggleClass('offset-3');
+  $("#mydevtype").toggleClass('offset-3');
+  $(".pills").toggleClass('offset-2 mt-5');
 }
