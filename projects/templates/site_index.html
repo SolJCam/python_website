@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="container-fluid main">
-            <div class="row one align-items-center">
+            <div class="row align-items-center one">
                 <div class="col-sm">
                     <div class="row">
                         <div class="col">
@@ -17,31 +17,31 @@
                         </div>
                         <div class="w-100"></div>
                         <div class="col">
-                            <h1 id="myname" class="text-primary col offset-3 mt-3 text-center">Sol Cameron</h1>
+                            <h1 id="myname" class="col offset-3 mt-3 text-center text-light">Sol Cameron</h1>
                             <h3 id="mydevtype" class="col offset-3 text-center">Full Stack Software Developer</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm">
-                    <h4 id="blurb" class="font-italic mt-5 pb-5" style="display:none;">"An accounting major looking to enter the tech industry, my goal is to place my keen eye for detail and inquisitive qualities to use building efficient, automated back end systems and sleek, user friendly front end applications."</h4>
-                    <nav class="navbar pills mt-5 offset-2">
+                    <h4 id="blurb" class="mt-5 pb-5 font-italic" style="display:none;">"An accounting major looking to enter the tech industry, my goal is to place my keen eye for detail and inquisitive qualities to use building efficient, automated back end systems and sleek, user friendly front end applications."</h4>
+                    <nav class="mt-5 offset-2 navbar pills">
                         <ul class="nav">
                             <li role="button" id="project-nav">
                                 <div class="col">
                                     <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="proj-nav" src="{% static 'img/icons8-application-window-60 (2).png' %}" alt="Responsive image">
-                                    <a id="P" class="nav-item d-lg-none d-block nav-link active text-success" href="#Projects">Projects</a>
+                                    <a id="P" class="nav-item d-lg-none d-block nav-link active text-light" href="#Projects">Projects</a>
                                 </div>
                             </li>
                             <li role="button" id="resume-nav" >
                                 <div class="col">
                                     <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="res-nav" src="{% static 'img/icons8-resume-60.png' %}" alt="Responsive image">
-                                    <a  id="R" class="nav-item d-lg-none d-block nav-link active text-success" href="#Resume">Resume</a>
+                                    <a  id="R" class="nav-item d-lg-none d-block nav-link active text-light" href="#Resume">Resume</a>
                                 </div> 
                             </li>
                             <li role="button" id="connect-nav">                       
                                 <div class="col">
                                     <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="conn-nav" src="{% static 'img/icons8-connect-50 (2).png' %}" alt="Responsive image">
-                                    <a  id="C" class="nav-item d-lg-none d-block nav-link active text-success" href="#follow">Connect</a>
+                                    <a  id="C" class="nav-item d-lg-none d-block nav-link active text-light" href="#follow">Connect</a>
                                 </div>
                             </li>
                         </ul>
@@ -49,9 +49,9 @@
                 </div>                
             </div>
         </div>
-        <div class="container">
-            <div class="row align-items-end">
-                <div class="carousel carousel-fade col-6 offset-sm-3">
+        <!-- <div class="container">
+            <div class="row two align-items-start"> -->
+                <!-- <div class="carousel carousel-fade ">       col-6 offset-sm-2 -->
                     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                         <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -91,57 +91,45 @@
                         </a>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- <section  class="col-xs-12 col-md-8 col-md-offset-2 p2">
-            <h4 class="nav-titles" style="border-width:1px;">Sols Chatroom</h4><a href="https://github.com/SolJCam/socket.io" target="_blank" data-toggle="tooltip" data-placement="top" data-container="a" title="Visit the github!"><img class="git" style="border-width:1px;" src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png"></a>
-            <div class="row">
-                <section class="col-xs-12 col-md-6 propics">
-                <img class="pic" src="http://i58.tinypic.com/2iaq0pt.png">
-                </section>
-                <section class="col-xs-12 col-md-6 rtd">
-                <h4 class="text-center">Resources/Technologies:</h4>
-                <ul id="cm-rtd">
-                    <li><p>Node.js</p></li>
-                    <li><p>Express.js</p></li>
-                    <li><p>Socket.io</p></li>
-                    <li><p>Materialize</p></li>
-                </ul>
-                <h4 id="CMR" class="text-center">Role:</h4>
-                <p id="CMRD" class="text-center">Independent Project</p>
-                <h4 id="CMD" class="text-center">Description:</h4>
-                <p id="CMDD" class="desc">Simple socket.io app which allows users to set a username and choose an avatar (from the web or off their hardrive).</p>
-    <!--              <p>Additional features include emojis with shortcuts and online status</p> -->
-                <!-- <h4 id="WebCM" class="text-center">Website:<a class="liveSite ch" href="http://solschatroom.herokuapp.com" target="_blank">solschatroom.herokuapp.com</a></h4>
-                </section>
-            </div>
-        </section> --> -->
-        <!-- <footer class="row bg-con">
-            <section class="col-xs-12 col-md-6 email">
+        <footer class="row bg-con">
+            <section class="col-6 offset-3 mt-5 mb-5 email">
                 <form id="email">
                 <h3 id="etitle" class="text-center">Send me an email</h3>
-                <div class="form-group">
-                    <label id="Name" for="inputName" class="control-label black">* Name</label>
-                    <input type="text" id="inputName">
-                </div>
-                <div class="form-group">
-                    <label id="Email" for="inputEmail" class="control-label black">* Email Address</label>
-                    <input type="email" id="inputEmail">
-                </div>
-                <div class="form-group">
-                    <label id="Subject" for="inputSubject" class="control-label inputSubject black">* Subject</label>
-                    <input type="text" id="inputSubject">
-                </div>
-                <div class="form-group">
-                    <label id="Message" for="inputMessage" class="control-label inputMessage black">* Message</label>
-                    <textarea id="inputMessage" form="email"></textarea>
-                </div>
-                <button id="submit" class="btn btn-default submit">Send</button>
-                <a style="display:hidden;" id="e-send" href=""></a>
+                    <div class="row">
+                        <div class="col form-group input-group-lg">
+                            <label id="Name" for="inputName" class="text-light">Name *</label>
+                            <input type="text" id="inputName" class="form-control">
+                            <small class="form-text text-light">First Name</small>
+                        </div>
+                        <div class="col form-group input-group-lg mt-4 pt-2">
+                            <input type="text" id="inputName" class="form-control">
+                            <small class="form-text text-light">Last Name</small>
+                        </div>
+                    </div>
+                    <div class="form-group input-group-lg">
+                        <label id="Email" for="inputEmail" class="text-light">Email Address *</label>
+                        <input type="email" id="inputEmail" class="form-control">
+                    </div>
+                    <div class="form-group input-group-lg">
+                        <label id="Subject" for="inputSubject" class="inputSubject text-light">Subject *</label>
+                        <input type="text" id="inputSubject" class="form-control">
+                    </div>
+                    <div class="form-group input-group-lg">
+                        <label id="Message" for="inputMessage" class="inputMessage text-light">Message *</label>
+                        <textarea id="inputMessage" form="email" rows="6" style="height:100%;" class="form-control"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button id="submit" class="btn btn-default submit">Send</button>
+                            <a style="display:hidden;" id="e-send" href=""></a>
+                        </div>
+                        <div class="col">
+                            <p class="text-right" style="color:white;">* Required field</p>
+                        </div>                    
+                    </div>
                 </form>
-                <h5 style="color:white;">* Required field</h5>
             </section>
-            <section id="follow" class="col-xs-12 col-md-6 follow">
+            <!-- <section id="follow" class="col follow">
                 <h3 id="followtl" class="text-center">Follow Me</h3>
                 <ul class="list-inline">
                 <li><a href="https://www.linkedin.com/in/solcameron" target="_blank"><img id="in" class="sm" src="http://i58.tinypic.com/2nq5dac.png"></a>
@@ -149,9 +137,9 @@
                 <li><a href="https://plus.google.com/u/0/115256616173499449214/posts" target="_blank" style="top:80px;position:relative"><img id="gg" class="sm" src="http://i60.tinypic.com/2e1aux5.png"></a>
                 <li><a href="https://profiles.generalassemb.ly/profiles/solcameron" target="_blank"><img id="ga" class="sm" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/6/s300/general-assembly-logo.png"></a>
                 </ul>
-            </section>
-            <h5 id="cr">Copyright 2015 Sol Cameron</h5>
-        </footer> -->
+            </section> -->
+            <p class="col-4 offest-4 align-self-end cr">Copyright 2019 Sol Cameron</p>
+        </footer>
     </body> 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
