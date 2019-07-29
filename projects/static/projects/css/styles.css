@@ -108,8 +108,16 @@
     #etitle {
         color: white;
     }
+    
+    #footer {
+        background-color: black
+    }
 
-}
+    .socialIcons {
+        background-color: black
+    }
+
+  }
 
 
 
@@ -247,6 +255,20 @@
         /* position: relative; */
         color: white;
     }
+
+    #ga {
+        width: 20px;
+        height: 20px;
+    }
+
+    #footer {
+        background-color: black;
+    }
+
+    .socialIcons {
+        background-color: black;
+    }
+
 }
 
 
@@ -370,4 +392,16 @@
         color: white;
     }
 
+    #ga {
+        width: 20px;
+        height: 20px;
+    }
+
+    #footer {
+        background-color: black;
+    }
+
+    .socialIcons {
+        background-color: black;
+    }
 /* } */
