@@ -7,35 +7,18 @@
 
                                 /* LANDING PAGE ELEMENTS */
     .one {
-        height: 700px;
+        height: 640px;
         background-color: teal;
     }
       
     #me {
-        /* height: auto; */
-        max-width: 20%;
-        margin-top: -20px;
+        max-width: 45%;
     }
 
     #blurb {
-        font-family: 'Ubuntu', sans-serif;
+        /* font-family: 'Ubuntu', sans-serif; */
+        font-family: 'Rouge+Script';
     }
-
-
-    /* #res-nav {
-        height: auto;
-        max-width: 100%;
-    }
-
-    #proj-nav {
-        height: auto;
-        max-width: 100%;
-    }
-
-    #conn-nav {
-        height: auto;
-        max-width: 100%;
-    } */
 
     #myname {
         position: relative;
@@ -94,19 +77,19 @@
         100%   {top:0px;}
     }
 
-    /* .two {
-        height: 500px;
-    } */
-
                                 /* FOOTER ELEMENTS */
 
     .bg-con {
-        /* width: 100%; */
         background-color: purple;
     }
 
-    #etitle {
+    #emailtitle {
         color: white;
+    }
+
+    #ga {
+        width: 18px;
+        height: 18px;
     }
     
     #footer {
@@ -118,17 +101,16 @@
     }
 
     .circle {
-        height: 35px;
-        width: 35px;
+        height: 30px;
+        width: 30px;
         background-color: white;
         border-radius: 50%;
         display: inline-block;
     }
 
-    /* .sm {
-        margin-left: 5px;
-        margin-top: 5PX;
-    } */
+    .sm {
+        margin-top: 20%;
+    }
 
   }
 
@@ -171,7 +153,6 @@
     }
 
     #me {
-        /* height: auto; */
         max-width: 45%;
         margin-top: -20px;
     }
@@ -179,21 +160,6 @@
     #blurb {
         font-family: 'Rouge+Script';
     }
-
-    /* #res-nav {
-        height: auto;
-        max-width: 100%;
-    }
-
-    #proj-nav {
-        height: auto;
-        max-width: 100%;
-    }
-
-    #conn-nav {
-        height: auto;
-        max-width: 100%;
-    } */
 
     #myname {
         position: relative;
@@ -252,175 +218,20 @@
         100%   {top:0px;}
     }
 
-    /* .two {
-        height: 500px;
-    } */
-
 
                                 /* FOOTER ELEMENTS */
 
     .bg-con {
-        /* width: 100%; */
         background-color: purple;
     }
 
-    #etitle {
-        /* position: relative; */
+    #emailtitle {
         color: white;
     }
 
     #ga {
-        width: 15px;
-        height: 15px;
-    }
-
-    #footer {
-        background-color: purple;
-    }
-
-    .socialIcons {
-        background-color: purple;
-    }
-
-    .circle {
-        height: 35px;
-        width: 35px;
-        background-color: white;
-        border-radius: 50%;
-        display: inline-block;
-    }
-
-    /* .sm {
-        margin-left: 5px;
-        margin-top: 5PX;
-    } */
-
-}
-
-
-
-
-
-
-
-
-
-
-
-/* ----------- Laptops (Retina Screens) ----------- */
-/* @media screen 
-  and (min-device-width: 1200px) 
-  and (max-device-width: 1600px) 
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (min-resolution: 192dpi) {  */
-      
-    .one {
-        height: 700px;
-        background-color: teal;
-    }
-
-    #me {
-        /* height: auto; */
-        max-width: 45%;
-        margin-top: -20px;
-    }
-
-    #blurb {
-        font-family: 'Rouge+Script';
-    }
-
-    /* #res-nav {
-        height: auto;
-        max-width: 100%;
-    }
-
-    #proj-nav {
-        height: auto;
-        max-width: 100%;
-    }
-
-    #conn-nav {
-        height: auto;
-        max-width: 100%;
-    } */
-
-    #myname {
-        position: relative;
-        -webkit-animation-name: myname; /* Chrome, Safari, Opera */
-        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
-        animation-name: myname;
-        animation-duration: 1s;
-    }
-    
-    @keyframes myname {
-        0%  {top:150px;}
-        100%   {top:0px;}
-    }
-    
-    /* Chrome, Safari, Opera */
-    @-webkit-keyframes myname {
-        0%  {top:150px;}
-        100%   {top:0px;}
-    }
-    
-    #mydevtype {
-        position: relative;
-        -webkit-animation-name: mydevtype; /* Chrome, Safari, Opera */
-        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
-        animation-name: mydevtype;
-        animation-duration: 1s;
-    }
-    
-    @keyframes mydevtype {
-        0%  {top:200px;}
-        100%   {top:0px;}
-    }
-    
-    /* Chrome, Safari, Opera */
-    @-webkit-keyframes mydevtype {
-        0%  {top:200px;}
-        100%   {top:0px;}
-    }
-    
-    .pills {
-        position: relative;
-        -webkit-animation-name: nav_pills; /* Chrome, Safari, Opera */
-        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
-        animation-name: nav_pills;
-        animation-duration: 1s;
-    }
-    
-    @keyframes nav_pills {
-        0%  {top:250px;}
-        100%   {top:0px;}
-    }
-    
-    /* Chrome, Safari, Opera */
-    @-webkit-keyframes nav_pills {
-        0%  {top:250px;}
-        100%   {top:0px;}
-    }
-
-    /* .two {
-        height: 500px;
-    } */
-
-
-                                /* FOOTER ELEMENTS */
-
-    .bg-con {
-        /* width: 100%; */
-        background-color: purple;
-    }
-
-    #etitle {
-        /* position: relative; */
-        color: white;
-    }
-
-    #ga {
-        width: 15px;
-        height: 15px;
+        width: 18px;
+        height: 18px;
     }
 
     #footer {
@@ -439,8 +250,28 @@
         display: inline-block;
     }
 
-    /* .sm {
-        margin-left: 5px;
-        margin-top: 5PX;
-    } */
-/* } */
+    .sm {
+        margin-top: 20%;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ----------- Laptops (Retina Screens) ----------- */
+/* @media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) {
+      
+    
+} */

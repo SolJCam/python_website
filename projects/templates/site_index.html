@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Bilbo+Swash+Caps|Rouge+Script|Sofia|Flamenco|Geo|Stint+Ultra+Expanded|Linden+Hill|Balthazar' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -11,34 +12,34 @@
         <div class="container-fluid main">
             <div class="row align-items-center one">
                 <div class="col-md">
-                    <div class="row">
-                        <div class="col">
-                            <img id="me" class="img-fluid mx-auto d-block rounded-circle" style="display:none;" src="http://i62.tinypic.com/1z5rr5y.jpg" alt="Responsive image">
+                    <div class="row one-of-one">
+                        <div class="col mt-4">
+                            <img id="me" class="float-sm-right img-fluid mx-auto d-block rounded-circle" style="display:none;" src="http://i62.tinypic.com/1z5rr5y.jpg" alt="Responsive image">
                         </div>
                         <div class="w-100"></div>
                         <div class="col">
-                            <h1 id="myname" class="col offset-3 mt-3 text-center text-light">Sol Cameron</h1>
-                            <h3 id="mydevtype" class="col offset-3 text-center">Full Stack Software Developer</h3>
+                            <h1 id="myname" class="col offset-lg-3 text-center text-light">Sol Cameron</h1>
+                            <h3 id="mydevtype" class="col offset-lg-3 text-center">Full Stack Software Developer</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-md">
-                    <h4 id="blurb" class="mt-5 pb-5 font-italic" style="display:none;">"An accounting major looking to enter the tech industry, my goal is to place my keen eye for detail and inquisitive qualities to use building efficient, automated back end systems and sleek, user friendly front end applications."</h4>
-                    <nav class="offset-lg-2 mt-5 navbar pills">
+                    <h4 id="blurb" class="mt-lg-5 pb-lg-5 text-center font-italic" style="display:none;">"An accounting major looking to enter the tech industry, my goal is to place my keen eye for detail and inquisitive qualities to use building efficient, automated back end systems and sleek, user friendly front end applications."</h4>
+                    <nav class="offset-1 offset-sm-2 mt-4 mt-lg-5 navbar pills">
                         <ul class="nav">
-                            <li role="button" id="project-nav">
+                            <li role="button" class="no-gutters" id="project-nav">
                                 <div class="col">
                                     <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="proj-nav" src="{% static 'img/icons8-application-window-60 (2).png' %}" alt="Responsive image">
                                     <a id="P" class="nav-item d-lg-none d-block nav-link active text-light" href="#Projects">Projects</a>
                                 </div>
                             </li>
-                            <li role="button" id="resume-nav" >
+                            <li role="button" class="no-gutters" id="resume-nav" >
                                 <div class="col">
                                     <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="res-nav" src="{% static 'img/icons8-resume-60.png' %}" alt="Responsive image">
                                     <a  id="R" class="nav-item d-lg-none d-block nav-link active text-light" href="#Resume">Resume</a>
                                 </div> 
                             </li>
-                            <li role="button" id="connect-nav">                       
+                            <li role="button" class="no-gutters" id="connect-nav">                       
                                 <div class="col">
                                     <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="conn-nav" src="{% static 'img/icons8-connect-50 (2).png' %}" alt="Responsive image">
                                     <a  id="C" class="nav-item d-lg-none d-block nav-link active text-light" href="#follow">Connect</a>
@@ -92,9 +93,9 @@
                     </div>
                 </div>
         <section class="row no-gutters bg-con">
-            <section class="col-lg-6 col-9 offset-lg-3 offset-1 mt-5 mb-5 email">
-                <form id="email">
-                <h3 id="etitle" class="text-center">Send me an email</h3>
+            <section class="mr-3 ml-3 col-lg-6 offset-lg-3 mt-5 mb-5 email">
+                <form id="email" action="mailto:scameron10@yahoo.com?subject=body=" method="post" enctype="text/plain">
+                <h3 id="emailtitle" class="text-center">Send me an email</h3>
                     <div class="row">
                         <div class="col form-group input-group-lg">
                             <label id="Name" for="inputName" class="text-light">Name *</label>
@@ -129,40 +130,31 @@
                     </div>
                 </form>
             </section>
-            <!-- <section id="follow" class="col follow">
-                <h3 id="followtl" class="text-center">Follow Me</h3>
-                <ul class="list-inline">
-                <li><a href="https://www.linkedin.com/in/solcameron" target="_blank"><img id="in" class="sm" src="http://i58.tinypic.com/2nq5dac.png"></a>
-                <li><a href="https://twitter.com/SolJCam" target="_blank"><img id="tw" class="sm" src="http://i61.tinypic.com/34nfjnr.png"></a>
-                <li><a href="https://plus.google.com/u/0/115256616173499449214/posts" target="_blank" style="top:80px;position:relative"><img id="gg" class="sm" src="http://i60.tinypic.com/2e1aux5.png"></a>
-                <li><a href="https://profiles.generalassemb.ly/profiles/solcameron" target="_blank"><img id="ga" class="sm" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/6/s300/general-assembly-logo.png"></a>
-                </ul>
-            </section> -->
         </section>
         <footer id="footer">
-            <ul class="offset-5 list-inline-horizontal socialIcons">
+            <ul class="offset-3 offset-sm-5 list-inline-horizontal socialIcons">
                 <li id="first" class="list-inline-item flex-fill circle">
                     <!-- <div class="col"> -->
-                        <a href="https://www.linkedin.com/in/solcameron" target="_blank"><img id="in" class="mt-2 img-fluid rounded mx-auto d-block sm" src="{% static 'img/icons8-linkedin-2-15 (1).png' %}" alt="Responsive image"></a>
+                        <a href="https://www.linkedin.com/in/solcameron" target="_blank"><img id="in" class=" img-fluid rounded mx-auto d-block sm" src="{% static 'img/icons8-linkedin-18.png' %}" alt="Responsive image"></a>
                     <!-- </div> -->
                 </li>
                 <!-- <li class="list-inline-item flex-fill">
                     <div class="col">
-                        <a href="https://twitter.com/SolJCam" target="_blank"><img id="tw" class="mt-2 img-fluid rounded mx-auto d-block sm" src="{% static 'img/icons8-application-window-60 (2).png' %}" alt="Responsive image"></a> -->
+                        <a href="https://twitter.com/SolJCam" target="_blank"><img id="tw" class=" img-fluid rounded mx-auto d-block sm" src="{% static 'img/icons8-application-window-60 (2).png' %}" alt="Responsive image"></a> -->
                     <!-- </div> -->
                 <!-- </li> -->
                 <li id="second" class="list-inline-item flex-fill circle">
                     <!-- <div class="col"> -->
-                        <a href="https://github.com/SolJCam" target="_blank"><img id="gg" class="mt-2 img-fluid rounded mx-auto d-block sm" src="{% static 'img/icons8-octocat-15 (1).png' %}" alt="Responsive image"></a>
+                        <a href="https://github.com/SolJCam" target="_blank"><img id="gg" class=" img-fluid rounded mx-auto d-block sm" src="{% static 'img/icons8-octocat-18.png' %}" alt="Responsive image"></a>
                     <!-- </div> -->
                 </li>
                 <li id="third" class="list-inline-item flex-fill circle">
                     <!-- <div class="col"> -->
-                        <a href="https://profiles.generalassemb.ly/profiles/solcameron" target="_blank"><img id="ga" class="mt-2 img-fluid rounded mx-auto d-block sm" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/6/s300/general-assembly-logo.png" alt="Responsive image"></a>
+                        <a href="https://profiles.generalassemb.ly/profiles/solcameron" target="_blank"><img id="ga" class=" img-fluid rounded mx-auto d-block sm" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/6/s300/general-assembly-logo.png" alt="Responsive image"></a>
                     <!-- </div> -->
                 </li>
             </ul>
-            <p class="offset-5 text-light cr">Copyright 2019 Sol Cameron</p>
+            <p class="offset-3 offset-sm-5 text-light cr">Copyright 2019 Sol Cameron</p>
         </footer>
     </body> 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
