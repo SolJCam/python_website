@@ -7,6 +7,40 @@ $(window).on("load", function (e) {
     
   console.log('2ndplz!');
 });
+
+//Social Media Link Behaviour
+$("#first").hover(
+  function(){
+    $("#second").fadeTo("fast", 0.3);
+    $("#third").fadeTo("fast", 0.3);
+  },
+  function(){
+    $("#second").fadeTo("fast", 1);
+    $("#third").fadeTo("fast", 1);
+  }
+)
+
+$("#second").hover(
+  function(){
+    $("#first").fadeTo("fast", 0.3);
+    $("#third").fadeTo("fast", 0.3);
+  },
+  function(){
+    $("#first").fadeTo("fast", 1);
+    $("#third").fadeTo("fast", 1);
+  }
+)
+
+$("#third").hover(
+  function(){
+    $("#first").fadeTo("fast", 0.3);
+    $("#second").fadeTo("fast", 0.3);
+  },
+  function(){
+    $("#first").fadeTo("fast", 1);
+    $("#second").fadeTo("fast", 1);
+  }
+)
  
 if (window.matchMedia("(min-width:992px)").matches) {
 
@@ -56,4 +90,7 @@ if (window.matchMedia("(max-width:992px)").matches) {
   $("#myname").toggleClass('offset-3');
   $("#mydevtype").toggleClass('offset-3');
   $(".pills").toggleClass('offset-2 mt-5');
+
+  // $(".email").toggleClass('offset-3');
+  // $(".email").toggleClass('ml-5');
 }
