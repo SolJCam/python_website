@@ -13,10 +13,7 @@ $(document).ready(function (e) {
 
 
 
-if (window.matchMedia("(min-width:992px)").matches) {
-
-  //toggle email position; DO NOT REMOVE. Bootstrap works from small to larg views. The below function is the only way to remove this class for larger viewports  
-  $(".email").toggleClass('mr-3 ml-3'); 
+if (window.matchMedia("(min-width:992px)").matches) { 
 
   //nav links animated display
   $("#resume-nav").hover(
@@ -50,12 +47,69 @@ if (window.matchMedia("(min-width:992px)").matches) {
     }
   );
 
-// toggle nav link width. Doesn't have breakpoint support
+  // toggle nav link width. Doesn't have breakpoint support
   $("#resume-nav").toggleClass("no-gutters");
   $("#project-nav").toggleClass("no-gutters");
   $("#connect-nav").toggleClass("no-gutters");
 
+  $('#C').click(function(e){
+    e.preventDefault();
+    $("html,body").animate({
+      scrollTop: 1655
+    }, 215)
+  });
+
+  //toggle email position; DO NOT REMOVE. Bootstrap works from small to larg views. The below function is the only way to remove this class for larger viewports  
+  $(".email").toggleClass('mr-3 ml-3');
+
 }
+
+
+
+
+
+if (window.matchMedia("(max-width:992px)").matches) {
+  $('#C').click(function(e){
+    e.preventDefault();
+    $("html,body").animate({
+      scrollTop: 964
+    }, 215)
+  });
+}
+
+
+
+
+
+
+
+
+//Email submission functionality
+$('#submit').click(function(e){
+  if($('#inputNameF').val()==""){
+    e.preventDefault();
+    alert("Please provide a name");
+    $("#inputNameF").css({"border-color":"red", "border-width": "3px"});
+  }else if($('#inputEmail').val()==""){
+    e.preventDefault();
+    $("#inputEmail").css({"border-color":"red", "border-width": "3px"});
+    alert("Please provide an email");
+  }else if($('#inputSubject').val()==""){
+    e.preventDefault();
+    $("#inputSubject").css({"border-color":"red", "border-width": "3px"});
+    alert("Please provide a subject");
+  }else if($('#inputMessage').val()==""){
+    e.preventDefault();
+    $("#inputMessage").css({"border-color":"red", "border-width": "3px"});
+    alert("Please provide a message");
+  }else{
+    var email = "mailto:scameron10@yahoo.com?from="+$('#inputEmail').val()+"&subject="+$('#inputSubject').val()+"&body=<"+$('#inputNameF').val()+" "+$('#inputNameS').val()+"><"+$('#inputEmail').val()+">"+$('#inputMessage').val();
+    var href = email.replace(/ /g, "%20");
+    console.log(href);
+    $("#email").attr("action", href);
+  }
+});
+
 
 
 
@@ -72,7 +126,7 @@ $("#first").hover(
     $("#second").fadeTo("fast", 1);
     $("#third").fadeTo("fast", 1);
   }
-)
+);
 
 $("#second").hover(
   function(){
@@ -83,7 +137,7 @@ $("#second").hover(
     $("#first").fadeTo("fast", 1);
     $("#third").fadeTo("fast", 1);
   }
-)
+);
 
 $("#third").hover(
   function(){
@@ -94,7 +148,7 @@ $("#third").hover(
     $("#first").fadeTo("fast", 1);
     $("#second").fadeTo("fast", 1);
   }
-)
+);
 
 // Not sure if this code is necessary. Browser resize suggests yes, Chrome dev tools suggests no. Will know after deployment
 
