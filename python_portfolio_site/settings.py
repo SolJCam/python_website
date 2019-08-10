@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'projects',
+    'pydictionary',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'python_portfolio_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        "DIRS": ["personal_portfolio/templates/"],
+        "DIRS": ["personal_portfolio/templates/", "portfolio_projects/templates/"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,8 +81,16 @@ DATABASES = {
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', #pip install psycopg2-binary
         'NAME': 'python_portfolio_site',                      
+        'USER': 'postgres',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
+    },
+    'dictionary': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dictionary_words',                      
         'USER': 'postgres',
         'PASSWORD': '',
         'HOST': 'localhost',
