@@ -125,6 +125,14 @@
     #navbar-items {
         width: 100%;
     }
+
+    #proj_img {
+        max-width: 100%;
+    }
+
+    #img_cont {
+        max-width: 50%;
+    }
   }
 
 

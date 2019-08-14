@@ -6,19 +6,19 @@
     <div class="container">
       <div class="row" id="navbar-items">
         <!-- <div class="col offst-3"> -->
-          <h3 class="col text-center">Sol Cameron Portfolio Projects</h3>
+          <h1 class="col text-center">Sol Cameron Portfolio Projects</h1>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="w-100"></div>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="offset-4 navbar-nav mr-auto">
               <li class="nav-item active">
-                <h5><a class="nav-link" href="{% url 'site_index' %}">Home</a></h5>
+                <a class="nav-link" href="{% url 'site_index' %}"><h5 class="text-primary">Home</h5></a>
               </li>
               {% for project in projects %}
               <li class="nav-item">
-                <h5><a class="nav-link" href="{% url 'project_index' %}">{{ project.title }}</a></h5>
+                <a class="nav-link" href="{% url 'project_index' %}"><h5 class="text-primary">{{ project.title }}</h5></a>
               </li>
               {% endfor %}
             </ul>
