@@ -5,7 +5,10 @@
   and (-webkit-min-device-pixel-ratio: 3)
   and (orientation: portrait) { 
 
-                                /* LANDING PAGE ELEMENTS */
+    /*----------------------------------- INDEX PAGE -----------------------------------*/
+
+   
+    /*----------------------- HEADER ELEMENTS -----------------------*/
     .one {
         height: 640px;
         background-color: teal;
@@ -112,6 +115,16 @@
         margin-top: 20%;
     }
 
+
+
+    /*----------------------------------- PROJECTS PAGE -----------------------------------*/
+
+   
+    /*----------------------- HEADER ELEMENTS -----------------------*/
+
+    #navbar-items {
+        width: 100%;
+    }
   }
 
 
@@ -146,7 +159,11 @@
   and (min-device-width: 1200px) 
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 1) { 
-      
+
+    /*----------------------------------- INDEX PAGE -----------------------------------*/
+
+   
+    /*----------------------- HEADER ELEMENTS -----------------------*/      
     .one {
         height: 700px;
         background-color: teal;
@@ -252,6 +269,25 @@
 
     .sm {
         margin-top: 20%;
+    }
+
+
+
+    /*----------------------------------- PROJECTS PAGE -----------------------------------*/
+
+   
+    /*----------------------- HEADER ELEMENTS -----------------------*/
+
+    #navbar-items {
+        width: 100%;
+    }
+
+    #proj_img {
+        max-width: 100%;
+    }
+
+    #img_cont {
+        max-width: 50%;
     }
 
 }
