@@ -5,7 +5,7 @@
 <div class="row">
 {% for project in projects %}
     <div class="col-12">
-        <div class="card mb-2 flex-row flex-wrap">
+        <div class="card mb-2 flex-row flex-wrap height">
             <div class="card-header border-0" id="img_cont">
                 <img class="card-img-top" src="{% static project.image %}" id="proj_img">
             </div>
@@ -19,6 +19,7 @@
             </div>
         </div>
     </div>
+    <!-- <div class="heights"></div> -->
 {% endfor %}
 </div>
 {% endblock %}

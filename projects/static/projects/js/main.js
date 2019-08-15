@@ -62,6 +62,10 @@ if (window.matchMedia("(min-width:992px)").matches) {
   //toggle email position; DO NOT REMOVE. Bootstrap works from small to larg views. The below function is the only way to remove this class for larger viewports  
   $(".email").toggleClass('mr-3 ml-3');
 
+
+  // const height = $(".height").height();
+  // $(".heights").css("height",height).html("<p>"+height+"</p>");
+
 }
 
 
@@ -75,6 +79,9 @@ if (window.matchMedia("(max-width:992px)").matches) {
       scrollTop: 964
     }, 215)
   });
+
+  // const height = $(".height").height();
+  // $(".heights").css("height",height).html("<p>"+height+"</p>");
 }
 
 
