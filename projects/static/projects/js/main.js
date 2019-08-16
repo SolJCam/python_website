@@ -6,6 +6,12 @@ $(document).ready(function (e) {
   $("#blurb").fadeIn(2e3);
     
   console.log('2ndplz!');
+
+  for(let i=0;i<=$(".parallax1").length;i++){
+    $(".parallax1").eq(i).attr("id", `#projects${i}`);
+    // learn about the eq() method here: https://api.jquery.com/eq/
+  }
+  
 });
 
 
@@ -62,12 +68,15 @@ if (window.matchMedia("(min-width:992px)").matches) {
   //toggle email position; DO NOT REMOVE. Bootstrap works from small to larg views. The below function is the only way to remove this class for larger viewports  
   $(".email").toggleClass('mr-3 ml-3');
 
-  // const height = $(".height").height();
-  // $(".heights").css("height",height).html("<p>"+height+"</p>");
+
   $(window).on('scroll', function(){
 
     if (window.matchMedia('(min-width:900px)').matches){  
-
+      
+      for(let i=0;i<=$(".parallax1").length;i++){
+        $(".parallax1").eq(i).attr("id", `#projects${i}`);
+        // learn about the eq() method here: https://api.jquery.com/eq/
+      }
       // console.log("it's hittin")
       const scrolled = $(window).scrollTop();
       $('.parallax1').css('top', 0 - scrolled);
