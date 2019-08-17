@@ -2,15 +2,17 @@ console.log("scripts are being read");
 
 //fade in my image and blurb
 $(document).ready(function (e) {
+
+  // create id's for project nav link and parallax scroll behavior
+  for(let i=0;i<=$(".parallax").length;i++){
+    $(".parallax").eq(i).attr("id", `#projects${i}`); // learn about the eq() method here: https://api.jquery.com/eq/
+    $(".proj-nav").eq(i).attr("id", `#proj-nav${i}`);
+  }
+
   $("#me").fadeIn(2e3);
   $("#blurb").fadeIn(2e3);
     
   console.log('2ndplz!');
-
-  for(let i=0;i<=$(".parallax1").length;i++){
-    $(".parallax1").eq(i).attr("id", `#projects${i}`);
-    // learn about the eq() method here: https://api.jquery.com/eq/
-  }
   
 });
 
@@ -58,6 +60,7 @@ if (window.matchMedia("(min-width:992px)").matches) {
   $("#project-nav").toggleClass("no-gutters");
   $("#connect-nav").toggleClass("no-gutters");
 
+  // nav connect link functionality to scroll to social media links on large viewports
   $('#C').click(function(e){
     e.preventDefault();
     $("html,body").animate({
@@ -68,18 +71,24 @@ if (window.matchMedia("(min-width:992px)").matches) {
   //toggle email position; DO NOT REMOVE. Bootstrap works from small to larg views. The below function is the only way to remove this class for larger viewports  
   $(".email").toggleClass('mr-3 ml-3');
 
-
+ 
+  // nav project link functionality to scroll to individual projects on large viewports
+  $('#C').click(function(e){
+    e.preventDefault();
+    $("html,body").animate({
+      scrollTop: 1655
+    }, 215)
+  });
+  
+  
+  // PROJECT PAGE parallax behavior here
   $(window).on('scroll', function(){
 
     if (window.matchMedia('(min-width:900px)').matches){  
-      
-      for(let i=0;i<=$(".parallax1").length;i++){
-        $(".parallax1").eq(i).attr("id", `#projects${i}`);
-        // learn about the eq() method here: https://api.jquery.com/eq/
-      }
+
       // console.log("it's hittin")
       const scrolled = $(window).scrollTop();
-      $('.parallax1').css('top', 0 - scrolled);
+      $('.parallax').css('top', 0 - scrolled);
 
     }
   })
@@ -89,8 +98,9 @@ if (window.matchMedia("(min-width:992px)").matches) {
 
 
 
-
 if (window.matchMedia("(max-width:992px)").matches) {
+  
+  // nav connect link functionality to scroll to social media links on small viewports
   $('#C').click(function(e){
     e.preventDefault();
     $("html,body").animate({
@@ -98,8 +108,13 @@ if (window.matchMedia("(max-width:992px)").matches) {
     }, 215)
   });
 
-  // const height = $(".height").height();
-  // $(".heights").css("height",height).html("<p>"+height+"</p>");
+  // nav project link functionality to scroll to individual projects on small viewports
+  // $('#C').click(function(e){
+  //   e.preventDefault();
+  //   $("html,body").animate({
+  //     scrollTop: 1655
+  //   }, 215)
+  // });
 }
 
 
