@@ -137,7 +137,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
-]
+# This should be set to a list of strings that contain full paths to your additional files directory(ies)
+# Learn more: https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-STATICFILES_DIRS
+# Ex.
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"),
+#     "/home/special.polls.com/polls/static",
+#     "/home/polls.com/polls/static",
+#     "/opt/webfiles/common",
+# ]
