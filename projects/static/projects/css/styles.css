@@ -297,12 +297,13 @@
         max-width: 100%;
     } */
 
-    .parallax {
-        background: transparent;
-    }
-
     #img_cont {
         max-width: 60%;
+    }
+
+    .parallax-window {
+        min-height: 600px;
+        background: transparent;
     }
 
 }

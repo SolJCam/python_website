@@ -37,12 +37,15 @@
     <div class="container-fluid">
         <div class="row" -page>
             {% for project in projects %}
-                <div class="col-12 parallax" data-parallax="scroll" data-image-src="{% static project.image %}">
-                    <div class="card mb-2 flex-row flex-wrap height">
-                        <div class="card-header border-0" id="img_cont">
-                            <img class="card-img-top" src="{% static project.image %}" id="proj_img">
+              {% if project.id != 1 %}
+            <div class="col-12 parallax-window" data-parallax="scroll" data-image-src="{% static project.image %}" data-ios-fix="false" data-android-fix="false"></div>
+              {% endif %}
+            <div class="col-12">
+                    <div class="row card mb-2 flex-row flex-wrap height" alt="Max-width 100%">
+                        <div class="col-md-6 card-header border-0">
+                            <img  id="proj_img" class="card-img-top" src="{% static project.image %}">
                         </div>
-                        <div class="card-body">
+                        <div class="col-md-6 card-body">
                             <h5 class="card-title">{{ project.title }}</h5>
                             <p class="card-text">{{ project.description }}</p>
                             <a href="{% url 'project_detail' project.pk %}"
@@ -52,7 +55,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="heights"></div> -->
             {% endfor %}
         </div>
     </div>

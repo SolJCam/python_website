@@ -84,14 +84,6 @@ $(document).ready(function (e) {
 
   $("#projects-page").fadeIn(5e3);
 
-  const par_height = `${$(".parallax").height()}`
-  const par_mb = `${$(".parallax").css('min-height')}`
-
-  for(let e=0;e<=$(".parallax").length;e++){
-    $(".parallax").css("min-height", par_height);
-    $(".parallax").css("margin-bottom", par_mb)
-  }
-
 });
 
 
