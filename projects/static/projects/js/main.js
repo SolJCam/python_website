@@ -85,12 +85,12 @@ $(document).ready(function (e) {
   $("#projects-page").fadeIn(5e3);
 
   const par_height = `${$(".parallax").height()}`
-  $(".parallax").css("min-height", (index)=>{return index = par_height});
-  $(".parallax").css("min-height", function(index){return index = par_height});
-
-  $(".parallax").css("min-height", par_height)
   const par_mb = `${$(".parallax").css('min-height')}`
-  $(".parallax").css("margin-bottom", par_mb)
+
+  for(let e=0;e<=$(".parallax").length;e++){
+    $(".parallax").css("min-height", par_height);
+    $(".parallax").css("margin-bottom", par_mb)
+  }
 
 });
 
