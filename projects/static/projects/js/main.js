@@ -5,7 +5,7 @@ $(document).ready(function (e) {
 
   $("#me").fadeIn(2e3);
   $("#blurb").fadeIn(2e3);
-  $("#projects-page").fadeIn(2e3);
+  // $("#projects-page").fadeIn(2e3);
     
   console.log('2ndplz!');
 
@@ -107,11 +107,11 @@ if (window.matchMedia("(min-width:992px)").matches) {
   $("#project-nav").hover(
     function(){
       $("#P").toggleClass('d-lg-none');
-      $("#proj-nav").toggleClass('d-lg-block');
+      $("#proj-link").toggleClass('d-lg-block');
     },
     function(){
       $("#P").toggleClass('d-lg-none');
-      $("#proj-nav").toggleClass('d-lg-block');
+      $("#proj-link").toggleClass('d-lg-block');
     }
   );
   $("#connect-nav").hover(
@@ -143,12 +143,10 @@ if (window.matchMedia("(min-width:992px)").matches) {
 
  
   // nav project link BASIC functionality to scroll to individual projects on large viewports: work in progress
-  // $('#C').click(function(e){
-  //   e.preventDefault();
-  //   $("html,body").animate({
-  //     scrollTop: 1655
-  //   }, 215)
-  // });
+  let projLinks = $('#proj-nav').length
+  for(const i=0;i<=projLinks;i++){
+    if($("project[i]").click()
+  }
 
 }
 
