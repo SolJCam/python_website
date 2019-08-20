@@ -5,6 +5,7 @@ $(document).ready(function (e) {
 
   $("#me").fadeIn(2e3);
   $("#blurb").fadeIn(2e3);
+  $("#projects-page").fadeIn(2e3);
     
   console.log('2ndplz!');
 
@@ -82,7 +83,6 @@ $(document).ready(function (e) {
 
 
 
-  $("#projects-page").fadeIn(5e3);
 
 });
 
