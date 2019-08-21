@@ -143,10 +143,21 @@ if (window.matchMedia("(min-width:992px)").matches) {
 
  
   // nav project link BASIC functionality to scroll to individual projects on large viewports: work in progress
-  let projLinks = $('#proj-nav').length
-  for(const i=0;i<=projLinks;i++){
-    if($("project[i]").click()
-  }
+  $('#project_link3').click(function(e){
+    e.preventDefault();
+    $("#project3")[0].scrollTo({
+      top: 100,
+      left: 100,
+      behavior: 'smooth'
+    });
+    // $("#project3")[0].scrollToView(); may go this route...
+    console.log("woohoo!!!");
+  })
+  
+  // $(".links").children().click(function(e){
+  //   e.preventDefault();
+  //   console.log("woohoo!!!");
+  // })
 
 }
 
