@@ -142,22 +142,19 @@ if (window.matchMedia("(min-width:992px)").matches) {
   $(".email").toggleClass('mr-3 ml-3');
 
  
-  // nav project link BASIC functionality to scroll to individual projects on large viewports: work in progress
-  $('#project_link3').click(function(e){
+  // nav project link BASIC functionality to scroll to individual projects on large viewports: work in progress...
+  $('#project_link2').click(function(e){
     e.preventDefault();
-    $("#project3")[0].scrollTo({
-      top: 100,
-      left: 100,
-      behavior: 'smooth'
-    });
-    // $("#project3")[0].scrollToView(); may go this route...
+    $("#project2")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
     console.log("woohoo!!!");
   })
-  
-  // $(".links").children().click(function(e){
-  //   e.preventDefault();
-  //   console.log("woohoo!!!");
-  // })
+  $('#project_link3').click(function(e){
+    e.preventDefault();
+    $("#project3")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+    console.log("woohoo!!!");
+  })
+
+  // return button behavior
 
 }
 
