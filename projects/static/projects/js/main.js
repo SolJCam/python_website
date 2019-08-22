@@ -9,6 +9,9 @@ $(document).ready(function (e) {
     
   console.log('2ndplz!');
 
+  $("#return-btn").click(function(e){
+    $("#proj-nav")[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
 
 
   //Email submission functionality
@@ -97,15 +100,17 @@ $(document).ready(function (e) {
 
   // return button behavior
   let thirty; let scroll;
-  window.onscroll = () => { thirty = $('body').height() * .3; scroll = window.scrollY; }
-  if(scroll >= thirty) {
-    console.log(`${scroll} and ${thirty}`);
-    $("#return-btn").toggleClass('d-none');
-  }
 
-  $("#return-btn").click(function(e){
-    $('html, body').scrollTop(-scroll);
-  });
+  window.onscroll =   () => { 
+    thirty = $('body').height() * .3; 
+    scroll = window.scrollY; 
+    if(scroll >= thirty) {
+      // console.log(`${scroll} and ${thirty}`);
+      $("#return-btn").css("visibility", "visible");
+    }else{
+      $("#return-btn").css("visibility", "hidden");
+    }
+  }
 
 });
 
@@ -158,7 +163,7 @@ if (window.matchMedia("(min-width:992px)").matches) {
     e.preventDefault();
     $("html,body").animate({
       scrollTop: 1655
-    }, 215)
+    }, 500)
   });
 
   //toggle email position; DO NOT REMOVE. Bootstrap works from small to larg views. The below function is the only way to remove this class for larger viewports  

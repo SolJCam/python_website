@@ -305,7 +305,8 @@
     #return-btn {
         position: -webkit-sticky; /* Safari */
         position: sticky;
-        top: 0;
+        bottom: 5%;
+        visibility: hidden;
     }
 
 }
