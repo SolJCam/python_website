@@ -302,6 +302,12 @@
         background: transparent;
     }
 
+    #return-btn {
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: 0;
+    }
+
 }
 
 

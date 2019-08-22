@@ -82,7 +82,30 @@ $(document).ready(function (e) {
   // }
 
 
+ 
+  // nav project link BASIC functionality to scroll to individual projects
+  $('#project_link2').click(function(e){
+    e.preventDefault();
+    $("#project2")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+    console.log("woohoo!!!");
+  })
+  $('#project_link3').click(function(e){
+    e.preventDefault();
+    $("#project3")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+    console.log("woohoo!!!");
+  })
 
+  // return button behavior
+  let thirty; let scroll;
+  window.onscroll = () => { thirty = $('body').height() * .3; scroll = window.scrollY; }
+  if(scroll >= thirty) {
+    console.log(`${scroll} and ${thirty}`);
+    $("#return-btn").toggleClass('d-none');
+  }
+
+  $("#return-btn").click(function(e){
+    $('html, body').scrollTop(-scroll);
+  });
 
 });
 
@@ -140,21 +163,6 @@ if (window.matchMedia("(min-width:992px)").matches) {
 
   //toggle email position; DO NOT REMOVE. Bootstrap works from small to larg views. The below function is the only way to remove this class for larger viewports  
   $(".email").toggleClass('mr-3 ml-3');
-
- 
-  // nav project link BASIC functionality to scroll to individual projects on large viewports: work in progress...
-  $('#project_link2').click(function(e){
-    e.preventDefault();
-    $("#project2")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-    console.log("woohoo!!!");
-  })
-  $('#project_link3').click(function(e){
-    e.preventDefault();
-    $("#project3")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-    console.log("woohoo!!!");
-  })
-
-  // return button behavior
 
 }
 
