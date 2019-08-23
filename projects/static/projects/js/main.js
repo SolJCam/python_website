@@ -9,10 +9,6 @@ $(document).ready(function (e) {
     
   console.log('2ndplz!');
 
-  $("#return-btn").click(function(e){
-    $("#proj-nav")[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
-  });
-
 
   //Email submission functionality
   $('#submit').click(function(e){
@@ -111,6 +107,10 @@ $(document).ready(function (e) {
       $("#return-btn").css("visibility", "hidden");
     }
   }
+
+  $("#return-btn").click(function(e){
+    $("#title")[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
 
 });
 
