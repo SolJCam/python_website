@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from projects.models import Project
-from pydictionary.models import Word
+from projects.models import Project, Word
 
 # Create your views here.
 def site_index(request):
@@ -13,7 +12,7 @@ def project_index(request):
         'projects': projects,
         'words': words
     }
-    return render(request, 'projects.html', context)
+    return render(request, 'pydictionary.html', context)
 
 # To visit indivudual project urls
 def project_detail(request, pk):
