@@ -74,6 +74,7 @@ WSGI_APPLICATION = 'python_portfolio_site.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+DATABASE_ROUTERS = ['../projects/default_proj_router.py', '../projects/word_router.py']
 
 DATABASES = {
     # 'default': {
@@ -90,7 +91,7 @@ DATABASES = {
     },
     'dictionary': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dictionary_words',                      
+        'NAME': 'dictionary',                      
         'USER': 'postgres',
         'PASSWORD': '',
         'HOST': 'localhost',
