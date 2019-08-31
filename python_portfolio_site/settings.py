@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'python_portfolio_site.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-DATABASE_ROUTERS = ['../projects/default_proj_router.py', '../projects/word_router.py']
+DATABASE_ROUTERS = ['projects.default_proj_router.ProjRouter', 'projects.word_router.WrdRouter']
 
 DATABASES = {
     # 'default': {
