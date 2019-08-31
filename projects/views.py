@@ -20,4 +20,4 @@ def project_detail(request, pk):
     context = {
         'project': project
     }
-    return render(request, 'project_detail.html', context)
+    return render(request, 'pydictionary.html', context)

@@ -84,7 +84,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', #pip install psycopg2-binary
         'NAME': 'projects',                      
-        'USER': 'postgres',
+        'USER': 'Sol',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
