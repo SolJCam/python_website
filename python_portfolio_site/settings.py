@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'projects',
-    'folium_web_map',
+    # 'folium_web_map',
+    # 'chatApp',
 ]
 
 MIDDLEWARE = [
@@ -77,10 +78,7 @@ WSGI_APPLICATION = 'python_portfolio_site.wsgi.application'
 DATABASE_ROUTERS = ['projects.default_proj_router.ProjRouter', 'projects.word_router.WrdRouter']
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
+    # 'default': {},
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', #pip install psycopg2-binary
         'NAME': 'projects',                      
