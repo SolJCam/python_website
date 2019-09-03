@@ -57,7 +57,7 @@ ROOT_URLCONF = 'python_portfolio_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        "DIRS": ["personal_portfolio/templates/", "portfolio_projects/templates/"],
+        "DIRS": ["projects/templates/"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'python_portfolio_site.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-DATABASE_ROUTERS = ['projects.default_proj_router.ProjRouter', 'projects.word_router.WrdRouter']
+# DATABASE_ROUTERS = ['projects.default_proj_router.ProjRouter', 'projects.word_router.WrdRouter']
 
 DATABASES = {
     # 'default': {},
@@ -87,14 +87,14 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '',
     },
-    'dictionary': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dictionary',                      
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
+    # 'dictionary': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'dictionary',                      
+    #     'USER': 'Sol',
+    #     'PASSWORD': '',
+    #     'HOST': 'localhost',
+    #     'PORT': '',
+    # }
 }
 
 
