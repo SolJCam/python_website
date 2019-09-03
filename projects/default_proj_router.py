@@ -5,17 +5,17 @@ class ProjRouter:
     """
     def db_for_read(self, model, **hints):
         """
-        Attempts to read project models go to projects.
+        Attempts to read project models to go to projects db.
         """
-        if model._meta.app_label == 'project':
+        if model._meta.app_label == 'projects':
             return 'projects'
         return None
 
     def db_for_write(self, model, **hints):
         """
-        Attempts to write project models go to projects.
+        Attempts to write project models to go to projects db.
         """
-        if model._meta.app_label == 'project':
+        if model._meta.app_label == 'projects':
             return 'projects'
         return None
 
@@ -32,9 +32,9 @@ class ProjRouter:
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
         """
-        Make sure the project app only appears in the 'projects'
+        Make sure the projects app only appears in the 'projects'
         database.
         """
-        if app_label == 'project':
+        if app_label == 'projects':
             return db == 'projects'
-        return None
+        return True

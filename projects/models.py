@@ -10,7 +10,7 @@ class Project(models.Model):
     def __str__(self): #return a more helpful representation of this object
         return self.title
     class Meta:
-        app_label = 'project'
+        app_label = 'projects'
 
 
 class Word(models.Model):
@@ -22,11 +22,11 @@ class Word(models.Model):
     third_definition = models.CharField(max_length=120, blank=True)
     third_ex = models.CharField(max_length=120, blank=True)
     synonym = models.CharField(max_length=120, blank=True)
-    unique_hash = models.CharField(max_length=8)
+    # unique_hash = models.CharField(max_length=8)
     def __str__(self): #return a more helpful representation of this object
         return self.name, self.first_definition, self.first_ex, self.second_definition, self.second_ex, self.third_definition, self.third_ex
     class Meta:
-        app_label = 'word'
+        app_label = 'projects'
 
     # def random_string(self):
     #     pool = string.ascii_letters + string.digits

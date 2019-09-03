@@ -5,17 +5,17 @@ class WrdRouter:
     """
     def db_for_read(self, model, **hints):
         """
-        Attempts to read word models go to dictionary.
+        Attempts to read word models to go to dictionary db.
         """
-        if model._meta.app_label == 'word':
+        if model._meta.app_label == 'projects':
             return 'dictionary'
         return None
 
     def db_for_write(self, model, **hints):
         """
-        Attempts to write word models go to dictionary.
+        Attempts to write word models to go to dictionary db.
         """
-        if model._meta.app_label == 'word':
+        if model._meta.app_label == 'projects':
             return 'dictionary'
         return None
 
@@ -32,9 +32,8 @@ class WrdRouter:
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
         """
-        Make sure the word app only appears in the 'dictionary'
-        database.
+        Make sure word models only appear in the dictionary database.
         """
-        if app_label == 'project':
+        if app_label == 'projects':
             return db == 'dictionary'
-        return None
+        return True
