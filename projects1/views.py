@@ -6,9 +6,9 @@ def site_index(request):
     return render(request, 'index.html')
 
 def project_index(request):
-    projects = Project.objects.all()
+    project = Project.objects.all()
     context = {
-        'project': projects
+        'project': project
     }
     return render(request, 'pydictionary.html', context)
 

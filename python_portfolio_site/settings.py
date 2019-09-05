@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'projects',
+    # 'main',
     # 'folium_web_map',
     # 'chatApp',
 ]
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'python_portfolio_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        "DIRS": ["projects/templates/"],
+        "DIRS": ["personal_portfolio/templates/", "portfolio_projects/templates/"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'python_portfolio_site.wsgi.application'
 # DATABASE_ROUTERS = ['projects.default_proj_router.ProjRouter', 'projects.word_router.WrdRouter']
 
 DATABASES = {
-    # 'default': {},
-    'default': {
+    'default': {},
+    'main': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', #pip install psycopg2-binary
-        'NAME': 'projects',                      
+        'NAME': 'main',                      
         'USER': 'Sol',
         'PASSWORD': '',
         'HOST': 'localhost',
