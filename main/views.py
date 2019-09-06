@@ -3,14 +3,18 @@ from main.models import Project
 
 # Create your views here.
 def site_index(request):
-    return render(request, 'index.html')
+  projects = Project.objects.all()
+  context = {
+      'projects': projects
+  }
+  return render(request, 'index.html', context)
 
 def project_index(request):
-    projects = Project.objects.all()
-    context = {
-        'projects': projects
-    }
-    return render(request, 'pydictionary.html', context)
+  projects = Project.objects.all()
+  context = {
+      'projects': projects
+  }
+  return render(request, 'pydictionary.html', context)
 
 # Below will be to visit indivudual project urls. Needs refinement
 def project_detail(request, pk):
