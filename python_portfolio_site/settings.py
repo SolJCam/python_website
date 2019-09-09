@@ -25,7 +25,8 @@ SECRET_KEY = '-n$5560#1%b2=a)g5#xcq*v&j^w63vwz#t+ez@9&glos^+p*4c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#To run test_views in interactive interpreter (shell)
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver',]
 
 
 # Application definition
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'python_portfolio_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        "DIRS": ["personal_portfolio/templates/", "portfolio_projects/templates/"], #should this be ["python_portfolio_site/templates/", "main/templates/"]?
+        "DIRS": ["personal_portfolio/templates/", "portfolio_projects/templates/"], #should this be ["main/templates/",]?
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from main.models import Project
+import pdb #python debugger
 
 # Create your views here.
 def site_index(request):
@@ -7,6 +8,7 @@ def site_index(request):
   context = {
       'projects': projects
   }
+  # pdb.set_trace()
   return render(request, 'index.html', context)
 
 def project_index(request):
