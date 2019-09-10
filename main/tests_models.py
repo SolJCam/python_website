@@ -1,5 +1,6 @@
 from django.test import TestCase
 from main.models import Project
+from django.urls import reverse
 
 # Create your tests here.
 class ProjectTestCase(TestCase):
@@ -13,4 +14,9 @@ class ProjectTestCase(TestCase):
         app2 = Project.objects.get(title="Folium Web Map")
         app3 = Project.objects.get(description="My online project portfolio")
 
+# test only this method: ./manage.py test main.tests_models.ProjectTestCase.check_context_obj  
+    def check_context_obj(self):
+        url = reverse('site_index')
+        resp = self.client.get(url)
 
+        self.assertEqual(resp.context, Project.objects.all())

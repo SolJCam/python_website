@@ -88,14 +88,14 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '',
     },
-    # 'dictionary': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'dictionary',                      
-    #     'USER': 'Sol',
-    #     'PASSWORD': '',
-    #     'HOST': 'localhost',
-    #     'PORT': '',
-    # }
+    'dictionary': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dictionary',                      
+        'USER': 'Sol',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
+    },
 }
 
 
