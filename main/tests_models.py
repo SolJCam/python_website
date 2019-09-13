@@ -19,4 +19,5 @@ class ProjectTestCase(TestCase):
         url = reverse('site_index')
         resp = self.client.get(url)
 
-        self.assertEqual(resp.context, Project.objects.all())
+        self.assertTrue(resp.context['projects'])
+        self.assertEqual(resp.context['projects'], Project.objects.all())
