@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from main.models import Project
+from main.models import Project #Word
 import pdb #python debugger
 
 # Create your views here.
@@ -13,8 +13,10 @@ def site_index(request):
 
 def project_index(request):
   projects = Project.objects.all()
+  # words = Word.objects.all()
   context = {
-      'projects': projects
+      'projects': projects,
+      # 'words': words
   }
   return render(request, 'pydictionary.html', context)
 

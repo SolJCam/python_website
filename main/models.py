@@ -9,8 +9,8 @@ class Project(models.Model):
     image = models.FilePathField(path="/img")
     def __str__(self): #return a more helpful representation of this object
         return self.title
-    class Meta:
-        app_label = 'projects'
+    # class Meta:
+    #     db_table = 'projects'
 
 
 class Word(models.Model):
@@ -25,8 +25,8 @@ class Word(models.Model):
     # unique_hash = models.CharField(max_length=8)
     def __str__(self): #return a more helpful representation of this object
         return self.name, self.first_definition, self.first_ex, self.second_definition, self.second_ex, self.third_definition, self.third_ex
-    class Meta:
-        app_label = 'projects'
+    # class Meta:
+    #     db_table = 'dictionary'
 
     # def random_string(self):
     #     pool = string.ascii_letters + string.digits
