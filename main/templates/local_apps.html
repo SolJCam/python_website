@@ -1,0 +1,32 @@
+{% extends "projects.html" %}
+{% load static %}
+
+{% block content %}
+<div id="" class="col-12">
+    <div class="row card mb-2 flex-row flex-wrap">
+        <div class="col-md-8 card-header border-0">
+            <p class="col-md-4 mt-2 text-right">Sol's py_dictionary</p>
+            <div class="mt-2 mb-3 mr-1 input-group">
+                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">Enter</button>
+                </div>
+            </div>
+            <div id="result" class="col">
+                <h1 id="dict_name"></h1>
+                <p id="first_definition"></p>
+                <p id="first_ex"></p>
+            </div>
+        </div>
+        <div class="col-md-4 card-body">
+            <h5 class="card-title">Sol's py_dictionary</h5>
+            <p class="card-text"></p>
+            <a href="#"
+            class="btn btn-primary"> <!-- Will eventally replace with a thorough explanation -->
+                Read More
+            </a>
+            <p class="card-text"></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

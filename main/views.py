@@ -18,9 +18,9 @@ def project_index(request):
       'projects': projects,
       # 'words': words
   }
-  return render(request, 'pydictionary.html', context)
+  return render(request, 'local_apps.html', context)
 
-# Below will be to visit indivudual project urls. Needs refinement
+# Below will be to visit indivudual project urls. Not ready
 def project_detail(request, pk):
   projects = get_object_or_404(Project.objects.get(pk=pk))
   context = {
