@@ -22,7 +22,7 @@ class Word(models.Model):
     third_definition = models.CharField(max_length=120, blank=True)
     third_ex = models.CharField(max_length=120, blank=True)
     synonym = models.CharField(max_length=120, blank=True)
-    more_definitions = models.TextField()
+    more_definitions = models.TextField(blank=True)
     # unique_hash = models.CharField(max_length=8)
     def __str__(self): #return a more helpful representation of this object
         return self.name, self.first_definition, self.first_ex, self.second_definition, self.second_ex, self.third_definition, self.third_ex
