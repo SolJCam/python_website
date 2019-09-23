@@ -95,6 +95,9 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
+        'TEST': {
+            'MIRROR':  'default',
+        }
     },
 }
 

@@ -16,9 +16,10 @@ def display_words():
     read_json = json_words.read()
     dict_words = json.loads(read_json)
     json_words.close()
+    # small_d = dict(list(dict_words.items())[:11])
 
     for word in dict_words:
-      if word != Word.objects.get(name=word):
+      if word != Word.objects.using('dictionary').get(name=word):
         if dict_words[word[1]]:
           second = dict_words[word[1]]
         elif dict_words[word[2]]:
@@ -27,8 +28,8 @@ def display_words():
           diff = len(dict_words[word])-3
           additional = [ dict_words[word[2+x]] for x in range(diff) ]
         
-        nu_word = Word.objects.create(name=word, first_definition=dict_words.word[0], second_definition=second, third_definition=third, more_definitions=additional)
-        nu_word.save()
+        nu_word = Word.objects.using('dictionary').create(name=word, first_definition=dict_words.word[0], second_definition=second, third_definition=third, more_definitions=additional)
+        nu_word.save(using='dictionary')
 
     return print(nu_word)
 
@@ -36,5 +37,3 @@ display_words()
 
 
 
-
-small_d = dict(list(dict_words.items())[:11])
