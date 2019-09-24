@@ -20,17 +20,22 @@ def display_words():
 
     for word in dict_words:
       pdb.set_trace()
-      if word != Word.objects.using('dictionary').get(name=word):
-        if dict_words[word[1]]:
-          second = dict_words[word[1]]
-        elif dict_words[word[2]]:
-          third = dict_words[word[2]]
-        elif len(dict_words[word])>3:
-          diff = len(dict_words[word])-3
-          additional = [ dict_words[word[2+x]] for x in range(diff) ]
-        
-        nu_word = Word.objects.using('dictionary').create(name=word, first_definition=dict_words.word[0], second_definition=second, third_definition=third, more_definitions=additional)
-        nu_word.save(using='dictionary')
+
+
+      # try:
+      #     Word.objects.using('dictionary').get(name=word)
+      # except:
+      #   if word != Word.objects.using('dictionary').get(name=word):
+      #     if dict_words[word[1]]:
+      #       second = dict_words[word[1]]
+      #     elif dict_words[word[2]]:
+      #       third = dict_words[word[2]]
+      #     elif len(dict_words[word])>3:
+      #       diff = len(dict_words[word])-3
+      #       additional = [ dict_words[word[2+x]] for x in range(diff) ]
+          
+      #     nu_word = Word.objects.using('dictionary').create(name=word, first_definition=dict_words.word[0], second_definition=second, third_definition=third, more_definitions=additional)
+      #     nu_word.save(using='dictionary')
 
     return print(nu_word)
 

@@ -7,7 +7,6 @@ class Project(models.Model):
     technology = models.CharField(max_length=150)
     github_url = models.CharField(max_length=100)
     image = models.FilePathField(path="/img")
-    proj_id = models.PositiveSmallIntegerField(primary_key=True)
     def __str__(self): #return a more helpful representation of this object
         return self.title
     # class Meta:
@@ -24,7 +23,6 @@ class Word(models.Model):
     third_ex = models.CharField(max_length=120, blank=True)
     synonym = models.CharField(max_length=120, blank=True)
     more_definitions = models.TextField(blank=True)
-    word_id = models.PositiveSmallIntegerField(primary_key=True)
     # unique_hash = models.CharField(max_length=8)
     def __str__(self): #return a more helpful representation of this object
         return self.name+": "+self.first_definition+", "+self.first_ex+", "+self.second_definition+", "+self.second_ex+", "+self.third_definition+", "+self.third_ex
