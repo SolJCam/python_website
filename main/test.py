@@ -2,12 +2,14 @@ from django.test import TestCase
 from main.models import Project, Word
 from django.urls import reverse
 import json
+import pdb
 
 # ex. to test only one method: ./manage.py test main.test.ProjectTestCase.<method>  
 
 
 
 class ProjectTestCase(TestCase):
+    multi_db = True
     # Test ability to retrieve Projects from db
     def setUp(self):
         chat = Project.objects.create(title="Chat App", description="One to many online chat", technology="nodejs, socket.io and ExpressJS", github_url="https://github.com/SolJCam/socket.io")
@@ -29,7 +31,7 @@ class ProjectTestCase(TestCase):
 
     # Test ability to create Word objects    
     def create_word_test(self):
-        word = Word.objects.create(name="ether", first_definition="A colorless liquid, slightly soluble in water; used as a reagent, intermediate, anesthetic, and solvent.\\n(Source: MGH)", second_definition="A class of chemical compounds which contain an oxygen atom connected to two (substituted) alkyl groups.", third_definition="", more_definitions="(substituted) alkyl groups.")
+        word = Word.objects.using('dictionary').create(name="ether", first_definition="A colorless liquid, slightly soluble in water; used as a reagent, intermediate, anesthetic, and solvent.\\n(Source: MGH)", second_definition="A class of chemical compounds which contain an oxygen atom connected to two (substituted) alkyl groups.", third_definition="", more_definitions="(substituted) alkyl groups.")
         get_word = Word.objects.using('dictionary').get(name="ether")
 
     # Test logic for parsing dictionary json file and saving to databse
@@ -40,7 +42,8 @@ class ProjectTestCase(TestCase):
         json_words.close()
 
         for word in dict_words:
-            if word != Word.objects.using('dictionary').get(name=word):
+            # pdb.set_trace()
+            if Word.objects.using('dictionary').get(name=word):
                 if dict_words.word[1]:
                     second = dict_words.word[1]
                 elif dict_words.word[2]:

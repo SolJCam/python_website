@@ -1,7 +1,7 @@
 # from django.shortcuts import get_object_or_404, render
 from main.models import Word
 import json
-
+import pdb 
 
 def display_words():
     # with open("./dictionary.json") as f:
@@ -19,6 +19,7 @@ def display_words():
     # small_d = dict(list(dict_words.items())[:11])
 
     for word in dict_words:
+      pdb.set_trace()
       if word != Word.objects.using('dictionary').get(name=word):
         if dict_words[word[1]]:
           second = dict_words[word[1]]
