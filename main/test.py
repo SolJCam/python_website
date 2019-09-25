@@ -39,19 +39,32 @@ class ProjectTestCase(TestCase):
         json_words = open("./dictionary.json")
         read_json = json_words.read()
         dict_words = json.loads(read_json)
+        small_d = dict(list(dict_words.items())[:11])
         json_words.close()
 
-        for word in dict_words:
-            pdb.set_trace()
-            first = dict_words[word][0]
-            if dict_words[word][1]:
-                second = dict_words[word][1]
-            if dict_words[word][2]:
-                third = dict_words[word][2]
-            if len(dict_words[word])>3:
-                additional = dict_words[word][3:]
-            
-            nu_word = Word.objects.using('dictionary').create(name=word, first_definition=first, second_definition=second, third_definition=third, more_definitions=additional)
+        for word in small_d:
+            # pdb.set_trace()
+
+            first = small_d[word][0]
+            if len(small_d[word])>1 and len(small_d[word])<2:
+                second = small_d[word][1]
+                nu_word = Word.objects.using('dictionary').create(name=word, first_definition=first, second_definition=second, third_definition="", more_definitions="")
+            elif len(small_d[word])>2 and len(small_d[word])<3:
+                second = small_d[word][1]
+                third = small_d[word][2]
+                nu_word = Word.objects.using('dictionary').create(name=word, first_definition=first, second_definition=second, third_definition=third, more_definitions="")
+            elif len(small_d[word])>3:
+                # pdb.set_trace()
+                second = small_d[word][1]
+                third = small_d[word][2]
+                additional = []
+                diff = len(small_d[word])-3
+                for x in range(diff):
+                    additional.append(x)
+                nu_word = Word.objects.using('dictionary').create(name=word, first_definition=first, second_definition=second, third_definition=third, more_definitions=additional)
+            else:
+                nu_word = Word.objects.using('dictionary').create(name=word, first_definition=first, second_definition="", third_definition="", more_definitions="")
+
             nu_word.save()
 
         return print(nu_word)
