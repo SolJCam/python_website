@@ -43,28 +43,16 @@ class ProjectTestCase(TestCase):
 
         for word in dict_words:
             pdb.set_trace()
-            # for mean in range(:len(dict_words[word])):
-                first = dict_words[word][0]
-                try:
-                    second = dict_words[word][1]
-                    third = dict_words[word][2]
-                    diff = len(dict_words[word]) - 3
-                    additional = [ dict_words[word][2+x] for x in range(diff) ]
-                except:
-                    pass
+            first = dict_words[word][0]
+            if dict_words[word][1]:
+                second = dict_words[word][1]
+            if dict_words[word][2]:
+                third = dict_words[word][2]
+            if len(dict_words[word])>3:
+                additional = dict_words[word][3:]
+            
+            nu_word = Word.objects.using('dictionary').create(name=word, first_definition=first, second_definition=second, third_definition=third, more_definitions=additional)
+            nu_word.save()
 
-                # if dict_words.word[1]:
-                #     second = dict_words.word[1]
-                # elif dict_words.word[2]:
-                #     third = dict_words.word[2]
-                # elif len(dict_words.word) >3:
-                #     diff = len(dict_words.word) - 3
-                #     additional = [ dict_words.word[2+x] for x in range(diff) ]
-                # else:
-                #     first = word
-                
-                nu_word = Word.objects.using('dictionary').create(name=word, first_definition=first, second_definition=second, third_definition=third, more_definitions=additional)
-                nu_word.save()
-
-            return print(nu_word)
+        return print(nu_word)
 
