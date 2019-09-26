@@ -36,7 +36,7 @@ class ProjectTestCase(TestCase):
 
     # Test logic for parsing dictionary json file and saving to databse
     def make_dict(self):
-        json_words = open("./dictionary.json")
+        json_words = open("./initialize_dict/dictionary.json")
         read_json = json_words.read()
         dict_words = json.loads(read_json)
         small_d = dict(list(dict_words.items())[:11])
