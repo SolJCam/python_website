@@ -1,8 +1,8 @@
 # from django.shortcuts import get_object_or_404, render
+# import pdb 
 from django.core.management.base import BaseCommand
 from main.models import Word
 import json
-import pdb 
 
 class Command(BaseCommand):
     def handle(self):
@@ -18,8 +18,8 @@ class Command(BaseCommand):
         read_json = json_words.read()
         dict_words = json.loads(read_json)
         json_words.close()
-        print(len())
-        # small_d = dict(list(dict_words.items())[:11])
+        # print(len())
+        # small_dict = dict(list(dict_words.items())[:1000])
 
         for word in dict_words:
             # pdb.set_trace()

@@ -39,11 +39,11 @@ class ProjectTestCase(TestCase):
         json_words = open("./initialize_dict/dictionary.json")
         read_json = json_words.read()
         dict_words = json.loads(read_json)
-        small_d = dict(list(dict_words.items())[:11])
+        small_d = dict(list(dict_words.items())[:5000])
         json_words.close()
 
         for word in small_d:
-            # pdb.set_trace()
+            pdb.set_trace()
 
             first = small_d[word][0]
             if len(small_d[word])>1 and len(small_d[word])<2:
@@ -60,12 +60,12 @@ class ProjectTestCase(TestCase):
                 additional = []
                 diff = len(small_d[word])-3
                 for x in range(diff):
-                    additional.append(x)
+                    additional.append(small_d[word][3+x])
                 nu_word = Word.objects.using('dictionary').create(name=word, first_definition=first, second_definition=second, third_definition=third, more_definitions=additional)
             else:
                 nu_word = Word.objects.using('dictionary').create(name=word, first_definition=first, second_definition="", third_definition="", more_definitions="")
 
             nu_word.save()
 
-        return print(nu_word)
+            # print(nu_word)
 
