@@ -9,7 +9,7 @@ def inter_test():
     read_json = json_words.read()
     dict_words = json.loads(read_json)
     json_words.close()
-    dict_words = dict(list(dict_words.items())[4000:])
+    dict_words = dict(list(dict_words.items())[:])
     # enum = list(enumerate(list(dict_words.items())[4000:]))
 
     for word in dict_words:
