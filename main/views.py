@@ -26,7 +26,7 @@ def project_index(request):
     if req.is_valid():
       # If True, will be able to find all the validated form data in its cleaned_data attribute and use it to update the database etc
       form = Word.objects.using('dictionary').get(name=req.cleaned_data['py_dictionary'])      
-
+  # if a GET (or any other method) we'll create a blank form
   else:
     form = DictForm()  
   
