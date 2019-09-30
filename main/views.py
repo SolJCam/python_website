@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from main.models import Project, Word
+from .forms import DictForm
 #from django.urls import reverse_lazy
 import pdb #python debugger
 
@@ -15,12 +16,27 @@ def site_index(request):
 
 def project_index(request):
   projects = Project.objects.all()
-  # words = Word.objects.all()
+
+  if request.method == 'POST':
+    # create a form instance and populate it with data from the request:
+    req = DictForm(request.POST)
+    
+    # pdb.set_trace()
+    # check whether it's valid:
+    if req.is_valid():
+      # If True, will be able to find all the validated form data in its cleaned_data attribute and use it to update the database etc
+      form = Word.objects.using('dictionary').get(name=req.cleaned_data['py_dictionary'])      
+
+  else:
+    form = DictForm()  
+  
   context = {
       'projects': projects,
-      # 'words': words
+      'form': form,
   }
+
   return render(request, 'local_apps.html', context)
+
 
 model = Word
 fields = [

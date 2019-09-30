@@ -34,6 +34,8 @@
         </div>
       </div>
     </nav>
+    {% block content %}
+    {% endblock %}
     <div class="container-fluid">
       <div class="row">
         {% for project in projects %}
@@ -57,8 +59,6 @@
               </div>
           </div>
         {% endfor %}
-        {% block content %}
-        {% endblock %}
       </div>
     </div>
     <button type="button" id="return-btn" class="btn btn-primary offset-9 offset-lg-11">Top</button>
