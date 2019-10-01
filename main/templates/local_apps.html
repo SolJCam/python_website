@@ -9,8 +9,21 @@
             <form class="mt-2 mb-3 mr-1" action="{% url 'project_index' %}" method="post">
                 <div class="mt-2 mb-3 mr-1 input-group">
                     <!-- <input type="text" class="form-control"> -->
-                    {% csrf_token %}
+                  {% csrf_token %}
+                  <!-- {{ form }} -->
+                  {% if form.is_valid %}
+                    <table css="border:1px">
+                        {% for hidden_field in form.hidden_fields %}
+                        <tr>
+                            <td>
+                                {{ hidden_field }}
+                            </td>
+                        </tr>
+                    </table>
+                        {% endfor %}
+                  {% else %}
                     {{ form }}
+                  {% endif %}
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit"><img src="{% static 'img/magnifying-glass-2x.png' %}"></img></button>
                     </div>
