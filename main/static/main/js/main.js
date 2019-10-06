@@ -118,10 +118,14 @@ $(document).ready(function (e) {
   fetch("http://localhost:8000/portfolio/projects")
     .then(
       function(response) {
+        // debugger
         // console.log(response.formData());
-        for (key in response){
-          console.log(key);
-        }
+        // for (key in response){
+        console.log(response);
+        // }
+        response.json().then(function(data) {
+          console.log(data);
+        });
 
       }
     ).catch(function(err) {
