@@ -116,21 +116,9 @@ $(document).ready(function (e) {
 
 
   fetch("http://localhost:8000/portfolio/projects")
-    .then(
-      function(response) {
-        // debugger
-        // console.log(response.formData());
-        // for (key in response){
-        console.log(response);
-        // }
-        response.json().then(function(data) {
-          console.log(data);
-        });
-
-      }
-    ).catch(function(err) {
-      console.log('Fetch err '+ err);
-    })
+    .then(res=>res.text())
+    .then(text=>console.log(text))
+    .catch(err=>console.log('Fetch error: '+ err))
 
 });
 
