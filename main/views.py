@@ -21,12 +21,19 @@ def project_index(request):
 
   if request.method == 'POST':
     # create a form instance and populate it with data from the request:
-    req = DictForm(request.POST)
+    req = DictForm(request.GET)
     
     # check whether it's valid:
     if req.is_valid():
       # If True, will be able to find all the validated form data in its cleaned_data attribute and use it to update the database etc
       form = Word.objects.using('dictionary').get(name=req.cleaned_data['py_dictionary'])
+
+      context = {
+        'projects': projects,
+        'form': form,
+      }
+
+      return render(request, 'local_apps.html', context)
 
 
   # if a GET (or any other method) we'll create a blank form
