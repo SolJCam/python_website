@@ -113,13 +113,6 @@ $(document).ready(function (e) {
     $("#title")[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
-
-
-  fetch("http://localhost:8000/portfolio/projects")
-    .then(res=>res.text())
-    .then(text=>console.log(text))
-    .catch(err=>console.log('Fetch error: '+ err))
-
 });
 
 
