@@ -23,15 +23,15 @@ def project_index(request):
 
   if request.method == 'GET':
     form = DictForm()
+    #bound GET request to a form instance
     req = DictForm(request.GET)
+    # pdb.set_trace()
 
-    # determine if template form request has input data attached
-    if req.is_bound:# if data is attached then... 
-       
-      # check whether it's valid (Django does some magic in the background to accomplish this):
-      if req.is_valid():
-        # If True, will be able to find all the validated form data in its cleaned_data attribute and use it to update the database etc
-        form = Word.objects.using('dictionary').get(name=req.cleaned_data['py_dictionary'])
+    # check whether it's valid (Django does some magic in the background to accomplish this):
+    if req.is_valid():
+
+      # If True, will be able to find all the validated form data in its cleaned_data attribute and use it to update the database etc
+      form = Word.objects.using('dictionary').get(name=req.cleaned_data['py_dictionary'])
      
   context = {
       'projects': projects,
