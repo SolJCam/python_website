@@ -19,13 +19,12 @@ def site_index(request):
 def project_index(request):
   projects = Project.objects.all()
 
-  form = ""
-
-  if request.method == 'GET':
-    form = DictForm()
+  form = DictForm()
+      
+  if request.GET:
     #bound GET request to a form instance
     req = DictForm(request.GET)
-    # pdb.set_trace()
+    pdb.set_trace()
 
     # check whether it's valid (Django does some magic in the background to accomplish this):
     if req.is_valid():
