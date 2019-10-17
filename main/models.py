@@ -7,7 +7,7 @@ class Project(models.Model):
     technology = models.CharField(max_length=150)
     github_url = models.CharField(max_length=100)
     image = models.FilePathField(path="/img")
-    def __str__(self): #return a more helpful representation of this object
+    def __str__(self): #string magic-method to return title as string - an obviously more helpful representation of this object
         return self.title
     # class Meta:
     #     db_table = 'main_projects'
@@ -24,7 +24,7 @@ class Word(models.Model):
     synonym = models.CharField(max_length=120, blank=True)
     more_definitions = models.TextField(blank=True)
     # unique_hash = models.CharField(max_length=8)
-    def __str__(self): #return a more helpful representation of this object
+    def __str__(self): #string magic-method to return name as string
         return self.name+": "+self.first_definition+", "+self.first_ex+", "+self.second_definition+", "+self.second_ex+", "+self.third_definition+", "+self.third_ex
     # class Meta:
     #     db_table = 'main_word'
