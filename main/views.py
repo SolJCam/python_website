@@ -20,14 +20,17 @@ def project_index(request):
   projects = Project.objects.all()
 
   form = DictForm()
-      
-  if request.GET:
-    #bound GET request to a form instance
-    req = DictForm(request.GET)
-    pdb.set_trace()
 
-    # check whether it's valid (Django does some magic in the background to accomplish this):
-    if req.is_valid():
+  #if GET attribute returns empty dict, proceed with generating blank model form
+  if request.GET:
+
+    #bound dict from GET request containing user input to a form instance
+    req = DictForm(request.GET)
+    # pdb.set_trace()
+
+    # check whether bound dict is valid (Django does some magic in the background to accomplish this):
+    if req.full_clean(['name', 'first_definition']):
+      pdb.set_trace()
 
       # If True, will be able to find all the validated form data in its cleaned_data attribute and use it to update the database etc
       form = Word.objects.using('dictionary').get(name=req.cleaned_data['py_dictionary'])

@@ -9,10 +9,9 @@ class DictForm(forms.ModelForm):
 
     class Meta:
         model = Word
-        # fields = [ 'name' ]
         fields = '__all__'
         widgets = {
-            # 'name': forms.HiddenInput(),
+            'name': forms.HiddenInput(),
             'first_definition': forms.HiddenInput(), 
             'first_ex': forms.HiddenInput(),
             'second_definition': forms.HiddenInput(), 
