@@ -4,8 +4,13 @@ from .models import Word
 
 
 
-class DictForm(forms.ModelForm):
+
+class InputForm(forms.Form):
+
     py_dictionary = forms.CharField(label='py_dictionary', label_suffix='', max_length=120)
+
+
+class DictForm(forms.ModelForm):
 
     class Meta:
         model = Word
@@ -21,10 +26,6 @@ class DictForm(forms.ModelForm):
             'synonym': forms.HiddenInput(), 
             'more_definitions': forms.HiddenInput(),
         }
-
-# class DictForm(forms.Form):
-
-#     py_dictionary = forms.CharField(label='py_dictionary', label_suffix='', max_length=120)
 
     # name = forms.CharField(max_length=120, label_suffix='', widget=forms.HiddenInput())
     # first_definition = forms.CharField(max_length=250, label_suffix='', widget=forms.HiddenInput())

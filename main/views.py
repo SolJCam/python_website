@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Project, Word
-from .forms import DictForm
+from .forms import InputForm, DictForm
 import pdb #python debugger
 
 
@@ -19,12 +19,30 @@ def site_index(request):
 def project_index(request):
   projects = Project.objects.all()
 
-  form = DictForm()
-
-  #if GET attribute returns empty dict, proceed with generating blank model form
+  form = InputForm()
+  pdb.set_trace()
+  
+  # if request.method == 'POST':
+  #   # create a form instance and populate it with data from the request:
+  #   form = NameForm(request.POST)
+  #   # check whether it's valid:
+  #   if form.is_valid():
+  #       # process the data in form.cleaned_data as required
+  #       # ...
+  #       # redirect to a new URL:
+  #       return HttpResponseRedirect('/thanks/')
+        
+  # #if GET attribute returns empty dict, proceed with generating blank model form
+  # else:
   if request.GET:
     user_input = request.GET["py_dictionary"]
     form = Word.objects.using('dictionary').get(name=user_input)
+    # pdb.set_trace()
+
+    # try:
+    #   form = Word.objects.using('dictionary').get(name=user_input)
+    # except:
+
 
     #bound dict from GET request containing user input to a form instance
     # req = DictForm(request.GET)
