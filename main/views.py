@@ -20,7 +20,7 @@ def project_index(request):
   projects = Project.objects.all()
 
   form = InputForm()
-  pdb.set_trace()
+  # pdb.set_trace()
   
   # if request.method == 'POST':
   #   # create a form instance and populate it with data from the request:
