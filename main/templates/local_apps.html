@@ -22,21 +22,25 @@
                     </table>
                         {% endfor %}
                   {% else %}
-                    <!-- {{ form }}
+                        <!-- {{ form }} -->
+                    {{ form.Enter_Word.label }}{{ form.Enter_Word }}
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit"><img src="{% static 'img/magnifying-glass-2x.png' %}"></img></button>
-                    </div> -->
-                    {% for field in form.visible_fields %}
+                    </div>
+                    {% if form.Meaning.value %}
+                        {{ form.Meaning.value }}
+                    {% endif %}
+                    <!-- {% for field in form.visible_fields %}
                         {{ field.label }}{{ field}}
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit"><img src="{% static 'img/magnifying-glass-2x.png' %}"></img></button>
                         </div>
                         <ul>
-                            {% if field.field %} 
+                        {% if field.field %} 
                             <li>{{ field.value }}
-                            {% endif %}
+                        {% endif %}
                         </ul>
-                    {% endfor %}
+                    {% endfor %} -->
                   {% endif %}
                 </div>
             </form>
