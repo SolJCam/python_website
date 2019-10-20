@@ -22,21 +22,32 @@
                     </table>
                         {% endfor %}
                   {% else %}
-                    {{ form }}
-                  {% endif %}
+                    <!-- {{ form }}
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit"><img src="{% static 'img/magnifying-glass-2x.png' %}"></img></button>
-                    </div>
+                    </div> -->
+                    {% for field in form.visible_fields %}
+                        {{ field.label }}{{ field}}
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit"><img src="{% static 'img/magnifying-glass-2x.png' %}"></img></button>
+                        </div>
+                        <ul>
+                            {% if field.field %} 
+                            <li>{{ field.value }}
+                            {% endif %}
+                        </ul>
+                    {% endfor %}
+                  {% endif %}
                 </div>
             </form>
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">Add Word</button>
             </div>
-            <!-- <div id="result" class="col">
+             <div id="result" class="col">
                 <h1 id="dict_name"></h1>
                 <p id="first_definition"></p>
                 <p id="first_ex"></p>
-            </div> -->
+            </div>
         </div>
         <div class="col-md-4 card-body">
             <h5 class="card-title">py_dictionary</h5>

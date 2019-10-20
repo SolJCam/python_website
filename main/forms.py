@@ -7,7 +7,8 @@ from .models import Word
 
 class InputForm(forms.Form):
 
-    Enter_Word = forms.CharField(label='py_dictionary', label_suffix='', max_length=120)
+    Enter_Word = forms.CharField(label='Enter Word', label_suffix=':', max_length=20)
+    Meaning = forms.CharField(label='', label_suffix='', widget=forms.Textarea)
 
 
 class DictForm(forms.ModelForm):
