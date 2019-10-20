@@ -4,8 +4,14 @@ from .models import Word
 
 
 
+
+class InputForm(forms.Form):
+
+    Enter_Word = forms.CharField(label='Enter Word', label_suffix=':', max_length=20)
+    Meaning = forms.CharField(label='meaning', label_suffix='', widget=forms.Textarea)
+
+
 class DictForm(forms.ModelForm):
-    py_dictionary = forms.CharField(label='py_dictionary', label_suffix='', max_length=120)
 
     class Meta:
         model = Word
@@ -21,10 +27,6 @@ class DictForm(forms.ModelForm):
             'synonym': forms.HiddenInput(), 
             'more_definitions': forms.HiddenInput(),
         }
-
-# class DictForm(forms.Form):
-
-#     py_dictionary = forms.CharField(label='py_dictionary', label_suffix='', max_length=120)
 
     # name = forms.CharField(max_length=120, label_suffix='', widget=forms.HiddenInput())
     # first_definition = forms.CharField(max_length=250, label_suffix='', widget=forms.HiddenInput())
