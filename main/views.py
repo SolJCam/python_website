@@ -21,10 +21,11 @@ def project_index(request):
   form = InputForm()
   # pdb.set_trace()
   
-  if request.GET:
+  if request.GET != {}:
     # pdb.set_trace()
-    user_input = request.GET["Enter_Word"]
-    form = InputForm({'Meaning': Word.objects.using('dictionary').get(name=user_input)})
+    word = request.GET["Enter_Word"].lower()
+    meaning = Word.objects.using('dictionary').get(name=word)
+    form = InputForm({'Meaning': meaning })
      
   context = {
       'projects': projects,
