@@ -16,20 +16,22 @@ def site_index(request):
 
 
 def project_index(request):
-  projects = Project.objects.all()
 
+  #Create empty form for dictionary word search
   form = InputForm()
-  # pdb.set_trace()
+  add_word_form  = DictForm()
   
   if request.GET != {}:
-    # pdb.set_trace()
     word = request.GET["Enter_Word"].lower()
-    meaning = Word.objects.using('dictionary').get(name=word)
+    meaning = Word.objects.using('dictionary').get(word=word)
     form = InputForm({'Meaning': meaning })
+  
+  projects = Project.objects.all()
      
   context = {
       'projects': projects,
       'form': form,
+      'add_word': add_word_form,
   }
 
   return render(request, 'local_apps.html', context)

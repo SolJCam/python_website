@@ -14,7 +14,7 @@ class Project(models.Model):
 
 
 class Word(models.Model):
-    name = models.CharField(max_length=120)
+    word = models.CharField(max_length=120)
     first_definition = models.TextField(max_length=250)
     first_ex = models.CharField(max_length=120, blank=True)
     second_definition = models.TextField(max_length=250, blank=True)

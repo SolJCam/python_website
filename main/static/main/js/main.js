@@ -95,6 +95,17 @@ $(document).ready(function (e) {
     console.log("woohoo!!!");
   })
 
+
+  // display options to add word to dictionary
+  $('#add_word').click(function(e){
+    console.log("woohoo!!!");
+    e.preventDefault();
+    $( "#new_word" ).slideDown("slow", function() {
+      // Animation complete.
+    });
+  })
+
+
   // return button behavior
   let thirty; let scroll;
 
