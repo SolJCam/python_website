@@ -19,12 +19,24 @@
             </form>
             <form id="new_word" class="mt-2 mb-3 mr-1" action="" method="post" style="display:none">
                 <div class="mt-2 mb-3 mr-1 input-group">
-                    <ul>
-                        <li>{{ add_word.word.label }}{{ add_word.word }}</li>
-                        <li>{{ add_word.first_definition.label }}{{ add_word.first_definition }}</li>
-                        <li>{{ add_word.first_ex.label }}{{ add_word.first_ex }}</li>
-                        <li>{{ add_word.synonym.label }}{{ add_word.synonym }}</li>
-                    </ul>
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="col-12" for="{{ add_word.word.id_for_label }}">New {{ add_word.word.label }}</label>
+                            {{ add_word.word }}
+                        </div>
+                        <div class="col-12">
+                            <label class="col-12" for="{{ add_word.first_definition.id_for_label }}">{{ add_word.first_definition.label }}</label>
+                            {{ add_word.first_definition }}
+                        </div>
+                        <div class="col-12">
+                            <label class="col-12" for="{{ add_word.first_ex.id_for_label }}">{{ add_word.first_ex.label }}</label>
+                            {{ add_word.first_ex }}
+                        </div>
+                        <div class="col-12">
+                            <label class="col-12" for="{{ add_word.synonym.id_for_label }}">{{ add_word.synonym.label }}</label>
+                            {{ add_word.synonym }}
+                        </div>
+                    </div>
                 </div>
             </form>
             <div class="input-group-append">

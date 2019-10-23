@@ -25,7 +25,7 @@ class Word(models.Model):
     more_definitions = models.TextField(blank=True)
     # unique_hash = models.CharField(max_length=8)
     def __str__(self): #string magic-method to return name as string
-        return self.name+": "+self.first_definition+", "+self.first_ex+", "+self.second_definition+", "+self.second_ex+", "+self.third_definition+", "+self.third_ex
+        return self.word+": "+self.first_definition+", "+self.first_ex+", "+self.second_definition+", "+self.second_ex+", "+self.third_definition+", "+self.third_ex
     # class Meta:
     #     db_table = 'main_word'
 

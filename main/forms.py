@@ -17,10 +17,10 @@ class DictForm(forms.ModelForm):
         model = Word
         fields = '__all__'
         widgets = {
-            'first_definition': forms.Textarea(), 
-            'second_definition': forms.Textarea(), 
-            'third_definition': forms.Textarea(), 
-            'more_definitions': forms.Textarea(),
+            'first_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
+            'second_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
+            'third_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
+            'more_definitions': forms.Textarea(attrs={'cols': 50, 'rows': 4}),
         }
 
 
