@@ -19,8 +19,20 @@ def project_index(request):
 
   #Create empty form for dictionary word search
   form = InputForm()
-  add_word_form  = DictForm()
-  
+  # add_word_form  = DictForm()
+
+  # pdb.set_trace()
+  # if request.POST:
+  #   # create a form instance and populate it with data from the request:
+  #   new_word = DictForm(request.POST)
+  #   # check whether it's valid:
+  #   if new_word.is_valid():
+  #       # process the data in form.cleaned_data as required
+  #       # ...
+  #       # redirect to a new URL:
+  #       return HttpResponseRedirect('/thanks/')
+        
+  #if GET attribute returns empty dict, proceed with generating blank model form  
   if request.GET != {}:
     word = request.GET["Enter_Word"].lower()
     meaning = Word.objects.using('dictionary').get(word=word)
