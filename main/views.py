@@ -1,7 +1,21 @@
 from django.shortcuts import render
 from .models import Project, Word
 from .forms import InputForm, DictForm
+from django.core.exceptions import ObjectDoesNotExist
+from difflib import SequenceMatcher, get_close_matches
 import pdb #python debugger
+
+
+
+
+#function for checking user dictionary input and offering suggestions
+def suggest_words(word):
+    pdb.set_trace()
+    suggestions = [get_close_matches(word, Word.objects.using('dictionary').all())] #returned database models types do not work
+    if len(suggestions) > 0:
+        reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again", suggestions]
+    return reply
+
 
 
 
@@ -19,7 +33,7 @@ def project_index(request):
 
   #Create empty form for dictionary word search
   form = InputForm()
-  # add_word_form  = DictForm()
+  add_word_form  = DictForm()
 
   # pdb.set_trace()
   # if request.POST:
@@ -32,12 +46,26 @@ def project_index(request):
   #       # redirect to a new URL:
   #       return HttpResponseRedirect('/thanks/')
         
-  #if GET attribute returns empty dict, proceed with generating blank model form  
+  #if GET attribute has dict containing data, then this was a user search request. Proceed to processing and returing results  
   if request.GET != {}:
+
     word = request.GET["Enter_Word"].lower()
-    meaning = Word.objects.using('dictionary').get(word=word)
-    form = InputForm({'Meaning': meaning })
+    try:
+      meaning = Word.objects.using('dictionary').get(word=word)
+    except ObjectDoesNotExist:
+      word = request.GET["Enter_Word"].title()
+      try:
+        meaning = Word.objects.using('dictionary').get(word=word)
+      except ObjectDoesNotExist:
+        word = request.GET["Enter_Word"].upper()
+        try:
+          meaning = Word.objects.using('dictionary').get(word=word)
+        except ObjectDoesNotExist: 
+          meaning = suggest_words(word)
+          # meaning = f'{word} cannot be found. Please try your input again'
   
+    form = InputForm({'Meaning': meaning })
+
   projects = Project.objects.all()
      
   context = {
