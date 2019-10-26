@@ -10,8 +10,10 @@ import pdb #python debugger
 
 #function for checking user dictionary input and offering suggestions
 def suggest_words(word):
-    pdb.set_trace()
-    suggestions = [get_close_matches(word, Word.objects.using('dictionary').all())] #returned database models types do not work
+    dictionary = Word.objects.using('dictionary').all()
+    stringfy_dict = list(map(lambda x: str(x), dictionary))
+    suggestions = get_close_matches(word, stringfy_dict)
+    # pdb.set_trace()
     if len(suggestions) > 0:
         reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again", suggestions]
     return reply
@@ -61,9 +63,9 @@ def project_index(request):
         try:
           meaning = Word.objects.using('dictionary').get(word=word)
         except ObjectDoesNotExist: 
-          # meaning = suggest_words(word)
           word = request.GET["Enter_Word"]
-          meaning = f'{word} cannot be found. Please try your input again'
+          meaning = suggest_words(word)
+          # meaning = f'{word} cannot be found. Please try your input again'
   
     form = InputForm({'Meaning': meaning })
 
