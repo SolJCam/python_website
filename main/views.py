@@ -61,8 +61,9 @@ def project_index(request):
         try:
           meaning = Word.objects.using('dictionary').get(word=word)
         except ObjectDoesNotExist: 
-          meaning = suggest_words(word)
-          # meaning = f'{word} cannot be found. Please try your input again'
+          # meaning = suggest_words(word)
+          word = request.GET["Enter_Word"]
+          meaning = f'{word} cannot be found. Please try your input again'
   
     form = InputForm({'Meaning': meaning })
 
