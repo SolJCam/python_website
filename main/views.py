@@ -11,9 +11,9 @@ import pdb #python debugger
 #function for checking user dictionary input and offering suggestions
 def suggest_words(word):
     dictionary = Word.objects.using('dictionary').all()
-    stringfy_dict = list(map(lambda x: str(x), dictionary))
-    suggestions = get_close_matches(word, stringfy_dict)
-    pdb.set_trace()
+    stringyfy_dict = list(map(lambda x: str(x).split(":")[0], dictionary))
+    suggestions = get_close_matches(word, stringyfy_dict)
+    # pdb.set_trace()
     if len(suggestions) > 0:
         reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again", suggestions]
     return reply
