@@ -13,7 +13,7 @@ def suggest_words(word):
     dictionary = Word.objects.using('dictionary').all()
     stringfy_dict = list(map(lambda x: str(x), dictionary))
     suggestions = get_close_matches(word, stringfy_dict)
-    # pdb.set_trace()
+    pdb.set_trace()
     if len(suggestions) > 0:
         reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again", suggestions]
     return reply
