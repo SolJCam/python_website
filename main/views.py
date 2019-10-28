@@ -15,7 +15,7 @@ def suggest_words(word):
     suggestions = get_close_matches(word, stringyfy_dict)
     # pdb.set_trace()
     if len(suggestions) > 0:
-        reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again", suggestions]
+        reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again:", suggestions]
     return reply
 
 
@@ -53,21 +53,21 @@ def project_index(request):
 
     word = request.GET["Enter_Word"].lower()
     try:
-      meaning = Word.objects.using('dictionary').get(word=word)
+      meaning = str(Word.objects.using('dictionary').get(word=word))
     except ObjectDoesNotExist:
       word = request.GET["Enter_Word"].title()
       try:
-        meaning = Word.objects.using('dictionary').get(word=word)
+        meaning = str(Word.objects.using('dictionary').get(word=word))
       except ObjectDoesNotExist:
         word = request.GET["Enter_Word"].upper()
         try:
-          meaning = Word.objects.using('dictionary').get(word=word)
+          meaning = str(Word.objects.using('dictionary').get(word=word))
         except ObjectDoesNotExist: 
           word = request.GET["Enter_Word"]
           meaning = suggest_words(word)
-          # meaning = f'{word} cannot be found. Please try your input again'
   
     form = InputForm({'Meaning': meaning })
+    # pdb.set_trace()
 
   projects = Project.objects.all()
      

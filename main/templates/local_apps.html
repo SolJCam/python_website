@@ -12,8 +12,18 @@
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit"><img src="{% static 'img/magnifying-glass-2x.png' %}"></img></button>
                     </div>
-                    {% if form.Meaning.value %}
+                    {% if form.Meaning.value|length > 2 %}
                         {{ form.Meaning.value }}
+                    {% else %}
+                        {% for no_word in form.Meaning.value|slice:":1" %}
+                            {{ no_word }}
+                            <div class="w-100"></div>
+                            {% endfor %}
+                        {% for word in form.Meaning.value|slice:"1:" %}
+                            {% for suggestion in word %}
+                                <a class="ml-1 mr-1" href="">{{ suggestion }}</a>
+                            {% endfor %}
+                        {% endfor %}
                     {% endif %}
                 </div>
             </form>
