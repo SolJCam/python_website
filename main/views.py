@@ -66,7 +66,7 @@ def project_index(request):
           word = request.GET["Enter_Word"]
           meaning = suggest_words(word)
   
-    form = InputForm({'Meaning': meaning })
+    form = InputForm({'Meaning': meaning }, auto_id=True)
     # pdb.set_trace()
 
   projects = Project.objects.all()
