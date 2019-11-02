@@ -69,7 +69,7 @@ def project_index(request):
           #   ids[ec] = Word.objects.using('dictionary').get(word=word).id
           ids = list(range(len(meaning[1])))
   
-    form = InputForm({'Meaning': meaning })
+    form = InputForm({'Meaning': meaning, ids })
     # form = InputForm({'Meaning': [meaning, ids] })
     # pdb.set_trace()
 
