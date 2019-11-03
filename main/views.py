@@ -65,12 +65,11 @@ def project_index(request):
         except ObjectDoesNotExist: 
           word = request.GET["Enter_Word"]
           meaning = suggest_words(word)
-          # for ec in meaning:
-          #   ids[ec] = Word.objects.using('dictionary').get(word=word).id
-          ids = list(range(len(meaning[1])))
+          # meaning = {}
+          # for ec in suggest_words(word)[1]:
+          #   meaning[ec] = f'{ec}_id'
   
-    form = InputForm({'Meaning': meaning, ids })
-    # form = InputForm({'Meaning': [meaning, ids] })
+    form = InputForm({'Meaning': meaning })
     # pdb.set_trace()
 
   projects = Project.objects.all()
