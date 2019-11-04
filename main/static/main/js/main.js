@@ -105,6 +105,14 @@ $(document).ready(function (e) {
     });
   })
 
+  
+  $('.suggestion').click((e)=>{
+    console.log("hittin\'");
+    e.preventDefault();
+    $('#id_Enter_Word').innerHTML = $('.suggestion')[0].innerHTML
+    ('#dict_form').submit(()=>{alert('success!')});
+  })
+
 
   // return button behavior
   let thirty; let scroll;

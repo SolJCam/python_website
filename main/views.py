@@ -36,6 +36,7 @@ def project_index(request):
   #Create empty form for dictionary word search
   form = InputForm()
   add_word_form  = DictForm()
+  projects = Project.objects.all()
 
   # pdb.set_trace()
   # if request.POST:
@@ -49,7 +50,7 @@ def project_index(request):
   #       return HttpResponseRedirect('/thanks/')
         
   #if GET attribute has dict containing data, then this was a user search request. Proceed to processing and returing results  
-  if request.GET != {}:
+  if bool(request.GET) == True:
 
     word = request.GET["Enter_Word"].lower()
     try:
@@ -64,20 +65,19 @@ def project_index(request):
           meaning = str(Word.objects.using('dictionary').get(word=word))
         except ObjectDoesNotExist: 
           word = request.GET["Enter_Word"]
-          meaning = suggest_words(word)
-          # meaning = {}
-          # for ec in suggest_words(word)[1]:
-          #   meaning[ec] = f'{ec}_id'
+          # meaning = suggest_words(word)
+          suggestions = {}
+          for ec in suggest_words(word)[1]:
+            suggestions[ec] = f'{ec}_id'
+          meaning = [suggest_words(word)[0], suggestions]
   
     form = InputForm({'Meaning': meaning })
     # pdb.set_trace()
-
-  projects = Project.objects.all()
      
   context = {
-      'projects': projects,
       'form': form,
       'add_word': add_word_form,
+      'projects': projects,
   }
 
   return render(request, 'local_apps.html', context)
