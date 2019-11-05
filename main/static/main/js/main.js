@@ -105,13 +105,19 @@ $(document).ready(function (e) {
     });
   })
 
+  function setValue(){
+    $('#id_Enter_Word').attr("value", this.innerHTML)
+    $('#dict_form').submit();
+  }
   
-  $('.suggestion').click((e)=>{
-    console.log("hittin\'");
-    e.preventDefault();
-    $('#id_Enter_Word').innerHTML = $('.suggestion')[0].innerHTML
-    ('#dict_form').submit(()=>{alert('success!')});
-  })
+  $('.suggestion').attr("onclick", setValue())
+
+  // $('.suggestion').click((e)=>{
+  //   console.log("hittin\'");
+  //   e.preventDefault();
+  //   $('#id_Enter_Word').attr("value", $('.suggestion')[0].innerHTML)
+  //   $('#dict_form').submit();
+  // })
 
 
   // return button behavior

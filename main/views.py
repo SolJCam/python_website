@@ -14,8 +14,9 @@ def suggest_words(word):
     stringyfy_dict = list(map(lambda x: str(x).split(":")[0], dictionary))
     suggestions = get_close_matches(word, stringyfy_dict)
     # pdb.set_trace()
+    reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again:",]
     if len(suggestions) > 0:
-        reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again:", suggestions]
+        reply.append(suggestions)
     return reply
 
 
