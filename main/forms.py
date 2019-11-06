@@ -22,3 +22,6 @@ class DictForm(forms.ModelForm):
             'third_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
             'more_definitions': forms.Textarea(attrs={'cols': 50, 'rows': 4}),
         }
+
+
+# class SuggestForm(forms.Form):

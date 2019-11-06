@@ -121,8 +121,10 @@ $(document).ready(function (e) {
   $('.suggestion').click((e)=>{
     console.log("hittin\'");
     e.preventDefault();
-    $('#id_Enter_Word').attr("value", $('.suggestion')[0].innerHTML)
-    $('#dict_form').submit();
+    // for(let i=0;i<=$('.suggestion').length;i++){
+      $('#id_Enter_Word').attr("value", $('.suggestion')[0].innerHTML)
+      $('#dict_form').submit();
+    // }
   })
 
 
