@@ -68,7 +68,8 @@ def project_index(request):
           word = request.GET["Enter_Word"]
           # meaning = suggest_words(word)
           suggestions = {}
-          for ec in suggest_words(word)[1]:
+          suggested = suggest_words(word)
+          for ec in suggested[1]:
             suggestions[ec] = f'{ec}_id'
           meaning = [suggest_words(word)[0], suggestions]
   
