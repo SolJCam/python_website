@@ -106,25 +106,11 @@ $(document).ready(function (e) {
   })
 
 
-  // SHOULD WORK ONCE "CLICK" EVENT IS SORTED OUT
-
-  // function setValue(){
-  //   $('#id_Enter_Word').attr("value", this.innerHTML)
-  //   $('#dict_form').submit();
-  // }
-  
-  // BREAKS CODE
-
-  // $('.suggestion').on("click", setValue())
-
-  // WORKS FOR FIRST SUGGESTION ONLY
+  // submit user selected suggestions 
   $('.suggestion').click((e)=>{
-    console.log("hittin\'");
     e.preventDefault();
-    // for(let i=0;i<=$('.suggestion').length;i++){
-      $('#id_Enter_Word').attr("value", $('.suggestion')[0].innerHTML)
-      $('#dict_form').submit();
-    // }
+    $('#id_Enter_Word').attr("value", e.currentTarget.innerHTML)
+    $('#dict_form').submit();
   })
 
 

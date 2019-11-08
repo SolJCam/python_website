@@ -21,9 +21,6 @@
                         {% endfor %}
                         {% for word in form.Meaning.value|slice:"1:" %}
                             {% for suggestion, id in word.items %}
-                                <!-- <div class="input-group-append">
-                                    <a class="ml-1 mr-1" href="" type="submit">{{ suggestion }}</a>
-                                </div> -->
                                 <a id="{{ id }}" class="suggestion ml-1 mr-1" href="">{{ suggestion }}</a>
                             {% endfor %}
                         {% endfor %}
