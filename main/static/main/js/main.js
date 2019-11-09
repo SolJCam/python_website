@@ -96,7 +96,7 @@ $(document).ready(function (e) {
   })
 
 
-  // display options to add word to dictionary
+  // non click, display options to add word to dictionary
   $('#add_word').click(function(e){
     console.log("woohoo!!!");
     e.preventDefault();

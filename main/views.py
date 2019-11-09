@@ -40,15 +40,17 @@ def project_index(request):
   projects = Project.objects.all()
 
   # pdb.set_trace()
-  # if request.POST:
-  #   # create a form instance and populate it with data from the request:
-  #   new_word = DictForm(request.POST)
-  #   # check whether it's valid:
-  #   if new_word.is_valid():
-  #       # process the data in form.cleaned_data as required
-  #       # ...
-  #       # redirect to a new URL:
-  #       return HttpResponseRedirect('/thanks/')
+  if request.POST:
+    # create a form instance and populate it with data from the request:
+    new_word = DictForm(request.POST)
+    # check whether it's valid:
+    pdb.set_trace()
+    # if new_word.is_valid():
+        # try:
+        #   Word.objects.using('dictionary').get(name=new_word.cleaned_data['py_dictionary'])
+        # except:
+
+    #   Word.objects.using('dictionary').create(word=, first_definition=, second_definition=, third_definition=, more_definitions=)
         
   #if GET attribute has dict containing data, then this was a user search request. Proceed to processing and returing results  
   if bool(request.GET) == True:
