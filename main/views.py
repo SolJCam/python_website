@@ -43,9 +43,10 @@ def project_index(request):
   if request.POST:
     # create a form instance and populate it with data from the request:
     new_word = DictForm(request.POST)
+    # pdb.set_trace()
     # check whether it's valid:
-    pdb.set_trace()
-    # if new_word.is_valid():
+    if new_word.is_valid():
+        pdb.set_trace()
         # try:
         #   Word.objects.using('dictionary').get(name=new_word.cleaned_data['py_dictionary'])
         # except:
