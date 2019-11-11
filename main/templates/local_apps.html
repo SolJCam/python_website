@@ -1,5 +1,6 @@
 {% extends "projects.html" %}
 {% load static %}
+{% load l10n %}
 
 {% block content %}
 <div id="" class="col-12">
@@ -47,10 +48,14 @@
                             <label class="col-12" for="{{ add_word.synonym.id_for_label }}">{{ add_word.synonym.label }}</label>
                             {{ add_word.synonym }}
                         </div>
-                        <div class="col-12">
+                        <!-- <div class="col-12">
+                            <label class="col-12" for="{{ add_word.creator.id_for_label }}">{{ add_word.creator.label }}</label>
+                            {{ add_word.creator|unlocalize }}
+                        </div> -->
+                        <!-- <div class="col-12">
                             <label class="col-12">ID</label>
-                            <input class="col-3" type="number" placeholder="four digits or less">
-                        </div>
+                            <input class="col-3" type="number" placeholder="5 digits or less">
+                        </div> -->
                         <div class="mt-2 ml-3 input-group-append">
                             <button class="btn btn-outline-secondary" style="background-color:white;" type="submit">submit</button>
                         </div>

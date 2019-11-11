@@ -21,4 +21,5 @@ class DictForm(forms.ModelForm):
             'second_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
             'third_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
             'more_definitions': forms.Textarea(attrs={'cols': 50, 'rows': 4}),
+            # 'creator': forms.TextInput(),
         }
