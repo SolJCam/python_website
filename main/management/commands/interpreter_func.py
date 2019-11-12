@@ -39,4 +39,6 @@ def inter_test():
 
     return nu_word, save
 
-# from main.management.commands.interpreter_func import inter_test as test
+# execution steps from django shell: 
+# step 1 - from main.management.commands.interpreter_func import inter_test as test
+# step 2 - test()
