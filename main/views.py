@@ -14,9 +14,10 @@ def suggest_words(word):
     stringyfy_dict = list(map(lambda x: str(x).split(":")[0], dictionary))
     suggestions = get_close_matches(word, stringyfy_dict)
     # pdb.set_trace()
-    reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again:",]
-    if len(suggestions) > 0:
-        reply.append(suggestions)
+    reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again:", suggestions]
+    # reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again:",]
+    # if len(suggestions) > 0:
+    #     reply.append(suggestions)
     return reply
 
 
@@ -69,12 +70,13 @@ def project_index(request):
           meaning = str(Word.objects.using('dictionary').get(word=word))
         except ObjectDoesNotExist: 
           word = request.GET["Enter_Word"]
-          # meaning = suggest_words(word)
-          suggestions = {}
-          suggested = suggest_words(word)
-          for ec in suggested[1]:
-            suggestions[ec] = f'{ec}_id'
-          meaning = [suggest_words(word)[0], suggestions]
+          meaning = suggest_words(word)
+          # pdb.set_trace()
+          # suggestions = {}
+          # suggested = suggest_words(word)
+          # for ec in suggested[1]:
+          #   suggestions[ec] = f'{ec}_id'
+          # meaning = [suggest_words(word)[0], suggestions]
   
     form = InputForm({'Meaning': meaning })
     # pdb.set_trace()

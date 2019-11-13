@@ -1,7 +1,14 @@
 from django import forms
 
 from .models import Word
+from django.core.exceptions import ValidationError
 
+
+def validate_num_length(num):
+    if num > 9999:
+        raise ValidationError(
+            _(f"{num} is too large. Enter a alue that\'s equal to 4 digits or less"), code='invalid'
+        )
 
 
 
@@ -13,6 +20,8 @@ class InputForm(forms.Form):
 
 class DictForm(forms.ModelForm):
 
+    creator = forms.IntegerField(validators=[validate_num_length])
+
     class Meta:
         model = Word
         fields = '__all__'
@@ -21,5 +30,4 @@ class DictForm(forms.ModelForm):
             'second_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
             'third_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
             'more_definitions': forms.Textarea(attrs={'cols': 50, 'rows': 4}),
-            # 'creator': forms.TextInput(),
         }
