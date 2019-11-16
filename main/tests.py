@@ -34,8 +34,8 @@ class ProjectTestCase(TestCase):
 
     # Test ability to create Word objects    
     def create_word_test(self):
-        word = Word.objects.using('dictionary').create(name="ether", first_definition="A colorless liquid, slightly soluble in water; used as a reagent, intermediate, anesthetic, and solvent.\\n(Source: MGH)", second_definition="A class of chemical compounds which contain an oxygen atom connected to two (substituted) alkyl groups.", third_definition="", more_definitions="(substituted) alkyl groups.")
-        get_word = Word.objects.using('dictionary').get(name="ether")
+        word = Word.objects.using('dictionary').create(word="ether", first_definition="A colorless liquid, slightly soluble in water; used as a reagent, intermediate, anesthetic, and solvent.\\n(Source: MGH)", second_definition="A class of chemical compounds which contain an oxygen atom connected to two (substituted) alkyl groups.", third_definition="", more_definitions="(substituted) alkyl groups.")
+        get_word = Word.objects.using('dictionary').get(word="ether")
 
     # Test logic for parsing dictionary json file and saving to databse
     def make_dict(self):
@@ -51,11 +51,11 @@ class ProjectTestCase(TestCase):
             first = small_d[word][0]
             if len(small_d[word])>1 and len(small_d[word])<2:
                 second = small_d[word][1]
-                nu_word = Word.objects.using('dictionary').create(name=word, first_definition=first, second_definition=second, third_definition="", more_definitions="")
+                nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition=second, third_definition="", more_definitions="")
             elif len(small_d[word])>2 and len(small_d[word])<3:
                 second = small_d[word][1]
                 third = small_d[word][2]
-                nu_word = Word.objects.using('dictionary').create(name=word, first_definition=first, second_definition=second, third_definition=third, more_definitions="")
+                nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition=second, third_definition=third, more_definitions="")
             elif len(small_d[word])>3:
                 # pdb.set_trace()
                 second = small_d[word][1]
@@ -64,9 +64,9 @@ class ProjectTestCase(TestCase):
                 diff = len(small_d[word])-3
                 for x in range(diff):
                     additional.append(small_d[word][3+x])
-                nu_word = Word.objects.using('dictionary').create(name=word, first_definition=first, second_definition=second, third_definition=third, more_definitions=additional)
+                nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition=second, third_definition=third, more_definitions=additional)
             else:
-                nu_word = Word.objects.using('dictionary').create(name=word, first_definition=first, second_definition="", third_definition="", more_definitions="")
+                nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition="", third_definition="", more_definitions="")
 
             nu_word.save()
 

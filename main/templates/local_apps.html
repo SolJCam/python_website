@@ -1,51 +1,68 @@
 {% extends "projects.html" %}
 {% load static %}
+{% load l10n %}
 
 {% block content %}
 <div id="" class="col-12">
     <div class="row card mb-2 flex-row flex-wrap">
         <div class="col-md-8 card-header border-0">
             <!-- <p class="col-md-4 mt-2 text-right">py_dictionary</p> -->
-            <form class="mt-2 mb-3 mr-1" action="" method="get">
+            <form id="dict_form" class="mt-2 mb-3 mr-1" action="" method="get">
                 <div class="mt-2 mb-3 mr-1 input-group">
-                    <!-- <input type="text" class="form-control"> -->
-                  {% csrf_token %}
-                  <!-- {{ form }} -->
-                  {% if form.is_valid %}
-                    <table css="border:1px">
-                        {% for hidden_field in form.hidden_fields %}
-                        <tr>
-                            <td>
-                                {{ hidden_field }}
-                            </td>
-                        </tr>
-                    </table>
-                        {% endfor %}
-                  {% else %}
-                        <!-- {{ form }} -->
                     {{ form.Enter_Word.label }}{{ form.Enter_Word }}
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit"><img src="{% static 'img/magnifying-glass-2x.png' %}"></img></button>
                     </div>
-                    {% if form.Meaning.value %}
+                    {% if form.Meaning.value|length > 2 %}
                         {{ form.Meaning.value }}
+                    {% else %}
+                        {% for no_word in form.Meaning.value|slice:":1" %}
+                            {{ no_word }}
+                            <div class="w-100"></div>
+                        {% endfor %}
+                        {% for list in form.Meaning.value|slice:"1:" %}
+                            <!-- {% for suggestion, id in word.items %}
+                                <a id="{{ id }}" class="suggestion ml-1 mr-1" href="">{{ suggestion }}</a>
+                            {% endfor %} -->
+                            {% for words in list %}
+                                <a class="suggestion ml-1 mr-1" href="">{{ words }}</a>
+                            {% endfor %}
+                        {% endfor %}
                     {% endif %}
-                    <!-- {% for field in form.visible_fields %}
-                        {{ field.label }}{{ field}}
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit"><img src="{% static 'img/magnifying-glass-2x.png' %}"></img></button>
+                </div>
+            </form>
+            <form id="new_word" class="mt-2 mb-3 mr-1" action="" method="post" style="display:none">
+                {% csrf_token %}
+                <div class="mt-2 mb-3 mr-1 p-3 input-group bg-info">
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="col-12" for="{{ add_word.word.id_for_label }}">New {{ add_word.word.label }}</label>
+                            {{ add_word.word }}
                         </div>
-                        <ul>
-                        {% if field.field %} 
-                            <li>{{ field.value }}
-                        {% endif %}
-                        </ul>
-                    {% endfor %} -->
-                  {% endif %}
+                        <div class="col-12">
+                            <label class="col-12" for="{{ add_word.first_definition.id_for_label }}">{{ add_word.first_definition.label }}</label>
+                            {{ add_word.first_definition }}
+                        </div>
+                        <div class="col-12">
+                            <label class="col-12" for="{{ add_word.first_ex.id_for_label }}">{{ add_word.first_ex.label }}</label>
+                            {{ add_word.first_ex }}
+                        </div>
+                        <div class="col-12">
+                            <label class="col-12" for="{{ add_word.synonym.id_for_label }}">{{ add_word.synonym.label }}</label>
+                            {{ add_word.synonym }}
+                        </div>
+                        <div class="col-12">
+                            <label class="col-12" for="{{ add_word.creator.id_for_label }}">{{ add_word.creator.label }}</label>
+                            {{ add_word.creator }}
+                        </div>
+                        <div class="mt-2 ml-3 input-group-append">
+                            <button class="btn btn-outline-secondary" style="background-color:white;" type="submit">submit</button>
+                        </div>
+                    </div>
                 </div>
             </form>
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Add Word</button>
+                <button id="add_word" class="btn btn-outline-primary" href="#" type="button">Add Word</button>
             </div>
              <div id="result" class="col">
                 <h1 id="dict_name"></h1>

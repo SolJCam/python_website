@@ -1,7 +1,14 @@
 from django import forms
 
 from .models import Word
+from django.core.exceptions import ValidationError
 
+
+def validate_num_length(num):
+    if num > 9999:
+        raise ValidationError(
+            ('Invalid value'), code=f"{num} is too large. Enter a alue that\'s equal to 4 digits or less"
+        )
 
 
 
@@ -13,44 +20,14 @@ class InputForm(forms.Form):
 
 class DictForm(forms.ModelForm):
 
+    creator = forms.IntegerField(validators=[validate_num_length])
+
     class Meta:
         model = Word
         fields = '__all__'
         widgets = {
-            'name': forms.HiddenInput(),
-            'first_definition': forms.HiddenInput(), 
-            'first_ex': forms.HiddenInput(),
-            'second_definition': forms.HiddenInput(), 
-            'second_ex': forms.HiddenInput(), 
-            'third_definition': forms.HiddenInput(), 
-            'third_ex': forms.HiddenInput(), 
-            'synonym': forms.HiddenInput(), 
-            'more_definitions': forms.HiddenInput(),
+            'first_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
+            'second_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
+            'third_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
+            'more_definitions': forms.Textarea(attrs={'cols': 50, 'rows': 4}),
         }
-
-    # name = forms.CharField(max_length=120, label_suffix='', widget=forms.HiddenInput())
-    # first_definition = forms.CharField(max_length=250, label_suffix='', widget=forms.HiddenInput())
-    # first_ex = forms.CharField(max_length=120, label_suffix='', widget=forms.HiddenInput())
-    # second_definition = forms.CharField(max_length=250, label_suffix='', widget=forms.HiddenInput())
-    # second_ex = forms.CharField(max_length=120, label_suffix='', widget=forms.HiddenInput())
-    # third_definition = forms.CharField(max_length=250, label_suffix='', widget=forms.HiddenInput())
-    # third_ex = forms.CharField(max_length=120, label_suffix='', widget=forms.HiddenInput())
-    # synonym = forms.CharField(max_length=120, label_suffix='', widget=forms.HiddenInput())
-    # more_definitions = forms.CharField(label_suffix='', widget=forms.HiddenInput())
-
-    # class Meta:
-    #     model = Word
-    #     fields = ('name', 'first_definition', 'first_ex', 'second_definition', 'second_ex', 'third_definition', 'third_ex', 'synonym', 'more_definitions',)
-    #     widgets = {
-    #         'name': forms.HiddenInput(), 
-    #         'first_definition': forms.HiddenInput(), 
-    #         'first_ex': forms.HiddenInput(),
-    #         'second_definition': forms.HiddenInput(), 
-    #         'second_ex': forms.HiddenInput(), 
-    #         'third_definition': forms.HiddenInput(), 
-    #         'third_ex': forms.HiddenInput(), 
-    #         'synonym': forms.HiddenInput(), 
-    #         'more_definitions': forms.HiddenInput(),
-    #     }
-
-

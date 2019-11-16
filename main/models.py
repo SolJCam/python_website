@@ -14,7 +14,7 @@ class Project(models.Model):
 
 
 class Word(models.Model):
-    name = models.CharField(max_length=120)
+    word = models.CharField(max_length=120)
     first_definition = models.TextField(max_length=250)
     first_ex = models.CharField(max_length=120, blank=True)
     second_definition = models.TextField(max_length=250, blank=True)
@@ -23,9 +23,9 @@ class Word(models.Model):
     third_ex = models.CharField(max_length=120, blank=True)
     synonym = models.CharField(max_length=120, blank=True)
     more_definitions = models.TextField(blank=True)
-    # unique_hash = models.CharField(max_length=8)
+    creator = models.PositiveSmallIntegerField(blank=True, null=True)
     def __str__(self): #string magic-method to return name as string
-        return self.name+": "+self.first_definition+", "+self.first_ex+", "+self.second_definition+", "+self.second_ex+", "+self.third_definition+", "+self.third_ex
+        return self.word+": "+self.first_definition+", "+self.first_ex+", "+self.second_definition+", "+self.second_ex+", "+self.third_definition+", "+self.third_ex
     # class Meta:
     #     db_table = 'main_word'
 

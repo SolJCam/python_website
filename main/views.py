@@ -1,7 +1,25 @@
 from django.shortcuts import render
 from .models import Project, Word
 from .forms import InputForm, DictForm
+from django.core.exceptions import ObjectDoesNotExist
+from difflib import SequenceMatcher, get_close_matches
 import pdb #python debugger
+
+
+
+
+#function for checking user dictionary input and offering suggestions
+def suggest_words(word):
+    dictionary = Word.objects.using('dictionary').all()
+    stringyfy_dict = list(map(lambda x: str(x).split(":")[0], dictionary))
+    suggestions = get_close_matches(word, stringyfy_dict)
+    # pdb.set_trace()
+    reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again:", suggestions]
+    # reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again:",]
+    # if len(suggestions) > 0:
+    #     reply.append(suggestions)
+    return reply
+
 
 
 
@@ -16,19 +34,57 @@ def site_index(request):
 
 
 def project_index(request):
+
+  #Create empty form for dictionary word search
+  form = InputForm()
+  add_word_form  = DictForm()
   projects = Project.objects.all()
 
-  form = InputForm()
   # pdb.set_trace()
-  
-  if request.GET:
+  if request.POST:
+    # create a form instance and populate it with data from the request:
+    new_word = DictForm(request.POST)
     # pdb.set_trace()
-    user_input = request.GET["Enter_Word"]
-    form = InputForm({'Meaning': Word.objects.using('dictionary').get(name=user_input)})
+    # check whether it's valid:
+    if new_word.is_valid():
+        pdb.set_trace()
+        # try:
+        #   Word.objects.using('dictionary').get(name=new_word.cleaned_data['py_dictionary'])
+        # except:
+
+    #   Word.objects.using('dictionary').create(word=, first_definition=, second_definition=, third_definition=, more_definitions=)
+        
+  #if GET attribute has dict containing data, then this was a user search request. Proceed to processing and returing results  
+  if bool(request.GET) == True:
+
+    word = request.GET["Enter_Word"].lower()
+    try:
+      meaning = str(Word.objects.using('dictionary').get(word=word))
+    except ObjectDoesNotExist:
+      word = request.GET["Enter_Word"].title()
+      try:
+        meaning = str(Word.objects.using('dictionary').get(word=word))
+      except ObjectDoesNotExist:
+        word = request.GET["Enter_Word"].upper()
+        try:
+          meaning = str(Word.objects.using('dictionary').get(word=word))
+        except ObjectDoesNotExist: 
+          word = request.GET["Enter_Word"]
+          meaning = suggest_words(word)
+          # pdb.set_trace()
+          # suggestions = {}
+          # suggested = suggest_words(word)
+          # for ec in suggested[1]:
+          #   suggestions[ec] = f'{ec}_id'
+          # meaning = [suggest_words(word)[0], suggestions]
+  
+    form = InputForm({'Meaning': meaning })
+    # pdb.set_trace()
      
   context = {
-      'projects': projects,
       'form': form,
+      'add_word': add_word_form,
+      'projects': projects,
   }
 
   return render(request, 'local_apps.html', context)

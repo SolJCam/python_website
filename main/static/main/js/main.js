@@ -95,6 +95,25 @@ $(document).ready(function (e) {
     console.log("woohoo!!!");
   })
 
+
+  // non click, display options to add word to dictionary
+  $('#add_word').click(function(e){
+    console.log("woohoo!!!");
+    e.preventDefault();
+    $( "#new_word" ).slideDown("slow", function() {
+      // Animation complete.
+    });
+  })
+
+
+  // submit user selected suggestions 
+  $('.suggestion').click((e)=>{
+    e.preventDefault();
+    $('#id_Enter_Word').attr("value", e.currentTarget.innerHTML)
+    $('#dict_form').submit();
+  })
+
+
   // return button behavior
   let thirty; let scroll;
 
