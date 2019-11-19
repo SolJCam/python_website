@@ -44,16 +44,19 @@ def project_index(request):
   if request.POST:
     # create a form instance and populate it with data from the request:
     new_word = DictForm(request.POST)
-    # pdb.set_trace()
+    pdb.set_trace()
     # check whether it's valid:
     if new_word.is_valid():
         pdb.set_trace()
         # try:
         #   Word.objects.using('dictionary').get(name=new_word.cleaned_data['py_dictionary'])
         # except:
-
-    #   Word.objects.using('dictionary').create(word=, first_definition=, second_definition=, third_definition=, more_definitions=)
-        
+    #   Word.objects.using('dictionary').create(word=, first_definition=, second_definition=, third_definition=, more_definitions=)  
+    else:
+      error = new_word.errors.as_data()
+      raise error["creator"][0] #wip
+      # new_word.errors.as_json().split(":")[3]
+      #    
   #if GET attribute has dict containing data, then this was a user search request. Proceed to processing and returing results  
   if bool(request.GET) == True:
 

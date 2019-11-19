@@ -7,7 +7,7 @@ from django.core.exceptions import ValidationError
 def validate_num_length(num):
     if num > 9999:
         raise ValidationError(
-            ('Invalid value'), code=f"{num} is too large. Enter a alue that\'s equal to 4 digits or less"
+            (f"{num} is too large. Enter a value that\'s equal to 4 digits or less"), code='too large'
         )
 
 
