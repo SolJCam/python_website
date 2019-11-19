@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'main',
     # 'folium_web_map',
     # 'chatApp',
+    #'py_scraper'
 ]
 
 MIDDLEWARE = [
