@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Project, Word
 from .forms import InputForm, DictForm
 from django.core.exceptions import ObjectDoesNotExist
@@ -92,12 +92,12 @@ def project_index(request):
 
 
 # Below will be to visit indivudual project urls. Not ready
-def project_detail(request, pk):
-  projects = get_object_or_404(Project.objects.get(pk=pk))
-  context = {
-    'projects': projects
-  }
-  return render(request, 'pydictionary.html', context)
+# def project(request, pk):
+#   projects = get_object_or_404(Project.objects.get(pk=pk))
+#   context = {
+#     'projects': projects
+#   }
+#   return render(request, 'pydictionary.html', context)
 
 
 
