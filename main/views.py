@@ -20,6 +20,23 @@ def suggest_words(word):
     #     reply.append(suggestions)
     return reply
 
+def check_dict():
+    word = request.GET["Enter_Word"].lower()
+    try:
+      meaning = str(Word.objects.using('dictionary').get(word=word))
+    except ObjectDoesNotExist:
+      word = request.GET["Enter_Word"].title()
+      try:
+        meaning = str(Word.objects.using('dictionary').get(word=word))
+      except ObjectDoesNotExist:
+        word = request.GET["Enter_Word"].upper()
+        try:
+          meaning = str(Word.objects.using('dictionary').get(word=word))
+        except ObjectDoesNotExist: 
+          word = request.GET["Enter_Word"]
+          meaning = suggest_words(word)
+    return meaning
+
 
 
 
@@ -44,15 +61,16 @@ def project_index(request):
   if request.POST:
     # create a form instance and populate it with data from the request:
     new_word = DictForm(request.POST)
-    pdb.set_trace()
+    # pdb.set_trace()
     # check whether it's valid:
     if new_word.is_valid():
-        pdb.set_trace()
+        new_word
         # try:
         #   Word.objects.using('dictionary').get(name=new_word.cleaned_data['py_dictionary'])
         # except:
     #   Word.objects.using('dictionary').create(word=, first_definition=, second_definition=, third_definition=, more_definitions=)  
     else:
+      # pdb.set_trace()
       error = new_word.errors.as_data()
       raise error["creator"][0] #wip
       # new_word.errors.as_json().split(":")[3]
@@ -60,20 +78,21 @@ def project_index(request):
   #if GET attribute has dict containing data, then this was a user search request. Proceed to processing and returing results  
   if bool(request.GET) == True:
 
-    word = request.GET["Enter_Word"].lower()
-    try:
-      meaning = str(Word.objects.using('dictionary').get(word=word))
-    except ObjectDoesNotExist:
-      word = request.GET["Enter_Word"].title()
-      try:
-        meaning = str(Word.objects.using('dictionary').get(word=word))
-      except ObjectDoesNotExist:
-        word = request.GET["Enter_Word"].upper()
-        try:
-          meaning = str(Word.objects.using('dictionary').get(word=word))
-        except ObjectDoesNotExist: 
-          word = request.GET["Enter_Word"]
-          meaning = suggest_words(word)
+    check_dict()
+    # word = request.GET["Enter_Word"].lower()
+    # try:
+    #   meaning = str(Word.objects.using('dictionary').get(word=word))
+    # except ObjectDoesNotExist:
+    #   word = request.GET["Enter_Word"].title()
+    #   try:
+    #     meaning = str(Word.objects.using('dictionary').get(word=word))
+    #   except ObjectDoesNotExist:
+    #     word = request.GET["Enter_Word"].upper()
+    #     try:
+    #       meaning = str(Word.objects.using('dictionary').get(word=word))
+    #     except ObjectDoesNotExist: 
+    #       word = request.GET["Enter_Word"]
+    #       meaning = suggest_words(word)
           # pdb.set_trace()
           # suggestions = {}
           # suggested = suggest_words(word)
