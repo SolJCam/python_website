@@ -15,26 +15,24 @@ def suggest_words(word):
     suggestions = get_close_matches(word, stringyfy_dict)
     # pdb.set_trace()
     reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again:", suggestions]
-    # reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again:",]
-    # if len(suggestions) > 0:
-    #     reply.append(suggestions)
     return reply
 
-def check_dict():
-    word = request.GET["Enter_Word"].lower()
+#function for testing variations of word against database and returning best result
+def check_dict(wrd_input):
+    # pdb.set_trace()
+    word = wrd_input.lower()
     try:
       meaning = str(Word.objects.using('dictionary').get(word=word))
     except ObjectDoesNotExist:
-      word = request.GET["Enter_Word"].title()
+      word = wrd_input.title()
       try:
         meaning = str(Word.objects.using('dictionary').get(word=word))
       except ObjectDoesNotExist:
-        word = request.GET["Enter_Word"].upper()
+        word = wrd_input.upper()
         try:
           meaning = str(Word.objects.using('dictionary').get(word=word))
         except ObjectDoesNotExist: 
-          word = request.GET["Enter_Word"]
-          meaning = suggest_words(word)
+          meaning = suggest_words(wrd_input)
     return meaning
 
 
@@ -64,11 +62,11 @@ def project_index(request):
     # pdb.set_trace()
     # check whether it's valid:
     if new_word.is_valid():
-        new_word
-        # try:
-        #   Word.objects.using('dictionary').get(name=new_word.cleaned_data['py_dictionary'])
-        # except:
-    #   Word.objects.using('dictionary').create(word=, first_definition=, second_definition=, third_definition=, more_definitions=)  
+        pdb.set_trace()
+        # resp = check_dict(new_word)
+        # if type(resp)==list:
+          # Word.objects.using('dictionary').create(word=, first_definition=, second_definition=, third_definition=, more_definitions=) 
+
     else:
       # pdb.set_trace()
       error = new_word.errors.as_data()
@@ -78,27 +76,8 @@ def project_index(request):
   #if GET attribute has dict containing data, then this was a user search request. Proceed to processing and returing results  
   if bool(request.GET) == True:
 
-    check_dict()
-    # word = request.GET["Enter_Word"].lower()
-    # try:
-    #   meaning = str(Word.objects.using('dictionary').get(word=word))
-    # except ObjectDoesNotExist:
-    #   word = request.GET["Enter_Word"].title()
-    #   try:
-    #     meaning = str(Word.objects.using('dictionary').get(word=word))
-    #   except ObjectDoesNotExist:
-    #     word = request.GET["Enter_Word"].upper()
-    #     try:
-    #       meaning = str(Word.objects.using('dictionary').get(word=word))
-    #     except ObjectDoesNotExist: 
-    #       word = request.GET["Enter_Word"]
-    #       meaning = suggest_words(word)
-          # pdb.set_trace()
-          # suggestions = {}
-          # suggested = suggest_words(word)
-          # for ec in suggested[1]:
-          #   suggestions[ec] = f'{ec}_id'
-          # meaning = [suggest_words(word)[0], suggestions]
+    word = request.GET["Enter_Word"]
+    meaning = check_dict(word)
   
     form = InputForm({'Meaning': meaning })
     # pdb.set_trace()
@@ -120,7 +99,6 @@ def project_detail(request, pk):
     'projects': projects
   }
   return render(request, 'pydictionary.html', context)
-
 
 
 
@@ -170,3 +148,9 @@ def project_detail(request, pk):
 
     #   # If True, will be able to find all the validated form data in its cleaned_data attribute and use it to update the database etc
     #   form = Word.objects.using('dictionary').get(name=req.cleaned_data['py_dictionary'])
+
+
+            # try:
+        #   Word.objects.using('dictionary').get(name=new_word.cleaned_data['py_dictionary'])
+        # except:
+    #   Word.objects.using('dictionary').create(word=, first_definition=, second_definition=, third_definition=, more_definitions=)  
