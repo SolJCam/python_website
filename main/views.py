@@ -1,39 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Project, Word
 from .forms import InputForm, DictForm
-from django.core.exceptions import ObjectDoesNotExist
-from difflib import SequenceMatcher, get_close_matches
 import pdb #python debugger
+from .view_functions import suggest_words, check_dict, add_word
 
-
-
-
-#function for checking user dictionary input and offering suggestions
-def suggest_words(word):
-    dictionary = Word.objects.using('dictionary').all()
-    stringyfy_dict = list(map(lambda x: str(x).split(":")[0], dictionary))
-    suggestions = get_close_matches(word, stringyfy_dict)
-    # pdb.set_trace()
-    reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again:", suggestions]
-    return reply
-
-#function for testing variations of word against database and returning best result
-def check_dict(wrd_input):
-    # pdb.set_trace()
-    word = wrd_input.lower()
-    try:
-      meaning = str(Word.objects.using('dictionary').get(word=word))
-    except ObjectDoesNotExist:
-      word = wrd_input.title()
-      try:
-        meaning = str(Word.objects.using('dictionary').get(word=word))
-      except ObjectDoesNotExist:
-        word = wrd_input.upper()
-        try:
-          meaning = str(Word.objects.using('dictionary').get(word=word))
-        except ObjectDoesNotExist: 
-          meaning = suggest_words(wrd_input)
-    return meaning
 
 
 
@@ -70,6 +40,8 @@ def project_index(request):
     else:
       # pdb.set_trace()
       error = new_word.errors.as_data()
+
+      # create conditional statement for different errors and display formatted message in template
       raise error["creator"][0] #wip
       # new_word.errors.as_json().split(":")[3]
       #    
