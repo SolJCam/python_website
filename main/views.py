@@ -26,32 +26,29 @@ def project_index(request):
   projects = Project.objects.all()
 
   # pdb.set_trace()
-  if request.POST:
+  if request.method == "POST":
     # create a form instance and populate it with data from the request:
     new_word = DictForm(request.POST)
-    # pdb.set_trace()
-    # check whether it's valid:
+
     if new_word.is_valid():
-        # pdb.set_trace()
+        pdb.set_trace()
         print(add_word(new_word))
-        # resp = check_dict(new_word)
-        # if type(resp)==list:
-          # Word.objects.using('dictionary').create(word=, first_definition=, second_definition=, third_definition=, more_definitions=) 
+        # pdb.set_trace()
 
     else:
       # pdb.set_trace()
       error = new_word.errors.as_data()
 
-      if error['word']:
-        form = InputForm({'Error': " The word entered has invalid characters. Only characters a-z, A-Z, '.' and '-' are acceptable. Please try again" })
-      elif error['creator']:
-        form = InputForm({'Error': " The value entered for creator is too large.\n Please try again with a value 4 charaters or less" })
-      else:
-        form = InputForm({'Error': " There was an unknown server error.\n Please enter the word again" })
-      # create conditional statement for different errors and display formatted message in template
-      # raise error["creator"][0] #wip
-      # new_word.errors.as_json().split(":")[3]
-      #    
+      try:
+        if error['word']:
+          form = InputForm({'Error': " The word entered has invalid characters. Only characters a-z, A-Z, '.' and '-' are acceptable. Please try again" })
+      except:
+        try:
+          if error['creator']:
+            form = InputForm({'Error': " The value entered for creator is too large.\n Please try again with a value 4 charaters or less" })
+        except:
+          form = InputForm({'Error': " There was an unknown server error.\n Please enter the word again" })
+      
   #if GET attribute has dict containing data, then this was a user search request. Proceed to processing and returing results  
   if bool(request.GET) == True:
 
