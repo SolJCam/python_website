@@ -32,28 +32,44 @@ def check_dict(wrd_input):
           meaning = suggest_words(wrd_input)
     return meaning
 
-def add_word():
-    for word in small_d:
-        pdb.set_trace()
-
-        first = small_d[word][0]
-        if len(small_d[word])>1 and len(small_d[word])<2:
-            second = small_d[word][1]
-            nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition=second, third_definition="", more_definitions="")
-        elif len(small_d[word])>2 and len(small_d[word])<3:
-            second = small_d[word][1]
-            third = small_d[word][2]
-            nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition=second, third_definition=third, more_definitions="")
-        elif len(small_d[word])>3:
-            # pdb.set_trace()
-            second = small_d[word][1]
-            third = small_d[word][2]
-            additional = []
-            diff = len(small_d[word])-3
-            for x in range(diff):
-                additional.append(small_d[word][3+x])
-            nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition=second, third_definition=third, more_definitions=additional)
-        else:
-            nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition="", third_definition="", more_definitions="")
+def add_word(usr_wrd):
+    nu_word = Word.objects.using('dictionary').create(
+        word = usr_wrd["word"],
+        first_definition = usr_wrd["first_definition"],
+        first_ex = usr_wrd["first_ex"],
+        second_definition = usr_wrd["second_definition"],
+        second_ex = usr_wrd["second_ex"],
+        third_definition = usr_wrd["third_definition"],
+        third_ex = usr_wrd["third_ex"],
+        synonym = usr_wrd["synonym"],
+        more_definitions = usr_wrd["more_definitions"],
+        creator = usr_wrd["creator"]
+    )
 
     nu_word.save()
+    return nu_word
+
+
+    # for word in small_d:
+    #     pdb.set_trace()
+
+    #     first = small_d[word][0]
+    #     if len(small_d[word])>1 and len(small_d[word])<2:
+    #         second = small_d[word][1]
+    #         nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition=second, third_definition="", more_definitions="")
+    #     elif len(small_d[word])>2 and len(small_d[word])<3:
+    #         second = small_d[word][1]
+    #         third = small_d[word][2]
+    #         nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition=second, third_definition=third, more_definitions="")
+    #     elif len(small_d[word])>3:
+    #         # pdb.set_trace()
+    #         second = small_d[word][1]
+    #         third = small_d[word][2]
+    #         additional = []
+    #         diff = len(small_d[word])-3
+    #         for x in range(diff):
+    #             additional.append(small_d[word][3+x])
+    #         nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition=second, third_definition=third, more_definitions=additional)
+    #     else:
+    #         nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition="", third_definition="", more_definitions="")
+
