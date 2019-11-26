@@ -33,6 +33,7 @@ def check_dict(wrd_input):
     return meaning
 
 def add_word(usr_wrd):
+    # pdb.set_trace
     nu_word = Word.objects.using('dictionary').create(
         word = usr_wrd["word"],
         first_definition = usr_wrd["first_definition"],
@@ -47,7 +48,7 @@ def add_word(usr_wrd):
     )
 
     nu_word.save()
-    return nu_word
+    return f"You have successfully added {usr_wrd['word']} to the dictionary!"
 
 
     # for word in small_d:

@@ -31,9 +31,10 @@ def project_index(request):
     new_word = DictForm(request.POST)
 
     if new_word.is_valid():
-        pdb.set_trace()
-        print(add_word(new_word))
         # pdb.set_trace()
+        meaning = check_dict(new_word.cleaned_data['word'])
+        form = InputForm({"Success": add_word(new_word.cleaned_data)})
+        pdb.set_trace()
 
     else:
       # pdb.set_trace()

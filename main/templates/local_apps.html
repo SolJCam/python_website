@@ -13,9 +13,13 @@
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit"><img src="{% static 'img/magnifying-glass-2x.png' %}"></img></button>
                     </div>
-                    {% if form.Error %}
+                    {% if form.Error.value != None %}
                         {{ form.Error.label }}{{ form.Error.value }}
-                    {% elif form.Meaning.value|length > 2 %}
+                    {% endif %}
+                    {% if form.Success.value != None %}
+                        {{ form.Success.value }}
+                    {% endif %}
+                    {% if form.Meaning.value|length > 2 %}
                         {{ form.Meaning.value }}
                     {% else %}
                         {% for no_word in form.Meaning.value|slice:":1" %}

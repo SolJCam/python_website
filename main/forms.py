@@ -25,9 +25,10 @@ def validate_word(word):
 
 class InputForm(forms.Form):
 
-    Enter_Word = forms.CharField(label='Enter Word', label_suffix=':', max_length=20)
-    Error = forms.CharField(label='Error', label_suffix=':')
-    Meaning = forms.CharField(label='meaning', label_suffix='', widget=forms.Textarea)
+    Enter_Word = forms.CharField(label='Enter Word', max_length=20)
+    Error = forms.CharField(label='Error')
+    Meaning = forms.CharField(label='meaning', widget=forms.Textarea)
+    Success = forms.CharField(label='Success!')
 
 
 class DictForm(forms.ModelForm):
