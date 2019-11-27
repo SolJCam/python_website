@@ -31,10 +31,14 @@ def project_index(request):
     new_word = DictForm(request.POST)
 
     if new_word.is_valid():
-        # pdb.set_trace()
+        
         meaning = check_dict(new_word.cleaned_data['word'])
-        form = InputForm({"Success": add_word(new_word.cleaned_data)})
-        pdb.set_trace()
+        
+        if len(meaning[1][0]) > 1:
+          form = InputForm({"Success": add_word(new_word.cleaned_data)})
+        else:
+          form = InputForm({'Meaning': [f"{new_word.cleaned_data['word']} is already in the dictionary."]})
+        # pdb.set_trace()
 
     else:
       # pdb.set_trace()
