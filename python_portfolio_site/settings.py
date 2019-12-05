@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver',]
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin', #admin, scameron10@yahoo.com, freddy11
+    'django.contrib.admin', # sol, freddy11
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
