@@ -75,11 +75,12 @@ def project_index(request):
 
 # Below will be to visit indivudual project urls. Not ready
 def project_detail(request, pk):
-  projects = get_object_or_404(Project.objects.get(pk=pk))
+  # projects = get_object_or_404(Project.objects.get(pk=pk))
+  projects = Project.objects.get(pk=pk)
   context = {
     'projects': projects
   }
-  return render(request, 'pydictionary.html', context)
+  return render(request, 'py_scraper.html', context)
 
 
 

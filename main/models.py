@@ -6,7 +6,7 @@ class Project(models.Model):
     description = models.TextField()
     technology = models.CharField(max_length=150)
     github_url = models.CharField(max_length=100)
-    image = models.FilePathField(path="/img")
+    image = models.FilePathField(path="main/static/img")
     def __str__(self): #string magic-method to return title as string - an obviously more helpful representation of this object
         return self.title
     # class Meta:
