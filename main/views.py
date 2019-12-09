@@ -18,6 +18,8 @@ def site_index(request):
 
 
 
+
+
 def project_index(request):
 
   #Create empty form for dictionary word search
@@ -73,23 +75,16 @@ def project_index(request):
 
 
 
-# Below will be to visit indivudual project urls. Not ready
-<<<<<<< HEAD
-# def project(request, pk):
-#   projects = get_object_or_404(Project.objects.get(pk=pk))
-#   context = {
-#     'projects': projects
-#   }
-#   return render(request, 'pydictionary.html', context)
-=======
-def project_detail(request, pk):
+
+
+def ext_project(request, pk):
+  # pdb.set_trace()
   # projects = get_object_or_404(Project.objects.get(pk=pk))
-  projects = Project.objects.get(pk=pk)
+  projects = pk
   context = {
     'projects': projects
   }
   return render(request, 'py_scraper.html', context)
->>>>>>> 8dde59ce01a81cc639c1aa57489b11dc886d60d2
 
 
 

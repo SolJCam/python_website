@@ -51,8 +51,9 @@
                       <h5 class="card-title">{{ project.title }}</h5>
                       <p class="card-text">{{ project.description }}</p>
                       <a class="btn btn-primary text-light">Read More</a>
-                      <p class="card-text">{{ project.technology }}</p>
-                      <a href="#">{{ project.title }}</a>
+                      <!-- <p class="card-text">{{ project.technology }}</p> -->
+                      <div class=w-100></div>
+                      <a href="{% url 'ext_project' 4 %}">{{ project.title }}</a> <!-- 4 is a temporary id# -->
                   </div>
               </div>
           </div>
