@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'py_scraper',
     # 'folium_web_map',
     # 'chatApp',
-    #'py_scraper'
 ]
 
 MIDDLEWARE = [

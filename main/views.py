@@ -84,7 +84,7 @@ def ext_project(request, pk):
   context = {
     'projects': projects
   }
-  return render(request, 'py_scraper.html', context)
+  return render(request, 'pyscraper.html', context)
 
 
 
