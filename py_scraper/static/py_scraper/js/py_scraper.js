@@ -53,6 +53,6 @@ $(document).ready(e => {
     $("#scrape").click(e=>{
         e.preventDefault();
         let cloud = generateCloud();
-        debugger
+        // debugger
     })
 })
