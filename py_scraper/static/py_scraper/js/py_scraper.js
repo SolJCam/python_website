@@ -14,8 +14,9 @@ console.log("scripts are being read");
 //     };
 // }
 
-function generateCloud (){
-    fetch("https://wordcloudservice.p.rapidapi.com/generate_wc", {
+async function generateCloud (){
+	
+	await fetch("https://wordcloudservice.p.rapidapi.com/generate_wc", {
 		"method": "POST",
 		"headers": {
 			"x-rapidapi-host": "wordcloudservice.p.rapidapi.com",
@@ -27,15 +28,16 @@ function generateCloud (){
 			"f_type": "png",
 			"width": 800,
 			"height": 500,
-			"s_max": "7",
-			"s_min": "1",
-			"f_min": 1,
+			"s_max": "4",
+			"s_min": ".5",
+			"f_min": 3,
 			"r_color": "TRUE",
-			"r_order": "TRUE",
+			"r_order": "FALSE",
 			"s_fit": "FALSE",
 			"fixed_asp": "TRUE",
 			"rotate": "TRUE",
-			"textblock": "generate word cloud generate word cloud awesome great png jpg pdf awesome generate word cloud"
+			"url": "https://en.wikipedia.org/wiki/Canada",
+			"remove_words": "canada canadian original archived"
 		}
 	})
 	.then(response => {
@@ -55,3 +57,5 @@ $(document).ready(e => {
 		// $("#wordcloud").attr("src", cloud);
     })
 })
+
+
