@@ -53,7 +53,7 @@ $(document).ready(e => {
         e.preventDefault();
 		let cloud = generateCloud();
 		console.log(cloud);
-		// debugger
+		debugger
 		// $("#wordcloud").attr("src", cloud);
     })
 })
