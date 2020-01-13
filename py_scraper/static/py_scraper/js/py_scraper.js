@@ -2,14 +2,14 @@ console.log("scripts are being read");
 
 
 $(document).ready(e => {
-    $("#scrape").click(e=>{
-        e.preventDefault();
-
-		$.ajax(settings).done(function (response) {
-			// debugger
-			console.log(response);
-			$("#wordcloud").attr("src", response['url']);
-		});
+    $("#scrape_msnbc").click(e=>{
+		e.preventDefault();
+		
+		fetch("scrape_msnbc")
+			.then((response)=>{
+				debugger
+				console.log(response)
+			})
     })
 })
 
