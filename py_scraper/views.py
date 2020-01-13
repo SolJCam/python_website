@@ -11,10 +11,10 @@ def py_scraper(request):
   return render(request, 'py_scraper.html', context)
 
 
-# def scrape_msnbc(request):
+def scrape_msnbc(request):
 
 
-# def scrape_fox(request):
+def scrape_fox(request):
 
 
-# def scrape_cnn(request):
+def scrape_cnn(request):
