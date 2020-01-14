@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
-import requests, bs4, time, pdb
+import requests, bs4, time, pdb, os.path
 from selenium import webdriver
 from py_scraper.newscloud import wcgenerator
 
+d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
 # # Chromium Driver metadata for testing
 # options = webdriver.ChromeOptions()
@@ -15,6 +16,7 @@ from py_scraper.newscloud import wcgenerator
 # driver = webdriver.Chrome(chrome_options=options,executable_path='./drivers/chromiumdriver',service_args=["--verbose", "--log-path=selchrome.log"])
 
 # Using requests for production
+
 data = requests.get("https://www.msnbc.com/")
 msnbcdata = bs4.BeautifulSoup(data.text, "html.parser")
 data = requests.get("https://www.foxnews.com/")
@@ -37,16 +39,15 @@ def scrape_msnbc(request):
       except:
           ele.append(msnbcdata.find_all('a', attrs={"class":cl['a']}))
 
-  msnbcfile = open("py_scraper/scrapedata/msnbcnews.txt", 'w')
+  msnbcfile = open(os.path.join(d, "scrapedata/msnbcnews.txt"), "w")
   for ec in ele:
       for text in ec:
           msnbcfile.write(text.text)
-
   msnbcfile.close()
-  # pdb.set_trace()
   result = wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+  return result   # throws AttributeError on return command. May require render function to work  
 
-  return result
+
   #   context = {
   #     'form': form,
   #     'add_word': add_word_form,
