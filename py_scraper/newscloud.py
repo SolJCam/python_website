@@ -1,3 +1,4 @@
+from django.http import FileResponse
 import os, pdb
 from os import path
 from PIL import Image       # PIL: Python Imaging Library
@@ -26,7 +27,6 @@ def wcgenerator(newsfile, imgpath, wrdcld):
     # store to file
     wc.to_file(path.join(d, f"py_scraper/static/imgs/{wrdcld}"))
 
-    # open and save file to variable
-    # image = open(path.join(d, f"imgs/{wrdcld}")).read()
-
-    return "success!"
+    wrdcld = FileResponse(open(path.join(d, 'py_scraper/static/imgs/msnbcwrdcld.png'), "rb"))
+    return wrdcld
+    # return "success!"

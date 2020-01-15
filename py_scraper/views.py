@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse, HttpResponseNotFound
 import requests, bs4, time, pdb, os.path
 from selenium import webdriver
 from py_scraper.newscloud import wcgenerator
@@ -44,17 +45,11 @@ def scrape_msnbc(request):
       for text in ec:
           msnbcfile.write(text.text)
   msnbcfile.close()
-  result = wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
-  return result   # throws AttributeError on return command. May require render function to work  
-
-
-  #   context = {
-  #     'form': form,
-  #     'add_word': add_word_form,
-  #     'projects': projects,
-  # }
-
-  # return render(request, 'local_apps.html', context)
+  try:
+    wrdcld = wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+    return wrdcld
+  except:
+    return HttpResponseNotFound(status=500)
 
 
 
