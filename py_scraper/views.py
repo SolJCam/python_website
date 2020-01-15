@@ -5,6 +5,14 @@ import requests, bs4, time, pdb, os.path
 from selenium import webdriver
 from py_scraper.newscloud import wcgenerator
 
+
+
+
+
+def py_scraper(request):  
+  return render(request, 'py_scraper.html')
+
+
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
 # # Chromium Driver metadata for testing
@@ -16,37 +24,38 @@ d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 # # Chromium Driver for testing
 # driver = webdriver.Chrome(chrome_options=options,executable_path='./drivers/chromiumdriver',service_args=["--verbose", "--log-path=selchrome.log"])
 
-# Using requests for production
 
+# Using requests to grab html data
 data = requests.get("https://www.msnbc.com/")
-msnbcdata = bs4.BeautifulSoup(data.text, "html.parser")
+msnbcdata = bs4.BeautifulSoup(data.text, "html.parser") # Using beautiful soup to parse html data
 data = requests.get("https://www.foxnews.com/")
 foxnewsdata = bs4.BeautifulSoup(data.text, "html.parser")
 
-def py_scraper(request):  
-  return render(request, 'py_scraper.html')
-
-
 def scrape_msnbc(request):
+  # html elements where desired text data can be found
   classes = [
       {'span' : 'headline___38PFH'},
       {'span' : 'video-label'},
       {'a' : 'vilynx_disabled'},
   ]
   ele = []
+  # retrieve all instances of elements and append to list 
   for cl in classes:
       try:
           ele.append(msnbcdata.find_all('span', attrs={"class":cl['span']}))
       except:
           ele.append(msnbcdata.find_all('a', attrs={"class":cl['a']}))
 
-  msnbcfile = open(os.path.join(d, "scrapedata/msnbcnews.txt"), "w")
+  msnbcfile = open(os.path.join(d, "scrapedata/msnbcnews.txt"), "w") # open text file to write scraped data to
+  # loop through list of elements and retrieve inner text 
   for ec in ele:
       for text in ec:
           msnbcfile.write(text.text)
   msnbcfile.close()
+  # run word cloud generator and return result or raise internal server error exception
   try:
     wrdcld = wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+    pdb.set_trace()
     return wrdcld
   except:
     return HttpResponseNotFound(status=500)
