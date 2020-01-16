@@ -78,7 +78,7 @@ def scrape_cnn(request):
       'strong',
       'h2',
   ]
-  cnnfile = open("scrapedata/cnnnews.txt", 'w')
+  cnnfile = open(os.path.join(d, "scrapedata/cnnnews.txt"), 'w')
   for ele in elements:
       for cnnele in cnndata.find_all(ele):
           try:
@@ -88,7 +88,6 @@ def scrape_cnn(request):
                   cnnfile.write(cnnele.text)
           except:
               continue
-  pdb.set_trace()
   cnnfile.close()
   try:
     wcgenerator("cnnnews.txt", "cnn.png", "cnnwrdcld.png")
