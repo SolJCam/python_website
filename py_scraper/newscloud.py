@@ -26,7 +26,5 @@ def wcgenerator(newsfile, imgpath, wrdcld):
 
     # store to file
     wc.to_file(path.join(d, f"py_scraper/static/imgs/{wrdcld}"))
-
-    # open file in binary format and generate django fileresponse object
-    wrdcld = FileResponse(open(path.join(d, 'py_scraper/static/imgs/msnbcwrdcld.png'), "rb"))
-    return wrdcld
+    
+    return "Success!"

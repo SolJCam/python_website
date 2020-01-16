@@ -13,23 +13,33 @@ def py_scraper(request):
   return render(request, 'py_scraper.html')
 
 
+
+
+
+# Chromium Driver options
+options = webdriver.ChromeOptions()
+options.add_argument("--ignore-certificate-errors")
+options.add_argument("--test-type")
+options.add_argument("--headless")
+options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
+# Instanciate Chromium WebDriver
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
+drive_path = os.path.join(d, 'drivers/chromiumdriver')
+driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path,service_args=["--verbose", "--log-path=selchrome.log"])
 
-# # Chromium Driver metadata for testing
-# options = webdriver.ChromeOptions()
-# options.add_argument("--ignore-certificate-errors")
-# options.add_argument("--test-type")
-# options.add_argument("--headless")
-# options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
-# # Chromium Driver for testing
-# driver = webdriver.Chrome(chrome_options=options,executable_path='./drivers/chromiumdriver',service_args=["--verbose", "--log-path=selchrome.log"])
 
+# Using Chromium Driver to grab CNN html data
+driver.get("https://www.cnn.com/")
+cnndata = bs4.BeautifulSoup(driver.page_source, "html.parser")
 
 # Using requests to grab html data
 data = requests.get("https://www.msnbc.com/")
 msnbcdata = bs4.BeautifulSoup(data.text, "html.parser") # Using beautiful soup to parse html data
 data = requests.get("https://www.foxnews.com/")
 foxnewsdata = bs4.BeautifulSoup(data.text, "html.parser")
+
+
+
 
 def scrape_msnbc(request):
   # html elements where desired text data can be found
@@ -54,54 +64,53 @@ def scrape_msnbc(request):
   msnbcfile.close()
   # run word cloud generator and return result or raise internal server error exception
   try:
-    wrdcld = wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
-    pdb.set_trace()
-    return wrdcld
+    wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+    return HttpResponseNotFound(status=200)
   except:
     return HttpResponseNotFound(status=500)
 
 
 
 
+def scrape_cnn(request):
+  elements = [
+      'span',
+      'strong',
+      'h2',
+  ]
+  cnnfile = open("scrapedata/cnnnews.txt", 'w')
+  for ele in elements:
+      for cnnele in cnndata.find_all(ele):
+          try:
+              if '(function' in cnnele.string: 
+                  continue
+              else:
+                  cnnfile.write(cnnele.text)
+          except:
+              continue
+  pdb.set_trace()
+  cnnfile.close()
+  try:
+    wcgenerator("cnnnews.txt", "cnn.png", "cnnwrdcld.png")
+    return HttpResponseNotFound(status=200)
+  except:
+    return HttpResponseNotFound(status=500)
 
 
 
-# def scrape_fox(request):
-  # all_a_tags = foxnewsdata.findAll('a')
-  # foxtext = []
-  # foxfile = open("scrapedata/foxnews.txt", 'w')
-  # for tag in all_a_tags:
-  #     if tag.text == '':
-  #         continue
-  #     else:
-  #         foxfile.write(tag.text)
 
-  # foxfile.close()
-  # wcgenerator("foxnews.txt", "fox.jpeg", "foxwrdcld.png")
+def scrape_fox(request):
+  all_a_tags = foxnewsdata.findAll('a')
+  foxfile = open(os.path.join(d, "scrapedata/foxnews.txt"), "w")
+  for tag in all_a_tags:
+      if tag.text == '':
+          continue
+      else:
+          foxfile.write(tag.text)
 
-
-
-
-
-
-
-# def scrape_cnn(request):
-  # elements = [
-  #     'span',
-  #     'strong',
-  #     'h2',
-  # ]
-  # cnntext = []
-  # cnnfile = open("scrapedata/cnnnews.txt", 'w')
-  # for ele in elements:
-  #     for cnnele in cnndata.find_all(ele):
-  #         try:
-  #             if '(function' in cnnele.string: 
-  #                 continue
-  #             else:
-  #                 cnnfile.write(cnnele.text)
-  #         except:
-  #             continue
-
-  # cnnfile.close()
-  # wcgenerator("cnnnews.txt", "cnn.png", "cnnwrdcld.png")
+  foxfile.close()
+  try:
+    wcgenerator("foxnews.txt", "fox.jpeg", "foxwrdcld.png")
+    return HttpResponseNotFound(status=200)
+  except:
+    return HttpResponseNotFound(status=500)
