@@ -61,7 +61,7 @@ def scrape_msnbc(request):
   for ec in ele:
       for text in ec:
           msnbcfile.write(text.text)
-      pdb.set_trace()
+    #   pdb.set_trace()
   msnbcfile.close()
   # run word cloud generator and return result or raise internal server error exception
   try:
@@ -87,7 +87,7 @@ def scrape_cnn(request):
                   continue
               else:
                   cnnfile.write(cnnele.text)
-              pdb.set_trace()
+            #   pdb.set_trace()
           except:
               continue
   cnnfile.close()
@@ -108,7 +108,7 @@ def scrape_fox(request):
           continue
       else:
           foxfile.write(tag.text)
-      pdb.set_trace()
+    #   pdb.set_trace()
       
   foxfile.close()
   try:
