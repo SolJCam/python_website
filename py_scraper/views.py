@@ -108,7 +108,7 @@ def scrape_cnn(request):
                   continue
               else:
                   cnnfile.write(cnnele.text)
-              pdb.set_trace()
+            #   pdb.set_trace()
           except:
               continue
   cnnfile.close()
@@ -129,7 +129,7 @@ def scrape_fox(request):
           continue
       else:
           foxfile.write(tag.text)
-      pdb.set_trace()
+    #   pdb.set_trace()
       
   foxfile.close()
   try:
