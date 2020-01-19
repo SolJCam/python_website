@@ -1,6 +1,22 @@
-# commands: pip freeze > requirements.txt; pip install -r requirements.txt
-
-Django==2.2.8
+beautifulsoup4==4.8.2
+bs4==0.0.1
+certifi==2019.11.28
+chardet==3.0.4
+cycler==0.10.0
+Django==2.2.4
+idna==2.8
+kiwisolver==1.1.0
+matplotlib==3.1.2
+numpy==1.18.1
+Pillow==7.0.0
 psycopg2-binary==2.8.3
+pyparsing==2.4.6
+python-dateutil==2.8.1
 pytz==2019.2
+requests==2.22.0
+selenium==3.141.0
+six==1.13.0
+soupsieve==1.9.5
 sqlparse==0.3.0
+urllib3==1.25.7
+wordcloud==1.6.0

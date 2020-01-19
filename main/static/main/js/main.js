@@ -94,7 +94,11 @@ $(document).ready(function (e) {
     $("#project3")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
     console.log("woohoo!!!");
   })
-
+  $('#project_link4').click(function(e){
+    e.preventDefault();
+    $("#project4")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+    console.log("woohoo!!!");
+  })
 
   // non click, display options to add word to dictionary
   $('#add_word').click(function(e){

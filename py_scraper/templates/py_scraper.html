@@ -11,21 +11,26 @@
     <body>
         <div class="container-fluid py_scraper">
             <div class="row align-items-center one">
-                <h1>Welcome to my webscraper</h1>
-                <div class="col-12">
-                    <h3>Scrape CNN</h3>
-                    <a id="scrape" class="ml-3 btn btn-success" href="#" role="button">Execute</a>
-                    <!-- <img id="wordcloud" src="..." class="img-fluid" alt="Responsive image" display="hidden"> -->
-                </div>
-                <div class="col-12">
-                    <h3>Scrape MSNBC</h3>
-                    <a id="scrape" class="ml-3 btn btn-success" href="#" role="button">Execute</a>
-                    <!-- <img id="wordcloud" src="..." class="img-fluid" alt="Responsive image" display="hidden"> -->
-                </div>
-                <div class="col-12">
-                    <h3>Scrape FOXNews</h3>
-                    <a id="scrape" class="ml-3 btn btn-success" href="#" role="button">Execute</a>
-                    <!-- <img id="wordcloud" src="..." class="img-fluid" alt="Responsive image" display="hidden"> -->
+                <div class="col-md-6 offset-md-3">
+                    <h1>Welcome to my news webscraper</h1>
+                    <div class="col-12 mt-5 mb-5">
+                        <h3>Scrape MSNBC</h3>
+                        <a id="scrape_msnbc" class="ml-3 btn btn-success" href="#" role="button">Execute</a>
+                        <div class=w-100></div>
+                        <img id="msnbcwrdcld" src="{% static 'masks/msnbc.jpg' %}" class="img-fluid" alt="Responsive image" display="hidden">
+                    </div>
+                    <div class="col-12 mt-5 mb-5">
+                        <h3>Scrape CNN</h3>
+                        <a id="scrape_cnn" class="ml-3 btn btn-success" href="#" role="button">Execute</a>
+                        <div class=w-100></div>
+                        <img id="cnnwrdcld" src="{% static 'masks/cnn.png' %}" class="img-fluid" alt="Responsive image" display="hidden">
+                    </div>
+                    <div class="col-12 mt-5 mb-5">
+                        <h3>Scrape FOXNews</h3>
+                        <a id="scrape_fox" class="ml-3 btn btn-success" href="#" role="button">Execute</a>
+                        <div class=w-100></div>
+                        <img id="foxwrdcld" src="{% static 'masks/fox.jpeg' %}" class="img-fluid" alt="Responsive image" display="hidden">
+                    </div>
                 </div>
             </div>
         </div>
