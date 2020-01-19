@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, HttpResponseNotFound
-import requests, bs4, time, pdb, os.path
+import requests, bs4, time, pdb, os.path, re
 from selenium import webdriver
 from py_scraper.newscloud import wcgenerator
 
@@ -57,13 +57,34 @@ def scrape_msnbc(request):
           ele.append(msnbcdata.find_all('a', attrs={"class":cl['a']}))
 
   msnbcfile = open(os.path.join(d, "scrapedata/msnbcnews.txt"), "w") # open text file to write scraped data to
+  string_list = list()
   # loop through list of elements and retrieve inner text 
   for ec in ele:
       for text in ec:
           msnbcfile.write(text.text)
-    #   pdb.set_trace()
+          for string in text.text.split():
+            string_list.append(string)
+  wrd_hash = dict()
+#   for ec_string in string_list:
+#     if ec_string in wrd_hash:
+#         wrd_hash[ec_string] = wrd_hash[ec_string]+1
+#     else:
+#         wrd_hash[ec_string] = 0        
+  pattern = r"\b[A-Z][a-z]+\b"
+  for ec_string in string_list:
+    match = re.search(pattern, ec_string)
+    if ec_string in wrd_hash:
+        if match != None:
+            # pdb.set_trace()
+            wrd_hash[match[0]] = wrd_hash[match[0]]+1
+        else:
+            wrd_hash[ec_string] = wrd_hash[ec_string]+1
+    else:
+        wrd_hash[ec_string] = 0  
+
   msnbcfile.close()
   # run word cloud generator and return result or raise internal server error exception
+  pdb.set_trace()
   try:
     wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
     return HttpResponseNotFound(status=200)
@@ -87,7 +108,7 @@ def scrape_cnn(request):
                   continue
               else:
                   cnnfile.write(cnnele.text)
-            #   pdb.set_trace()
+              pdb.set_trace()
           except:
               continue
   cnnfile.close()
@@ -108,7 +129,7 @@ def scrape_fox(request):
           continue
       else:
           foxfile.write(tag.text)
-    #   pdb.set_trace()
+      pdb.set_trace()
       
   foxfile.close()
   try:
