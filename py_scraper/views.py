@@ -3,7 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, HttpResponseNotFound
 import requests, bs4, time, pdb, os.path, re
 from selenium import webdriver
-from py_scraper.newscloud import wcgenerator
+from py_scraper.newscloud import wcgenerator, wrd_count
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
@@ -38,7 +38,7 @@ msnbcdata = bs4.BeautifulSoup(data.text, "html.parser") # Using beautiful soup t
 data = requests.get("https://www.foxnews.com/")
 foxnewsdata = bs4.BeautifulSoup(data.text, "html.parser")
 
-
+pattern = r"\b[a-z]+\b"   # pattern to find exact words so as to avoid duplicates when counting words due to punctuation 
 
 
 def scrape_msnbc(request):
@@ -65,30 +65,12 @@ def scrape_msnbc(request):
             for string in text.text.split():
                 msnbc_string_list.append(string)
     msnbcfile.close()
-    
-    msnbc_wrd_hash = dict()      # dictionary to add words and number of occurences
-    pattern = r"\b[a-z]+\b"   # pattern to find exact words so as to avoid duplicates due to punctuation (apostrophe's, colons etc) 
-  # loop list of words in string_list to count occurences of ec word
-    for ec_string in msnbc_string_list:
-        lowercase_string = (ec_string).lower()
-        match = re.search(pattern, lowercase_string)
-        if match != None:
-            if match[0] in msnbc_wrd_hash:
-                msnbc_wrd_hash[match[0]] = msnbc_wrd_hash[match[0]]+1
-            else:
-                msnbc_wrd_hash[match[0]] = 1
-        elif lowercase_string in msnbc_wrd_hash:
-            msnbc_wrd_hash[lowercase_string] = msnbc_wrd_hash[lowercase_string]+1
-        else:
-            msnbc_wrd_hash[lowercase_string] = 1 
 
-    sorted_msnbc_wrd_hash = sorted(msnbc_wrd_hash.items(), key=lambda x: x[1], reverse=True)   # sort words based off occurences recorded in values
-    return_sorted = sorted_msnbc_wrd_hash[:5]
-    pdb.set_trace()
+    top_five_wrds = wrd_count(msnbc_string_list, pattern)
     # run word cloud generator and return result or raise internal server error exception
     try:
         wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
-        return HttpResponseNotFound(status=200), return_sorted
+        return HttpResponseNotFound(status=200), top_five_wrds
     except:
         return HttpResponseNotFound(status=500)
 
@@ -115,9 +97,12 @@ def scrape_cnn(request):
             except:
                 continue
     cnnfile.close()
+
+    top_five_wrds = wrd_count(cnn_string_list, pattern)
+    pdb.set_trace()
     try:
         wcgenerator("cnnnews.txt", "cnn.png", "cnnwrdcld.png")
-        return HttpResponseNotFound(status=200)
+        return HttpResponseNotFound(status=200), top_five_wrds
     except:
         return HttpResponseNotFound(status=500)
 

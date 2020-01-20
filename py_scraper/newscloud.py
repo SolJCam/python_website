@@ -1,5 +1,5 @@
 from django.http import FileResponse
-import os, pdb
+import os, pdb, re
 from os import path
 from PIL import Image       # PIL: Python Imaging Library
 import numpy as np
@@ -28,3 +28,26 @@ def wcgenerator(newsfile, imgpath, wrdcld):
     wc.to_file(path.join(d, f"py_scraper/static/imgs/{wrdcld}"))
     
     return "Success!"
+
+
+
+def wrd_count(string_list, pattern):
+    wrd_hash = dict()      # dictionary to add words and number of occurences
+    # loop list of words in string_list to count occurences of ec word
+    for ec_string in string_list:
+        lower_strings = (ec_string).lower()
+        match = re.search(pattern, lower_strings)
+        if match != None:
+            if match[0] in wrd_hash:
+                wrd_hash[match[0]] = wrd_hash[match[0]]+1
+            else:
+                wrd_hash[match[0]] = 1
+        elif lower_strings in wrd_hash:
+            wrd_hash[lower_strings] = wrd_hash[lower_strings]+1
+        else:
+            wrd_hash[lower_strings] = 1 
+
+    sorted_wrd_hash = sorted(wrd_hash.items(), key=lambda x: x[1], reverse=True)   # sort words based off occurences recorded in values
+    return_sorted = sorted_wrd_hash[:5]
+    
+    return return_sorted
