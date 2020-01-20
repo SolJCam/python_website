@@ -49,28 +49,3 @@ def add_word(usr_wrd):
 
     nu_word.save()
     return f"You have successfully added {usr_wrd['word']} to the dictionary!"
-
-
-    # for word in small_d:
-    #     pdb.set_trace()
-
-    #     first = small_d[word][0]
-    #     if len(small_d[word])>1 and len(small_d[word])<2:
-    #         second = small_d[word][1]
-    #         nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition=second, third_definition="", more_definitions="")
-    #     elif len(small_d[word])>2 and len(small_d[word])<3:
-    #         second = small_d[word][1]
-    #         third = small_d[word][2]
-    #         nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition=second, third_definition=third, more_definitions="")
-    #     elif len(small_d[word])>3:
-    #         # pdb.set_trace()
-    #         second = small_d[word][1]
-    #         third = small_d[word][2]
-    #         additional = []
-    #         diff = len(small_d[word])-3
-    #         for x in range(diff):
-    #             additional.append(small_d[word][3+x])
-    #         nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition=second, third_definition=third, more_definitions=additional)
-    #     else:
-    #         nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition="", third_definition="", more_definitions="")
-
