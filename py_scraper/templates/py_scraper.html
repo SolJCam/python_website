@@ -10,26 +10,62 @@
     </head>
     <body>
         <div class="container-fluid py_scraper">
-            <div class="row align-items-center one">
+            <div class="row align-items-center">
                 <div class="col-md-6 offset-md-3">
                     <h1>Welcome to my news webscraper</h1>
-                    <div class="col-12 mt-5 mb-5">
-                        <h3>Scrape MSNBC</h3>
-                        <a id="scrape_msnbc" class="ml-3 btn btn-success" href="#" role="button">Execute</a>
-                        <div class=w-100></div>
-                        <img id="msnbcwrdcld" src="{% static 'masks/msnbc.jpg' %}" class="img-fluid" alt="Responsive image" display="hidden">
+                    <div class="row align-items-center one">
+                        <div class="col-md-8 mt-5 mb-5">
+                            <h3>Scrape MSNBC</h3>
+                            <a id="scrape_msnbc" class="ml-3 btn btn-success" href="#" role="button">Execute</a>
+                            <div class=w-100></div>
+                            <img id="msnbcwrdcld" src="{% static 'masks/msnbc.jpg' %}" class="img-fluid" alt="Responsive image" display="hidden">
+                        </div>
+                        <div class="col-md-3 offset-md-1 mt-5 mb-5">
+                            <h5>Top Words</h5>
+                            <ol>
+                                <li id="ms-0" class="ms_top_wrds"></li>
+                                <li id="ms-1" class="ms_top_wrds"></li>
+                                <li id="ms-2" class="ms_top_wrds"></li>
+                                <li id="ms-3" class="ms_top_wrds"></li>
+                                <li id="ms-4" class="ms_top_wrds"></li>
+                            </ol>
+                        </div>
                     </div>
-                    <div class="col-12 mt-5 mb-5">
-                        <h3>Scrape CNN</h3>
-                        <a id="scrape_cnn" class="ml-3 btn btn-success" href="#" role="button">Execute</a>
-                        <div class=w-100></div>
-                        <img id="cnnwrdcld" src="{% static 'masks/cnn.png' %}" class="img-fluid" alt="Responsive image" display="hidden">
+                    <div class="row align-items-center one">
+                        <div class="col-8 mt-5 mb-5">
+                            <h3>Scrape CNN</h3>
+                            <a id="scrape_cnn" class="ml-3 btn btn-success" href="#" role="button">Execute</a>
+                            <div class=w-100></div>
+                            <img id="cnnwrdcld" src="{% static 'masks/cnn.png' %}" class="img-fluid" alt="Responsive image" display="hidden">
+                        </div>
+                        <div class="col-3 offset-1 mt-5 mb-5">
+                            <h5>Top Words</h5>
+                            <ol>
+                                <li id="cnn-0" class="cnn_top_wrds"></li>
+                                <li id="cnn-1" class="cnn_top_wrds"></li>
+                                <li id="cnn-2" class="cnn_top_wrds"></li>
+                                <li id="cnn-3" class="cnn_top_wrds"></li>
+                                <li id="cnn-4" class="cnn_top_wrds"></li>
+                            </ol>
+                        </div>
                     </div>
-                    <div class="col-12 mt-5 mb-5">
-                        <h3>Scrape FOXNews</h3>
-                        <a id="scrape_fox" class="ml-3 btn btn-success" href="#" role="button">Execute</a>
-                        <div class=w-100></div>
-                        <img id="foxwrdcld" src="{% static 'masks/fox.jpeg' %}" class="img-fluid" alt="Responsive image" display="hidden">
+                    <div class="row align-items-center one">
+                        <div class="col-8 mt-5 mb-5">
+                            <h3>Scrape FOXNews</h3>
+                            <a id="scrape_fox" class="ml-3 btn btn-success" href="#" role="button">Execute</a>
+                            <div class=w-100></div>
+                            <img id="foxwrdcld" src="{% static 'masks/fox.jpeg' %}" class="img-fluid" alt="Responsive image" display="hidden">
+                        </div>
+                        <div class="col-3 offset-1 mt-5 mb-5">
+                            <h5>Top Words</h5>
+                            <ol>
+                                <li id="fox-0" class="fox_top_wrds"></li>
+                                <li id="fox-1" class="fox_top_wrds"></li>
+                                <li id="fox-2" class="fox_top_wrds"></li>
+                                <li id="fox-3" class="fox_top_wrds"></li>
+                                <li id="fox-4" class="fox_top_wrds"></li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>

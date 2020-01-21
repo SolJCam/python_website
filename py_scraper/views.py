@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 import requests, bs4, time, pdb, os.path, re
 from selenium import webdriver
 from py_scraper.newscloud import wcgenerator, wrd_count
@@ -38,6 +38,7 @@ msnbcdata = bs4.BeautifulSoup(data.text, "html.parser") # Using beautiful soup t
 data = requests.get("https://www.foxnews.com/")
 foxnewsdata = bs4.BeautifulSoup(data.text, "html.parser")
 
+
 pattern = r"\b[a-z]+\b"   # pattern to find exact words so as to avoid duplicates when counting words due to punctuation 
 
 
@@ -65,12 +66,12 @@ def scrape_msnbc(request):
             for string in text.text.split():
                 msnbc_string_list.append(string)
     msnbcfile.close()
-
+    # pdb.set_trace()
     top_five_wrds = wrd_count(msnbc_string_list, pattern)
-    # run word cloud generator and return result or raise internal server error exception
+    # run word cont and word cloud generator and return result of word count or raise internal server error exception
     try:
         wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
-        return HttpResponseNotFound(status=200), top_five_wrds
+        return  JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
 
@@ -99,10 +100,9 @@ def scrape_cnn(request):
     cnnfile.close()
 
     top_five_wrds = wrd_count(cnn_string_list, pattern)
-    pdb.set_trace()
     try:
         wcgenerator("cnnnews.txt", "cnn.png", "cnnwrdcld.png")
-        return HttpResponseNotFound(status=200), top_five_wrds
+        return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
 
@@ -112,16 +112,19 @@ def scrape_cnn(request):
 def scrape_fox(request):
     all_a_tags = foxnewsdata.findAll('a')
     foxfile = open(os.path.join(d, "scrapedata/foxnews.txt"), "w")
+    fox_string_list = list() 
     for tag in all_a_tags:
         if tag.text == '':
             continue
         else:
             foxfile.write(tag.text)
-        pdb.set_trace()
-        
+            for string in tag.text.split():
+                fox_string_list.append(string)   
     foxfile.close()
+    
+    top_five_wrds = wrd_count(fox_string_list, pattern)
     try:
         wcgenerator("foxnews.txt", "fox.jpeg", "foxwrdcld.png")
-        return HttpResponseNotFound(status=200)
+        return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
