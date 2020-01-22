@@ -20,11 +20,10 @@ def wcgenerator(newsfile, imgpath, wrdcld):
     news_mask = np.array(Image.open(path.join(d, f"py_scraper/static/masks/{imgpath}")))
 
     # creating list of stopwords
-    stopwords = set(STOPWORDS)
-    stopwrds_list = ["the", "for", "to", "in", "of", "is", "a", "u"]
-    stopwords = [STOPWORDS.add(n) for n in stopwrds_list]
+    stopwrds_list = ["the", "for", "to", "in", "of", "is", "a", "u", "more", "at", "as", "news", "cnn"] + list(STOPWORDS)
+    # stopwords = [STOPWORDS.add(n) for n in stopwrds_list]
 
-    wc = WordCloud(background_color="white", max_words=30000, mask=news_mask, stopwords=stopwords, contour_width=3, contour_color='steelblue')
+    wc = WordCloud(background_color="white", max_words=30000, mask=news_mask, stopwords=stopwrds_list, contour_width=3, contour_color='steelblue')
 
     # generate word cloud
     wc.generate(text)
@@ -38,17 +37,13 @@ def wcgenerator(newsfile, imgpath, wrdcld):
 
 def wrd_count(string_list, pattern):
     wrd_hash = dict()      # dictionary to add words and number of occurences
-    stopwrds_list = ["the", "for", "to", "in", "of", "is", "a", "u"]    # stopwords to remove from string list
-    # for stp_wrd in stopwrds_list:
-    #     if stp_wrd in string_list:
-    #         string_list.remove(stp_wrd)
-    #         print(stp_wrd)
+    stopwrds_list = ["the", "for", "to", "in", "of", "is", "a", "u", "and", "on", "all"]    # stopwords to remove from string list
 
     # loop list of words in string_list to count occurences of ec word
     for ec_string in string_list:
         lower_strings = (ec_string).lower()
         match = re.search(pattern, lower_strings)
-        if ec_string not in stopwrds_list:
+        if lower_strings not in stopwrds_list:
             if match != None:
                 if match[0] in wrd_hash:
                     wrd_hash[match[0]] = wrd_hash[match[0]]+1
@@ -58,8 +53,7 @@ def wrd_count(string_list, pattern):
                 wrd_hash[lower_strings] = wrd_hash[lower_strings]+1
             else:
                 wrd_hash[lower_strings] = 1 
-    pdb.set_trace()
-
+    # pdb.set_trace()
     sorted_wrd_hash = sorted(wrd_hash.items(), key=lambda x: x[1], reverse=True)   # sort words based off occurences recorded in values
     return_sorted = sorted_wrd_hash[:5]
     

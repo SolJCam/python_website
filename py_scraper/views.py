@@ -66,8 +66,8 @@ def scrape_msnbc(request):
             for string in text.text.split():
                 msnbc_string_list.append(string)
     msnbcfile.close()
-    # pdb.set_trace()
     top_five_wrds = wrd_count(msnbc_string_list, pattern)
+    # pdb.set_trace()
     # run word cont and word cloud generator and return result of word count or raise internal server error exception
     try:
         wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
@@ -119,7 +119,7 @@ def scrape_fox(request):
         else:
             foxfile.write(tag.text)
             for string in tag.text.split():
-                fox_string_list.append(string)   
+                fox_string_list.append(string)
     foxfile.close()
     
     top_five_wrds = wrd_count(fox_string_list, pattern)
