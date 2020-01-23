@@ -1,0 +1,8 @@
+# ignore scraped images
+py_scraper/static/imgs/*
+
+# ignore scraped data
+py_scraper/scrapedata/*
+
+# ignore chromium logs
+selchrome.log
