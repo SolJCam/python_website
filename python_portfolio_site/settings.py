@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+# path variables for local_settings.py
+PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
+SITE_ROOT = os.path.dirname(PROJECT_ROOT)
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -138,12 +142,27 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# This should be set to a list of strings that contain full paths to your additional files directory(ies)
-# Learn more: https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-STATICFILES_DIRS
-# Ex.
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, "static"),
-#     "/home/special.polls.com/polls/static",
-#     "/home/polls.com/polls/static",
-#     "/opt/webfiles/common",
-# ]
+
+
+
+# ------------------------------------------------------------------
+#                      FOR HEROKU DEPLOYMENT
+# ------------------------------------------------------------------
+
+
+# Allow all host hosts/domain names for this site
+# ALLOWED_HOSTS = ['*']
+
+# # Parse database configuration from $DATABASE_URL
+# import dj_database_url
+
+# DATABASES = { 'default' : dj_database_url.config()}
+
+# # Honor the 'X-Forwarded-Proto' header for request.is_secure()
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# # try to load local_settings.py if it exists
+# try:
+#   from local_settings import *
+# except Exception as e:
+#   pass

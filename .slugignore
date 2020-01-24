@@ -1,0 +1,10 @@
+# IGNORE ALL APPS EXCEPT PY_SCRAPER
+
+# Ignore dictionary app 
+main
+
+# Ignore folium app directory
+folium_web_map/
+
+# Ignroe chatApp directory
+chatApp/
