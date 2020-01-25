@@ -87,20 +87,7 @@ DATABASES = {
     # 'default': {},
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', #pip install psycopg2-binary
-        'NAME': 'projects',                      
-        'USER': 'Sol',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
-    },
-    'dictionary': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dictionary',                      
-        'USER': 'Sol',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
-    },
+    }
 }
 
 
@@ -151,18 +138,18 @@ STATIC_URL = '/static/'
 
 
 # Allow all host hosts/domain names for this site
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
-# # Parse database configuration from $DATABASE_URL
-# import dj_database_url
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
 
-# DATABASES = { 'default' : dj_database_url.config()}
+DATABASES = { 'default' : dj_database_url.config()}
 
-# # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# # try to load local_settings.py if it exists
-# try:
-#   from local_settings import *
-# except Exception as e:
-#   pass
+# try to load local_settings.py if it exists
+try:
+  from python_portfolio_site.local_settings import *
+except Exception as e:
+  pass
