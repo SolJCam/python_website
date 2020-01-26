@@ -5,16 +5,6 @@ import requests, bs4, time, pdb, os.path, re
 from selenium import webdriver
 from py_scraper.newscloud import wcgenerator, wrd_count
 
-d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
-
-
-
-
-def py_scraper(request):  
-  return render(request, 'py_scraper.html')
-
-
-
 
 
 # Chromium Driver options
@@ -34,11 +24,20 @@ driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
 driver.get("https://www.cnn.com/")
 cnndata = bs4.BeautifulSoup(driver.page_source, "html.parser")
 
-# Using requests to grab html data
+# Using requests to grab html data; done upon reading of view file so as to minize pyscraper runtime 
 data = requests.get("https://www.msnbc.com/")
 msnbcdata = bs4.BeautifulSoup(data.text, "html.parser") # Using beautiful soup to parse html data
 data = requests.get("https://www.foxnews.com/")
 foxnewsdata = bs4.BeautifulSoup(data.text, "html.parser")
+
+
+
+
+def py_scraper(request):  
+  return render(request, 'py_scraper.html')
+
+
+d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
 
 pattern = r"\b[a-z]+\b"   # pattern to find exact words so as to avoid duplicates when counting words due to punctuation 
