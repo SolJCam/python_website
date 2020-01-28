@@ -1,2 +1,2 @@
 web: gunicorn python_portfolio_site.wsgi --log-file -
-web: gunicorn py_scraper:app --preload
+web: gunicorn py-news-scraper:app --preload

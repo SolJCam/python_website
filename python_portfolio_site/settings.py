@@ -72,7 +72,7 @@ WSGI_APPLICATION = 'python_portfolio_site.wsgi.application'
 DATABASES = {
     # 'default': {},
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # # pip install psycopg2-binary; since updated to older working version of psycopg 2.7.5
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # pip install psycopg2-binary; since updated to older working version of psycopg 2.7.5
     }
 }
 
