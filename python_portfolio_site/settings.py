@@ -10,15 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-import os
-
-# path variables for local_settings.py
-PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
-SITE_ROOT = os.path.dirname(PROJECT_ROOT)
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -44,7 +35,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'py_scraper',
-    # 'folium_web_map',
     # 'chatApp',
 ]
 
@@ -56,6 +46,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # heroku middleware
 ]
 
 ROOT_URLCONF = 'python_portfolio_site.urls'
@@ -78,15 +69,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'python_portfolio_site.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-# DATABASE_ROUTERS = ['projects.default_proj_router.ProjRouter', 'projects.word_router.WrdRouter'] *********** May not need
-
 DATABASES = {
     # 'default': {},
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', #pip install psycopg2-binary
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # # pip install psycopg2-binary; since updated to older working version of psycopg 2.7.5
     }
 }
 
@@ -124,24 +110,41 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-
-STATIC_URL = '/static/'
-
-
 
 
 # ------------------------------------------------------------------
 #                      FOR HEROKU DEPLOYMENT
 # ------------------------------------------------------------------
 
+import os
+import django_heroku
+import dj_database_url # Parse database configuration from $DATABASE_URL
+
+
+# path variables for local_settings.py
+PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
+SITE_ROOT = os.path.dirname(PROJECT_ROOT)
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.2/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Allow all host hosts/domain names for this site
 ALLOWED_HOSTS = ['*']
-
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
 
 DATABASES = { 'default' : dj_database_url.config()}
 
@@ -153,3 +156,6 @@ try:
   from python_portfolio_site.local_settings import *
 except Exception as e:
   pass
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
