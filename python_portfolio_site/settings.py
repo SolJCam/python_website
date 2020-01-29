@@ -18,7 +18,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 SECRET_KEY = '-n$5560#1%b2=a)g5#xcq*v&j^w63vwz#t+ez@9&glos^+p*4c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 #To run test_views in interactive interpreter (shell)
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver',]
@@ -46,7 +46,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # heroku middleware
+    # 'whitenoise.middleware.WhiteNoiseMiddleware', # heroku middleware
 ]
 
 ROOT_URLCONF = 'python_portfolio_site.urls'
@@ -70,7 +70,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'python_portfolio_site.wsgi.application'
 
 DATABASES = {
-    # 'default': {},
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # pip install psycopg2-binary; since updated to older working version of psycopg2=2.7.5
     }
@@ -126,12 +125,12 @@ PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
 SITE_ROOT = os.path.dirname(PROJECT_ROOT)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/staticfiles/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = '/staticfiles/'
 
 # Extra places for collectstatic to find static files.
 # STATICFILES_DIRS = (
@@ -141,12 +140,12 @@ STATIC_URL = '/staticfiles/'
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Allow all host hosts/domain names for this site
 ALLOWED_HOSTS = ['*']
 
-DATABASES = { 'default' : dj_database_url.config()}
+DATABASES = { 'default' : dj_database_url.config(conn_max_age=600, ssl_require=True)}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

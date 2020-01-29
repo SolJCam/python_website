@@ -1,7 +1,2 @@
-# IGNORE ALL APPS EXCEPT PY_SCRAPER
-
-# Ignore dictionary app 
-main/*
-
-# Ignroe chatApp directory
+# Ignore chatApp directory
 chatApp/*
