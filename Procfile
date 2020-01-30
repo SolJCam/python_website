@@ -1,1 +1,1 @@
-web: bin/start-pgbouncer-stunnel gunicorn python_portfolio_site.wsgi
+web:bin/start-pgbouncer-stunnel gunicorn python_portfolio_site.wsgi
