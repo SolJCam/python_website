@@ -1,0 +1,5 @@
+# tells git to ignore all files and subdirectories in the folder
+*
+
+# tells git to still include the .gitignore file
+!.gitignore

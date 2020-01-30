@@ -6,6 +6,7 @@ from selenium import webdriver
 from py_scraper.newscloud import wcgenerator, wrd_count
 
 
+d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
 # Chromium Driver options
 options = webdriver.ChromeOptions()
@@ -37,7 +38,6 @@ def py_scraper(request):
   return render(request, 'py_scraper.html')
 
 
-d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
 
 pattern = r"\b[a-z]+\b"   # pattern to find exact words so as to avoid duplicates when counting words due to punctuation 

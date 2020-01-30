@@ -1,9 +1,3 @@
-# ignore wordcloud generated images
-py_scraper/static/imgs/*
-
-# ignore scraped new site data
-py_scraper/scrapedata/*
-
 # ignore chromium logs
 selchrome.log
 
