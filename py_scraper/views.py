@@ -1,24 +1,35 @@
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
-import requests, bs4, time, pdb, os.path, re
+import requests, bs4, time, pdb, os, re
 from selenium import webdriver
 from py_scraper.newscloud import wcgenerator, wrd_count
 
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
-# Chromium Driver options
-options = webdriver.ChromeOptions()
-options.add_argument("--ignore-certificate-errors")
-options.add_argument("--test-type")
-options.add_argument("--headless")
-options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
-# Instanciate Chromium WebDriver
-drive_path = os.path.join(d, 'drivers/chromiumdriver')
-driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
-# Includes log for testing
-# driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path,service_args=["--verbose", "--log-path=selchrome.log"])
+
+# Selenium configuration for Heroku
+os.environ['GOOGLE_CHROME_BIN'] = '/app/.apt/usr/bin/google-chrome' # Heroku path to Chrome binary set to an environment variable made available after buildpack installation
+os.environ['CHROMEDRIVER_PATH'] = '/app/.chromedriver/bin/chromedriver' # Heroku path to Chromdriver
+options.binary_location = 'GOOGLE_CHROME_BIN'
+# options.add_argument('--disable-gpu')
+# options.add_argument('--no-sandbox')
+driver = webdriver.Chrome(chrome_options=options,executable_path='CHROMEDRIVER_PATH')
+
+
+# # Chromium Driver options
+# options = webdriver.ChromeOptions()
+# options.add_argument("--ignore-certificate-errors")
+# options.add_argument("--test-type")
+# options.add_argument("--headless")
+
+# options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
+# # Instanciate Chromium WebDriver
+# drive_path = os.path.join(d, 'drivers/chromiumdriver')
+# driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
+# # Driver for testing. Includes log
+# # driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path,service_args=["--verbose", "--log-path=selchrome.log"])
 
 
 # Using Chromium Driver to grab CNN html data
