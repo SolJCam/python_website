@@ -10,8 +10,9 @@ d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
 
 # Selenium configuration for Heroku
-os.environ['GOOGLE_CHROME_BIN'] = '/app/.apt/usr/bin/google-chrome' # Heroku path to Chrome binary set to an environment variable made available after buildpack installation
-os.environ['CHROMEDRIVER_PATH'] = '/app/.chromedriver/bin/chromedriver' # Heroku path to Chromdriver
+# Heroku path to Chrome and Chromdriver binaries set to environment variables made available after buildpack installation
+os.environ['GOOGLE_CHROME_BIN'] = '/app/.apt/usr/bin/google-chrome' # First run in terminal heroku config:set GOOGLE_CHROME_BIN=/app/.apt/usr/bin/google_chrome 
+os.environ['CHROMEDRIVER_PATH'] = '/app/.chromedriver/bin/chromedriver' # First run in terminal heroku config:set CHROMEDRIVER_PATH=/app/.chromedriver/bin/chromedriver
 options = webdriver.ChromeOptions()
 options.binary_location = 'GOOGLE_CHROME_BIN'
 # options.add_argument('--disable-gpu')
