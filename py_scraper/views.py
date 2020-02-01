@@ -11,13 +11,13 @@ d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
 # Selenium configuration for Heroku
 # Heroku path to Chrome and Chromdriver binaries set to environment variables made available after buildpack installation
-os.environ['GOOGLE_CHROME_BIN'] = '/app/.apt/usr/bin/google-chrome' # First run in terminal heroku config:set GOOGLE_CHROME_BIN=/app/.apt/usr/bin/google_chrome 
-os.environ['CHROMEDRIVER_PATH'] = '/app/.chromedriver/bin/chromedriver' # First run in terminal heroku config:set CHROMEDRIVER_PATH=/app/.chromedriver/bin/chromedriver
+# os.environ['GOOGLE_CHROME_BIN'] = '/app/.apt/usr/bin/google-chrome' # First run in terminal heroku config:set GOOGLE_CHROME_BIN=/app/.apt/usr/bin/google_chrome 
+# os.environ['CHROMEDRIVER_PATH'] = '/app/.chromedriver/bin/chromedriver' # First run in terminal heroku config:set CHROMEDRIVER_PATH=/app/.chromedriver/bin/chromedriver
 options = webdriver.ChromeOptions()
-options.binary_location = 'GOOGLE_CHROME_BIN'
+options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
 # options.add_argument('--disable-gpu')
 # options.add_argument('--no-sandbox')
-driver = webdriver.Chrome(chrome_options=options,executable_path='CHROMEDRIVER_PATH')
+driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
 
 
 # # Chromium Driver options
