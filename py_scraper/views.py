@@ -53,7 +53,7 @@ def py_scraper(request):
 
 
 
-pattern = r"\b[a-z]+\b"   # pattern to find exact words so as to avoid duplicates when counting words due to punctuation 
+pattern = r"\b[a-z]+\b"   # pattern to find exact words and avoid duplicates due to punctuation for word count function 
 
 
 def scrape_msnbc(request):
