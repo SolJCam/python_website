@@ -14,7 +14,7 @@ d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 # os.environ['GOOGLE_CHROME_BIN'] = '/app/.apt/usr/bin/google-chrome' # First run in terminal heroku config:set GOOGLE_CHROME_BIN=/app/.apt/usr/bin/google_chrome 
 # CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver' # First run in terminal heroku config:set CHROMEDRIVER_PATH=/app/.chromedriver/bin/chromedriver
 options = webdriver.ChromeOptions()
-options.binary_location = os.environ.get('GOOGLE_CHROME_BIN', None)
+options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
 # options.add_argument('--disable-gpu')
 # options.add_argument('--no-sandbox')
 driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
