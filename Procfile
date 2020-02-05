@@ -1,1 +1,1 @@
-web: bin/start-pgbouncer-stunnel gunicorn python_portfolio_site.wsgi --preload --timeout 10 --log-file -
+web: bin/start-pgbouncer-stunnel gunicorn python_portfolio_site.wsgi --preload --timeout 300 --log-file -
