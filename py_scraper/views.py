@@ -11,7 +11,12 @@ d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
 # Selenium configuration for Heroku
 options = webdriver.ChromeOptions()
+options.add_argument("--headless")
+options.add_argument("disable-infobars") 
+options.add_argument("--disable-extensions")
+options.add_argument("--disable-gpu")
 options.add_argument("--disable-dev-shm-usage")
+options.add_argument("--no-sandbox")
 options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
 driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
 
