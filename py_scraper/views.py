@@ -10,29 +10,27 @@ d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
 
 # Selenium configuration for Heroku
-# Heroku path to Chrome and Chromdriver binaries set to environment variables made available after buildpack installation
-# os.environ['GOOGLE_CHROME_BIN'] = '/app/.apt/usr/bin/google-chrome' # First run in terminal heroku config:set GOOGLE_CHROME_BIN=/app/.apt/usr/bin/google_chrome 
-# CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver' # First run in terminal heroku config:set CHROMEDRIVER_PATH=/app/.chromedriver/bin/chromedriver
 options = webdriver.ChromeOptions()
-# options.add_argument('--disable-dev-shm-usage')
 options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-# options.add_argument('--disable-gpu')
-# options.add_argument('--no-sandbox')
 driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
 
 
-# # Chromium Driver options
 # options = webdriver.ChromeOptions()
+# # Chromium Driver options
 # options.add_argument("--ignore-certificate-errors")
 # options.add_argument("--test-type")
 # options.add_argument("--headless")
-
 # options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
-# # Instanciate Chromium WebDriver
 # drive_path = os.path.join(d, 'drivers/chromiumdriver')
+
+# # Chrome Driver options
+# options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+# drive_path = os.path.join(d, 'drivers/chromedriver')
+
+# # Instanciate WebDriver
 # driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
-# # Driver for testing. Includes log
-# # driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path,service_args=["--verbose", "--log-path=selchrome.log"])
+# # Driver for testing (Includes log)
+# driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path,service_args=["--verbose", "--log-path=selchrome.log"])
 
 
 # Using Chromium Driver to grab CNN html data
