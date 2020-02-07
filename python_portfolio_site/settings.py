@@ -46,7 +46,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware', # heroku middleware
+    'whitenoise.middleware.WhiteNoiseMiddleware', # heroku middleware
 ]
 
 ROOT_URLCONF = 'python_portfolio_site.urls'
