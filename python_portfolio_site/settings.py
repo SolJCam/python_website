@@ -158,6 +158,3 @@ except Exception as e:
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
-
-# bin/start-pgbouncer-stunnel
-# https://github.com/heroku/heroku-buildpack-pgbouncer 
