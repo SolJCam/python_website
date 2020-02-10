@@ -117,7 +117,7 @@ USE_TZ = True
 
 import os
 import django_heroku
-import dj_database_url # Parse database configuration from $DATABASE_URL
+import dj_database_url # configure database - implicitly - using DATABASE_URL environ variable
 
 
 # path variables for local_settings.py
@@ -145,7 +145,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Allow all host hosts/domain names for this site
 ALLOWED_HOSTS = ['*']
 
-DATABASES = { 'default' : dj_database_url.config(conn_max_age=600, ssl_require=True)}
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'].update(db_from_env)
+# DATABASES = { 'default' : dj_database_url.config(conn_max_age=600, ssl_require=True)}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
