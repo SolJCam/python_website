@@ -19,10 +19,11 @@ driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get(
 
 
 # options = webdriver.ChromeOptions()
-# # Chromium Driver options
 # options.add_argument("--ignore-certificate-errors")
 # options.add_argument("--test-type")
 # options.add_argument("--headless")
+
+# # Chromium Driver options
 # options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
 # drive_path = os.path.join(d, 'drivers/chromiumdriver')
 
@@ -30,8 +31,8 @@ driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get(
 # options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 # drive_path = os.path.join(d, 'drivers/chromedriver')
 
-# # Instanciate WebDriver
-# driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
+# Instanciate WebDriver
+driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
 # # Driver for testing (Includes log)
 # driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path,service_args=["--verbose", "--log-path=selchrome.log"])
 

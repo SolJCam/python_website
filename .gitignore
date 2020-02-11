@@ -1,5 +1,8 @@
-# ignore chromium logs
+# chromium logs
 selchrome.log
 
 # ignore local settings file
-python_portfolio_site/local_settings.py
+# python_portfolio_site/local_settings.py
+
+# S3 credentials
+rootkey.csv

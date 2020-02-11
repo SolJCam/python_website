@@ -145,9 +145,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Allow all host hosts/domain names for this site
 ALLOWED_HOSTS = ['*']
 
-db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
-DATABASES['default'].update(db_from_env)
-# DATABASES = { 'default' : dj_database_url.config(conn_max_age=600, ssl_require=True)}
+DATABASES = { 'default' : dj_database_url.config(conn_max_age=600, ssl_require=True)}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
