@@ -32,7 +32,7 @@ driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get(
 # drive_path = os.path.join(d, 'drivers/chromedriver')
 
 # Instanciate WebDriver
-driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
+# driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
 # # Driver for testing (Includes log)
 # driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path,service_args=["--verbose", "--log-path=selchrome.log"])
 
