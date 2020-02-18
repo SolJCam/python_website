@@ -9,10 +9,9 @@ class Project(models.Model):
     image = models.FilePathField(path="main/static/img")
     def __str__(self): #string magic-method to return title as string - an obviously more helpful representation of this object
         return self.title
-    # class Meta:
-    #     db_table = 'main_projects'
 
 
+# DEFAULT_PROJ_ID = 1
 class Word(models.Model):
     word = models.CharField(max_length=120)
     first_definition = models.TextField(max_length=250)
@@ -24,12 +23,6 @@ class Word(models.Model):
     synonym = models.CharField(max_length=120, blank=True)
     more_definitions = models.TextField(blank=True)
     creator = models.PositiveSmallIntegerField(blank=True, null=True)
+    # dict_ref = models.ForeignKey(Project, default=DEFAULT_PROJ_ID, on_delete=models.SET_NULL)
     def __str__(self): #string magic-method to return name as string
         return self.word+": "+self.first_definition+", "+self.first_ex+", "+self.second_definition+", "+self.second_ex+", "+self.third_definition+", "+self.third_ex
-    # class Meta:
-    #     db_table = 'main_word'
-
-    # def random_string(self):
-    #     pool = string.ascii_letters + string.digits
-    #     self.unique_hash = ''.join(random.choice(pool) for i in range(8))
-    #     return self.unique_hash

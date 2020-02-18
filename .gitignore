@@ -6,3 +6,8 @@ selchrome.log
 
 # S3 credentials
 rootkey.csv
+
+# backups of proj dbs and word table data
+projects.dump
+dictionary.dump
+wrds.dump
