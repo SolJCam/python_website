@@ -19,15 +19,18 @@ def check_dict(wrd_input):
     # pdb.set_trace()
     word = wrd_input.lower()
     try:
-      meaning = str(Word.objects.using('dictionary').get(word=word))
+      meaning = str(Word.objects.get(word=word))
+      # meaning = str(Word.objects.using('dictionary').get(word=word))
     except ObjectDoesNotExist:
       word = wrd_input.title()
       try:
-        meaning = str(Word.objects.using('dictionary').get(word=word))
+        meaning = str(Word.objects.get(word=word))
+        # meaning = str(Word.objects.using('dictionary').get(word=word))
       except ObjectDoesNotExist:
         word = wrd_input.upper()
         try:
-          meaning = str(Word.objects.using('dictionary').get(word=word))
+          meaning = str(Word.objects.get(word=word))
+          # meaning = str(Word.objects.using('dictionary').get(word=word))
         except ObjectDoesNotExist: 
           meaning = suggest_words(wrd_input)
     return meaning
