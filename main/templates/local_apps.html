@@ -70,6 +70,55 @@
             <div class="input-group-append">
                 <button id="add_word" class="btn btn-outline-primary" href="#" type="button">Add Word</button>
             </div>
+            <!-- <button class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="#add_word">Add Word</button>
+            <div class="modal fade" id="add_word" tabindex="-1" role="dialog" aria-labelledby="add_word_label" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="add_word_label">Please provide the following:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="new_word" class="mt-2 mb-3 mr-1" action="" method="post">
+                            {% csrf_token %}
+                            <div class="mt-2 mb-3 mr-1 p-3 input-group bg-info">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label class="col-12" for="{{ add_word.word.id_for_label }}">{{ add_word.word.label }}</label>
+                                        {{ add_word.word }}
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="col-12" for="{{ add_word.first_definition.id_for_label }}">{{ add_word.first_definition.label }}</label>
+                                        {{ add_word.first_definition }}
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="col-12" for="{{ add_word.first_ex.id_for_label }}">{{ add_word.first_ex.label }}</label>
+                                        {{ add_word.first_ex }}
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="col-12" for="{{ add_word.synonym.id_for_label }}">{{ add_word.synonym.label }}</label>
+                                        {{ add_word.synonym }}
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="col-12" for="{{ add_word.creator.id_for_label }}">{{ add_word.creator.label }}</label>
+                                        {{ add_word.creator }}
+                                    </div> -->
+                                    <!-- <div class="mt-2 ml-3 input-group-append">
+                                        <button class="btn btn-outline-secondary" style="background-color:white;" type="submit">submit</button>
+                                    </div> -->
+                                <!-- </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer mt-2 ml-3 input-group-append">
+                        <button class="btn btn-outline-secondary" style="background-color:white;" type="submit">submit</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div> -->
              <div id="result" class="col">
                 <h1 id="dict_name"></h1>
                 <p id="first_definition"></p>
@@ -77,12 +126,9 @@
             </div>
         </div>
         <div class="col-md-4 card-body">
-            <h5 class="card-title">py_dictionary</h5>
-            <p class="card-text"></p>
-            <a href="#" class="btn btn-primary"> <!-- Will eventally replace with a thorough explanation -->
-                Read More
-            </a>
-            <p class="card-text"></p>
+            <h4 class="card-title"><u>py_dictionary</u></h4>
+            <p class="card-text"><b>Description:</b> Online dictionary which allows users to save their own words to a postgresql db</p>
+            <p class="card-text"><b>Technologies:</b> difflib.SequenceMatcher, difflib.get_close_matches, Django, Bootstrap, PostgreSQL</p>
         </div>
     </div>
 </div>

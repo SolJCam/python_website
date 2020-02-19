@@ -12,6 +12,7 @@ class ProjectTestCase(TestCase):
     multi_db = True
     # Test ability to retrieve Projects from db
     def setUp(self):
+        py_dict = Project.objects.create(title="py_dictionary", description="online dictionary which allows users to save their own words to a postgresql db", technology="difflib.SequenceMatcher, difflib.get_close_matches, Django, Bootstrap, PostgreSQL")
         chat = Project.objects.create(title="Chat App", description="One to many online chat", technology="nodejs, socket.io and ExpressJS", github_url="https://github.com/SolJCam/socket.io")
         web_map = Project.objects.create(title="Folium Web Map", description="Beautiful animated web display of US gradient features", technology="python dateutil, MarkerCluster and Pandas", github_url="https://github.com/SolJCam/location_pyapp")
         site = Project.objects.create(title="Personal Webiste", description="My online project portfolio", technology="Django, Bootstrap4 and jQuery", github_url="https://github.com/SolJCam/python_website")

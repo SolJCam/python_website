@@ -19,14 +19,16 @@
             </button>
             <div class="w-100"></div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul id="proj-nav" class="offset-4 navbar-nav mr-auto">
+              <ul id="proj-nav" class="offset-lg-2 pl-lg-5 navbar-nav mr-auto">
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'site_index' %}"><h5 class="text-primary">HOME</h5></a>
                 </li>
                 {% for project in projects %}
-                <li class="nav-item links">
-                  <a id="project_link{{ project.id }}" class="nav-link" href="#"><h5 class="text-primary">{{ project.title }}</h5></a>
-                </li>
+                  {% if project.id != 1 %}
+                    <li class="nav-item links">
+                      <a id="project_link{{ project.id }}" class="nav-link" href="#"><h5 class="text-primary">{{ project.title }}</h5></a>
+                    </li>
+                  {% endif %}
                 {% endfor %}
               </ul>
             </div>
@@ -39,20 +41,18 @@
     <div class="container-fluid">
       <div class="row">
         {% for project in projects %}
-        <!-- {% if project.id != 1 %} -->
-          <div class="col-12 parallax-window" data-parallax="scroll" data-image-src="{% static project.image %}" data-ios-fix="false" data-android-fix="false"></div>
-        <!-- {% endif %} -->
           {% if project.id != 1 %}
+            <div class="col-12 parallax-window" data-parallax="scroll" data-image-src="{% static project.image %}" data-ios-fix="false" data-android-fix="false"></div>
             <div id="project{{ project.id }}" class="col-12">
                 <div class="row card mb-2 flex-row flex-wrap">
                     <div class="col-md-8 card-header border-0">
                         <img  id="proj_img" class="card-img-top" src="{% static project.image %}">
                     </div>
                     <div class="col-md-4 card-body">
-                        <h5 class="card-title">{{ project.title }}</h5>
-                        <p class="card-text">{{ project.description }}</p>
-                        <a class="btn btn-primary text-light">Read More</a>
-                        <!-- <p class="card-text">{{ project.technology }}</p> -->
+                        <h5 class="card-title"><u>{{ project.title }}</u></h5>
+                        <p class="card-text"><b>Description:</b> {{ project.description }}</p>
+                        <!-- <a class="btn btn-primary text-light">Read More</a> -->
+                        <p class="card-text"><b>Technologies:</b> {{ project.technology }}</p>
                         <div class=w-100></div>
                         <a href="{% url 'external_project' 4 %}">{{ project.title }}</a> <!-- 4 is a temporary id# -->
                     </div>

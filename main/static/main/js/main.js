@@ -100,7 +100,7 @@ $(document).ready(function (e) {
     console.log("woohoo!!!");
   })
 
-  // non click, display options to add word to dictionary
+  // non click, display options to add word to dictionary: remove once modal is complete
   $('#add_word').click(function(e){
     console.log("woohoo!!!");
     e.preventDefault();
