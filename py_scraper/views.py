@@ -37,9 +37,9 @@ driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get(
 # driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path,service_args=["--verbose", "--log-path=selchrome.log"])
 
 
-# # Using Chromium Driver to grab CNN html data
-# driver.get("https://www.cnn.com/")
-# cnndata = bs4.BeautifulSoup(driver.page_source, "html.parser")
+# Using Chromium Driver to grab CNN html data
+driver.get("https://www.cnn.com/")
+cnndata = bs4.BeautifulSoup(driver.page_source, "html.parser")
 
 # Using requests to grab html data; done upon reading of view file so as to minize pyscraper runtime 
 data = requests.get("https://www.msnbc.com/")
