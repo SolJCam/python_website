@@ -37,7 +37,7 @@ def check_dict(wrd_input):
 
 def add_word(usr_wrd):
     # pdb.set_trace
-      nu_word = Word.objects.create(
+    nu_word = Word.objects.create(
         name = usr_wrd["word"],
     # nu_word = Word.objects.using('dictionary').create(
     #     word = usr_wrd["word"],
