@@ -19,17 +19,17 @@ def check_dict(wrd_input):
     # pdb.set_trace()
     word = wrd_input.lower()
     try:
-      meaning = str(Word.objects.get(word=word))
+      meaning = str(Word.objects.get(name=word))
       # meaning = str(Word.objects.using('dictionary').get(word=word))
     except ObjectDoesNotExist:
       word = wrd_input.title()
       try:
-        meaning = str(Word.objects.get(word=word))
+        meaning = str(Word.objects.get(name=word))
         # meaning = str(Word.objects.using('dictionary').get(word=word))
       except ObjectDoesNotExist:
         word = wrd_input.upper()
         try:
-          meaning = str(Word.objects.get(word=word))
+          meaning = str(Word.objects.get(name=word))
           # meaning = str(Word.objects.using('dictionary').get(word=word))
         except ObjectDoesNotExist: 
           meaning = suggest_words(wrd_input)
@@ -37,8 +37,10 @@ def check_dict(wrd_input):
 
 def add_word(usr_wrd):
     # pdb.set_trace
-    nu_word = Word.objects.using('dictionary').create(
-        word = usr_wrd["word"],
+      nu_word = Word.objects.create(
+        name = usr_wrd["word"],
+    # nu_word = Word.objects.using('dictionary').create(
+    #     word = usr_wrd["word"],
         first_definition = usr_wrd["first_definition"],
         first_ex = usr_wrd["first_ex"],
         second_definition = usr_wrd["second_definition"],

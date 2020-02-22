@@ -11,7 +11,7 @@ class Project(models.Model):
         return self.title
 
 
-# DEFAULT_PROJ_ID = 1
+DEFAULT_PROJ_ID = 1
 class Word(models.Model):
     word = models.CharField(max_length=120)
     first_definition = models.TextField(max_length=250)
@@ -23,6 +23,6 @@ class Word(models.Model):
     synonym = models.CharField(max_length=120, blank=True)
     more_definitions = models.TextField(blank=True)
     creator = models.PositiveSmallIntegerField(blank=True, null=True)
-    # dict_ref = models.ForeignKey(Project, default=DEFAULT_PROJ_ID, on_delete=models.SET_NULL)
+    dict_ref = models.ForeignKey(Project, default=DEFAULT_PROJ_ID, null=True, on_delete=models.SET_NULL)
     def __str__(self): #string magic-method to return name as string
         return self.word+": "+self.first_definition+", "+self.first_ex+", "+self.second_definition+", "+self.second_ex+", "+self.third_definition+", "+self.third_ex
