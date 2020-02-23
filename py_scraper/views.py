@@ -8,23 +8,24 @@ from py_scraper.newscloud import wcgenerator, wrd_count
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
-if os.environ["SOLS_MAC"]:
-    options = webdriver.ChromeOptions()
-    options.add_argument("--ignore-certificate-errors")
-    options.add_argument("--test-type")
-    options.add_argument("--headless")
+try:
+    if os.environ["SOLS_MAC"]:
+        options = webdriver.ChromeOptions()
+        options.add_argument("--ignore-certificate-errors")
+        options.add_argument("--test-type")
+        options.add_argument("--headless")
 
-    # # Backup Chromium Driver options
-    # options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
-    # drive_path = os.path.join(d, 'drivers/chromiumdriver')
+        # # Backup Chromium Driver options
+        # options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
+        # drive_path = os.path.join(d, 'drivers/chromiumdriver')
 
-    # Chrome Driver options
-    options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-    drive_path = os.path.join(d, 'drivers/chromedriver')
+        # Chrome Driver options
+        options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        drive_path = os.path.join(d, 'drivers/chromedriver')
 
-    # Instanciate WebDriver
-    driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
-else:
+        # Instanciate WebDriver
+        driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
+except Exception as e:
     # Chrome/Selenium configuration for Heroku
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
