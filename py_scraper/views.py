@@ -8,14 +8,39 @@ from py_scraper.newscloud import wcgenerator, wrd_count
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
+# load local_views.py
+if os.environ["sols_mac"]:
+    # Chrome/Selenium configuration for Heroku
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+    driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
+else:
+    options = webdriver.ChromeOptions()
+    options.add_argument("--ignore-certificate-errors")
+    options.add_argument("--test-type")
+    options.add_argument("--headless")
 
-# Chrome/Selenium configuration for Heroku
-options = webdriver.ChromeOptions()
-options.add_argument("--headless")
-options.add_argument("--no-sandbox")
-options.add_argument("--disable-dev-shm-usage")
-options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
+    # # Backup Chromium Driver options
+    # options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
+    # drive_path = os.path.join(d, 'drivers/chromiumdriver')
+
+    # Chrome Driver options
+    options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    drive_path = os.path.join(d, 'drivers/chromedriver')
+
+    # Instanciate WebDriver
+    driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
+
+# # Chrome/Selenium configuration for Heroku
+# options = webdriver.ChromeOptions()
+# options.add_argument("--headless")
+# options.add_argument("--no-sandbox")
+# options.add_argument("--disable-dev-shm-usage")
+# options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+# driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
 
 
 # options = webdriver.ChromeOptions()
