@@ -100,7 +100,7 @@ $(document).ready(function (e) {
     console.log("woohoo!!!");
   })
 
-  // non click, display options to add word to dictionary
+  // non click, display options to add word to dictionary: remove once modal is complete
   $('#add_word').click(function(e){
     console.log("woohoo!!!");
     e.preventDefault();
@@ -116,6 +116,23 @@ $(document).ready(function (e) {
     $('#id_Enter_Word').attr("value", e.currentTarget.innerHTML)
     $('#dict_form').submit();
   })
+
+
+  // highlight necessary fields when adding words
+  $('#submit_wrd').click(function(e){
+    if($('#id_word').val()==""){
+      e.preventDefault();
+      alert("Please provide a word");
+      $("#id_word").css({"border-color":"red", "border-width": "3px"});
+    }else if($('#id_first_definition').val()==""){
+      e.preventDefault();
+      alert("Please provide a definition");
+      $("#id_first_definition").css({"border-color":"red", "border-width": "3px"});
+    }else if($('#id_creator').val()==""){
+      e.preventDefault();
+      alert("Please provide a Creator ID # less than 9999");
+      $("#id_creator").css({"border-color":"red", "border-width": "3px"});
+    }
 
 
   // return button behavior

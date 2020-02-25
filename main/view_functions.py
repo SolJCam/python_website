@@ -6,7 +6,8 @@ import pdb
 
 #function for checking user dictionary input and offering suggestions
 def suggest_words(word):
-    dictionary = Word.objects.using('dictionary').all()
+    dictionary = Word.objects.all()
+    # dictionary = Word.objects.using('dictionary').all()
     stringyfy_dict = list(map(lambda x: str(x).split(":")[0], dictionary))
     suggestions = get_close_matches(word, stringyfy_dict)
     # pdb.set_trace()
@@ -19,22 +20,27 @@ def check_dict(wrd_input):
     # pdb.set_trace()
     word = wrd_input.lower()
     try:
-      meaning = str(Word.objects.using('dictionary').get(word=word))
+      meaning = str(Word.objects.get(word=word))
+      # meaning = str(Word.objects.using('dictionary').get(word=word))
     except ObjectDoesNotExist:
       word = wrd_input.title()
       try:
-        meaning = str(Word.objects.using('dictionary').get(word=word))
+        meaning = str(Word.objects.get(word=word))
+        # meaning = str(Word.objects.using('dictionary').get(word=word))
       except ObjectDoesNotExist:
         word = wrd_input.upper()
         try:
-          meaning = str(Word.objects.using('dictionary').get(word=word))
+          meaning = str(Word.objects.get(word=word))
+          # meaning = str(Word.objects.using('dictionary').get(word=word))
         except ObjectDoesNotExist: 
           meaning = suggest_words(wrd_input)
     return meaning
 
 def add_word(usr_wrd):
     # pdb.set_trace
-    nu_word = Word.objects.using('dictionary').create(
+    nu_word = Word.objects.create(
+        # name = usr_wrd["word"],
+    # nu_word = Word.objects.using('dictionary').create(
         word = usr_wrd["word"],
         first_definition = usr_wrd["first_definition"],
         first_ex = usr_wrd["first_ex"],

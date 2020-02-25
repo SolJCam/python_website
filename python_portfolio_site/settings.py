@@ -117,7 +117,7 @@ USE_TZ = True
 
 import os
 import django_heroku
-import dj_database_url # Parse database configuration from $DATABASE_URL
+import dj_database_url # configure database - implicitly - using DATABASE_URL environ variable
 
 
 # path variables for local_settings.py
@@ -132,11 +132,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/staticfiles/'
 
-# Extra places for collectstatic to find static files.
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'staticfiles'),
-# )
-
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
@@ -150,7 +145,7 @@ DATABASES = { 'default' : dj_database_url.config(conn_max_age=600, ssl_require=T
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# try to load local_settings.py if it exists
+# load local_settings.py
 try:
   from python_portfolio_site.local_settings import *
 except Exception as e:

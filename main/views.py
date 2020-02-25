@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from .models import Project, Word
 from .forms import InputForm, DictForm
 import pdb #python debugger
@@ -63,7 +63,7 @@ def project_index(request):
     meaning = check_dict(word)
   
     form = InputForm({'Meaning': meaning })
-    # pdb.set_trace()
+    pdb.set_trace()
      
   context = {
       'form': form,
@@ -77,66 +77,11 @@ def project_index(request):
 
 
 
-def ext_project(request, pk):
+def external_project(request, pk):
   # pdb.set_trace()
-  # projects = get_object_or_404(Project.objects.get(pk=pk))
-  projects = pk
+  project = Project.objects.get(id=pk)
   context = {
-    'projects': projects
+    'project': project
   }
-  return render(request, 'pyscraper.html', context)
+  return render(request, 'py_scraper.html', context)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  # if request.method == 'POST':
-  #   # create a form instance and populate it with data from the request:
-  #   form = NameForm(request.POST)
-  #   # check whether it's valid:
-  #   if form.is_valid():
-  #       # process the data in form.cleaned_data as required
-  #       # ...
-  #       # redirect to a new URL:
-  #       return HttpResponseRedirect('/thanks/')
-        
-  # #if GET attribute returns empty dict, proceed with generating blank model form
-  # else:
-
-
-      # try:
-    #   form = Word.objects.using('dictionary').get(name=user_input)
-    # except:
-
-
-    #bound dict from GET request containing user input to a form instance
-    # req = DictForm(request.GET)
-    # # pdb.set_trace()
-
-    # # check whether bound dict is valid (Django does some magic in the background to accomplish this):
-    # if req.clean(['name', 'first_definition']):
-    # # if req.is_valid(): #for reqular form validation
-    #   pdb.set_trace()
-
-    #   # If True, will be able to find all the validated form data in its cleaned_data attribute and use it to update the database etc
-    #   form = Word.objects.using('dictionary').get(name=req.cleaned_data['py_dictionary'])
-
-
-            # try:
-        #   Word.objects.using('dictionary').get(name=new_word.cleaned_data['py_dictionary'])
-        # except:
-    #   Word.objects.using('dictionary').create(word=, first_definition=, second_definition=, third_definition=, more_definitions=)  

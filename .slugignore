@@ -1,2 +1,5 @@
 # Ignore chatApp directory
 chatApp/*
+
+# ignore local settings file
+python_portfolio_site/local_settings.py
