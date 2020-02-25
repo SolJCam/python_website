@@ -1,12 +1,12 @@
 # chromium logs
 selchrome.log
 
-# ignore local settings file
-# python_portfolio_site/local_settings.py
+# useful heroku commands file
+.heroku_commands.txt
 
-# S3 credentials
+# S3 credentials: since removed
 rootkey.csv
 
-# backups of proj dbs and word table data
+# backups of proj dbs and word table data: since removed
 projects.dump
 dictionary.dump

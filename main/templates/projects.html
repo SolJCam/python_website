@@ -48,10 +48,9 @@
                     <div class="col-md-4 card-body">
                         <h5 class="card-title"><u>{{ project.title }}</u></h5>
                         <p class="card-text"><b>Description:</b> {{ project.description }}</p>
-                        <!-- <a class="btn btn-primary text-light">Read More</a> -->
                         <p class="card-text"><b>Technologies:</b> {{ project.technology }}</p>
                         <div class=w-100></div>
-                        <a href="{% url 'external_project' 4 %}">{{ project.title }}</a> <!-- 4 is a temporary id# -->
+                        <a href="{% url 'external_project' project.id %}">{{ project.title }}</a> 
                     </div>
                 </div>
             </div>

@@ -63,7 +63,7 @@ def project_index(request):
     meaning = check_dict(word)
   
     form = InputForm({'Meaning': meaning })
-    # pdb.set_trace()
+    pdb.set_trace()
      
   context = {
       'form': form,
@@ -79,9 +79,9 @@ def project_index(request):
 
 def external_project(request, pk):
   # pdb.set_trace()
-  projects = pk
+  project = Project.objects.get(id=pk)
   context = {
-    'projects': projects
+    'project': project
   }
-  return render(request, 'pyscraper.html', context)
+  return render(request, 'py_scraper.html', context)
 

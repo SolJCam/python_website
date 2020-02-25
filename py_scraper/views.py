@@ -25,6 +25,9 @@ try:
 
         # Instanciate WebDriver
         driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
+        # # Driver for testing (Includes log)
+        # driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path,service_args=["--verbose", "--log-path=selchrome.log"])
+        
 except Exception as e:
     # Chrome/Selenium configuration for Heroku
     options = webdriver.ChromeOptions()
@@ -33,33 +36,6 @@ except Exception as e:
     options.add_argument("--disable-dev-shm-usage")
     options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
     driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
-
-# # Chrome/Selenium configuration for Heroku
-# options = webdriver.ChromeOptions()
-# options.add_argument("--headless")
-# options.add_argument("--no-sandbox")
-# options.add_argument("--disable-dev-shm-usage")
-# options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-# driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
-
-
-# options = webdriver.ChromeOptions()
-# options.add_argument("--ignore-certificate-errors")
-# options.add_argument("--test-type")
-# options.add_argument("--headless")
-
-# # Chromium Driver options
-# options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
-# drive_path = os.path.join(d, 'drivers/chromiumdriver')
-
-# # Chrome Driver options
-# options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-# drive_path = os.path.join(d, 'drivers/chromedriver')
-
-# Instanciate WebDriver
-# driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
-# # Driver for testing (Includes log)
-# driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path,service_args=["--verbose", "--log-path=selchrome.log"])
 
 
 # Using Chromium Driver to grab CNN html data
