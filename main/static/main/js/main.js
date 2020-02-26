@@ -133,6 +133,7 @@ $(document).ready(function (e) {
       alert("Please provide a Creator ID # less than 9999");
       $("#id_creator").css({"border-color":"red", "border-width": "3px"});
     }
+  })
 
 
   // return button behavior
