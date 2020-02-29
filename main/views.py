@@ -63,7 +63,7 @@ def project_index(request):
     meaning = check_dict(word)
   
     form = InputForm({'Meaning': meaning })
-    pdb.set_trace()
+    # pdb.set_trace()
      
   context = {
       'form': form,
