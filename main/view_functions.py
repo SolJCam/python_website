@@ -1,6 +1,7 @@
 from .models import Word
 from difflib import SequenceMatcher, get_close_matches
 from django.core.exceptions import ObjectDoesNotExist
+from random import randint
 import pdb
 
 
@@ -50,7 +51,8 @@ def add_word(usr_wrd):
         third_ex = usr_wrd["third_ex"],
         synonym = usr_wrd["synonym"],
         more_definitions = usr_wrd["more_definitions"],
-        creator = usr_wrd["creator"]
+        creator = randint(1, 9999)
+        # creator = usr_wrd["creator"]
     )
 
     nu_word.save()

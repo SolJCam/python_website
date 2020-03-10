@@ -99,16 +99,29 @@ $(document).ready(function (e) {
     $("#project4")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
     console.log("woohoo!!!");
   })
+  $('#project_link1').click(function(e){
+    e.preventDefault();
+    $("#project1")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+    console.log("woohoo!!!");
+  })
 
-  // non click, display options to add word to dictionary: remove once modal is complete
+  // on click, display options to add word to dictionary: remove once modal alternative is complete
   $('#add_word').click(function(e){
     console.log("woohoo!!!");
     e.preventDefault();
     $( "#new_word" ).slideDown("slow", function() {
       // Animation complete.
     });
+    $('#cancel').toggle();
   })
-
+  $('#cancel').click(function(e){
+    console.log("woohoo!!!");
+    e.preventDefault();
+    $( "#new_word" ).slideUp("slow", function() {
+      // Animation complete.
+    });
+    $('#cancel').toggle();
+  })
 
   // submit user selected suggestions 
   $('.suggestion').click((e)=>{

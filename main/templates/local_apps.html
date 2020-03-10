@@ -57,10 +57,10 @@
                             <label class="col-12" for="{{ add_word.synonym.id_for_label }}">{{ add_word.synonym.label }}</label>
                             {{ add_word.synonym }}
                         </div>
-                        <div class="col-12">
+                        <!-- <div class="col-12">
                             <label class="col-12" for="{{ add_word.creator.id_for_label }}">{{ add_word.creator.label }}</label>
                             {{ add_word.creator }}
-                        </div>
+                        </div> -->
                         <div class="mt-2 ml-3 input-group-append">
                             <button class="btn btn-outline-secondary" style="background-color:white;" type="submit">submit</button>
                         </div>
@@ -68,8 +68,13 @@
                 </div>
             </form>
             <div class="input-group-append">
-                <button id="add_word" class="btn btn-outline-primary" href="#" type="button">Add Word</button>
+                <button id="add_word" class="col-lg-3 ml-5 mr-3 btn btn-outline-primary" href="#" type="button">Add Word</button>
+                <button id="cancel" class="col-lg-3 btn btn-outline-primary" href="#" type="button" style="display:none">cancel</button>
             </div>
+            <!-- <br>
+            <div class="col-lg-6">
+                <button id="cancel" class="btn btn-outline-primary" href="#" type="button" style="display:none">cancel</button>
+            </div> -->
             <!-- <button class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="#add_word">Add Word</button>
             <div class="modal fade" id="add_word" tabindex="-1" role="dialog" aria-labelledby="add_word_label" aria-hidden="true">
                 <div class="modal-dialog" role="document">
