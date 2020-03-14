@@ -347,11 +347,13 @@
 
 
   /* ------- Pixel 3--------- */
-@media only screen 
-  and (min-device-width: 411px) 
-  and (max-device-width: 767px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: portrait) { 
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) { 
 
     /*----------------------------------- INDEX PAGE -----------------------------------*/
 
