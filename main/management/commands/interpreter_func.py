@@ -18,13 +18,13 @@ def inter_test():
         first = dict_words[word][0]
         if len(dict_words[word])>1 and len(dict_words[word])<2:
             second = dict_words[word][1]
-            nu_word = Word.objects.create(word=word, first_definition=first, second_definition=second, third_definition="", more_definitions="")
-            # nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition=second, third_definition="", more_definitions="")
+            nu_word = Word.objects.create(word=word, definition=first, second_definition=second, third_definition="", more_definitions="")
+            # nu_word = Word.objects.using('dictionary').create(word=word, definition=first, second_definition=second, third_definition="", more_definitions="")
         elif len(dict_words[word])>2 and len(dict_words[word])<3:
             second = dict_words[word][1]
             third = dict_words[word][2]
-            nu_word = Word.objects.create(word=word, first_definition=first, second_definition=second, third_definition=third, more_definitions="")
-            # nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition=second, third_definition=third, more_definitions="")
+            nu_word = Word.objects.create(word=word, definition=first, second_definition=second, third_definition=third, more_definitions="")
+            # nu_word = Word.objects.using('dictionary').create(word=word, definition=first, second_definition=second, third_definition=third, more_definitions="")
         elif len(dict_words[word])>3:
             # pdb.set_trace()
             second = dict_words[word][1]
@@ -33,11 +33,11 @@ def inter_test():
             diff = len(dict_words[word])-3
             for x in range(diff):
                 additional.append(dict_words[word][3+x])
-            nu_word = Word.objects.create(word=word, first_definition=first, second_definition=second, third_definition=third, more_definitions=additional)
-            # nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition=second, third_definition=third, more_definitions=additional)
+            nu_word = Word.objects.create(word=word, definition=first, second_definition=second, third_definition=third, more_definitions=additional)
+            # nu_word = Word.objects.using('dictionary').create(word=word, definition=first, second_definition=second, third_definition=third, more_definitions=additional)
         else:
-            nu_word = Word.objects.create(word=word, first_definition=first, second_definition="", third_definition="", more_definitions="")
-            # nu_word = Word.objects.using('dictionary').create(word=word, first_definition=first, second_definition="", third_definition="", more_definitions="")
+            nu_word = Word.objects.create(word=word, definition=first, second_definition="", third_definition="", more_definitions="")
+            # nu_word = Word.objects.using('dictionary').create(word=word, definition=first, second_definition="", third_definition="", more_definitions="")
 
         save = [word]
 

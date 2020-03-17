@@ -34,14 +34,13 @@ class InputForm(forms.Form):
 class DictForm(forms.ModelForm):
 
     word = forms.CharField(label='New Word', label_suffix=':', max_length=20, validators=[validate_word])
-    creator = forms.IntegerField(validators=[validate_num_length])
+    # creator = forms.IntegerField(label='Creator: a number < 9999', validators=[validate_num_length])
 
     class Meta:
         model = Word
         fields = '__all__'
         widgets = {
-            'first_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
-            'second_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
-            'third_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
-            'more_definitions': forms.Textarea(attrs={'cols': 50, 'rows': 4}),
+            'definition': forms.Textarea(attrs={'cols': 30, 'rows': 4}), 
+            'example': forms.Textarea(attrs={'cols': 30, 'rows': 4}), 
+            'synonym': forms.Textarea(attrs={'cols': 30, 'rows': 4}), 
         }
