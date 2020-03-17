@@ -222,7 +222,7 @@
         animation-duration: 1s;
     }
 
-    .carouselImg {
+    /* .carouselImg {
         width: 75%; 
         height: 600px;
         object-fit: cover; 
@@ -232,7 +232,7 @@
         position: absolute;
         left: 900px;
         color: black;
-    }
+    } */
     
     @keyframes mydevtype {
         0%  {top:200px;}

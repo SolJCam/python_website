@@ -43,8 +43,8 @@ def add_word(usr_wrd):
         # name = usr_wrd["word"],
     # nu_word = Word.objects.using('dictionary').create(
         word = usr_wrd["word"],
-        first_definition = usr_wrd["first_definition"],
-        first_ex = usr_wrd["first_ex"],
+        definition = usr_wrd["first_definition"],
+        example = usr_wrd["first_ex"],
         second_definition = usr_wrd["second_definition"],
         second_ex = usr_wrd["second_ex"],
         third_definition = usr_wrd["third_definition"],

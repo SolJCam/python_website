@@ -41,6 +41,6 @@ class DictForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'definition': forms.Textarea(attrs={'cols': 30, 'rows': 4}), 
-            'ex': forms.Textarea(attrs={'cols': 30, 'rows': 4}), 
+            'example': forms.Textarea(attrs={'cols': 30, 'rows': 4}), 
             'synonym': forms.Textarea(attrs={'cols': 30, 'rows': 4}), 
         }
