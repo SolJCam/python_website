@@ -39,6 +39,7 @@
     <div class="container-fluid">
       <div class="row">
         {% for project in projects %}
+          {% if project.title != 'py_dictionary' %}
             <div class="col-12 parallax-window" data-parallax="scroll" data-image-src="{% static project.image %}" data-ios-fix="false" data-android-fix="false"></div>
             <div id="project{{ project.id }}" class="col-12">
                 <div class="row card mb-2 flex-row flex-wrap">
@@ -54,6 +55,7 @@
                     </div>
                 </div>
             </div>
+          {% endif %}
         {% endfor %}
       </div>
     </div>

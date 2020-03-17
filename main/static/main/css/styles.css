@@ -221,6 +221,18 @@
         animation-name: mydevtype;
         animation-duration: 1s;
     }
+
+    .carouselImg {
+        width: 75%; 
+        height: 600px;
+        object-fit: cover; 
+    }
+
+    .carousel-caption {
+        position: absolute;
+        left: 900px;
+        color: black;
+    }
     
     @keyframes mydevtype {
         0%  {top:200px;}

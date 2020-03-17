@@ -12,12 +12,12 @@ class Project(models.Model):
 
 
 class Word(models.Model):
-    word = models.CharField(max_length=120)
-    first_definition = models.TextField(max_length=250)
-    first_ex = models.CharField(max_length=120, blank=True)
-    second_definition = models.TextField(max_length=250, blank=True)
+    word = models.CharField(max_length=20)
+    definition = models.TextField(max_length=120)
+    example = models.CharField(max_length=120, blank=True)
+    second_definition = models.TextField(max_length=120, blank=True)
     second_ex = models.CharField(max_length=120, blank=True)
-    third_definition = models.TextField(max_length=250, blank=True)
+    third_definition = models.TextField(max_length=120, blank=True)
     third_ex = models.CharField(max_length=120, blank=True)
     synonym = models.CharField(max_length=120, blank=True)
     more_definitions = models.TextField(blank=True)

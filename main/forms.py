@@ -40,8 +40,7 @@ class DictForm(forms.ModelForm):
         model = Word
         fields = '__all__'
         widgets = {
-            'first_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
-            'second_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
-            'third_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
-            'more_definitions': forms.Textarea(attrs={'cols': 50, 'rows': 4}),
+            'definition': forms.Textarea(attrs={'cols': 30, 'rows': 4}), 
+            'ex': forms.Textarea(attrs={'cols': 30, 'rows': 4}), 
+            'synonym': forms.Textarea(attrs={'cols': 30, 'rows': 4}), 
         }
