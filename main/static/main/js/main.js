@@ -105,21 +105,33 @@ $(document).ready(function (e) {
     console.log("woohoo!!!");
   })
 
-  // on click, display options to add word to dictionary: remove once modal alternative is complete
+  // on click, display options to add word to dictionary
   $('#add_word').click(function(e){
     console.log("woohoo!!!");
     e.preventDefault();
-    $( "#new_word" ).slideDown("slow", function() {
+    $( "#word" ).slideDown("slow", function() {
       // Animation complete.
     });
+    $('#submit_word').toggle();
+    $('#more_defs').toggle();
     $('#cancel').toggle();
+  })
+  $('#more_defs').click(function(e){
+    console.log("woohoo!!!");
+    e.preventDefault();
+    $( "#definitions" ).slideDown("slow", function() {});
+    $('#more_defs').toggle();
   })
   $('#cancel').click(function(e){
     console.log("woohoo!!!");
     e.preventDefault();
-    $( "#new_word" ).slideUp("slow", function() {
-      // Animation complete.
-    });
+    $('[name="word_form"]')[0].reset();
+    $( "#word" ).slideUp("slow", function() {});
+    $( "#definitions" ).slideUp("slow", function() {});
+    if ($('#more_defs').attr("style") == "") {
+      $('#more_defs').css('display', 'none');
+    }
+    $('#submit_word').toggle();
     $('#cancel').toggle();
   })
 

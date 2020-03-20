@@ -20,7 +20,7 @@ def suggest_words(word):
 
 
 #function for testing variations of word against database and returning best result
-def check_dict(wrd_input):
+def get_meaning(wrd_input):
     # pdb.set_trace()
     word = wrd_input.lower()
     try:
@@ -43,13 +43,8 @@ def add_word(usr_wrd):
     # pdb.set_trace
     nu_word = Word.objects.create(
         word = usr_wrd["word"],
-        definition = usr_wrd["first_definition"],
-        example = usr_wrd["first_ex"],
+        definition = usr_wrd["definition"],
         second_definition = usr_wrd["second_definition"],
-        second_ex = usr_wrd["second_ex"],
-        third_definition = usr_wrd["third_definition"],
-        third_ex = usr_wrd["third_ex"],
-        synonym = usr_wrd["synonym"],
         more_definitions = usr_wrd["more_definitions"],
         creator = randint(1, 9999)
     )

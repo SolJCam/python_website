@@ -15,7 +15,7 @@ class ProjectTestCase(TestCase):
         py_dict = Project.objects.create(title="py_dictionary", description="online dictionary which allows users to save their own words to a postgresql db", technology="difflib.SequenceMatcher, difflib.get_close_matches, Django, Bootstrap, PostgreSQL")
         chat = Project.objects.create(title="Chat App", description="One to many online chat", technology="nodejs, socket.io and ExpressJS", github_url="https://github.com/SolJCam/socket.io")
         web_map = Project.objects.create(title="Folium Web Map", description="Beautiful animated web display of US gradient features", technology="python dateutil, MarkerCluster and Pandas", github_url="https://github.com/SolJCam/location_pyapp")
-        site = Project.objects.create(title="Personal Webiste", description="My online project portfolio", technology="Django, Bootstrap4 and jQuery", github_url="https://github.com/SolJCam/python_website")
+        py_scraper = Project.objects.create(title="py_scraper", description="Scrape the headlines of the homepages of the news networks CNN, FOX News and MSNBC and generate a wordcloud from the result", technology="BeautifulSoup, Word Cloud API")
 
     def retrieve_project_by_some_attribute(self):
         app1 = Project.objects.get(id=1)

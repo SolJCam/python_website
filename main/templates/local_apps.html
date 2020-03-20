@@ -37,39 +37,42 @@
                     {% endif %}
                 </div>
             </form>
-            <form id="new_word" class="mt-2 mb-3 mr-1" action="" method="post" style="display:none">
+            <form id="new_word" class="mt-2 mb-3 mr-1" name="word_form" action="" method="post">
                 {% csrf_token %}
-                <div class="mt-2 mb-3 mr-1 p-3 input-group bg-info">
+                <div class="mt-2 mb-3 mr-1 p-3 input-group">
                     <div class="row">
-                        <div class="col-12">
-                            <label class="col-12" for="{{ add_word.word.id_for_label }}">{{ add_word.word.label }}</label>
-                            {{ add_word.word }}
+                        <div id="word" class="col-12" style="display:none">
+                            <div class="col-12">
+                                <label class="col-12" for="{{ add_word.word.id_for_label }}">{{ add_word.word.label }}</label>
+                                {{ add_word.word }}
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label class="col-12" for="{{ add_word.definition.id_for_label }}">{{ add_word.definition.label }} </label>
+                                {{ add_word.definition }}
+                            </div>
+                            <div class="input-group-append">
+                                <button id="more_defs" class="col-lg-4 btn btn-outline-primary" href="#" type="button" style="display:none">More Definitions</button>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <label class="col-12" for="{{ add_word.first_definition.id_for_label }}">{{ add_word.first_definition.label }}</label>
-                            {{ add_word.first_definition }}
+                        <div id="definitions" class="col-12" style="display:none">
+                            <div class="col-12">
+                                <label class="col-12" for="{{ add_word.second_definition.id_for_label }}">{{ add_word.second_definition.label }} </label>
+                                {{ add_word.second_definition }}
+                            </div>
+                            <div class="col-12">
+                                <label class="col-12" for="{{ add_word.more_definitions.id_for_label }}">{{ add_word.more_definitions.label }} </label>
+                                {{ add_word.more_definitions }}
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <label class="col-12" for="{{ add_word.first_ex.id_for_label }}">{{ add_word.first_ex.label }}</label>
-                            {{ add_word.first_ex }}
-                        </div>
-                        <div class="col-12">
-                            <label class="col-12" for="{{ add_word.synonym.id_for_label }}">{{ add_word.synonym.label }}</label>
-                            {{ add_word.synonym }}
-                        </div>
-                        <!-- <div class="col-12">
-                            <label class="col-12" for="{{ add_word.creator.id_for_label }}">{{ add_word.creator.label }}</label>
-                            {{ add_word.creator }}
-                        </div> -->
-                        <div class="mt-2 ml-3 input-group-append">
-                            <button class="btn btn-outline-secondary" style="background-color:white;" type="submit">submit</button>
+                        <div id="submit_word" class="mt-2 ml-3 input-group-append" style="display:none;">
+                            <button class="btn btn-outline-success" style="background-color:white;" type="submit">submit</button>
                         </div>
                     </div>
                 </div>
             </form>
             <div class="input-group-append">
                 <button id="add_word" class="col-lg-3 ml-5 mr-3 btn btn-outline-primary" href="#" type="button">Add Word</button>
-                <button id="cancel" class="col-lg-3 btn btn-outline-primary" href="#" type="button" style="display:none">cancel</button>
+                <button id="cancel" class="col-lg-3 btn btn-outline-danger" href="#" type="button" style="display:none">cancel</button>
             </div>
             <div id="result" class="col">
                 <h1 id="dict_name"></h1>

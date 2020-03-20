@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Project, Word
 from .forms import InputForm, DictForm
 import pdb #python debugger
-from .view_functions import suggest_words, check_dict, add_word
+from .view_functions import suggest_words, get_meaning, add_word
 
 
 
@@ -34,7 +34,7 @@ def project_index(request):
 
     if new_word.is_valid():
         
-        meaning = check_dict(new_word.cleaned_data['word'])
+        meaning = get_meaning(new_word.cleaned_data['word'])
         
         if len(meaning[1][0]) > 1:
           form = InputForm({"Success": add_word(new_word.cleaned_data)})
@@ -60,7 +60,7 @@ def project_index(request):
   if bool(request.GET) == True:
 
     word = request.GET["Enter_Word"]
-    meaning = check_dict(word)
+    meaning = get_meaning(word)
   
     form = InputForm({'Meaning': meaning })
     # pdb.set_trace()

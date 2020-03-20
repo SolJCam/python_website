@@ -6,14 +6,6 @@ import re
 from .models import Word
 
 
-
-
-def validate_num_length(num):
-    if num > 9999:
-        raise ValidationError(
-            (f"{num} is too large. Enter a value that\'s equal to 4 digits or less"), code='too large'
-        )
-
 def validate_word(word):
     pattern = r"[^A-Za-z]"
     if re.findall(pattern, word):
@@ -33,14 +25,17 @@ class InputForm(forms.Form):
 
 class DictForm(forms.ModelForm):
 
-    word = forms.CharField(label='New Word', label_suffix=':', max_length=20, validators=[validate_word])
-    # creator = forms.IntegerField(label='Creator: a number < 9999', validators=[validate_num_length])
+    word = forms.CharField(label='New Word', max_length=20, validators=[validate_word])
+    definition = forms.CharField(label='Definition', max_length=500, widget = forms.Textarea(attrs={'placeholder':'Include examples using the word and synonyms','cols': 30, 'rows': 6}))
+    second_definition = forms.CharField(label='Second Definition', required=False, max_length=500, widget = forms.Textarea(attrs={'placeholder':'Include examples using the word and synonyms','cols': 30, 'rows': 4}))
+    more_definitions = forms.CharField(label='More Definitions', required=False, max_length=500, widget = forms.Textarea(attrs={'placeholder':'Include examples using the word and synonyms','cols': 30, 'rows': 4}))
 
     class Meta:
         model = Word
         fields = '__all__'
-        widgets = {
-            'definition': forms.Textarea(attrs={'cols': 30, 'rows': 4}), 
-            'example': forms.Textarea(attrs={'cols': 30, 'rows': 4}), 
-            'synonym': forms.Textarea(attrs={'cols': 30, 'rows': 4}), 
-        }
+        # widgets = {
+        #     'first_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
+        #     'second_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
+        #     'third_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
+        #     'more_definitions': forms.Textarea(attrs={'cols': 50, 'rows': 4}),
+        # }
