@@ -10,6 +10,7 @@ read_json = json_words.read()
 dict_words = json.loads(read_json)
 json_words.close()
     
+
 #function for checking user dictionary input and offering suggestions
 def suggest_words(word):
     stringyfy_dict = list(map(lambda x: str(x).split(":")[0], dict_words))
@@ -19,9 +20,8 @@ def suggest_words(word):
     return reply
 
 
-#function for testing variations of word against database and returning best result
+#function for testing variations of word against json file then database and returning best result or suggestions if necessary
 def get_meaning(wrd_input):
-    # pdb.set_trace()
     word = wrd_input.lower()
     try:
       meaning = dict_words[word][0]
@@ -34,7 +34,20 @@ def get_meaning(wrd_input):
         try:
           meaning = dict_words[word][0]
         except: 
-          meaning = suggest_words(wrd_input)
+          word = wrd_input.lower()
+          try:
+            meaning = str(Word.objects.get(word=word))
+          except:
+            word = wrd_input.title()
+            try:
+              meaning = str(Word.objects.get(word=word))
+            except:
+              word = wrd_input.upper()
+              try:
+                meaning = str(Word.objects.get(word=word))
+              except: 
+                meaning = suggest_words(wrd_input)
+    # pdb.set_trace()
     return meaning
 
 

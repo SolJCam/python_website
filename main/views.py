@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Project, Word
 from .forms import InputForm, DictForm
 import pdb #python debugger
-from .view_functions import suggest_words, get_meaning, add_word
+from .view_functions import get_meaning, add_word
 
 
 
@@ -34,13 +34,12 @@ def project_index(request):
 
     if new_word.is_valid():
         
-        meaning = get_meaning(new_word.cleaned_data['word'])
-        
-        if len(meaning[1][0]) > 1:
-          form = InputForm({"Success": add_word(new_word.cleaned_data)})
-        else:
-          form = InputForm({'Meaning': [f"{new_word.cleaned_data['word']} is already in the dictionary."]})
-        # pdb.set_trace()
+      meaning = get_meaning(new_word.cleaned_data['word'])
+      
+      if len(meaning[1][0]) > 1:
+        form = InputForm({"Success": add_word(new_word.cleaned_data)})
+      else:
+        form = InputForm({'Meaning': [f"{new_word.cleaned_data['word']} is already in the dictionary."]})
 
     else:
       # pdb.set_trace()
@@ -50,10 +49,6 @@ def project_index(request):
         if error['word']:
           form = InputForm({'Error': " The word entered has invalid characters. Only characters a-z, A-Z, '.' and '-' are acceptable. Please try again" })
       except:
-        # try:
-        #   if error['creator']:
-        #     form = InputForm({'Error': " The value entered for creator is too large.\n Please try again with a value 4 charaters or less" })
-        # except:
         form = InputForm({'Error': " There was an unknown server error.\n Please enter the word again" })
       
   #if GET attribute has dict containing data, then this was a user search request. Proceed to processing and returing results  
@@ -79,7 +74,7 @@ def project_index(request):
 
 def external_project(request, pk):
   # pdb.set_trace()
-  if pk==1:
+  if pk==2:
     response = redirect('https://solschatroom.herokuapp.com/')
     return response
   else:

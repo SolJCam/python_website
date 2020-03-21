@@ -20,6 +20,7 @@
                         {{ form.Success.value }}
                     {% endif %}
                     {% if form.Meaning.value|length > 2 %}
+                        <div class="w-100"></div>
                         {{ form.Meaning.value }}
                     {% else %}
                         {% for no_word in form.Meaning.value|slice:":1" %}
@@ -65,7 +66,7 @@
                             </div>
                         </div>
                         <div id="submit_word" class="mt-2 ml-3 input-group-append" style="display:none;">
-                            <button class="btn btn-outline-success" style="background-color:white;" type="submit">submit</button>
+                            <button id="submit_wrd_btn" class="btn btn-outline-success" style="background-color:white;" type="submit">submit</button>
                         </div>
                     </div>
                 </div>

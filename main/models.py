@@ -18,7 +18,7 @@ class Word(models.Model):
     more_definitions = models.TextField(blank=True, null=True)
     creator = models.PositiveSmallIntegerField(blank=True, null=True)
     def __str__(self): #string magic-method to return name as string
-        return self.word+": "+self.definition+", "+self.second_definition+", "+self.more_definitions+", "+str(self.creator)
+        return self.word+": "+self.definition+", "+self.second_definition+", "+self.more_definitions
 
 # class Word(models.Model):
 #     word = models.CharField(max_length=20)

@@ -144,19 +144,16 @@ $(document).ready(function (e) {
 
 
   // highlight necessary fields when adding words
-  $('#submit_wrd').click(function(e){
+  $('#submit_wrd_btn').click(function(e){
     if($('#id_word').val()==""){
       e.preventDefault();
       alert("Please provide a word");
-      $("#id_word").css({"border-color":"red", "border-width": "3px"});
-    }else if($('#id_first_definition').val()==""){
+      $("#id_word").css({"border-color":"red", "border-width": "2px"});
+    }
+    if($('#id_definition').val()==""){
       e.preventDefault();
       alert("Please provide a definition");
-      $("#id_first_definition").css({"border-color":"red", "border-width": "3px"});
-    }else if($('#id_creator').val()==""){
-      e.preventDefault();
-      alert("Please provide a Creator ID # less than 9999");
-      $("#id_creator").css({"border-color":"red", "border-width": "3px"});
+      $("#id_definition").css({"border-color":"red", "border-width": "2px"});
     }
   })
 
