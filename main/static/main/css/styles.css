@@ -79,6 +79,10 @@
         100%   {top:0px;}
     }
 
+    #carousel_img1, #carousel_img2 {
+        height: 150px;
+    }
+
 
                                 /* FOOTER ELEMENTS */
 
@@ -223,17 +227,9 @@
         animation-duration: 1s;
     }
 
-    /* .carouselImg {
-        width: 75%; 
-        height: 600px;
-        object-fit: cover; 
+    #carousel_img1, #carousel_img2 {
+        height: 500px;
     }
-
-    .carousel-caption {
-        position: absolute;
-        left: 900px;
-        color: black;
-    } */
     
     @keyframes mydevtype {
         0%  {top:200px;}
@@ -263,6 +259,10 @@
     @-webkit-keyframes nav_pills {
         0%  {top:250px;}
         100%   {top:0px;}
+    }
+
+    #carousel_img1, #carousel_img2 {
+        height: 500px;
     }
 
 
@@ -400,6 +400,10 @@
     @-webkit-keyframes myname {
         0%  {top:150px;}
         100%   {top:0px;}
+    }
+
+    #carousel_img1, #carousel_img2 {
+        height: 300px;
     }
     
     #mydevtype {

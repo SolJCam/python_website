@@ -6,7 +6,6 @@
 <div id="" class="col-12">
     <div class="row card mb-2 flex-row flex-wrap">
         <div class="col-md-8 card-header border-0">
-            <!-- <p class="col-md-4 mt-2 text-right">py_dictionary</p> -->
             <form id="dict_form" class="mt-2 mb-3 mr-1" action="" method="get">
                 <div class="mt-2 mb-3 mr-1 input-group">
                     {{ form.Enter_Word.label }}{{ form.Enter_Word }}
@@ -28,9 +27,6 @@
                             <div class="w-100"></div>
                         {% endfor %}
                         {% for list in form.Meaning.value|slice:"1:" %}
-                            <!-- {% for suggestion, id in word.items %}
-                                <a id="{{ id }}" class="suggestion ml-1 mr-1" href="">{{ suggestion }}</a>
-                            {% endfor %} -->
                             {% for words in list %}
                                 <a class="suggestion ml-1 mr-1" href="">{{ words }}</a>
                             {% endfor %}

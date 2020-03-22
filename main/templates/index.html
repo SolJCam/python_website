@@ -63,36 +63,33 @@
                         {% for project in projects %}
                             {% if project.id == 1 %}  <!-- necessary as crousel requires one image to be "active" -->
                             <div class="carousel-item active">
-                                <div class="row">
-                                    <div class="col-md-9 offset-md-1"><img src="{% static project.image %}" class="d-block img-fluid carouselImg" alt="..."></div>
-                                    <div class="col-md-3 carousel-caption d-none d-md-block">
-                                        <h5>{{ project.title }}</h5>
-                                        <p>{{ project.description }}</p>
-                                    </div>
+                                <div id="carousel_img1" class="row">
+                                    <div class="col-md-6 offset-md-1 h-75"><img src="{% static project.image %}" class="d-block img-fluid {{ project.id }}" alt="..."></div>
                                 </div>
                             </div>
                             {% endif %}
                             {% if project.id > 1 %}
                             <div class="carousel-item">
-                                <div class="row">
-                                    <div class="col-md-9 offset-md-1"><img src="{% static project.image %}" class="d-block img-fluid carouselImg" alt="..."></div>
-                                    <div class="col-md-3 carousel-caption d-none d-md-block">
-                                        <h5>{{ project.title }}</h5>
-                                        <p>{{ project.description }}</p>
-                                    </div>
+                                <div id="carousel_img2" class="row">
+                                    <div class="col-md-6 offset-md-1 h-75"><img src="{% static project.image %}" class="d-block img-fluid {{ project.id }}" alt="..."></div>
                                 </div>
                             </div>
                             {% endif %}
+                            <!-- <div class="row">
+                                <div class="col-md-4 offset-md-1">
+
+                                </div>
+                            </div> -->
                         {% endfor %}                        
                         </div>
-                        <!-- <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
                         <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
-                        </a> -->
+                        </a>
                     </div>
                 <!-- </div>
             </div>

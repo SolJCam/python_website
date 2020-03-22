@@ -10,6 +10,8 @@ $(document).ready(function (e) {
   console.log('2ndplz!');
 
 
+  
+  
   //Email submission functionality
   $('#submit').click(function(e){
     if($('#inputNameF').val()==""){
@@ -83,7 +85,7 @@ $(document).ready(function (e) {
 
 
  
-  // nav project link BASIC functionality to scroll to individual projects
+  // nav Project link BASIC functionality to scroll to individual projects
   $('#project_link2').click(function(e){
     e.preventDefault();
     $("#project2")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
@@ -143,7 +145,7 @@ $(document).ready(function (e) {
   })
 
 
-  // highlight necessary fields when adding words
+  // highlight unfilled necessary fields when submitting new words
   $('#submit_wrd_btn').click(function(e){
     if($('#id_word').val()==""){
       e.preventDefault();
@@ -222,7 +224,7 @@ if (window.matchMedia("(min-width:992px)").matches) {
   $("#project-nav").toggleClass("no-gutters");
   $("#connect-nav").toggleClass("no-gutters");
 
-  // nav connect link functionality to scroll to social media links on large viewports
+  // nav Connect link functionality to scroll to social media links on large viewports
   $('#C').click(function(e){
     e.preventDefault();
     $("html,body").animate({
