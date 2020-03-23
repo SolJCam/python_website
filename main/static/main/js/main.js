@@ -10,7 +10,20 @@ $(document).ready(function (e) {
   console.log('2ndplz!');
 
 
-  
+  $('#carousel').on('slide.bs.carousel', (relatedTarget) => {
+    console.log(relatedTarget);
+    let projToHighlight = relatedTarget.relatedTarget.classList[4];
+    let arrayProjs = $('.proj_titles');
+    let arrayProjsLen = $('.proj_titles').length;
+    debugger
+    for(let i = 0; i < arrayProjsLen; i++){
+      if(arrayProjs[i].innerText == projToHighlight){
+        arrayProjs[i].style.backgroundColor = 'red';
+        arrayProjs[i].style.color = 'yellow';
+        // arrayProjs[i].css({"background-color":"red", "color":"yellow"});
+      }
+    }
+  });
   
   //Email submission functionality
   $('#submit').click(function(e){

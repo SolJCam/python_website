@@ -226,10 +226,6 @@
         animation-name: mydevtype;
         animation-duration: 1s;
     }
-
-    #carousel_img1, #carousel_img2 {
-        height: 500px;
-    }
     
     @keyframes mydevtype {
         0%  {top:200px;}
@@ -262,7 +258,8 @@
     }
 
     #carousel_img1, #carousel_img2 {
-        height: 500px;
+        height: 450px;
+        /* object-fit: cover; */
     }
 
 
