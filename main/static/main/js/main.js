@@ -9,21 +9,46 @@ $(document).ready(function (e) {
     
   console.log('2ndplz!');
 
+  $("#1").css("background-color", "yellow");
 
   $('#carousel').on('slide.bs.carousel', (relatedTarget) => {
     console.log(relatedTarget);
-    let projToHighlight = relatedTarget.relatedTarget.classList[4];
-    let arrayProjs = $('.proj_titles');
-    let arrayProjsLen = $('.proj_titles').length;
-    debugger
+    let projToHighlight = relatedTarget.relatedTarget.classList[5];
+    let arrayProjs = $('.proj_smrry');
+    let arrayProjsLen = arrayProjs.length;
+    // debugger
     for(let i = 0; i < arrayProjsLen; i++){
-      if(arrayProjs[i].innerText == projToHighlight){
-        arrayProjs[i].style.backgroundColor = 'red';
-        arrayProjs[i].style.color = 'yellow';
-        // arrayProjs[i].css({"background-color":"red", "color":"yellow"});
+      if(arrayProjs[i].id == projToHighlight){
+        arrayProjs[i].style.backgroundColor = 'yellow';
+        if(i == 0 ){
+          arrayProjs[3].style.backgroundColor = 'white';
+        }else{
+          arrayProjs[i-1].style.backgroundColor = 'white';
+        }
       }
     }
   });
+
+  $('.proj_smrry').hover(
+    function(){
+      let all_projs = $('.proj_smrry')
+      for(let i = 0; i < all_projs.length; i++){
+        all_projs[i].style.backgroundColor = 'white';
+      }
+      let projs = $('.carousel-item');
+      let proj_array = [];
+      for(let i = 0; i < projs.length; i++){
+        proj_array.push(projs[i].classList[4]);
+      }
+      // debugger
+      let title = this.children[0].innerText // Keyword 'this' does not work with arrow functions!
+      title_index = proj_array.indexOf(title);
+      $('#carousel').carousel(title_index);
+    },
+    ()=>{
+      $('#carousel').carousel(title_index);
+    }
+  );
   
   //Email submission functionality
   $('#submit').click(function(e){
@@ -124,9 +149,7 @@ $(document).ready(function (e) {
   $('#add_word').click(function(e){
     console.log("woohoo!!!");
     e.preventDefault();
-    $( "#word" ).slideDown("slow", function() {
-      // Animation complete.
-    });
+    $( "#word" ).slideDown("slow", function() {});
     $('#submit_word').toggle();
     $('#more_defs').toggle();
     $('#cancel').toggle();
@@ -143,6 +166,8 @@ $(document).ready(function (e) {
     $('[name="word_form"]')[0].reset();
     $( "#word" ).slideUp("slow", function() {});
     $( "#definitions" ).slideUp("slow", function() {});
+    $("#id_word").css({"border-color":"grey", "border-width": "1px"});
+    $("#id_definition").css({"border-color":"grey", "border-width": "1px"});
     if ($('#more_defs').attr("style") == "") {
       $('#more_defs').css('display', 'none');
     }

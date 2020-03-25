@@ -42,9 +42,9 @@
           {% if project.title != 'py_dictionary' %}
             <div class="col-12 parallax-window" data-parallax="scroll" data-image-src="{% static project.image %}" data-ios-fix="false" data-android-fix="false"></div>
             <div id="project{{ project.id }}" class="col-12">
-                <div class="row card mb-2 flex-row flex-wrap">
-                    <div class="col-md-8 card-header border-0">
-                        <img  id="proj_img" class="img-fluid" src="{% static project.image %}">
+                <div class="row card mb-2 flex-row flex-wrap proj_img_card">
+                    <div class="col-md-8 card-header border-0 proj_img_card">
+                        <img class="img-fluid h-100" src="{% static project.image %}">
                     </div>
                     <div class="col-md-4 card-body">
                         <h5 class="card-title"><u>{{ project.title }}</u></h5>

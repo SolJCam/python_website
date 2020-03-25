@@ -262,6 +262,17 @@
         /* object-fit: cover; */
     }
 
+    /* The following code is to create on-hover highlight behavior for carousel */
+    .hover_ele {
+        background-image: linear-gradient(yellow, yellow); /* background-image is really just the solid color #ffd900 */
+        background-repeat: no-repeat; /* set background-repeat to no-repeat to have full control over the size and position of the background */
+        background-size: 0% 0%; /* background-size to make the background cover 100% of the width and height of the container */
+    }
+
+    .hover_ele:hover {
+        background-size: 100% 100%; /* background-size to make the background cover 100% of the width and height of the container */
+    }
+
 
                                 /* FOOTER ELEMENTS */
 
@@ -324,6 +335,10 @@
         position: sticky;
         bottom: 5%;
         visibility: hidden;
+    }
+
+    .proj_img_card {
+        height: 500px;
     }
 
 }
