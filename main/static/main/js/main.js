@@ -13,8 +13,8 @@ $(document).ready(function (e) {
 
   $('#carousel').on('slide.bs.carousel', (relatedTarget) => {
     console.log(relatedTarget);
-    let projToHighlight = relatedTarget.relatedTarget.classList[5];
-    let arrayProjs = $('.proj_smrry');
+    let projToHighlight = relatedTarget.relatedTarget.classList[3];
+    let arrayProjs = $('.proj_smry');
     let arrayProjsLen = arrayProjs.length;
     // debugger
     for(let i = 0; i < arrayProjsLen; i++){
@@ -29,16 +29,16 @@ $(document).ready(function (e) {
     }
   });
 
-  $('.proj_smrry').hover(
+  $('.proj_smry').hover(
     function(){
-      let all_projs = $('.proj_smrry')
+      let all_projs = $('.proj_smry')
       for(let i = 0; i < all_projs.length; i++){
         all_projs[i].style.backgroundColor = 'white';
       }
       let projs = $('.carousel-item');
       let proj_array = [];
       for(let i = 0; i < projs.length; i++){
-        proj_array.push(projs[i].classList[4]);
+        proj_array.push(projs[i].classList[2]);
       }
       // debugger
       let title = this.children[0].innerText // Keyword 'this' does not work with arrow functions!
@@ -69,7 +69,8 @@ $(document).ready(function (e) {
       $("#inputMessage").css({"border-color":"red", "border-width": "3px"});
       alert("Please provide a message");
     }else{
-      var email = "mailto:scameron10@yahoo.com?from="+$('#inputEmail').val()+"&subject="+$('#inputSubject').val()+"&body=<"+$('#inputNameF').val()+" "+$('#inputNameS').val()+"><"+$('#inputEmail').val()+">"+$('#inputMessage').val();
+      debugger
+      var email = "mailto:scameron10@yahoo.com?from="+$('#inputEmail').val()+"&subject="+$('#inputSubject').val()+"&body=<"+$('#inputNameF').val()+" "+$('#inputNameS').val()+"><"+$('#inputEmail').val()+">"+$('#inputMessage').val()+"&target=_top";
       var href = email.replace(/ /g, "%20");
       console.log(href);
       $("#email").attr("action", href);
@@ -261,6 +262,10 @@ if (window.matchMedia("(min-width:992px)").matches) {
   $("#resume-nav").toggleClass("no-gutters");
   $("#project-nav").toggleClass("no-gutters");
   $("#connect-nav").toggleClass("no-gutters");
+
+  // toggle margin for md/lg viewports
+  $('.proj_smries').toggleClass('ml-4');
+  $('.proj-imgs').toggleClass('ml-4');
 
   // nav Connect link functionality to scroll to social media links on large viewports
   $('#C').click(function(e){

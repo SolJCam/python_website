@@ -80,7 +80,7 @@
     }
 
     #carousel_img1, #carousel_img2 {
-        height: 150px;
+        height: 250px;
     }
 
 
@@ -413,10 +413,6 @@
         0%  {top:150px;}
         100%   {top:0px;}
     }
-
-    #carousel_img1, #carousel_img2 {
-        height: 300px;
-    }
     
     #mydevtype {
         position: relative;
@@ -456,6 +452,9 @@
         100%   {top:0px;}
     }
 
+    #carousel_img1, #carousel_img2 {
+        height: 300px;
+    }
 
                                 /* FOOTER ELEMENTS */
 
@@ -518,5 +517,9 @@
         position: sticky;
         bottom: 5%;
         visibility: hidden;
+    }
+
+    .proj_img_card {
+        height: 500px;
     }
 }
