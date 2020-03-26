@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
 
 
+# stopwords to include in both wcgenerator and wrd_count functions
+stopwrds_list = ["we", "says", "view", "entertainment", "u", "news", "cnn", "fox", "/", "+"] + list(STOPWORDS)
 
 def wcgenerator(newsfile, imgpath, wrdcld):
     # get data directory (using getcwd() i.e, current working directory, is needed to support running example in generated IPython notebook)
@@ -18,10 +20,6 @@ def wcgenerator(newsfile, imgpath, wrdcld):
 
     # read the mask image; an image (ideally stencil) used to define the size, shape, coutours etc of the wordcloud
     news_mask = np.array(Image.open(path.join(d, f"py_scraper/static/masks/{imgpath}")))
-
-    # creating list of stopwords
-    stopwrds_list = ["the", "for", "to", "in", "of", "is", "a", "u", "more", "at", "as", "news", "cnn"] + list(STOPWORDS)
-    # stopwords = [STOPWORDS.add(n) for n in stopwrds_list]
 
     wc = WordCloud(background_color="white", max_words=30000, mask=news_mask, stopwords=stopwrds_list, contour_width=3, contour_color='steelblue')
 
@@ -37,7 +35,6 @@ def wcgenerator(newsfile, imgpath, wrdcld):
 
 def wrd_count(string_list, pattern):
     wrd_hash = dict()      # dictionary to add words and number of occurences
-    stopwrds_list = ["the", "for", "to", "in", "of", "is", "a", "u", "and", "on", "all"]    # stopwords to remove from string list
 
     # loop list of words in string_list to count occurences of ec word
     for ec_string in string_list:

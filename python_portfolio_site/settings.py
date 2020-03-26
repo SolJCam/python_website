@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'py_scraper',
-    # 'chatApp',
 ]
 
 MIDDLEWARE = [
