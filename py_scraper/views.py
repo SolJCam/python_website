@@ -39,15 +39,14 @@ except Exception as e:
 
 
 # Using Chromium Driver to grab CNN html data
-driver.get("https://www.cnn.com/")
-cnndata = bs4.BeautifulSoup(driver.page_source, "html.parser")
+driver.get("https://www.cnn.com/")      # Using beautiful soup to parse html data
+cnn_html = bs4.BeautifulSoup(driver.page_source, "html.parser")
 
 # Using requests to grab html data; done upon reading of view file so as to minize pyscraper runtime 
-data = requests.get("https://www.msnbc.com/")
-msnbcdata = bs4.BeautifulSoup(data.text, "html.parser") # Using beautiful soup to parse html data
-data = requests.get("https://www.foxnews.com/")
-foxnewsdata = bs4.BeautifulSoup(data.text, "html.parser")
-
+msnbc_data = requests.get("https://www.msnbc.com/")
+msnbc_html = bs4.BeautifulSoup(msnbc_data.text, "html.parser") 
+foxnews_data = requests.get("https://www.foxnews.com/")
+foxnews_html = bs4.BeautifulSoup(foxnews_data.text, "html.parser")
 
 
 
@@ -71,9 +70,9 @@ def scrape_msnbc(request):
     # retrieve all instances of elements and append to list 
     for cl in classes:
         try:
-            ele.append(msnbcdata.find_all('span', attrs={"class":cl['span']}))
+            ele.append(msnbc_html.find_all('span', attrs={"class":cl['span']}))
         except:
-            ele.append(msnbcdata.find_all('a', attrs={"class":cl['a']}))
+            ele.append(msnbc_html.find_all('a', attrs={"class":cl['a']}))
 
     msnbcfile = open(os.path.join(d, "scrapedata/msnbcnews.txt"), "w") # open text file to write scraped data to
     msnbc_string_list = list()  # list to append indv words created from splitting inner text of elements in ele
@@ -105,7 +104,7 @@ def scrape_cnn(request):
     cnnfile = open(os.path.join(d, "scrapedata/cnnnews.txt"), 'w')
     cnn_string_list = list()  
     for ele in elements:
-        for cnnele in cnndata.find_all(ele):
+        for cnnele in cnn_html.find_all(ele):
             try:
                 if '(function' in cnnele.string: # for function instances that appear throughout cnn's html due to the abundance of script tags
                     continue
@@ -128,7 +127,7 @@ def scrape_cnn(request):
 
 
 def scrape_fox(request):
-    all_a_tags = foxnewsdata.findAll('a')
+    all_a_tags = foxnews_html.findAll('a')
     foxfile = open(os.path.join(d, "scrapedata/foxnews.txt"), "w")
     fox_string_list = list() 
     for tag in all_a_tags:
@@ -138,6 +137,7 @@ def scrape_fox(request):
             foxfile.write(tag.text)
             for string in tag.text.split():
                 fox_string_list.append(string)
+                # pdb.set_trace()
     foxfile.close()
     
     top_five_wrds = wrd_count(fox_string_list, pattern)

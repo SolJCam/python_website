@@ -9,7 +9,7 @@ from wordcloud import WordCloud, STOPWORDS
 
 
 # stopwords to include in both wcgenerator and wrd_count functions
-stopwrds_list = ["we", "says", "view", "entertainment", "u", "news", "cnn", "fox", "/", "+"] + list(STOPWORDS)
+stopwrds_list = ["we", "will", "says", "view", "entertainment", "u", "news", "cnn", "fox", "/", "+"] + list(STOPWORDS)
 
 def wcgenerator(newsfile, imgpath, wrdcld):
     # get data directory (using getcwd() i.e, current working directory, is needed to support running example in generated IPython notebook)
@@ -21,7 +21,7 @@ def wcgenerator(newsfile, imgpath, wrdcld):
     # read the mask image; an image (ideally stencil) used to define the size, shape, coutours etc of the wordcloud
     news_mask = np.array(Image.open(path.join(d, f"py_scraper/static/masks/{imgpath}")))
 
-    wc = WordCloud(background_color="white", max_words=30000, mask=news_mask, stopwords=stopwrds_list, contour_width=3, contour_color='steelblue')
+    wc = WordCloud(background_color="white", max_words=30000, mask=news_mask, stopwords=stopwrds_list, contour_width=3, contour_color='steelblue', relative_scaling='auto')
 
     # generate word cloud
     wc.generate(text)
@@ -41,11 +41,11 @@ def wrd_count(string_list, pattern):
         lower_strings = (ec_string).lower()
         match = re.search(pattern, lower_strings)
         if lower_strings not in stopwrds_list:
-            if match != None:
-                if match[0] in wrd_hash:
-                    wrd_hash[match[0]] = wrd_hash[match[0]]+1
-                else:
+            if match != None and match[0] != 'u':
+                if match[0] not in wrd_hash:
                     wrd_hash[match[0]] = 1
+                else:
+                    wrd_hash[match[0]] = wrd_hash[match[0]]+1
             elif lower_strings in wrd_hash:
                 wrd_hash[lower_strings] = wrd_hash[lower_strings]+1
             else:
