@@ -1,14 +1,19 @@
 console.log("scripts are being read");
 
 
-$(document).ready(e => {
+async function scrape(url) {
+	const response = await fetch(url);
+	return await response.json();
+}
+
+
+$(document).ready(() => {
+
+
     $("#scrape_msnbc").click(e=>{
 		e.preventDefault();
-		
-		fetch("scrape_msnbc")
-			.then((response)=>{
-				return response.json();
-			})
+
+		scrape("scrape_msnbc")
 			.then((json)=>{
 				$('#msnbcwrdcld').attr('src', '/static/imgs/msnbcwrdcld.png');
 				$('#msnbcwrdcld').load(" #msnbcwrdcld");
@@ -25,10 +30,7 @@ $(document).ready(e => {
     $("#scrape_cnn").click(e=>{
 		e.preventDefault();
 		
-		fetch("scrape_cnn")
-			.then((response)=>{
-				return response.json();
-			})
+		scrape("scrape_cnn")
 			.then((json)=>{
 				$('#cnnwrdcld').attr('src', '/static/imgs/cnnwrdcld.png');
 				$('#cnnwrdcld').load(" #cnnwrdcld");
@@ -45,10 +47,7 @@ $(document).ready(e => {
     $("#scrape_fox").click(e=>{
 		e.preventDefault();
 		
-		fetch("scrape_fox")
-			.then((response)=>{
-				return response.json();
-			})
+		scrape("scrape_fox")
 			.then((json)=>{
 				$('#foxwrdcld').attr('src', '/static/imgs/foxwrdcld.png');
 				$('#foxwrdcld').load(" #foxwrdcld");
