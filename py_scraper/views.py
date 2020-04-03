@@ -154,8 +154,8 @@ def scrape_fox(request):
 
 q = Queue(connection=conn)
 
-msnbc_result = q.enqueue(scrape_msnbc, 'request', job_id='msnbc')
-cnn_result = q.enqueue(scrape_cnn, 'request', job_id='cnn')
+# msnbc_result = q.enqueue(scrape_msnbc, 'request', job_id='msnbc')
+# cnn_result = q.enqueue(scrape_cnn, 'request', job_id='cnn')
 fox_result = q.enqueue(scrape_fox, 'request', job_id='fox')
 
 print(len(q))
