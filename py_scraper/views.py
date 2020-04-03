@@ -62,16 +62,6 @@ pattern = r"\b[a-z]+\b"   # pattern to find exact words and avoid duplicates due
 
 
 
-q = Queue(connection=conn)
-
-msnbc_result = q.enqueue(scrape_msnbc, 'request', job_id='msnbc')
-cnn_result = q.enqueue(scrape_cnn, 'request', job_id='cnn')
-fox_result = q.enqueue(scrape_fox, 'request', job_id='fox')
-
-print(len(q))
-
-
-
 def scrape_msnbc(request):
   # html elements where desired text data can be found
     classes = [
@@ -160,3 +150,12 @@ def scrape_fox(request):
     except:
         return HttpResponseNotFound(status=500)
 
+
+
+q = Queue(connection=conn)
+
+msnbc_result = q.enqueue(scrape_msnbc, job_id='msnbc', args=('request'))
+cnn_result = q.enqueue(scrape_cnn, job_id='cnn', args=('request'))
+fox_result = q.enqueue(scrape_fox, job_id='fox', args=('request'))
+
+print(len(q))
