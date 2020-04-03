@@ -5,6 +5,9 @@ import requests, bs4, time, pdb, os, re
 from selenium import webdriver
 from py_scraper.newscloud import wcgenerator, wrd_count
 
+from rq import Queue
+from py_scraper.worker import conn
+
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
@@ -55,8 +58,10 @@ def py_scraper(request):
 
 
 
-
 pattern = r"\b[a-z]+\b"   # pattern to find exact words and avoid duplicates due to punctuation for word count function 
+
+
+q = Queue(connection=conn)
 
 
 def scrape_msnbc(request):
@@ -146,3 +151,13 @@ def scrape_fox(request):
         return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
+
+
+
+
+
+msnbc_result = q.enqueue(scrape_msnbc, 'request', job_id='msnbc')
+cnn_result = q.enqueue(scrape_cnn, 'request', job_id='cnn')
+fox_result = q.enqueue(scrape_fox, 'request', job_id='fox')
+
+print(len(q))
