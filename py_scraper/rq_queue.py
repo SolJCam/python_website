@@ -13,6 +13,7 @@ fox_result = q.enqueue(scrape_fox, job_id='fox', args=('request'))
 # Getting the number of jobs in the queue
 print(len(q))
 
+pdb.set_trace()
 # Examples of how to retrieve jobs
 # queued_jobs = q.jobs # Gets a list of enqueued job instances
 # queued_job_ids = q.job_ids # Gets a list of job IDs from the queue
@@ -24,4 +25,4 @@ for job_id in queued_job_ids:
     print(q.fetch_job(job_id))
 
 # Emptying a queue, this will delete all jobs in this queue
-# q.empty()
+q.empty()
