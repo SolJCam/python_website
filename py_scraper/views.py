@@ -152,13 +152,13 @@ def scrape_fox(request):
 
 
 
-q = Queue(connection=conn)
+# q = Queue(connection=conn)
 
-msnbc_result = q.enqueue(scrape_msnbc, job_id='msnbc', args=('request',))
-cnn_result = q.enqueue(scrape_cnn, job_id='cnn', args=('request',))
-fox_result = q.enqueue(scrape_fox, job_id='fox', args=('request',))
+# msnbc_result = q.enqueue(scrape_msnbc, job_id='msnbc', args=('request',))
+# cnn_result = q.enqueue(scrape_cnn, job_id='cnn', args=('request',))
+# fox_result = q.enqueue(scrape_fox, job_id='fox', args=('request',))
 
-# Emptying a queue, this will delete all jobs in this queue
-q.empty()
+# # Emptying a queue, this will delete all jobs in this queue
+# q.empty()
 
 # print(len(q))
