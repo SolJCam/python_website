@@ -1,7 +1,7 @@
 console.log("scripts are being read");
 
 
-async function scrape(url) {
+async function url(url) {
 	const response = await fetch(url);
 	return await response.json();
 }
@@ -13,7 +13,7 @@ $(document).ready(() => {
     $("#scrape_msnbc").click(e=>{
 		e.preventDefault();
 
-		scrape("scrape_msnbc")
+		url("scrape_msnbc")
 			.then((json)=>{
 				$('#msnbcwrdcld').attr('src', '/static/imgs/msnbcwrdcld.png');
 				$('#msnbcwrdcld').load(" #msnbcwrdcld");
@@ -30,7 +30,7 @@ $(document).ready(() => {
     $("#scrape_cnn").click(e=>{
 		e.preventDefault();
 		
-		scrape("scrape_cnn")
+		url("scrape_cnn")
 			.then((json)=>{
 				$('#cnnwrdcld').attr('src', '/static/imgs/cnnwrdcld.png');
 				$('#cnnwrdcld').load(" #cnnwrdcld");
@@ -47,7 +47,7 @@ $(document).ready(() => {
     $("#scrape_fox").click(e=>{
 		e.preventDefault();
 		
-		scrape("scrape_fox")
+		url("scrape_fox")
 			.then((json)=>{
 				$('#foxwrdcld').attr('src', '/static/imgs/foxwrdcld.png');
 				$('#foxwrdcld').load(" #foxwrdcld");
