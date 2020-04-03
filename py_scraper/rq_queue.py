@@ -22,4 +22,7 @@ pdb.set_trace()
 # Printing jobs based on IDs
 queued_job_ids = q.job_ids
 for job_id in queued_job_ids:
-    print(q.fetch_job(job_id)
+    print(q.fetch_job(job_id))
+
+# Emptying a queue, this will delete all jobs in this queue
+q.empty()
