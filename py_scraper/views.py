@@ -61,8 +61,6 @@ def py_scraper(request):
 pattern = r"\b[a-z]+\b"   # pattern to find exact words and avoid duplicates due to punctuation for word count function 
 
 
-q = Queue(connection=conn)
-
 
 def scrape_msnbc(request):
   # html elements where desired text data can be found
@@ -154,7 +152,7 @@ def scrape_fox(request):
 
 
 
-
+q = Queue(connection=conn)
 
 msnbc_result = q.enqueue(scrape_msnbc, 'request', job_id='msnbc')
 cnn_result = q.enqueue(scrape_cnn, 'request', job_id='cnn')
