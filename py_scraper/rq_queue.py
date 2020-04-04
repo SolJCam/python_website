@@ -6,9 +6,12 @@ from py_scraper.views import scrape_msnbc, scrape_cnn, scrape_fox
 # no args implies the default queue
 q = Queue('default',connection=conn)
 
-msnbc_result = q.enqueue(scrape_msnbc, job_id='msnbc', args=('request'))
-cnn_result = q.enqueue(scrape_cnn, job_id='cnn', args=('request'))
-fox_result = q.enqueue(scrape_fox, job_id='fox', args=('request'))
+# msnbc_result = q.enqueue(scrape_msnbc, job_id='msnbc', args=('request'))
+# cnn_result = q.enqueue(scrape_cnn, job_id='cnn', args=('request'))
+# fox_result = q.enqueue(scrape_fox, job_id='fox', args=('request'))
+msnbc_result = q.enqueue(scrape_msnbc, 'request')
+cnn_result = q.enqueue(scrape_cnn, 'request')
+fox_result = q.enqueue(scrape_fox, 'request')
 
 # Examples of how to retrieve jobs
 # queued_jobs = q.jobs # Gets a list of enqueued job instances
