@@ -22,32 +22,28 @@ def suggest_words(word):
 
 #function for testing variations of word against json file then database and returning best result or suggestions if necessary
 def get_meaning(wrd_input):
-    word = wrd_input.lower()
-    try:
-      meaning = dict_words[word][0]
-    except:
-      word = wrd_input.title()
+
+    if wrd_input.lower() in dict_words:
+      meaning = dict_words[wrd_input.lower()][0]
+    elif wrd_input.title() in dict_words:
+      meaning = dict_words[wrd_input.title()][0]
+    elif wrd_input.upper() in dict_words:
+      meaning = dict_words[wrd_input.upper()][0]
+    else: 
+      word = wrd_input.lower()
       try:
-        meaning = dict_words[word][0]
+        meaning = str(Word.objects.get(word=word))
       except:
-        word = wrd_input.upper()
+        word = wrd_input.title()
         try:
-          meaning = dict_words[word][0]
-        except: 
-          word = wrd_input.lower()
+          meaning = str(Word.objects.get(word=word))
+        except:
+          word = wrd_input.upper()
           try:
             meaning = str(Word.objects.get(word=word))
-          except:
-            word = wrd_input.title()
-            try:
-              meaning = str(Word.objects.get(word=word))
-            except:
-              word = wrd_input.upper()
-              try:
-                meaning = str(Word.objects.get(word=word))
-              except: 
-                meaning = suggest_words(wrd_input)
-    pdb.set_trace()
+          except: 
+            meaning = suggest_words(wrd_input)
+    # pdb.set_trace()
     return meaning
 
 
