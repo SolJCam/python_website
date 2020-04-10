@@ -293,6 +293,8 @@ if (window.matchMedia("(max-width:992px)").matches) {
     }, 215)
   });
 
+  $("#navbarSupportedContent").toggleClass("d-flex");
+  
   // nav project link BASIC functionality to scroll to individual projects on small viewports
   // $('#C').click(function(e){
   //   e.preventDefault();
