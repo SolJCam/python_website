@@ -9,6 +9,13 @@ $(document).ready(function (e) {
     
   console.log('2ndplz!');
 
+  // nav connect link functionality to scroll to social media links
+  $('#C').click(function(e){
+    e.preventDefault();
+    $("#Message")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+  });
+
+
   $("#1").css("background-color", "yellow");
 
   $('#carousel').on('slide.bs.carousel', (relatedTarget) => {
@@ -267,14 +274,6 @@ if (window.matchMedia("(min-width:992px)").matches) {
   $('.proj_smries').toggleClass('ml-4');
   $('.proj-imgs').toggleClass('ml-4');
 
-  // nav Connect link functionality to scroll to social media links on large viewports
-  $('#C').click(function(e){
-    e.preventDefault();
-    $("html,body").animate({
-      scrollTop: 1655
-    }, 500)
-  });
-
   //toggle email position; DO NOT REMOVE. Bootstrap works from small to larg views. The below function is the only way to remove this class for larger viewports  
   $(".email").toggleClass('mr-3 ml-3');
 
@@ -284,22 +283,7 @@ if (window.matchMedia("(min-width:992px)").matches) {
 
 
 if (window.matchMedia("(max-width:992px)").matches) {
-  
-  // nav connect link functionality to scroll to social media links on small viewports: wip
-  $('#C').click(function(e){
-    e.preventDefault();
-    $("html,body").animate({
-      scrollTop: 964
-    }, 215)
-  });
 
-  $("#navbarSupportedContent").toggleClass("d-flex");
-  
-  // nav project link BASIC functionality to scroll to individual projects on small viewports
-  // $('#C').click(function(e){
-  //   e.preventDefault();
-  //   $("html,body").animate({
-  //     scrollTop: 1655
-  //   }, 215)
-  // });
+  // toggle project image sizes on small viewports
+  $(".proj-img").toggleClass("h-100");
 }
