@@ -284,6 +284,9 @@ if (window.matchMedia("(min-width:992px)").matches) {
 
 if (window.matchMedia("(max-width:992px)").matches) {
 
+  // toggle class on navbar to prevent hamburger bug
+  $("#navbarSupportedContent").toggleClass("d-flex");
+
   // toggle project image sizes on small viewports
   $(".proj-img").toggleClass("h-100");
 }

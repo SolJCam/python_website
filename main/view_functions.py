@@ -47,7 +47,7 @@ def get_meaning(wrd_input):
                 meaning = str(Word.objects.get(word=word))
               except: 
                 meaning = suggest_words(wrd_input)
-    # pdb.set_trace()
+    pdb.set_trace()
     return meaning
 
 

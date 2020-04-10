@@ -74,7 +74,8 @@ def project_index(request):
 
 def external_project(request, pk):
   # pdb.set_trace()
-  if pk==2:
+  proj = Project.objects.get(id=pk).title
+  if 'js_ChatApp' == proj:
     response = redirect('https://solschatroom.herokuapp.com/')
     return response
   else:
