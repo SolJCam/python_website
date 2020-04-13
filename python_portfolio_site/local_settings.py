@@ -5,6 +5,8 @@ while the main settings.py file is used solely for your staging and production e
 
 from python_portfolio_site.settings import PROJECT_ROOT, SITE_ROOT
 import os
+from redis import Redis
+from rq import Worker, Queue, Connection
 
 DEBUG = True
 TEMPLATE_DEBUG = True
@@ -28,3 +30,13 @@ DATABASES = {
     #     'PORT': '',
     # },
 }
+
+# queue names to listen to. 
+listen = ['high', 'default', 'low']
+
+lcl_conn = Redis('localhost', 6379)
+
+if __name__ == '__main__':
+    with Connection(lcl_conn):
+        worker = Worker(map(Queue, listen))
+        worker.work()

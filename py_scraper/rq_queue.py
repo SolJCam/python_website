@@ -1,28 +1,31 @@
+import os, pdb
+from rq.job import Job
+from py_scraper.worker import hq_conn
+from python_portfolio_site.local_settings import lcl_conn
 from rq import Queue
-from py_scraper.worker import conn
-from py_scraper.views import scrape_msnbc, scrape_cnn, scrape_fox
-import pdb
 
-# no args implies the default queue
-q = Queue('default',connection=conn)
 
-msnbc_result = q.enqueue(scrape_msnbc, job_id='msnbc', args=('request',))
-cnn_result = q.enqueue(scrape_cnn, job_id='cnn', args=('request',))
-fox_result = q.enqueue(scrape_fox, job_id='fox', args=('request',))
-# msnbc_result = q.enqueue(scrape_msnbc)
-# cnn_result = q.enqueue(scrape_cnn)
-# fox_result = q.enqueue(scrape_fox)
+try:
+    if os.environ["SOLS_MAC"]:
+        redis_q = Queue('default',connection=lcl_conn)
+        redis_conn = lcl_conn
 
-pdb.set_trace()
-# Examples of how to retrieve jobs
-# queued_jobs = q.jobs # Gets a list of enqueued job instances
-# queued_job_ids = q.job_ids # Gets a list of job IDs from the queue
-# job = q.fetch_job('my_id') # Returns job having ID "my_id"
+except Exception as e:
+    redis_q = Queue('default',connection=hq_conn)
+    redis_conn = hq_conn
 
-# Printing jobs based on IDs
-queued_job_ids = q.job_ids
-for job_id in queued_job_ids:
-    print(q.fetch_job(job_id))
 
-# Emptying a queue, this will delete all jobs in this queue
-q.empty()
+
+def q_scrape(func, job_id):
+    job = ""
+    if job_id not in redis_q.job_ids:
+        redis_q.enqueue(func, job_id=job_id, args=('request',))
+        print('\n')
+        print(redis_q.fetch_job(job_id))
+        job = Job.fetch(job_id, connection=redis_conn)
+        print(job.get_status()+'\n')
+        # pdb.set_trace()
+    
+    redis_q.empty()
+
+    return redis_q.fetch_job(job_id), job

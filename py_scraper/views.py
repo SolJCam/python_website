@@ -4,9 +4,7 @@ from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 import requests, bs4, time, pdb, os, re
 from selenium import webdriver
 from py_scraper.newscloud import wcgenerator, wrd_count
-
-from rq import Queue
-from py_scraper.worker import conn
+from py_scraper.rq_queue import q_scrape
 
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
@@ -30,7 +28,7 @@ try:
         driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
         # # Driver for testing (Includes log)
         # driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path,service_args=["--verbose", "--log-path=selchrome.log"])
-        
+
 except Exception as e:
     # Chrome/Selenium configuration for Heroku
     options = webdriver.ChromeOptions()
@@ -39,7 +37,6 @@ except Exception as e:
     options.add_argument("--disable-dev-shm-usage")
     options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
     driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
-
 
 # Using Chromium Driver to grab CNN html data
 driver.get("https://www.cnn.com/")      # Using beautiful soup to parse html data
@@ -63,7 +60,11 @@ pattern = r"\b[a-z]+\b"   # pattern to find exact words and avoid duplicates due
 
 
 def scrape_msnbc(request):
-  # html elements where desired text data can be found
+
+    q_result = q_scrape(scrape_msnbc, 'msnbc')
+    print(q_result)
+
+    # html elements where desired text data can be found
     classes = [
         {'span' : 'headline___38PFH'},
         {'span' : 'video-label'},
@@ -99,6 +100,10 @@ def scrape_msnbc(request):
 
 
 def scrape_cnn(request):
+
+    q_result = q_scrape(scrape_cnn, 'cnn')
+    print(q_result)    
+
     elements = [
         'span',
         'strong',
@@ -130,6 +135,10 @@ def scrape_cnn(request):
 
 
 def scrape_fox(request):
+            
+    q_result = q_scrape(scrape_fox, 'fox')
+    print(q_result)    
+
     all_a_tags = foxnews_html.findAll('a')
     foxfile = open(os.path.join(d, "scrapedata/foxnews.txt"), "w")
     fox_string_list = list() 
@@ -149,16 +158,3 @@ def scrape_fox(request):
         return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
-
-
-
-# q = Queue(connection=conn)
-
-# msnbc_result = q.enqueue(scrape_msnbc, job_id='msnbc', args=('request',))
-# cnn_result = q.enqueue(scrape_cnn, job_id='cnn', args=('request',))
-# fox_result = q.enqueue(scrape_fox, job_id='fox', args=('request',))
-
-# # Emptying a queue, this will delete all jobs in this queue
-# q.empty()
-
-# print(len(q))
