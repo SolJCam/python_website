@@ -77,7 +77,7 @@ $(document).ready(function (e) {
       alert("Please provide a message");
     }else{
       debugger
-      var email = "mailto:scameron10@yahoo.com?from="+$('#inputEmail').val()+"&subject="+$('#inputSubject').val()+"&body=<"+$('#inputNameF').val()+" "+$('#inputNameS').val()+"><"+$('#inputEmail').val()+">"+$('#inputMessage').val()+"&target=_top";
+      var email = "mailto:scameron10@yahoo.com?from="+$('#inputEmail').val()+"&subject="+$('#inputSubject').val()+"&body=<"+$('#inputNameF').val()+" "+$('#inputNameS').val()+"><"+$('#inputEmail').val()+">"+$('#inputMessage').val(); // try adding: +"&target=_top"+"&data-rel='external'" ?
       var href = email.replace(/ /g, "%20");
       console.log(href);
       $("#email").attr("action", href);

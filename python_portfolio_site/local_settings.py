@@ -1,6 +1,6 @@
 '''
-By adding a local_settings.py file, you can extend the settings.py file with settings relevant to your local environment, 
-while the main settings.py file is used solely for your staging and production environments. 
+By adding a local_settings.py file, I can extend the settings.py file with settings relevant to my local environment, 
+while the main settings.py file is used solely for staging and production environments. 
 '''
 
 from python_portfolio_site.settings import PROJECT_ROOT, SITE_ROOT
@@ -34,6 +34,7 @@ DATABASES = {
 # queue names to listen to. 
 listen = ['high', 'default', 'low']
 
+# first start redis server: 'redis-server /etc/redis/6379.conf' (need to figure out how to initialize automatically once virt-env is loaded)
 lcl_conn = Redis('localhost', 6379)
 
 if __name__ == '__main__':
