@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 import requests, bs4, time, pdb, os, re
 from selenium import webdriver
 from py_scraper.newscloud import wcgenerator, wrd_count
-from py_scraper.rq_queue import q_scrape
+# from py_scraper.rq_queue import q_scrape
 
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
@@ -61,8 +61,8 @@ pattern = r"\b[a-z]+\b"   # pattern to find exact words and avoid duplicates due
 
 def scrape_msnbc(request):
 
-    q_result = q_scrape(scrape_msnbc, 'msnbc')
-    print(q_result)
+    # q_result = q_scrape(scrape_msnbc, 'msnbc')
+    # print(q_result)
 
     # html elements where desired text data can be found
     classes = [
@@ -101,8 +101,8 @@ def scrape_msnbc(request):
 
 def scrape_cnn(request):
 
-    q_result = q_scrape(scrape_cnn, 'cnn')
-    print(q_result)    
+    # q_result = q_scrape(scrape_cnn, 'cnn')
+    # print(q_result)    
 
     elements = [
         'span',
@@ -136,8 +136,8 @@ def scrape_cnn(request):
 
 def scrape_fox(request):
             
-    q_result = q_scrape(scrape_fox, 'fox')
-    print(q_result)    
+    # q_result = q_scrape(scrape_fox, 'fox')
+    # print(q_result)    
 
     all_a_tags = foxnews_html.findAll('a')
     foxfile = open(os.path.join(d, "scrapedata/foxnews.txt"), "w")
