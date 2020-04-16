@@ -1,7 +1,7 @@
 import os, pdb
 from rq.job import Job
 from py_scraper.worker import hq_conn
-from python_portfolio_site.local_settings import lcl_conn
+# from python_portfolio_site.local_settings import lcl_conn
 from rq import Queue
 # from rq.registry import StartedJobRegistry, FinishedJobRegistry, FailedJobRegistry, DeferredJobRegistry, 
 # import time
