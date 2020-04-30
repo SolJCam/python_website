@@ -1,19 +1,35 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
+import yagmail, json, pdb #python debugger
 from .models import Project, Word
 from .forms import InputForm, DictForm
-import pdb #python debugger
 from .view_functions import get_meaning, add_word
-
 
 
 
 
 def site_index(request):
   projects = Project.objects.all()
+  new_email = ""
+
+  if request.method == "POST":
+    pdb.set_trace()
+
+    server_email = "soljerrold13@gmail.com"
+    new_email = json.loads(request.body)
+
+    yag = yagmail.SMTP(server_email, oauth2_file="main/oauth2_creds.json")
+    yag.send(
+      to=server_email,
+      subject="Yagmail test with attachment",
+      contents=body, 
+    )
+    print(new_email)
+    return JsonResponse({'ok':True}, status=200)
+
   context = {
-      'projects': projects
+      'projects': projects,
   }
-  # pdb.set_trace()
   return render(request, 'index.html', context)
 
 
@@ -84,4 +100,3 @@ def external_project(request, pk):
       'project': project
     }
     return render(request, 'py_scraper.html', context)
-

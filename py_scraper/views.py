@@ -22,7 +22,7 @@ try:
 
         # Chrome Driver options
         options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-        drive_path = os.path.join(d, 'drivers/chromedriver')
+        drive_path = os.path.join(d, 'drivers/chromedriver81')
 
         # Instanciate WebDriver
         driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)

@@ -1,17 +1,32 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
 
 import re
 
 from .models import Word
 
 
-def validate_word(word):
-    pattern = r"[^A-Za-z]"
-    if re.findall(pattern, word):
-        raise ValidationError(
-            (f"{word} has invalid characters. Only characters a-z, A-Z, '.' and '-' are acceptable. Please try again"), code='invalid characters'
-        )
+
+
+# def validate_email(email):
+#     pattern = r"([\w\.-]+)@([\w\.-]+)(\.[\w\.]+)" # string should contain 3 words (the first 2 with dots and dashes allowed) seperated by '@' and then '.'
+#     if re.findall(pattern, email):
+#         raise ValidationError(
+#             ("%{value} is not writtn in proper email format. Please try again using the following format: xxx@domain.com"), 
+#             code='invalid format',
+#             params={'value': email}
+#         )
+
+
+class EmailForm(forms.Form):
+
+    First_Name = forms.CharField(max_length=20)
+    Last_Name = forms.CharField(max_length=20)
+    Email = forms.CharField(max_length=40)
+    # Email = forms.CharField(max_length=40, validators=[validate_email])
+    Subject = forms.CharField(max_length=40)
+    Message = forms.CharField(max_length=500)
 
 
 
@@ -21,6 +36,16 @@ class InputForm(forms.Form):
     Error = forms.CharField(label='Error')
     Meaning = forms.CharField(label='meaning', widget=forms.Textarea)
     Success = forms.CharField(label='Success!')
+
+
+def validate_word(word):
+    pattern = r"[^A-Za-z]"
+    if re.findall(pattern, word):
+        raise ValidationError(
+            ("%{value} has invalid characters. Only characters a-z, A-Z, '.' and '-' are acceptable. Please try again"), 
+            code='invalid characters',
+            params={'value': word}
+        )
 
 
 class DictForm(forms.ModelForm):
