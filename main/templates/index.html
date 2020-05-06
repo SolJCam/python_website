@@ -36,7 +36,8 @@
                             <li role="button" class="no-gutters" id="resume-nav" >
                                 <div class="col">
                                     <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="res-nav" src="{% static 'img/icons8-resume-60.png' %}" alt="Responsive image">
-                                    <a  id="R" class="nav-item d-lg-none d-block nav-link active text-light" href="pdf.html" rel="nofollow" target="_blank">Resume</a>
+                                    <!-- <a  id="R" class="nav-item d-lg-none d-block nav-link active text-light" href="/" target="_blank">Resume</a> -->
+                                    <a  id="R" class="nav-item d-lg-none d-block nav-link active text-light" href="{% url 'resume' %}" rel="nofollow" target="_blank">Resume</a>
                                 </div> 
                             </li>
                             <li role="button" class="no-gutters" id="connect-nav">                       
@@ -86,11 +87,11 @@
                 </div> 
             </div>
         </div>
-        <!-- <div id="pdf-cont" class="container-fluid main" style="display:none;">
+        <div id="pdf-cont" class="container-fluid main" style="display:none;">
             <div class="row align-items-center one">
                 <canvas id="pdf"></canvas>
             </div>
-        </div> -->
+        </div>
         <section class="row no-gutters bg-con">
             <section class="mr-3 ml-3 col-lg-6 offset-lg-3 mt-5 mb-5 email">
                 <h3 id="emailtitle" class="text-center">Send me an email</h3>

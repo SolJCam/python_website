@@ -35,6 +35,15 @@ def site_index(request):
 
 
 
+def resume(request):
+  context = {
+    'context': "some context...",
+  }
+  return render(request, 'pdf.html', context)
+
+
+
+
 
 def project_index(request):
 

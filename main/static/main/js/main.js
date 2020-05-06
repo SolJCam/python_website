@@ -26,56 +26,6 @@ $(document).ready(function (e) {
     return cookieValue;
   }
   var csrftoken = getCookie('csrftoken');
-
-  // function to launch Resume pdf file
-  function launchPdf (){
-    pdfjsLib.getDocument("assets/Software Developer Resume 5_16.pdf")
-    .promise.then(pdfDoc => { 
-        // debugger 
-        // Load information from the first page.
-        const page = pdfDoc.getPage(1);
-        console.log(pdfDoc); // should be resolved
-        console.log(page); // should be a promise
-        return page; 
-    })
-    .then(page => {
-        // debugger 
-        console.log(page); // should now be resolved
-    
-        const scale = 1;
-        const viewport = page.getViewport({scale});
-    
-        // Apply page dimensions to the <canvas> element.
-        const canvas = document.getElementById("pdf");
-        const context = canvas.getContext("2d");
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-    
-        // Render the page into the <canvas> element.
-        const renderContext = {
-            canvasContext: context,
-            viewport: viewport
-        };
-        // page.render(renderContext);
-
-        const pageCtxt = [
-            page,
-            renderContext
-        ]
-        return pageCtxt;
-    })
-    .then(pageCtxt => {
-        debugger
-        pageCtxt[0].render(pageCtxt[1]);
-    })
-    .catch(err => {
-        // Display error
-        console.log(err);
-    });
-};
-
-// execute pdf function on click
-$("#R").click(launchPdf);
     
   // nav connect link functionality to scroll to social media links
   $('#C').click(function(e){
@@ -125,39 +75,6 @@ $("#R").click(launchPdf);
       $('#carousel').carousel(title_index);
     }
   );
-  
-
-  // resume pdf format rendering
-  // $('#R').click(function(e){
-  //   e.preventDefault();
-  //   (async () => {
-  //     $("#pdf-cont").toggleClass('display')
-  //     debugger
-  //     const loadingTask = pdfjsLib.getDocument("/main/static/main/js/DevRes.pdf");
-  //     // const loadingTask = PDFJS.getDocument("/Software Developer Resume 5_18.pdf");
-  //     const pdf = await loadingTask.promise;
-    
-  //     // Load information from the first page.
-  //     const page = await pdf.getPage(1);
-    
-  //     const scale = 1;
-  //     const viewport = page.getViewport(scale);
-    
-  //     // Apply page dimensions to the <canvas> element.
-  //     const canvas = document.getElementById("pdf");
-  //     const context = canvas.getContext("2d");
-  //     canvas.height = viewport.height;
-  //     canvas.width = viewport.width;
-    
-  //     // Render the page into the <canvas> element.
-  //     const renderContext = {
-  //       canvasContext: context,
-  //       viewport: viewport
-  //     };
-  //     await page.render(renderContext);
-  //     console.log("Page rendered!");
-  //   })();
-  // })
 
 
   //Email submission functionality
