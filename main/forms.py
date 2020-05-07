@@ -1,32 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from django.core.validators import validate_email
-
 import re
-
 from .models import Word
-
-
-
-
-# def validate_email(email):
-#     pattern = r"([\w\.-]+)@([\w\.-]+)(\.[\w\.]+)" # string should contain 3 words (the first 2 with dots and dashes allowed) seperated by '@' and then '.'
-#     if re.findall(pattern, email):
-#         raise ValidationError(
-#             ("%{value} is not writtn in proper email format. Please try again using the following format: xxx@domain.com"), 
-#             code='invalid format',
-#             params={'value': email}
-#         )
-
-
-class EmailForm(forms.Form):
-
-    First_Name = forms.CharField(max_length=20)
-    Last_Name = forms.CharField(max_length=20)
-    Email = forms.CharField(max_length=40)
-    # Email = forms.CharField(max_length=40, validators=[validate_email])
-    Subject = forms.CharField(max_length=40)
-    Message = forms.CharField(max_length=500)
 
 
 
@@ -58,9 +33,3 @@ class DictForm(forms.ModelForm):
     class Meta:
         model = Word
         fields = '__all__'
-        # widgets = {
-        #     'first_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
-        #     'second_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
-        #     'third_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
-        #     'more_definitions': forms.Textarea(attrs={'cols': 50, 'rows': 4}),
-        # }

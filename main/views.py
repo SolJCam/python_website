@@ -13,15 +13,23 @@ def site_index(request):
   new_email = ""
 
   if request.method == "POST":
-    pdb.set_trace()
+    # pdb.set_trace()
 
     server_email = "soljerrold13@gmail.com"
     new_email = json.loads(request.body)
+    Subject = new_email['Subject']
+    body = '''
+      {Name}
+      {Email}
+      
+      {Msg}
+    '''.format(Name = new_email['Body'][1], Email = new_email['Body'][0], Msg = new_email['Body'][2])
 
+    # pdb.set_trace()
     yag = yagmail.SMTP(server_email, oauth2_file="main/oauth2_creds.json")
     yag.send(
       to=server_email,
-      subject="Yagmail test with attachment",
+      subject=Subject,
       contents=body, 
     )
     print(new_email)
@@ -76,7 +84,8 @@ def project_index(request):
       except:
         form = InputForm({'Error': " There was an unknown server error.\n Please enter the word again" })
       
-  #if GET attribute has dict containing data, then this was a user search request. Proceed to processing and returing results  
+  # request.GET returns QueryDict which, if empty, is therefore "false" and code moves on to render projects page. 
+  # If QueryDict contains data then this was a dictonary search request. Proceed to processing and returing results  
   if bool(request.GET) == True:
 
     word = request.GET["Enter_Word"]
@@ -105,7 +114,8 @@ def external_project(request, pk):
     return response
   else:
     project = Project.objects.get(id=pk)
+    html = project.title+'.html'
     context = {
       'project': project
     }
-    return render(request, 'py_scraper.html', context)
+    return render(request, html, context)

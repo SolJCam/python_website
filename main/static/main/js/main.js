@@ -9,7 +9,7 @@ $(document).ready(function (e) {
     
   console.log('2ndplz!');
 
-  // acquire the CSRF token cookie token
+  // code to acquire the CSRF cookie token for email form submission
   function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -80,12 +80,18 @@ $(document).ready(function (e) {
   //Email submission functionality
   $('#submit').click(function(e){
     e.preventDefault();
+    let emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w+)+$/;    // https://www.w3resource.com/javascript/form/email-validation.php
+    // let emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;   // https://tylermcginnis.com/validate-email-address-javascript/
+    // debugger; 
     if($('#inputNameF').val()==""){
       alert("Please provide a name");
       $("#inputNameF").css({"border-color":"red", "border-width": "3px"});
     }else if($('#inputEmail').val()==""){
       $("#inputEmail").css({"border-color":"red", "border-width": "3px"});
       alert("Please provide an email");
+    }else if(emailReg.test($('#inputEmail').val()) == false){
+      $("#inputEmail").css({"border-color":"red", "border-width": "3px"});
+      alert($('#inputEmail').val()+" is an invalid email address. Please try again");    
     }else if($('#inputSubject').val()==""){
       $("#inputSubject").css({"border-color":"red", "border-width": "3px"});
       alert("Please provide a subject");
@@ -94,7 +100,7 @@ $(document).ready(function (e) {
       alert("Please provide a message");
     }else{
       var email = {"Subject":$('#inputSubject').val(), "Body": [$('#inputEmail').val(), $('#inputNameF').val()+" "+$('#inputNameS').val(), $('#inputMessage').val()]};
-      // debugger; 
+      debugger; 
       fetch('/', {
         method: 'POST',
         credentials: "same-origin",
@@ -112,8 +118,7 @@ $(document).ready(function (e) {
       .catch((error) => {
         console.error('Error:', error);
       });
-      
-      // $(this).unbind('click').click();
+      alert("Thank you for emailing! Please look out for my reply!");
     }
 
   });
@@ -153,14 +158,6 @@ $(document).ready(function (e) {
       $("#second").fadeTo("fast", 1);
     }
   );
-
-  // Not sure if this code is necessary. Browser resize suggests yes, Chrome dev tools suggests no. Will know after deployment
-
-  // if (window.matchMedia("(max-width:992px)").matches) {
-  //   $("#myname").toggleClass('offset-3');
-  //   $("#mydevtype").toggleClass('offset-3');
-  //   $(".pills").toggleClass('offset-2 mt-5');
-  // }
 
 
  
