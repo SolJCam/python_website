@@ -10,3 +10,7 @@ rootkey.csv
 # backups of proj dbs and word table data: since removed
 projects.dump
 dictionary.dump
+
+# ignore original py_scraper production views code file
+python_portfolio_site/py_scraper/prod_views.py
+
