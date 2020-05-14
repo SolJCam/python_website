@@ -16,12 +16,12 @@ def py_scraper(request):
 def scrape_msnbc(request):
 
     start = time.time()
-    q_result = q_scrape(msnbc, 'msnbc')
-    top_five_wrds = q_result[0][0]
-    print(q_result)
+    # q_result = q_scrape(msnbc, 'msnbc')
+    # top_five_wrds = q_result[0][0]
+    # print(q_result)
     # pdb.set_trace()
     
-    # top_five_wrds = msnbc('request')[0]
+    top_five_wrds = msnbc('request')[0]
 
     end = time.time()
     time_elapsed = end - start
@@ -38,11 +38,11 @@ def scrape_msnbc(request):
 def scrape_cnn(request):
 
     start = time.time()
-    q_result = q_scrape(cnn, 'cnn')
-    top_five_wrds = q_result[0][0]
-    print(q_result)
+    # q_result = q_scrape(cnn, 'cnn')
+    # top_five_wrds = q_result[0][0]
+    # print(q_result)
     
-    # top_five_wrds = cnn('request')[0]
+    top_five_wrds = cnn('request')[0]
     
     end = time.time()
     time_elapsed = end - start
@@ -59,11 +59,11 @@ def scrape_cnn(request):
 def scrape_fox(request):
             
     start = time.time()
-    q_result = q_scrape(fox, 'fox')
-    top_five_wrds = q_result[0][0]
-    print(q_result)
+    # q_result = q_scrape(fox, 'fox')
+    # top_five_wrds = q_result[0][0]
+    # print(q_result)
     
-    # top_five_wrds = fox('request')[0]
+    top_five_wrds = fox('request')[0]
     
     end = time.time()
     time_elapsed = end - start
