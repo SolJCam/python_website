@@ -8,41 +8,12 @@ from py_scraper.newscloud import wcgenerator, wrd_count
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
-try:
-    if os.environ["SOLS_MAC"]:
-        options = webdriver.ChromeOptions()
-        options.add_argument("--ignore-certificate-errors")
-        options.add_argument("--test-type")
-        options.add_argument("--headless")
-
-        # # Backup Chromium Driver options
-        # options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
-        # drive_path = os.path.join(d, 'drivers/chromiumdriver')
-
-        # Chrome Driver options
-        options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-        drive_path = os.path.join(d, 'drivers/chromedriver81')
-
-        # Instanciate WebDriver
-        driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
-        # # Driver for testing (Includes log)
-        # driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path,service_args=["--verbose", "--log-path=selchrome.log"])
-
-except Exception as e:
-    # Chrome/Selenium configuration for Heroku
-    options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-    driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
-
-# options = webdriver.ChromeOptions()
-# options.add_argument("--headless")
-# options.add_argument("--no-sandbox")
-# options.add_argument("--disable-dev-shm-usage")
-# options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-# driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
+options = webdriver.ChromeOptions()
+options.add_argument("--headless")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
 
 # Using Chromium Driver to grab CNN html data
 driver.get("https://www.cnn.com/")      # Using beautiful soup to parse html data
@@ -166,8 +137,3 @@ def fox(request):
     print(time_elapsed)
 
     return top_five_wrds, wcgenerator("foxnews.txt", "fox.jpeg", "foxwrdcld.png")
-
-
-#   heroku buildpacks
-#   heroku buildpacks:add --index 1 https://github.com/heroku/heroku-buildpack-google-chrome.git
-#   heroku buildpacks:add --index 2 https://github.com/heroku/heroku-buildpack-chromedriver.git

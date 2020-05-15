@@ -59,7 +59,7 @@ pattern = r"\b[a-z]+\b"   # pattern to find exact words and avoid duplicates due
 
 
 
-def scrape_msnbc(request):
+def msnbc(request):
 
     q_result = q_scrape(scrape_msnbc, 'msnbc')
     print(q_result)
@@ -99,7 +99,7 @@ def scrape_msnbc(request):
 
 
 
-def scrape_cnn(request):
+def cnn(request):
 
     q_result = q_scrape(scrape_cnn, 'cnn')
     print(q_result)    
@@ -134,7 +134,7 @@ def scrape_cnn(request):
 
 
 
-def scrape_fox(request):
+def fox(request):
             
     q_result = q_scrape(scrape_fox, 'fox')
     print(q_result)    

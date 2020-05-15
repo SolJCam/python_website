@@ -17,7 +17,7 @@ def q_scrape(func, job_id):
     ok = ""
     if job_id not in redis_q.job_ids:
         # pdb.set_trace()
-        ok = redis_q.enqueue(func, job_id=job_id, default_timeout=450, args=('request',))
+        ok = redis_q.enqueue(func, job_id=job_id, default_timeout=600, args=('request',))
         job = Job.fetch(job_id, connection=redis_conn)
         print('\n')
         print(job)
