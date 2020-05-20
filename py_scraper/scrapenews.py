@@ -70,7 +70,7 @@ def msnbc(request):
     
     end = time.time()
     time_elapsed = end - start
-    print(time_elapsed)
+    print("Time elapsed to scrape page and count words: "+str(round(time_elapsed, 2))+" secs")
 
     return  top_five_wrds, wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
         
@@ -106,7 +106,7 @@ def cnn(request):
         
     end = time.time()
     time_elapsed = end - start
-    print(time_elapsed)
+    print("Time elapsed to scrape page and count words: "+str(round(time_elapsed, 2))+" secs")
 
     return top_five_wrds, wcgenerator("cnnnews.txt", "cnn.png", "cnnwrdcld.png")
 
@@ -122,7 +122,7 @@ def fox(request):
     fox_string_list = list() 
     for tag in all_a_tags:
         if tag.text == '':
-            continue
+            countinue
         else:
             foxfile.write(tag.text)
             for string in tag.text.split():
@@ -134,6 +134,6 @@ def fox(request):
         
     end = time.time()
     time_elapsed = end - start
-    print(time_elapsed)
+    print("Time elapsed to scrape page and count words: "+str(round(time_elapsed, 2))+" secs")
 
     return top_five_wrds, wcgenerator("foxnews.txt", "fox.jpeg", "foxwrdcld.png")

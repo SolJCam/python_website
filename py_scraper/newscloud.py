@@ -1,17 +1,21 @@
 from django.http import FileResponse
-import os, pdb, re
+import os, pdb, re, time
 from os import path
 from PIL import Image       # PIL: Python Imaging Library
 import numpy as np
-import matplotlib.pyplot as plt
-
 from wordcloud import WordCloud, STOPWORDS
+from rq import get_current_job
 
 
 # stopwords to include in both wcgenerator and wrd_count functions
 stopwrds_list = ["we", "will", "says", "view", "entertainment", "u", "news", "cnn", "fox", "/", "+", "&"] + list(STOPWORDS)
 
 def wcgenerator(newsfile, imgpath, wrdcld):
+
+    curr_job = get_current_job()
+    print('\nCurrent job: %s' % (curr_job.id,))
+    
+    start = time.time()
     # get data directory (using getcwd() i.e, current working directory, is needed to support running example in generated IPython notebook)
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
@@ -28,7 +32,11 @@ def wcgenerator(newsfile, imgpath, wrdcld):
 
     # store to file
     wc.to_file(path.join(d, f"py_scraper/static/imgs/{wrdcld}"))
-    
+
+    end = time.time()
+    time_elapsed = end - start
+    print(f"Time elapsed to generate and save {wrdcld} word cloud: "+str(round(time_elapsed, 2))+" secs\n")
+
     return "Success!"
 
 
@@ -53,5 +61,5 @@ def wrd_count(string_list, pattern):
     # pdb.set_trace()
     sorted_wrd_hash = sorted(wrd_hash.items(), key=lambda x: x[1], reverse=True)   # sort words based off occurences recorded in values
     return_sorted = sorted_wrd_hash[:5]
-    
+
     return return_sorted

@@ -14,3 +14,8 @@ dictionary.dump
 # ignore original py_scraper production views code file
 python_portfolio_site/py_scraper/prod_views.py
 
+# ignore original py_scraper production views code file
+python_portfolio_site/py_scraper/ol_q.py
+
+# ignore del directory
+python_portfolio_site/del

@@ -5,13 +5,13 @@ from rq import Worker, Queue, Connection
 
 '''
 For local:
-start worker - python worker.py or rq worker
 start redis server - 'redis-server /etc/redis/6379.conf'
+start worker - python worker.py or rq worker high, default*, low        * - default if you don't pass name options arguments
 start dashboard - rq-dashboard
 '''
 
 # queue names to listen to. 
-listen = ['high', 'default', 'low']
+listen = ['msnbc', 'cnn', 'fox']
 
 # return 'redis connection url' from environment variable and setting default value in the event key does not exist
 redis_url = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
