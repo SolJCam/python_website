@@ -1,82 +1,3 @@
-# from django.shortcuts import render
-# from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
-# import pdb, os, time
-# from py_scraper.rq_queue import q_scrape
-# from py_scraper.scrapenews import msnbc, cnn, fox
-# # from py_scraper.prod_views import msnbc, cnn, fox
-
-# d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
-
-
-
-# def py_scraper(request):  
-#   return render(request, 'py_scraper.html')
-
-
-
-# def scrape_msnbc(request):
-
-#     start = time.time()
-#     # q_result = q_scrape(msnbc, 'msnbc')
-#     # top_five_wrds = q_result[0][0]
-#     # print(q_result)
-#     # pdb.set_trace()
-    
-#     top_five_wrds = msnbc('request')[0]
-
-#     end = time.time()
-#     time_elapsed = end - start
-#     print("Time elapsed to complete entire process for msnbc: "+str(round(time_elapsed, 2)))
-
-#     try:
-#         return  JsonResponse(top_five_wrds, safe=False)
-#     except:
-#         return HttpResponseNotFound(status=500)
-
-
-
-
-# def scrape_cnn(request):
-
-#     start = time.time()
-#     # q_result = q_scrape(cnn, 'cnn')
-#     # top_five_wrds = q_result[0][0]
-#     # print(q_result)
-    
-#     top_five_wrds = cnn('request')[0]
-    
-#     end = time.time()
-#     time_elapsed = end - start
-#     print("Time elapsed to complete entire process for cnn: "+str(round(time_elapsed, 2)))
-    
-#     try:
-#         return JsonResponse(top_five_wrds, safe=False)
-#     except:
-#         return HttpResponseNotFound(status=500)
-
-
-
-
-# def scrape_fox(request):
-            
-#     start = time.time()
-#     # q_result = q_scrape(fox, 'fox')
-#     # top_five_wrds = q_result[0][0]
-#     # print(q_result)
-    
-#     top_five_wrds = fox('request')[0]
-    
-#     end = time.time()
-#     time_elapsed = end - start
-#     print("Time elapsed to complete entire process for fox: "+str(round(time_elapsed, 2)))
-
-#     try:
-#         return JsonResponse(top_five_wrds, safe=False)
-#     except:
-#         return HttpResponseNotFound(status=500)
-
-
-
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
@@ -256,3 +177,85 @@ def fox(request):
         return  JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
+
+
+
+
+
+
+# from django.shortcuts import render
+# from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
+# import pdb, os, time
+# from py_scraper.rq_queue import q_scrape
+# from py_scraper.scrapenews import msnbc, cnn, fox
+# # from py_scraper.prod_views import msnbc, cnn, fox
+
+# d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
+
+
+
+# def py_scraper(request):  
+#   return render(request, 'py_scraper.html')
+
+
+
+# def scrape_msnbc(request):
+
+#     start = time.time()
+#     # q_result = q_scrape(msnbc, 'msnbc')
+#     # top_five_wrds = q_result[0][0]
+#     # print(q_result)
+#     # pdb.set_trace()
+    
+#     top_five_wrds = msnbc('request')[0]
+
+#     end = time.time()
+#     time_elapsed = end - start
+#     print("Time elapsed to complete entire process for msnbc: "+str(round(time_elapsed, 2)))
+
+#     try:
+#         return  JsonResponse(top_five_wrds, safe=False)
+#     except:
+#         return HttpResponseNotFound(status=500)
+
+
+
+
+# def scrape_cnn(request):
+
+#     start = time.time()
+#     # q_result = q_scrape(cnn, 'cnn')
+#     # top_five_wrds = q_result[0][0]
+#     # print(q_result)
+    
+#     top_five_wrds = cnn('request')[0]
+    
+#     end = time.time()
+#     time_elapsed = end - start
+#     print("Time elapsed to complete entire process for cnn: "+str(round(time_elapsed, 2)))
+    
+#     try:
+#         return JsonResponse(top_five_wrds, safe=False)
+#     except:
+#         return HttpResponseNotFound(status=500)
+
+
+
+
+# def scrape_fox(request):
+            
+#     start = time.time()
+#     # q_result = q_scrape(fox, 'fox')
+#     # top_five_wrds = q_result[0][0]
+#     # print(q_result)
+    
+#     top_five_wrds = fox('request')[0]
+    
+#     end = time.time()
+#     time_elapsed = end - start
+#     print("Time elapsed to complete entire process for fox: "+str(round(time_elapsed, 2)))
+
+#     try:
+#         return JsonResponse(top_five_wrds, safe=False)
+#     except:
+#         return HttpResponseNotFound(status=500)

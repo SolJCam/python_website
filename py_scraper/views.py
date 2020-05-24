@@ -36,7 +36,7 @@ except Exception as e:
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-    driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
+    driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))       # to update driver version: heroku config:set CHROMEDRIVER_VERSION=
 
 # Using Chromium Driver to grab CNN html data
 driver.get("https://www.cnn.com/")      # Using beautiful soup to parse html data
@@ -98,8 +98,8 @@ def scrape_msnbc(request):
     # pdb.set_trace()
 
     try:
-        # wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
-        q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
+        wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+        # q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
         return  JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
@@ -140,8 +140,8 @@ def scrape_cnn(request):
     # q_scrape(wcgenerator, ("cnnnews.txt", "cnn.png", "cnnwrdcld.png"), 'cnn')
     
     try:
-        # wcgenerator("cnnnews.txt", "cnn.png", "cnnwrdcld.png")
-        q_scrape(wcgenerator, ("cnnnews.txt", "cnn.png", "cnnwrdcld.png"), 'cnn')
+        wcgenerator("cnnnews.txt", "cnn.png", "cnnwrdcld.png")
+        # q_scrape(wcgenerator, ("cnnnews.txt", "cnn.png", "cnnwrdcld.png"), 'cnn')
         return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
@@ -177,8 +177,8 @@ def scrape_fox(request):
     # q_scrape(wcgenerator, ("foxnews.txt", "fox.jpeg", "foxwrdcld.png"), 'fox')
 
     try: 
-        # wcgenerator("foxnews.txt", "fox.jpeg", "foxwrdcld.png")
-        q_scrape(wcgenerator, ("foxnews.txt", "fox.jpeg", "foxwrdcld.png"), 'fox')
+        wcgenerator("foxnews.txt", "fox.jpeg", "foxwrdcld.png")
+        # q_scrape(wcgenerator, ("foxnews.txt", "fox.jpeg", "foxwrdcld.png"), 'fox')
         return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
