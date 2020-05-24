@@ -5,6 +5,8 @@ import requests, bs4, time, pdb, os, re
 from selenium import webdriver
 from py_scraper.newscloud import wcgenerator, wrd_count
 
+from webdriver_manager.chrome import ChromeDriverManager        # remember to pip remove package
+
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
@@ -13,7 +15,8 @@ options.add_argument("--headless")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
+driver = webdriver.Chrome(ChromeDriverManager().install())
+# driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))
 
 # Using Chromium Driver to grab CNN html data
 driver.get("https://www.cnn.com/")      # Using beautiful soup to parse html data
