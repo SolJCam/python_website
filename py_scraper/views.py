@@ -186,7 +186,7 @@ def scrape_fox(request):
 
 
 
-def del_clds(request):
+def del_clds(request):      # may be unnecessary as wrdcld process rarely errors and virtually always saves the latest scraped wrdcld
 
     time.sleep(90)
     # pdb.set_trace()

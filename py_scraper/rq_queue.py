@@ -51,7 +51,7 @@ def q_scrape(func, func_args, job_id):
     print('\n')
 
 
-    time.sleep(300)
+    time.sleep(210)
 
     if job_id =='msnbc' and 'msnbc' in FinishedJobRegistry(queue=msnbc_q):
         print('msnbc is in FinishedJobRegistry')
@@ -77,9 +77,9 @@ def q_scrape(func, func_args, job_id):
 
     if workers[0].successful_job_count > 0:
         print('\n')
-        print(f'There are {workers[0].successful_job_count} successfull jobs')
+        print(f'There are {workers[0].successful_job_count} successfull jobs on the worker')
     if workers[0].failed_job_count > 0:
-        print(f'There are {workers[0].failed_job_count} failed jobs \n')
+        print(f'There are {workers[0].failed_job_count} failed jobs on the worker \n')
 
     # redis_q.empty()
     

@@ -22,19 +22,24 @@ function loadImage(wrdCld, scrape_url, id){
 			try{
 				// debugger
 				$('#'+wrdCld).attr('src', '/static/imgs/'+wrdCld+'.png');
-				if ($('#'+wrdCld)[0].width > 0){
-					$('#'+wrdCld).load('#'+wrdCld);
+				$('#'+wrdCld).load('#'+wrdCld);
+				if ($('#'+wrdCld)[0].width != 0 || $('#'+wrdCld)[0].width != 147){
+				// if ($('#'+wrdCld)[0].width > 0){
+					// debugger
+					// $('#'+wrdCld).load('#'+wrdCld);
 					for(let i=0;i<=4;i++){
 						$(`#${id}-${i}`).text(`${json[i][0]} : ${json[i][1]}`);
+						console.log($(`#${id}-${i}`).text(`${json[i][0]} : ${json[i][1]}`), $(`#${id}-${i}`).text());
 					}
-					console.log('Success!')
+					console.log($('#'+wrdCld).attr('src', '/static/imgs/'+wrdCld+'.png')[0], $('#'+wrdCld)[0]);
+					console.log(`Success scrapeing ${wrdCld}!`)
+					// debugger
 					fetch('del_clds')
 						.then(response => response.json())
 						.then(data => console.log(data));
 				}else{
-					// debugger
-					console.log('Image failure. Resending request')
-					setTimeout(url(url), 180,000)
+					console.log(`Failure scrapeng ${wrdCld}!`)
+					// setTimeout(url, 180000, scrape_url)
 				}
 				// debugger
 			}catch{
