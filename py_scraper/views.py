@@ -215,8 +215,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 import pdb, os, time
 from py_scraper.rq_queue import q_scrape
-# from py_scraper.scrapenews import msnbc, cnn, fox
-from py_scraper.prod_views import msnbc, cnn, fox
+from py_scraper.scrapenews import msnbc, cnn, fox
+# from py_scraper.prod_views import msnbc, cnn, fox
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
