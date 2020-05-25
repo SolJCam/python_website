@@ -216,6 +216,7 @@ from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 import pdb, os, time
 from py_scraper.rq_queue import q_scrape
 from py_scraper.scrapenews import msnbc, cnn, fox
+from py_scraper.newscloud import wcgenerator, wrd_count
 # from py_scraper.prod_views import msnbc, cnn, fox
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
@@ -230,7 +231,7 @@ def py_scraper(request):
 def scrape_msnbc(request):
 
     start = time.time()
-    q_result = q_scrape(msnbc, 'msnbc')
+    q_result = q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
     top_five_wrds = q_result[0][0]
     # print(q_result)
     # pdb.set_trace()
@@ -252,7 +253,7 @@ def scrape_msnbc(request):
 def scrape_cnn(request):
 
     start = time.time()
-    q_result = q_scrape(cnn, 'cnn')
+    q_result = q_scrape(wcgenerator, ("cnnnews.txt", "cnn.png", "cnnwrdcld.png"), 'cnn')
     top_five_wrds = q_result[0][0]
     # print(q_result)
     
@@ -273,7 +274,7 @@ def scrape_cnn(request):
 def scrape_fox(request):
             
     start = time.time()
-    q_result = q_scrape(fox, 'fox')
+    q_result = q_scrape(wcgenerator, ("foxnews.txt", "fox.jpeg", "foxwrdcld.png"), 'fox')
     top_five_wrds = q_result[0][0]
     # print(q_result)
     
