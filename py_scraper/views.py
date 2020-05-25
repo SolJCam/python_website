@@ -287,3 +287,29 @@ def scrape_fox(request):
         return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
+
+
+
+def del_clds(request):      # may be unnecessary as wrdcld process rarely errors and virtually always saves the latest scraped wrdcld
+
+    time.sleep(90)
+    # pdb.set_trace()
+    try:
+        os.remove(os.path.join(d, "static/imgs","msnbcwrdcld.png"))
+        print("deleted word cloud image msnbcwrdcld.png")
+    except:
+        print("no msnbc wrdcld")
+
+    try:
+        os.remove(os.path.join(d, "static/imgs","cnnwrdcld.png"))
+        print("deleted word cloud image cnnwrdcld.png")
+    except:
+        print("no cnn wrdcld")
+    
+    try:
+        os.remove(os.path.join(d, "static/imgs","foxwrdcld.png"))
+        print("deleted word cloud image foxwrdcld.png")
+    except:
+        print("no fox wrdcld")
+
+    return HttpResponse(status=200)
