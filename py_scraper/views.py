@@ -86,6 +86,7 @@ def scrape_msnbc(request):
             for string in text.text.split():
                 msnbc_string_list.append(string)
     msnbcfile.close()
+    print(foxfile = open(os.path.join(d, "scrapedata/foxnews.txt"), "w"))
     top_five_wrds = wrd_count(msnbc_string_list, pattern)
     # pdb.set_trace()
     # run word cont and word cloud generator and return result of word count or raise internal server error exception
@@ -186,6 +187,12 @@ def scrape_fox(request):
 
 
 
+# def S3_upload(request):
+    
+    
+    
+    
+    
 def del_clds(request):      # may be unnecessary as wrdcld process rarely errors and virtually always saves the latest scraped wrdcld
 
     time.sleep(90)
