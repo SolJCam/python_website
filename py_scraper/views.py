@@ -86,7 +86,7 @@ def scrape_msnbc(request):
             for string in text.text.split():
                 msnbc_string_list.append(string)
     msnbcfile.close()
-    print(foxfile = open(os.path.join(d, "scrapedata/foxnews.txt"), "w"))
+    print(open(os.path.join(d, "scrapedata/msnbcnews.txt"), "r"))
     top_five_wrds = wrd_count(msnbc_string_list, pattern)
     # pdb.set_trace()
     # run word cont and word cloud generator and return result of word count or raise internal server error exception
@@ -99,8 +99,8 @@ def scrape_msnbc(request):
     # pdb.set_trace()
 
     try:
-        # wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
-        q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
+        wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+        # q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
         return  JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
