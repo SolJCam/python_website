@@ -1,5 +1,5 @@
 from django.http import FileResponse
-import os, pdb, re, time
+import os, pdb, re, time, boto3
 from os import path
 from PIL import Image       # PIL: Python Imaging Library
 import numpy as np
@@ -35,6 +35,7 @@ def wcgenerator(newsfile, imgpath, wrdcld):
 
     end = time.time()
     time_elapsed = end - start
+    # pdb.set_trace()
     print(f"Time elapsed to generate and save {wrdcld} word cloud: "+str(round(time_elapsed, 2))+" secs\n")
 
     return "Success!"
@@ -63,3 +64,33 @@ def wrd_count(string_list, pattern):
     return_sorted = sorted_wrd_hash[:5]
 
     return return_sorted
+
+
+
+def s3_post(file_name):
+
+    # pdb.set_trace()
+    S3_BUCKET = os.environ.get('S3_BUCKET_NAME')
+
+    file_name = file_name
+    file_type = "txt"
+
+    s3 = boto3.client('s3')
+
+    presigned_post = s3.generate_presigned_post(
+        Bucket = S3_BUCKET,
+        Key = file_name,
+        Fields = {"acl": "public-read", "Content-Type": file_type},
+        Conditions = [
+            {"acl": "public-read"},
+            {"Content-Type": file_type}
+        ],
+        ExpiresIn = 3600
+    ) 
+    # pdb.set_trace()
+
+    return {
+        'data': presigned_post,
+        'url': 'https://%s.s3.amazonaws.com/%s' % (S3_BUCKET, file_name),
+        'file_name': file_name
+    }

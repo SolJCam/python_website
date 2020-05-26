@@ -3,7 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 import requests, bs4, time, pdb, os, re
 from selenium import webdriver
-from py_scraper.newscloud import wcgenerator, wrd_count
+from py_scraper.newscloud import wcgenerator, wrd_count, s3_post
 from py_scraper.rq_queue import q_scrape
 
 
@@ -19,7 +19,7 @@ try:
         # # Backup Chromium Driver options
         # options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
         # drive_path = os.path.join(d, 'drivers/chromiumdriver')
-
+        os.environ['S3_BUCKET_NAME'] = "portfolio-assests"
         # Chrome Driver options
         options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
         drive_path = os.path.join(d, 'drivers/chromedriver83')
@@ -86,21 +86,22 @@ def scrape_msnbc(request):
             for string in text.text.split():
                 msnbc_string_list.append(string)
     msnbcfile.close()
-    print(open(os.path.join(d, "scrapedata/msnbcnews.txt"), "r"))
+
+    # print(open(os.path.join(d, "scrapedata/msnbcnews.txt"), "r"))
     top_five_wrds = wrd_count(msnbc_string_list, pattern)
-    # pdb.set_trace()
-    # run word cont and word cloud generator and return result of word count or raise internal server error exception
+
+    s3_upload('msnbcnews')
         
     end = time.time()
     time_elapsed = end - start
     print("Time elapsed to scrape msnbc and count words: "+str(round(time_elapsed, 2))+" secs")
     
     # q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
-    # pdb.set_trace()
 
     try:
-        wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
-        # q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
+        # run word count and word cloud generator and return result of word count or raise internal server error exception
+        # wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+        q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
         return  JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
@@ -187,8 +188,16 @@ def scrape_fox(request):
 
 
 
-# def S3_upload(request):
-    
+def s3_upload(file_name):
+
+    s3 = s3_post(file_name)
+    news_file = open(os.path.join(d, "scrapedata/"+s3['file_name']+".txt"), "r")
+    post_data = {}
+    for k,v in s3['data']['fields'].items():
+        post_data[k] = v
+    post_data['file'] = news_file
+    print(s3['url'])
+    return requests.post(s3['url'], data=post_data)
     
     
     
