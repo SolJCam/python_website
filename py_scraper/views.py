@@ -90,7 +90,7 @@ def scrape_msnbc(request):
     # print(open(os.path.join(d, "scrapedata/msnbcnews.txt"), "r"))
     top_five_wrds = wrd_count(msnbc_string_list, pattern)
 
-    # s3_upload('msnbcnews')
+    s3_upload('msnbcnews')
         
     end = time.time()
     time_elapsed = end - start
