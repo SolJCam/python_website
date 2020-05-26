@@ -100,8 +100,8 @@ def scrape_msnbc(request):
 
     try:
         # run word count and word cloud generator and return result of word count or raise internal server error exception
-        # wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
-        q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
+        wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+        # q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
         return  JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
@@ -179,8 +179,8 @@ def scrape_fox(request):
     # q_scrape(wcgenerator, ("foxnews.txt", "fox.jpeg", "foxwrdcld.png"), 'fox')
 
     try: 
-        wcgenerator("foxnews.txt", "fox.jpeg", "foxwrdcld.png")
-        # q_scrape(wcgenerator, ("foxnews.txt", "fox.jpeg", "foxwrdcld.png"), 'fox')
+        # wcgenerator("foxnews.txt", "fox.jpeg", "foxwrdcld.png")
+        q_scrape(wcgenerator, ("foxnews.txt", "fox.jpeg", "foxwrdcld.png"), 'fox')
         return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
