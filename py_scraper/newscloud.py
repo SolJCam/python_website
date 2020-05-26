@@ -12,8 +12,8 @@ stopwrds_list = ["we", "will", "says", "view", "entertainment", "u", "news", "cn
 
 def wcgenerator(newsfile, imgpath, wrdcld):
 
-    curr_job = get_current_job()
-    print('\nCurrent job: %s' % (curr_job.id,))
+    # curr_job = get_current_job()
+    # print('\nCurrent job: %s' % (curr_job.id,))
     
     start = time.time()
     # get data directory (using getcwd() i.e, current working directory, is needed to support running example in generated IPython notebook)

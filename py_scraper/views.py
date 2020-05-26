@@ -179,8 +179,8 @@ def scrape_fox(request):
     # q_scrape(wcgenerator, ("foxnews.txt", "fox.jpeg", "foxwrdcld.png"), 'fox')
 
     try: 
-        # wcgenerator("foxnews.txt", "fox.jpeg", "foxwrdcld.png")
-        q_scrape(wcgenerator, ("foxnews.txt", "fox.jpeg", "foxwrdcld.png"), 'fox')
+        wcgenerator("foxnews.txt", "fox.jpeg", "foxwrdcld.png")
+        # q_scrape(wcgenerator, ("foxnews.txt", "fox.jpeg", "foxwrdcld.png"), 'fox')
         return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
