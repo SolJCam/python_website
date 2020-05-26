@@ -1,6 +1,6 @@
 from django.http import FileResponse
 import os, pdb, re, time
-# import boto3
+import boto3
 from os import path
 from PIL import Image       # PIL: Python Imaging Library
 import numpy as np
