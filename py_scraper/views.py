@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
-import requests, bs4, time, pdb, os, re
+from django.http import HttpResponse, HttpResponseNotFound, JsonResponse, FileResponse, HttpRequest, QueryDict
+import requests, bs4, time, pdb, os, re, json, boto3
 from selenium import webdriver
-from py_scraper.newscloud import wcgenerator, wrd_count, s3_post
+from py_scraper.newscloud import wcgenerator, wrd_count
 from py_scraper.rq_queue import q_scrape
 
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
+s3_resource = boto3.resource('s3')
 
 try:
     if os.environ["SOLS_MAC"]:
@@ -16,16 +17,17 @@ try:
         options.add_argument("--test-type")
         options.add_argument("--headless")
 
-        # # Backup Chromium Driver options
-        # options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
-        # drive_path = os.path.join(d, 'drivers/chromiumdriver')
-        os.environ['S3_BUCKET_NAME'] = "portfolio-assests"
         # Chrome Driver options
         options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
         drive_path = os.path.join(d, 'drivers/chromedriver83')
 
         # Instanciate WebDriver
         driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
+
+        # # Chromium Driver backup options
+        # options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
+        # drive_path = os.path.join(d, 'drivers/chromiumdriver')
+
         # # Driver for testing (Includes log)
         # driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path,service_args=["--verbose", "--log-path=selchrome.log"])
 
@@ -58,7 +60,6 @@ def py_scraper(request):
 pattern = r"\b[a-z]+\b"   # pattern to find exact words and avoid duplicates due to punctuation for word count function 
 
 
-
 def scrape_msnbc(request):
 
     start = time.time()
@@ -87,22 +88,29 @@ def scrape_msnbc(request):
                 msnbc_string_list.append(string)
     msnbcfile.close()
 
-    # print(open(os.path.join(d, "scrapedata/msnbcnews.txt"), "r"))
     top_five_wrds = wrd_count(msnbc_string_list, pattern)
 
-    s3_upload('msnbcnews')
-        
     end = time.time()
     time_elapsed = end - start
     print("Time elapsed to scrape msnbc and count words: "+str(round(time_elapsed, 2))+" secs")
     
-    # q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
 
+    # pdb.set_trace()
+    # herokuS3 functionality    
+    # s3request = QueryDict('txt=msnbcnews.txt')
+    # s3 = s3_upload(s3request)
+
+    # Upload text txt Amazon s3 bucket
+    s3_resource.meta.client.upload_file(Filename=os.path.join(d, "scrapedata/msnbcnews.txt"),Bucket="py-scraper",Key="msnbcnews.txt")
+    # Download image from Amazon s3 bucket
+    s3_resource.Object(os.environ['S3_BUCKET_NAME'], "msnbcwrdcld.png").download_file(os.path.join(d, f"py_scraper/static/masks/msnbcwrdcld.png"))
+    # pdb.set_trace()
+
+    # run word count and word cloud generator and return result of word count or raise internal server error exception
     try:
-        # run word count and word cloud generator and return result of word count or raise internal server error exception
-        wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
-        # q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
-        return  JsonResponse(top_five_wrds, safe=False)
+        # wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+        q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
+        return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
 
@@ -139,8 +147,6 @@ def scrape_cnn(request):
     time_elapsed = end - start
     print("Time elapsed to scrape cnn and count words: "+str(round(time_elapsed, 2))+" secs")
     
-    # q_scrape(wcgenerator, ("cnnnews.txt", "cnn.png", "cnnwrdcld.png"), 'cnn')
-    
     try:
         # wcgenerator("cnnnews.txt", "cnn.png", "cnnwrdcld.png")
         q_scrape(wcgenerator, ("cnnnews.txt", "cnn.png", "cnnwrdcld.png"), 'cnn')
@@ -173,10 +179,6 @@ def scrape_fox(request):
     end = time.time()
     time_elapsed = end - start
     print("Time elapsed to scrape fox and count words: "+str(round(time_elapsed, 2))+" secs")
-       
-    # pdb.set_trace()
-
-    # q_scrape(wcgenerator, ("foxnews.txt", "fox.jpeg", "foxwrdcld.png"), 'fox')
 
     try: 
         # wcgenerator("foxnews.txt", "fox.jpeg", "foxwrdcld.png")
@@ -188,145 +190,53 @@ def scrape_fox(request):
 
 
 
-def s3_upload(file_name):
+''' FUNCTIONS TO DELETE SAVED SCRAPED FILES MAY BE UNNECESSARY IN PRODUCTION '''
 
-    s3 = s3_post(file_name)
-    news_file = open(os.path.join(d, "scrapedata/"+s3['file_name']+".txt"), "r")
-    post_data = {}
-    for k,v in s3['data']['fields'].items():
-        post_data[k] = v
-    post_data['file'] = news_file
-    print(s3['url'])
-    return requests.post(s3['url'], data=post_data)
-    
-    
-    
-    
-def del_clds(request):      # may be unnecessary as wrdcld process rarely errors and virtually always saves the latest scraped wrdcld
+
+def del_ms_files(request):
 
     time.sleep(90)
     # pdb.set_trace()
-    try:
-        os.remove(os.path.join(d, "static/imgs","msnbcwrdcld.png"))
-        print("deleted word cloud image msnbcwrdcld.png")
-    except:
-        print("no msnbc wrdcld")
 
     try:
-        os.remove(os.path.join(d, "static/imgs","cnnwrdcld.png"))
-        print("deleted word cloud image cnnwrdcld.png")
+        os.remove(os.path.join(d, "scrapedata","msnbcnews.txt"))
+        os.remove(os.path.join(d, "static/imgs","msnbcwrdcld.png"))
+        print("deleted scrapedata file and word_cloud image for msnbc")
     except:
-        print("no cnn wrdcld")
-    
-    try:
-        os.remove(os.path.join(d, "static/imgs","foxwrdcld.png"))
-        print("deleted word cloud image foxwrdcld.png")
-    except:
-        print("no fox wrdcld")
+        print("no msnbc scrapedata word_cloud files")
 
     return HttpResponse(status=200)
 
 
-# from django.shortcuts import render
-# from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
-# import pdb, os, time
-# from py_scraper.rq_queue import q_scrape
-# from py_scraper.scrapenews import msnbc, cnn, fox
-# from py_scraper.newscloud import wcgenerator, wrd_count
-# # from py_scraper.prod_views import msnbc, cnn, fox
-
-# d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
 
+def del_cnn_files(request):
 
-# def py_scraper(request):  
-#   return render(request, 'py_scraper.html')
+    time.sleep(90)
+    # pdb.set_trace()
 
+    try:
+        os.remove(os.path.join(d, "scrapedata","cnnnews.txt"))
+        os.remove(os.path.join(d, "static/imgs","cnnwrdcld.png"))
+        print("deleted scrapedata file and word_cloud image for cnn")
+    except:
+        print("no cnn scrapedata word_cloud files")
 
-
-# def scrape_msnbc(request):
-
-#     start = time.time()
-#     q_result = q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
-#     top_five_wrds = q_result[0][0]
-#     # print(q_result)
-#     # pdb.set_trace()
-    
-#     # top_five_wrds = msnbc('request')[0]
-
-#     end = time.time()
-#     time_elapsed = end - start
-#     print("Time elapsed to complete entire process for msnbc: "+str(round(time_elapsed, 2)))
-
-#     try:
-#         return  JsonResponse(top_five_wrds, safe=False)
-#     except:
-#         return HttpResponseNotFound(status=500)
+    return HttpResponse(status=200)
 
 
 
 
-# def scrape_cnn(request):
+def del_fox_files(request): 
 
-#     start = time.time()
-#     q_result = q_scrape(wcgenerator, ("cnnnews.txt", "cnn.png", "cnnwrdcld.png"), 'cnn')
-#     top_five_wrds = q_result[0][0]
-#     # print(q_result)
-    
-#     # top_five_wrds = cnn('request')[0]
-    
-#     end = time.time()
-#     time_elapsed = end - start
-#     print("Time elapsed to complete entire process for cnn: "+str(round(time_elapsed, 2)))
-    
-#     try:
-#         return JsonResponse(top_five_wrds, safe=False)
-#     except:
-#         return HttpResponseNotFound(status=500)
+    time.sleep(90)
+    # pdb.set_trace()
 
+    try:
+        os.remove(os.path.join(d, "scrapedata","foxnews.txt"))
+        os.remove(os.path.join(d, "static/imgs","foxwrdcld.png"))
+        print("deleted scrapedata file and word_cloud image for fox")
+    except:
+        print("no fox scrapedata word_cloud files")
 
-
-
-# def scrape_fox(request):
-            
-#     start = time.time()
-#     q_result = q_scrape(wcgenerator, ("foxnews.txt", "fox.jpeg", "foxwrdcld.png"), 'fox')
-#     top_five_wrds = q_result[0][0]
-#     # print(q_result)
-    
-#     # top_five_wrds = fox('request')[0]
-    
-#     end = time.time()
-#     time_elapsed = end - start
-#     print("Time elapsed to complete entire process for fox: "+str(round(time_elapsed, 2)))
-
-#     try:
-#         return JsonResponse(top_five_wrds, safe=False)
-#     except:
-#         return HttpResponseNotFound(status=500)
-
-
-
-# def del_clds(request):      # may be unnecessary as wrdcld process rarely errors and virtually always saves the latest scraped wrdcld
-
-#     time.sleep(90)
-#     # pdb.set_trace()
-#     try:
-#         os.remove(os.path.join(d, "static/imgs","msnbcwrdcld.png"))
-#         print("deleted word cloud image msnbcwrdcld.png")
-#     except:
-#         print("no msnbc wrdcld")
-
-#     try:
-#         os.remove(os.path.join(d, "static/imgs","cnnwrdcld.png"))
-#         print("deleted word cloud image cnnwrdcld.png")
-#     except:
-#         print("no cnn wrdcld")
-    
-#     try:
-#         os.remove(os.path.join(d, "static/imgs","foxwrdcld.png"))
-#         print("deleted word cloud image foxwrdcld.png")
-#     except:
-#         print("no fox wrdcld")
-
-#     return HttpResponse(status=200)
+    return HttpResponse(status=200)

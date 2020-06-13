@@ -8,6 +8,11 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
+
+To run Worker locally:
+start redis server - 'redis-server /etc/redis/6379.conf'
+start worker - python worker.py or rq worker msnbc cnn fox   - if no name options are passed as arguments, will listen to default, resulting in this worker not receiving any jobs.
+start dashboard - rq-dashboard
 """
 
 
@@ -126,15 +131,15 @@ SITE_ROOT = os.path.dirname(PROJECT_ROOT)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/staticfiles/'
+# # Static files (CSS, JavaScript, Images)
+# # https://docs.djangoproject.com/en/2.2/howto/static-files/
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = '/staticfiles/'
 
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
+# # Simplified static file serving.
+# # https://warehouse.python.org/project/whitenoise/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Allow all host hosts/domain names for this site
 ALLOWED_HOSTS = ['*']

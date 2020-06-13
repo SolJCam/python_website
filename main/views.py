@@ -61,7 +61,8 @@ def project_index(request):
   projects = Project.objects.all()
 
   # pdb.set_trace()
-  if request.method == "POST":
+  # if request.method == "POST":
+  if bool(request.POST) == True:
     # create a form instance and populate it with data from the request:
     new_word = DictForm(request.POST)
 

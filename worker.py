@@ -6,7 +6,7 @@ from rq import Worker, Queue, Connection
 '''
 For local:
 start redis server - 'redis-server /etc/redis/6379.conf'
-start worker - python worker.py or rq worker msnbc cnn fox        - if no name options are passed as arguments, will listen to default, resulting in this worker not receiving any jobs.
+start worker - python worker.py or rq worker msnbc cnn fox   - if no name options are passed as arguments, will listen to default, resulting in this worker not receiving any jobs.
 start dashboard - rq-dashboard
 '''
 

@@ -12,10 +12,10 @@ projects.dump
 dictionary.dump
 
 # ignore original py_scraper production views code file
-python_portfolio_site/py_scraper/prod_views.py
-
-# ignore original py_scraper production views code file
-python_portfolio_site/py_scraper/ol_q.py
+python_portfolio_site/py_scraper/heroku_s3.py
 
 # ignore del directory
 python_portfolio_site/del
+
+#  heroku s3 js code
+static/py_scraper/js/herokuS3.js 
