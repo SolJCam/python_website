@@ -3,7 +3,7 @@
 ## CURRENT APPS:
 
 ## **py_dictionary** 
-Online dictionary built on Restful architechture allowing users to create, delete and retrieve words and their definitions
+Online dictionary which allows users to save their own words and definitions
 
 ### **Technologies:**
 
@@ -12,10 +12,8 @@ Online dictionary built on Restful architechture allowing users to create, delet
 - Bootstrap 
 - PostgreSQL
 
-### **Technologies:**
-
 ## **py_scrapper**
-Online web scrapper
+Scrape news networks CNN, FOX News and MSNBC and generate a wordcloud from the result
 
 ### **Technologies:**
 
@@ -24,7 +22,7 @@ Online web scrapper
 - Bootstrap
 
 ## **js_chatApp**
-Chat app that allows multiple simultaneous users. Includes the ability to upload image avatars 
+Chat app that allows multiple simultaneous users. Includes the ability to upload avatar images 
 
 ### **Technologies:**
 

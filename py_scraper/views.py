@@ -102,14 +102,15 @@ def scrape_msnbc(request):
 
     # Upload text txt Amazon s3 bucket
     s3_resource.meta.client.upload_file(Filename=os.path.join(d, "scrapedata/msnbcnews.txt"),Bucket="py-scraper",Key="msnbcnews.txt")
-    # Download image from Amazon s3 bucket
-    s3_resource.Object("py-scraper", "msnbcwrdcld.png").download_file(os.path.join(d, f"py_scraper/static/masks/msnbcwrdcld.png"))
     # pdb.set_trace()
 
-    # run word count and word cloud generator and return result of word count or raise internal server error exception
+    # wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+    success = q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
+    # pdb.set_trace()
     try:
-        # wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
-        q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
+        # Download image from Amazon s3 bucket
+        if success == "success":
+            s3_resource.Object("py-scraper", "msnbcwrdcld.png").download_file(os.path.join(d, f"static/imgs/msnbcwrd.png"))
         return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
