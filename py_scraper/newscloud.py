@@ -24,7 +24,7 @@ def wcgenerator(newsfile, mskimg, wrdcld):
     s3_resource.Object("py-scraper", newsfile).download_file(path.join(d, f"scrapedata/{newsfile}"))
     # Read the whole text.
     text = open(path.join(d, f'scrapedata/{newsfile}')).read()
-
+    print(text)
     # read the mask image; an image (ideally stencil) used to define the size, shape, coutours etc of the wordcloud
     news_mask = np.array(Image.open(path.join(d, f"static/masks/{mskimg}")))
     wc = WordCloud(background_color="white", max_words=30000, mask=news_mask, stopwords=stopwrds_list, contour_width=3, contour_color='steelblue', relative_scaling='auto')
@@ -32,7 +32,7 @@ def wcgenerator(newsfile, mskimg, wrdcld):
     wc.generate(text)
     # store to file
     wc.to_file(path.join(d, f"static/imgs/{wrdcld}"))
-    
+    print(open(path.join(d, f"static/imgs/{wrdcld}")).read())
     # Upload image to Amazon s3 bucket      ## Curreently not working on heroku!!
     s3_resource.meta.client.upload_file(Filename=path.join(d, f"static/imgs/{wrdcld}"),Bucket="py-scraper",Key=wrdcld)
 

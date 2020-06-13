@@ -34,7 +34,7 @@ $(document).ready(() => {
 						// console.log($('#'+wrdCld).attr('src', '/static/imgs/'+wrdCld+'.png')[0], $('#'+wrdCld)[0]);
 						console.log(`Success scraping ${wrdCld}!`)
 						
-						debugger
+						// debugger
 						// Deleting files. May be unnecessary in production
 						fetch('del_'+id+'_files')
 							.then(response => console.log("Delete "+id+" file http response: "+response.status))
