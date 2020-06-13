@@ -23,7 +23,7 @@ def wcgenerator(newsfile, imgpath, wrdcld):
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
     # Download text from Amazon s3 bucket
-    s3_resource.Object(os.environ['S3_BUCKET_NAME'], {newsfile}).download_file(os.path.join(d, f"scrapedata/{newsfile}"))
+    s3_resource.Object("py-scraper", {newsfile}).download_file(os.path.join(d, f"scrapedata/{newsfile}"))
     # Read the whole text.
     text = open(path.join(d, f'py_scraper/scrapedata/{newsfile}')).read()
 

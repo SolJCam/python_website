@@ -1,3 +1,6 @@
+######     FILES ALREADY BEING TRACKED NEED TO BE REMOVED FOR GITIGNORE TO WORK:    
+######      git rm --cached <filename>         
+
 # useful heroku commands file
 .heroku_commands.txt
 

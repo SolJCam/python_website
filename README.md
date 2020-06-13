@@ -1,26 +1,32 @@
-# **PYTHON PORTFOLIO SITE BUILT ON DJANGO**
+# **DJANGO PORTFOLIO SITE**
 
-## Currently includes 4 apps:
+## CURRENT APPS:
 
-### **Dictionary.py** 
-online dictionary built on Restful architechture allowing users to create, delete and retrieve words and their definitions
+## **py_dictionary** 
+Online dictionary built on Restful architechture allowing users to create, delete and retrieve words and their definitions
 
- **Technologies:**
- 
-### **folium_web_map**
-web mab displaying gradient extremes of mainland United States 
+### **Technologies:**
 
- **Technologies:**
+- difflib.SequenceMatcher
+- difflib.get_close_matches 
+- Bootstrap 
+- PostgreSQL
 
-### **py_scrapper**
-online web scrapper
+### **Technologies:**
 
- **Technologies:**
+## **py_scrapper**
+Online web scrapper
 
-### **chatApp**
-basic chat app that allows multiple simultaneous users who can upload images 
+### **Technologies:**
 
- **Technologies:**
+- BeautifulSoup
+- Word Cloud API
+- Bootstrap
+
+## **js_chatApp**
+Chat app that allows multiple simultaneous users. Includes the ability to upload image avatars 
+
+### **Technologies:**
 
 - Node.js
 - Express.js

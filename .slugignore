@@ -1,11 +1,14 @@
 # ignore local settings file
 python_portfolio_site/local_settings.py
 
-# ignore original production views code file
-python_portfolio_site/py_scraper/heroku_s3.py
+# useful heroku commands file
+.heroku_commands.txt
+
+# ignore original py_scraper production views code file
+py_scraper/heroku_s3.py
 
 # ignore del directory
-python_portfolio_site/del
+del/
 
 #  heroku s3 js code
-static/py_scraper/js/herokuS3.js 
+py_scraper/static/py_scraper/js/herokuS3.js 

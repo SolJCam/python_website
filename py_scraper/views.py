@@ -103,7 +103,7 @@ def scrape_msnbc(request):
     # Upload text txt Amazon s3 bucket
     s3_resource.meta.client.upload_file(Filename=os.path.join(d, "scrapedata/msnbcnews.txt"),Bucket="py-scraper",Key="msnbcnews.txt")
     # Download image from Amazon s3 bucket
-    s3_resource.Object(os.environ['S3_BUCKET_NAME'], "msnbcwrdcld.png").download_file(os.path.join(d, f"py_scraper/static/masks/msnbcwrdcld.png"))
+    s3_resource.Object("py-scraper", "msnbcwrdcld.png").download_file(os.path.join(d, f"py_scraper/static/masks/msnbcwrdcld.png"))
     # pdb.set_trace()
 
     # run word count and word cloud generator and return result of word count or raise internal server error exception
