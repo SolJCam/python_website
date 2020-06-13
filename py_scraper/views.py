@@ -103,8 +103,8 @@ def scrape_msnbc(request):
     # Upload text txt Amazon s3 bucket
     s3_resource.meta.client.upload_file(Filename=os.path.join(d, "scrapedata/msnbcnews.txt"),Bucket="py-scraper",Key="msnbcnews.txt")
 
-    # success = wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
-    success = q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
+    success = wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+    # success = q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
     # pdb.set_trace()
     try:
         # Download image from Amazon s3 bucket

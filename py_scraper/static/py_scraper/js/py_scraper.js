@@ -48,6 +48,8 @@ $(document).ready(() => {
 				};
 			})
 			.catch((error)=>{
+				fetch('del_'+id+'_files')
+					.then(response => console.log("Delete "+id+" file http response: "+response.status))
 				console.log(error);
 				alert("Woops! There was an error. Please reload page and try again");
 			});
