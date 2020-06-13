@@ -27,7 +27,8 @@ $(document).ready(() => {
 					$('#'+wrdCld).load('#'+wrdCld);
 					if ($('#'+wrdCld)[0].width != 0 || $('#'+wrdCld)[0].width != 147){
 						for(let i=0;i<=4;i++){
-							$(`#${id}-${i}`).text(`${json['t5w'][i][0]} : ${json['t5w'][i][1]}`);
+							$(`#${id}-${i}`).text(`${json[i][0]} : ${json[i][1]}`);
+							// $(`#${id}-${i}`).text(`${json['t5w'][i][0]} : ${json['t5w'][i][1]}`);	//herokuS3
 							// console.log($(`#${id}-${i}`).text(`${json['t5w'][i][0]} : ${json['t5w'][i][1]}`), $(`#${id}-${i}`).text());
 						}
 						// console.log($('#'+wrdCld).attr('src', '/static/imgs/'+wrdCld+'.png')[0], $('#'+wrdCld)[0]);

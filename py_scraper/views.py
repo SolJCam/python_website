@@ -104,7 +104,7 @@ def scrape_msnbc(request):
     s3_resource.meta.client.upload_file(Filename=os.path.join(d, "scrapedata/msnbcnews.txt"),Bucket="py-scraper",Key="msnbcnews.txt")
     # pdb.set_trace()
 
-    # wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+    # success = wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
     success = q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
     # pdb.set_trace()
     try:

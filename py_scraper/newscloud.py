@@ -33,7 +33,7 @@ def wcgenerator(newsfile, mskimg, wrdcld):
     # store to file
     wc.to_file(path.join(d, f"static/imgs/{wrdcld}"))
     
-    # Upload image to Amazon s3 bucket
+    # Upload image to Amazon s3 bucket      ## Curreently not working on heroku!!
     s3_resource.meta.client.upload_file(Filename=path.join(d, f"static/imgs/{wrdcld}"),Bucket="py-scraper",Key=wrdcld)
 
     end = time.time()
