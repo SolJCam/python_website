@@ -110,7 +110,8 @@ def scrape_msnbc(request):
         # Download image from Amazon s3 bucket
         if success == "success":
             # s3_resource.Object("py-scraper", "msnbcwrdcld.png").download_file(os.path.join(d, f"static/imgs/msnbcwrdcld.png"))
-        return JsonResponse(top_five_wrds, safe=False)
+            return JsonResponse(top_five_wrds, safe=False)
+        # return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
 
