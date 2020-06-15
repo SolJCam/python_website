@@ -103,16 +103,16 @@ def scrape_msnbc(request):
     # Upload text txt Amazon s3 bucket
     # s3_resource.meta.client.upload_file(Filename=os.path.join(d, "scrapedata/msnbcnews.txt"),Bucket="py-scraper",Key="msnbcnews.txt")
 
-    # success = wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+    success = wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
     # success = q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
-    wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+    # wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
     # pdb.set_trace()
     try:
         # Download image from Amazon s3 bucket
-        # if success == "success":
-            # s3_resource.Object("py-scraper", "msnbcwrdcld.png").download_file(os.path.join(d, f"static/imgs/msnbcwrdcld.png"))
-            # return JsonResponse(top_five_wrds, safe=False)
-        return JsonResponse(top_five_wrds, safe=False)
+        if success == "success":
+            s3_resource.Object("py-scraper", "msnbcwrdcld.png").download_file(os.path.join(d, f"static/imgs/msnbcwrdcld.png"))
+            return JsonResponse(top_five_wrds, safe=False)
+        # return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
 
