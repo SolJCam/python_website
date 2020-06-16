@@ -100,19 +100,18 @@ def scrape_msnbc(request):
     # s3request = QueryDict('txt=msnbcnews.txt')
     # s3 = s3_upload(s3request)
 
-    # Upload text txt Amazon s3 bucket
+    # Upload text file to Amazon s3 bucket
     # s3_resource.meta.client.upload_file(Filename=os.path.join(d, "scrapedata/msnbcnews.txt"),Bucket="py-scraper",Key="msnbcnews.txt")
 
-    success = wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+    # success = wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
     # success = q_scrape(wcgenerator, ("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png"), 'msnbc')
-    # wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
+    wcgenerator("msnbcnews.txt", "msnbc.jpg", "msnbcwrdcld.png")
     # pdb.set_trace()
     try:
         # Download image from Amazon s3 bucket
-        if success == "success":
-            s3_resource.Object("py-scraper", "msnbcwrdcld.png").download_file(os.path.join(d, f"static/imgs/msnbcwrdcld.png"))
-            return JsonResponse(top_five_wrds, safe=False)
-        # return JsonResponse(top_five_wrds, safe=False)
+        # if success == "success":
+        #     s3_resource.Object("py-scraper", "msnbcwrdcld.png").download_file(os.path.join(d, f"static/imgs/msnbcwrdcld.png"))
+        return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
 
@@ -149,10 +148,16 @@ def scrape_cnn(request):
     time_elapsed = end - start
     print("Time elapsed to scrape cnn and count words: "+str(round(time_elapsed, 2))+" secs")
     # pdb.set_trace()
+
+    # s3_resource.meta.client.upload_file(Filename=os.path.join(d, "scrapedata/cnnnews.txt"),Bucket="py-scraper",Key="cnnnews.txt")
+
+    # success = wcgenerator("cnnnews.txt", "cnn.png", "cnnwrdcld.png")
+    # success = q_scrape(wcgenerator, ("cnnnews.txt", "cnn.png", "cnnwrdcld.png"), 'cnn')
+    wcgenerator("cnnnews.txt", "cnn.png", "cnnwrdcld.png")
     
     try:
-        wcgenerator("cnnnews.txt", "cnn.png", "cnnwrdcld.png")
-        # q_scrape(wcgenerator, ("cnnnews.txt", "cnn.png", "cnnwrdcld.png"), 'cnn')
+        # if success == "success":
+        #     s3_resource.Object("py-scraper", "cnnwrdcld.png").download_file(os.path.join(d, f"static/imgs/cnnwrdcld.png"))
         return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
@@ -182,10 +187,16 @@ def scrape_fox(request):
     end = time.time()
     time_elapsed = end - start
     print("Time elapsed to scrape fox and count words: "+str(round(time_elapsed, 2))+" secs")
+ 
+    # s3_resource.meta.client.upload_file(Filename=os.path.join(d, "scrapedata/foxnews.txt"),Bucket="py-scraper",Key="foxnews.txt")
 
-    try: 
-        wcgenerator("foxnews.txt", "fox.jpeg", "foxwrdcld.png")
-        # q_scrape(wcgenerator, ("foxnews.txt", "fox.jpeg", "foxwrdcld.png"), 'fox')
+    # success = wcgenerator("foxnews.txt", "fox.jpeg", "foxwrdcld.png")
+    # success =  q_scrape(wcgenerator, ("foxnews.txt", "fox.jpeg", "foxwrdcld.png"), 'fox')
+    wcgenerator("foxnews.txt", "fox.jpeg", "foxwrdcld.png")
+
+    try:
+        # if success == "success":
+        #     s3_resource.Object("py-scraper", "foxwrdcld.png").download_file(os.path.join(d, f"static/imgs/foxwrdcld.png"))
         return JsonResponse(top_five_wrds, safe=False)
     except:
         return HttpResponseNotFound(status=500)
@@ -198,7 +209,7 @@ def scrape_fox(request):
 
 def del_ms_files(request):
 
-    time.sleep(90)
+    time.sleep(30)
     # pdb.set_trace()
 
     try:
@@ -215,7 +226,7 @@ def del_ms_files(request):
 
 def del_cnn_files(request):
 
-    time.sleep(90)
+    time.sleep(30)
     # pdb.set_trace()
 
     try:
@@ -232,7 +243,7 @@ def del_cnn_files(request):
 
 def del_fox_files(request): 
 
-    time.sleep(90)
+    time.sleep(60)
     # pdb.set_trace()
 
     try:

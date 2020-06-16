@@ -21,7 +21,7 @@ def wcgenerator(newsfile, mskimg, wrdcld):
     # pdb.set_trace()
     
     # download text from Amazon s3 bucket
-    s3_resource.Object("py-scraper", newsfile).download_file(path.join(d, f"scrapedata/{newsfile}"))
+    # s3_resource.Object("py-scraper", newsfile).download_file(path.join(d, f"scrapedata/{newsfile}"))
     # save instance of open text to variable
     text = open(path.join(d, f'scrapedata/{newsfile}')).read()
     # read the mask image; an image (ideally stencil) used to define the size, shape, coutours etc of the wordcloud
@@ -33,7 +33,7 @@ def wcgenerator(newsfile, mskimg, wrdcld):
     # save wc image
     wc.to_file(path.join(d, f"static/imgs/{wrdcld}"))
     # upload image to Amazon s3 bucket      ## Curreently not working on heroku!!
-    s3_resource.meta.client.upload_file(Filename=path.join(d, f"static/imgs/{wrdcld}"),Bucket="py-scraper",Key=wrdcld)
+    # s3_resource.meta.client.upload_file(Filename=path.join(d, f"static/imgs/{wrdcld}"),Bucket="py-scraper",Key=wrdcld)
 
     end = time.time()
     time_elapsed = end - start
