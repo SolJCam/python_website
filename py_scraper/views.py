@@ -209,7 +209,7 @@ def scrape_fox(request):
 
 def del_ms_files(request):
 
-    time.sleep(30)
+    time.sleep(45)
     # pdb.set_trace()
 
     try:
@@ -226,7 +226,7 @@ def del_ms_files(request):
 
 def del_cnn_files(request):
 
-    time.sleep(30)
+    time.sleep(45)
     # pdb.set_trace()
 
     try:
