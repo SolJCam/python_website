@@ -28,9 +28,11 @@ DEBUG = True
 #To run test_views in interactive interpreter (shell)
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver',]
 
+# To redirect http to https
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin', # sol, freddy11
     'django.contrib.auth',

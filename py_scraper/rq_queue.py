@@ -51,7 +51,7 @@ def q_scrape(func, func_args, job_id):
     print('\n')
 
 
-    time.sleep(210)
+    # time.sleep(210)
 
     if job_id =='msnbc' and 'msnbc' in FinishedJobRegistry(queue=msnbc_q):
         print('msnbc is in FinishedJobRegistry')

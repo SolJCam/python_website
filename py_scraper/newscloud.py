@@ -13,7 +13,7 @@ d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 s3_resource = boto3.resource('s3')
 
 # stopwords to include in both wcgenerator and wrd_count functions
-stopwrds_list = ["we", "will", "says", "view", "entertainment", "u", "news", "cnn", "fox", "/", "+", "&"] + list(STOPWORDS)
+stopwrds_list = ["we", "will", "says", "view", "entertainment", "u", "news", "cnn", "fox", "/", "+", "&", "new"] + list(STOPWORDS)
 
 def wcgenerator(newsfile, mskimg, wrdcld):
     
@@ -21,19 +21,19 @@ def wcgenerator(newsfile, mskimg, wrdcld):
     # pdb.set_trace()
     
     # download text from Amazon s3 bucket
-    # s3_resource.Object("py-scraper", newsfile).download_file(path.join(d, f"scrapedata/{newsfile}"))
+    s3_resource.Object("py-scraper", newsfile).download_file(path.join(d, f"scrapedata/{newsfile}"))
     # save instance of open text to variable
     text = open(path.join(d, f'scrapedata/{newsfile}')).read()
     # read the mask image; an image (ideally stencil) used to define the size, shape, coutours etc of the wordcloud
     news_mask = np.array(Image.open(path.join(d, f"static/masks/{mskimg}")))
     # establish parameters for new wc image
-    wc = WordCloud(background_color="white", max_words=300, mask=news_mask, stopwords=stopwrds_list, contour_width=3, contour_color='steelblue', relative_scaling='auto')
+    wc = WordCloud(background_color="white", max_words=30000, mask=news_mask, stopwords=stopwrds_list, contour_width=3, contour_color='steelblue', relative_scaling='auto')
     # generate word cloud
     wc.generate(text)
     # save wc image
     wc.to_file(path.join(d, f"static/imgs/{wrdcld}"))
     # upload image to Amazon s3 bucket      ## Curreently not working on heroku!!
-    # s3_resource.meta.client.upload_file(Filename=path.join(d, f"static/imgs/{wrdcld}"),Bucket="py-scraper",Key=wrdcld)
+    s3_resource.meta.client.upload_file(Filename=path.join(d, f"static/imgs/{wrdcld}"),Bucket="py-scraper",Key=wrdcld)
 
     end = time.time()
     time_elapsed = end - start
@@ -45,7 +45,9 @@ def wcgenerator(newsfile, mskimg, wrdcld):
 
 
 
-def wrd_count(string_list, pattern):
+def wrd_count(string_list):
+    pattern = r"\b[a-z]+\b"   # pattern to find exact words and avoid duplicates due to punctuation for word count function 
+    
     wrd_hash = dict()      # dictionary to add words and number of occurences
 
     # loop list of words in string_list to count occurences of ec word
