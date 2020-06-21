@@ -40,8 +40,8 @@ $(document).ready(() => {
 		console.log(`Success scraping ${wrdCld}!`)
 		
 		// Deleting files. May be unnecessary in production
-		// fetch('del_'+id+'_files')
-		// 	.then(response => console.log("Delete "+id+" file http response: "+response.status));
+		fetch('del_'+id+'_files')
+			.then(response => console.log("Delete "+id+" file http response: "+response.status));
 	}
 
 	function topWrds(id,stw,wrdCld){
