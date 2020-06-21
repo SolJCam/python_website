@@ -331,7 +331,7 @@ def top_msnbc_wrds(request):
 
 def del_msnbc_files(request):
 
-    # time.sleep(15)
+    time.sleep(15)
     # pdb.set_trace()
 
     try:
@@ -348,7 +348,7 @@ def del_msnbc_files(request):
 
 def del_cnn_files(request):
 
-    # time.sleep(15)
+    time.sleep(15)
     # pdb.set_trace()
 
     try:
@@ -365,7 +365,7 @@ def del_cnn_files(request):
 
 def del_fox_files(request): 
 
-    # time.sleep(60)
+    time.sleep(25)
     # pdb.set_trace()
 
     try:
