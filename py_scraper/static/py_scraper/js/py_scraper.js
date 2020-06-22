@@ -84,7 +84,7 @@ $(document).ready(() => {
 		console.log(`Success scraping ${wrdCld}!`)
 		
 		// Deleting files. May be unnecessary in production
-		setTimeout(deleteFiles, 30000, id);
+		setTimeout(deleteFiles, 15000, id);
 	}
 
 
