@@ -241,7 +241,7 @@ def scrape_fox(request):
 
 
 def top_fox_wrds(request):
-    time.sleep(15)
+    time.sleep(10)
 
     try:
         s3_resource.Object("py-scraper", "foxwrdcld.png").download_file(os.path.join(d, "static/imgs/foxwrdcld.png")) # Wordcld process needs to compelte first, otherwise throws internal server error
@@ -331,7 +331,7 @@ def top_msnbc_wrds(request):
 
 def del_msnbc_files(request):
 
-    time.sleep(15)
+    time.sleep(10)
     # pdb.set_trace()
 
     try:
@@ -348,7 +348,7 @@ def del_msnbc_files(request):
 
 def del_cnn_files(request):
 
-    time.sleep(15)
+    time.sleep(10)
     # pdb.set_trace()
 
     try:
