@@ -6,10 +6,12 @@ $(document).ready(() => {
 
 	function runScraper(scrape_url, wrdCld, id){
 
+
 		fetchScraperUrl(scrape_url)
 		.then((stw)=>{
 			// debugger
-			setTimeout(getTopWrds, 30000, id, stw, wrdCld);
+			// setTimeout(getTopWrds, 30000, id, stw, wrdCld);
+			topWrds = setTimeout(getTopWrds, 30000, id, stw, wrdCld);
 		});
 	}
 
@@ -25,9 +27,11 @@ $(document).ready(() => {
 	function getCookie(name) {
 	  var cookieValue = null;
 	  if (document.cookie && document.cookie !== '') {
-		  var cookies = document.cookie.split(';');
+		//   var cookies = document.cookie.split(';');
+		  let cookies = document.cookie.split(';');
 		  for (var i = 0; i < cookies.length; i++) {
-			  var cookie = cookies[i].trim();
+			//   var cookie = cookies[i].trim();
+			  let cookie = cookies[i].trim();
 			  // Does this cookie string begin with the name we want?
 			  if (cookie.substring(0, name.length + 1) === (name + '=')) {
 				  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
@@ -56,7 +60,9 @@ $(document).ready(() => {
 			console.log(wrds);
 			try{
 				// debugger
-				setTimeout(updatePage, 30000, wrds, wrdCld, id);
+				// setTimeout(updatePage, 30000, wrds, wrdCld, id);
+				updtPg = setTimeout(updatePage, 30000, wrds, wrdCld, id);
+				clearTimeout(topWrds)
 			}catch(error){
 				console.log(error);
 				alert("Woops! There was an error. Please reload page and try again"); 
@@ -84,14 +90,25 @@ $(document).ready(() => {
 		console.log(`Success scraping ${wrdCld}!`)
 		
 		// Deleting files. May be unnecessary in production
-		setTimeout(deleteFiles, 15000, id);
+		// setTimeout(deleteFiles, 15000, id);
+		delFiles = setTimeout(deleteFiles, 15000, id);
+		clearTimeout(updtPg);
 	}
 
 
 	function deleteFiles(id){
 		fetch('del_'+id+'_files')
 			.then(response => console.log("Delete "+id+" file http response: "+response.status));
+		clearTimeout(delFiles);
+		// debugger
+		topWrds = null;
+		updtPg = null;
+		delFiles = null;
 	}
+
+	// function clearTimeouts(timeout){
+	// 	clearTimeout(timeout);
+	// }
 
 
 
