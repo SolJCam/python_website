@@ -19,7 +19,7 @@ def wcgenerator(newsfile, mskimg, wrdcld):
     
     start = time.time()
     # pdb.set_trace()
-    
+
     # download text from Amazon s3 bucket
     s3_resource.Object("py-scraper", newsfile).download_file(path.join(d, f"scrapedata/{newsfile}"))
     # save instance of open text to variable

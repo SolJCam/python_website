@@ -210,43 +210,17 @@ def scrape_fox(request):
         # return JsonResponse(fox_string_list, safe=False)
         # return JsonResponse(some_top_wrds, safe=False)
     except:
-        return HttpResponseNotFound(status=500)
+        return HttpResponseNotFound(status=500)    
 
 
 
 
-# def get_res(request):
-    # words = request.body.decode().strip('][').split(',')
-    # word_list = list()
-    # nu_word = ''
-    # remove_list = ['"FOXFILE.TXT"','"CNNFILE.TXT"','"MSNBCFILE.TXT"']
-    # for word in words:
-    #     if word in remove_list or word == '"':
-    #         pass
-    #     elif word not in remove_list:
-    #         nu_word = word.replace('"','')
-    #         word_list.append(nu_word)
-    #         # if nu_word == 'u.s.' or nu_word == 'video' or nu_word == 'U.S.':
-    #         #     pass
-    #         # elif nu_word != 'u.s.' or nu_word != 'video':
-    #         #     word_list.append(nu_word)
-    # pdb.set_trace()
-    # some_top_wrds = wrd_count(word_list)
-    # try:
-    #     return JsonResponse(some_top_wrds, safe=False)
-    # except:
-    #     return HttpResponseNotFound(status=500)  
+''' DOWNLOAD TOP WRDS PASSED THROUGH BROWSER ''' 
 
 
 
 
 def top_fox_wrds(request):
-    time.sleep(10)
-
-    try:
-        s3_resource.Object("py-scraper", "foxwrdcld.png").download_file(os.path.join(d, "static/imgs/foxwrdcld.png")) # Wordcld process needs to compelte first, otherwise throws internal server error
-    except Exception as e:
-        print(f'wcgenerator img upload incomplete/failed: {e.__class__} (Unable to download)')
 
     words = request.body.decode().strip('][').split(',')
     word_list = list()
@@ -271,12 +245,6 @@ def top_fox_wrds(request):
 
 
 def top_cnn_wrds(request):
-    time.sleep(15)
-
-    try:
-        s3_resource.Object("py-scraper", "cnnwrdcld.png").download_file(os.path.join(d, "static/imgs/cnnwrdcld.png")) # Wordcld process needs to compelte first, otherwise throws internal server error
-    except Exception as e:
-        print(f'wcgenerator img upload incomplete/failed: {e.__class__} (Unable to download)')
 
     words = request.body.decode().strip('][').split(',')
     word_list = list()
@@ -298,12 +266,11 @@ def top_cnn_wrds(request):
 
 
 def top_msnbc_wrds(request):
-    time.sleep(15)
-    
-    try:
-        s3_resource.Object("py-scraper", "msnbcwrdcld.png").download_file(os.path.join(d, "static/imgs/msnbcwrdcld.png")) # Wordcld process needs to compelte first, otherwise throws internal server error
-    except Exception as e:
-        print(f'wcgenerator img upload incomplete/failed: {e.__class__} (Unable to download)')
+    # time.sleep(15)    
+    # try:
+    #     s3_resource.Object("py-scraper", "msnbcwrdcld.png").download_file(os.path.join(d, "static/imgs/msnbcwrdcld.png")) # Wordcld process needs to compelte first, otherwise throws internal server error
+    # except Exception as e:
+    #     print(f'wcgenerator img upload incomplete/failed: {e.__class__} (Unable to download)')
 
     words = request.body.decode().strip('][').split(',')
     word_list = list()
@@ -324,14 +291,83 @@ def top_msnbc_wrds(request):
 
 
 
-''' FUNCTIONS TO DELETE SAVED SCRAPED FILES MAY BE UNNECESSARY IN PRODUCTION '''
+''' DOWNLOAD WRDCLD IMGS '''
+
+
+
+
+def msnbc_img(request):
+
+    exists = ''
+
+    try:
+        s3_resource.Object("py-scraper", "msnbcwrdcld.png").download_file(os.path.join(d, "static/imgs/msnbcwrdcld.png")) # Wordcld process needs to compelte first, otherwise throws internal server error
+        exists = 'True'
+    except Exception as e:
+        print(f'wcgenerator img upload incomplete/failed: {e.__class__} (Unable to download)')
+
+    time.sleep(20)
+    
+    if exists == 'True':
+        # os.path.join(d, "static/imgs","msnbcwrdcld.png")
+        print("msnbc word_cloud image downloaded")
+        return HttpResponse(status=200)
+    else:
+        print("no msnbc word_cloud img")
+        return HttpResponse(status=500)
+
+
+
+
+def cnn_img(request):
+
+    exists = ''
+
+    try:
+        s3_resource.Object("py-scraper", "cnnwrdcld.png").download_file(os.path.join(d, "static/imgs/cnnwrdcld.png")) # Wordcld process needs to compelte first, otherwise throws internal server error
+        exists = 'True'
+    except Exception as e:
+        print(f'wcgenerator img upload incomplete/failed: {e.__class__} (Unable to download)')
+
+    time.sleep(20)
+    
+    if exists == 'True':
+        # os.path.join(d, "static/imgs","cnnwrdcld.png")
+        print("cnn word_cloud image downloaded")
+        return HttpResponse(status=200)
+    else:
+        print("no cnn word_cloud img")
+        return HttpResponse(status=500)
+
+
+
+
+def fox_img(request): 
+
+    exists = ''
+
+    try:
+        s3_resource.Object("py-scraper", "foxwrdcld.png").download_file(os.path.join(d, "static/imgs/foxwrdcld.png")) # Wordcld process needs to compelte first, otherwise throws internal server error
+        exists = 'True'
+    except Exception as e:
+        print(f'wcgenerator img upload incomplete/failed: {e.__class__} (Unable to download)')
+
+    time.sleep(25)
+    
+    if exists == 'True':
+        # os.path.join(d, "static/imgs","foxwrdcld.png")
+        print("fox word_cloud image downloaded")
+        return HttpResponse(status=200)
+    else:
+        print("no fox word_cloud img")
+        return HttpResponse(status=500)
 
 
 
 
 def del_msnbc_files(request):
 
-    time.sleep(10)
+    time.sleep(20)
     # pdb.set_trace()
 
     try:
@@ -341,14 +377,19 @@ def del_msnbc_files(request):
     except:
         print("no msnbc scrapedata word_cloud files")
 
-    return HttpResponse(status=200)
+    return HttpResponse(status=200)    
+
+
+
+
+''' FUNCTIONS TO DELETE SAVED SCRAPED FILES MAY BE UNNECESSARY IN PRODUCTION '''
 
 
 
 
 def del_cnn_files(request):
 
-    time.sleep(10)
+    time.sleep(20)
     # pdb.set_trace()
 
     try:
