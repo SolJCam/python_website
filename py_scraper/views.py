@@ -306,7 +306,7 @@ def msnbc_img(request):
     except Exception as e:
         print(f'wcgenerator img upload incomplete/failed: {e.__class__} (Unable to download)')
 
-    time.sleep(20)
+    # time.sleep(20)
     
     if exists == 'True':
         # os.path.join(d, "static/imgs","msnbcwrdcld.png")
@@ -329,7 +329,7 @@ def cnn_img(request):
     except Exception as e:
         print(f'wcgenerator img upload incomplete/failed: {e.__class__} (Unable to download)')
 
-    time.sleep(20)
+    # time.sleep(20)
     
     if exists == 'True':
         # os.path.join(d, "static/imgs","cnnwrdcld.png")
@@ -352,7 +352,7 @@ def fox_img(request):
     except Exception as e:
         print(f'wcgenerator img upload incomplete/failed: {e.__class__} (Unable to download)')
 
-    time.sleep(25)
+    # time.sleep(20)
     
     if exists == 'True':
         # os.path.join(d, "static/imgs","foxwrdcld.png")
@@ -367,7 +367,7 @@ def fox_img(request):
 
 def del_msnbc_files(request):
 
-    time.sleep(20)
+    # time.sleep(20)
     # pdb.set_trace()
 
     try:
@@ -389,7 +389,7 @@ def del_msnbc_files(request):
 
 def del_cnn_files(request):
 
-    time.sleep(20)
+    # time.sleep(20)
     # pdb.set_trace()
 
     try:
@@ -406,7 +406,7 @@ def del_cnn_files(request):
 
 def del_fox_files(request): 
 
-    time.sleep(25)
+    # time.sleep(25)
     # pdb.set_trace()
 
     try:

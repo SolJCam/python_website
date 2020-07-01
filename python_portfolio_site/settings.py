@@ -23,7 +23,7 @@ start dashboard - rq-dashboard
 SECRET_KEY = '-n$5560#1%b2=a)g5#xcq*v&j^w63vwz#t+ez@9&glos^+p*4c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 #To run test_views in interactive interpreter (shell)
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver',]
