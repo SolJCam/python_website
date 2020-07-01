@@ -8,7 +8,7 @@ $(document).ready(() => {
 		const response = await fetch(url);
 		return response.json();
 	}
-	
+
 
 	// code to acquire the CSRF cookie token to post
 	function getCookie(name) {
