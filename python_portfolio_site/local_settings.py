@@ -10,7 +10,7 @@ import os
 
 
 DEBUG = False
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 DATABASES = {
     # 'default': {},
