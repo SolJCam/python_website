@@ -39,8 +39,8 @@ $(document).ready(() => {
 				$('#'+wrdCld).attr('src', '/static/imgs/'+wrdCld+'.png');
 				counter = null
 				// Deleting files. May be unnecessary in production
-				fetch('del_'+id+'_files')
-				.then(response => console.log("Delete "+id+" file http response: "+response.status+", Counter: "+counter));
+				// fetch('del_'+id+'_files')
+				// .then(response => console.log("Delete "+id+" file http response: "+response.status+", Counter: "+counter));
 			}else if(response.status == 500 && counter < 6){
 				// debugger
 				counter += 1

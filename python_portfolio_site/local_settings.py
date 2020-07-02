@@ -9,7 +9,7 @@ import os
 # os.environ["DJANGO_SETTINGS_MODULE"]="python_portfolio_site.local_settings"   # turns out may be unnecessary for local rq-worker
 
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = True
 
 DATABASES = {
