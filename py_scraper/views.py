@@ -360,7 +360,12 @@ def fox_img(request):
         return HttpResponse(status=200)
     else:
         print("no fox word_cloud img")
-        return HttpResponse(status=500)
+        return HttpResponse(status=500)    
+
+
+
+
+''' FUNCTIONS TO DELETE SAVED SCRAPED FILES MAY BE UNNECESSARY IN PRODUCTION '''
 
 
 
@@ -377,12 +382,7 @@ def del_msnbc_files(request):
     except:
         print("no msnbc scrapedata word_cloud files")
 
-    return HttpResponse(status=200)    
-
-
-
-
-''' FUNCTIONS TO DELETE SAVED SCRAPED FILES MAY BE UNNECESSARY IN PRODUCTION '''
+    return HttpResponse(status=200)
 
 
 

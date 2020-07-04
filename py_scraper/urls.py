@@ -5,7 +5,6 @@ urlpatterns = [
     path("scrape_msnbc", views.scrape_msnbc, name="scrape_msnbc"),
     path("scrape_cnn", views.scrape_cnn, name="scrape_cnn"),
     path("scrape_fox", views.scrape_fox, name="scrape_fox"),
-    # path("get_res", views.get_res, name="get_res"),
     path("top_fox_wrds", views.top_fox_wrds, name="top_fox_wrds"),
     path("top_cnn_wrds", views.top_cnn_wrds, name="top_cnn_wrds"),
     path("top_msnbc_wrds", views.top_msnbc_wrds, name="top_msnbc_wrds"),

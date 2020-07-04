@@ -1,7 +1,8 @@
 $(document).ready(() => {
 
 	console.log("scripts are being read");
-	counter = null
+	counter = null;
+	dwnldngImg = null;
 	
 	// only seems to work when written as async function
 	async function fetchScraperUrl(url) {
@@ -38,17 +39,20 @@ $(document).ready(() => {
 				console.log(id+" img file http response: "+response.status)
 				$('#'+wrdCld).attr('src', '/static/imgs/'+wrdCld+'.png');
 				counter = null
+				clearTimeout(dwnldngImg);
 				// Deleting files. May be unnecessary in production
 				// fetch('del_'+id+'_files')
 				// .then(response => console.log("Delete "+id+" file http response: "+response.status+", Counter: "+counter));
 			}else if(response.status == 500 && counter < 6){
 				// debugger
 				counter += 1
-				console.log(id+" img file http response: "+response.status+". Counter: "+counter);
-				dwnldImg(id);
+				dwnldngImg = setTimeout(dwnldImg,30000,id,wrdCld);
+				console.log(id+" img file http response: "+response.status+". Counter: "+counter+" clearTimeout id: "+dwnldngImg);
+				// console.log(id+" img file http response: "+response.status+". Counter: "+counter);
+				// dwnldImg(id);
 			}else{
 				console.log("Sorry, wrdcloud img failed to generate. Please refresh page and try again")
-				alert("Sorry, wrdcloud img failed to generate. Please refresh page and try again")
+				alert("Sorry, "+wrdCld+" img failed to generate. Please refresh page and try again")
 				counter = null
 			}      
 		})
@@ -59,6 +63,7 @@ $(document).ready(() => {
 		fetchScraperUrl(scrape_url)
 		.then((stw)=>{
 			// debugger
+			let dwnldngImg = null;
             fetch('top_'+id+'_wrds', {
                 method: 'POST',
                 credentials: "same-origin",
@@ -74,7 +79,6 @@ $(document).ready(() => {
                 // debugger
                 // console.log(wrds);
                 try{
-                    // debugger
 					dwnldImg(id,wrdCld);
                     for(let i=0;i<=4;i++){
                         $(`#${id}-${i}`).text(`${wrds[i][0]} : ${wrds[i][1]}`);
@@ -85,7 +89,7 @@ $(document).ready(() => {
                     console.log(error);
                     alert("Woops! There was an error. Please reload page and try again"); 
                 }
-            })
+			})
             .catch((error)=>{
                 console.log(error);
                 alert("Woops! There was an error. Please reload page and try again");
