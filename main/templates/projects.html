@@ -49,11 +49,10 @@
                         <img class="proj-img img-fluid h-100" src="{% static project.image %}">
                     </div>
                     <div class="col-md-4 card-body">
-                        <h5 class="card-title"><u>{{ project.title }}</u></h5>
+                        <a href="{% url 'external_project' project.id %}"><h5 class="card-title"><u>{{ project.title }}</u></h5></a> 
                         <p class="card-text"><b>Description:</b> {{ project.description }}</p>
                         <p class="card-text"><b>Technologies:</b> {{ project.technology }}</p>
-                        <div class=w-100></div>
-                        <a href="{% url 'external_project' project.id %}">{{ project.title }}</a> 
+                        <p class="card-text"><b>Github Url:</b><a href={{ project.github_url }}> {{ project.github_url }}</a></p>
                     </div>
                 </div>
             </div>

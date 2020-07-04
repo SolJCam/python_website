@@ -11,7 +11,10 @@ py_scraper/heroku_s3.py
 del/
 
 #  heroku s3 js code
-py_scraper/static/py_scraper/js/herokuS3.js 
+py_scraper/static/py_scraper/js/herokuS3.js
 
-#  prior commit to 6/20 working views
-py_scraper/other_views.py
+# email credentials
+main/oauth2_creds.json
+
+# local settings
+python_portfolio_site/local_settings.py

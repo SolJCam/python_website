@@ -78,9 +78,14 @@
             </div>
         </div>
         <div class="col-md-4 card-body">
-            <h4 class="card-title"><u>py_dictionary</u></h4>
-            <p class="card-text"><b>Description:</b> Online dictionary which allows users to save their own words to a postgresql db</p>
-            <p class="card-text"><b>Technologies:</b> difflib.SequenceMatcher, difflib.get_close_matches, Django, Bootstrap, PostgreSQL</p>
+        {% for project in projects %}
+            {% if project.title == 'py_dictionary' %}
+                <h4 class="card-title"><u>py_dictionary</u></h4>
+                <p class="card-text"><b>Description:</b> {{ project.description }}</p>
+                <p class="card-text"><b>Technologies:</b> {{ project.technology }}</p>
+                <p class="card-text"><b>Github Url:</b><a href={{ project.github_url }}> {{ project.github_url }}</a></p>
+            {% endif %}
+        {% endfor %}
         </div>
     </div>
 </div>
