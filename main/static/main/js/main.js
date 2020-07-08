@@ -26,6 +26,28 @@ $(document).ready(function (e) {
     return cookieValue;
   }
   var csrftoken = getCookie('csrftoken');
+
+  function scrollButton(){
+    // return button behavior
+    let thirty; let scroll;
+
+    window.onscroll = () => { 
+      thirty = $('body').height() * .3; 
+      scroll = window.scrollY; 
+      if(scroll >= thirty) {
+        // console.log(`${scroll} and ${thirty}`);
+        $("#return-btn").css("visibility", "visible");
+      }else{
+        $("#return-btn").css("visibility", "hidden");
+      }
+    }
+
+    $("#return-btn").click(function(e){
+      $("#title")[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+
+  scrollButton();
     
   // nav connect link functionality to scroll to social media links
   $('#C').click(function(e){
@@ -41,12 +63,12 @@ $(document).ready(function (e) {
     let projToHighlight = relatedTarget.relatedTarget.classList[3];
     let arrayProjs = $('.proj_smry');
     let arrayProjsLen = arrayProjs.length;
-    // debugger
+    debugger
     for(let i = 0; i < arrayProjsLen; i++){
       if(arrayProjs[i].id == projToHighlight){
         arrayProjs[i].style.backgroundColor = 'yellow';
         if(i == 0 ){
-          arrayProjs[3].style.backgroundColor = 'white';
+          arrayProjs[arrayProjsLen-1].style.backgroundColor = 'white';
         }else{
           arrayProjs[i-1].style.backgroundColor = 'white';
         }
@@ -66,7 +88,7 @@ $(document).ready(function (e) {
       for(let i = 0; i < projs.length; i++){
         proj_array.push(projs[i].classList[2]);
       }
-      // debugger
+      debugger
       let title = this.children[0].innerText // Keyword 'this' does not work with arrow functions!
       title_index = proj_array.indexOf(title);
       $('#carousel').carousel(title_index);
@@ -148,6 +170,7 @@ $(document).ready(function (e) {
     }
   );
 
+  // Eventually twitter so leave
   $("#third").hover(
     function(){
       $("#first").fadeTo("fast", 0.3);
@@ -159,31 +182,8 @@ $(document).ready(function (e) {
     }
   );
 
-
- 
-  // nav Project link BASIC functionality to scroll to individual projects
-  // $('#project_link2').click(function(e){
-  //   e.preventDefault();
-  //   $("#project2")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-  //   console.log("woohoo!!!");
-  // })
-  // $('#project_link3').click(function(e){
-  //   e.preventDefault();
-  //   $("#project3")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-  //   console.log("woohoo!!!");
-  // })
-  // $('#project_link4').click(function(e){
-  //   e.preventDefault();
-  //   $("#project4")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-  //   console.log("woohoo!!!");
-  // })
-  // $('#project_link1').click(function(e){
-  //   e.preventDefault();
-  //   $("#project1")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-  //   console.log("woohoo!!!");
-  // })
-
-  var projLinks = Object.values($('.go_to_proj'));
+  // var projLinks = Object.values($('.go_to_proj'));
+  var projLinks = $('.go_to_proj');
 
   for(var i=0;i<=projLinks.length;i++){
     let loop = i;
@@ -191,26 +191,9 @@ $(document).ready(function (e) {
       e.preventDefault();
       let num = projLinks[loop].id.slice(12,13);
       $("#project"+num)[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+      scrollButton();
       console.log("woohoo!!!");
-
-      // return button behavior
-      let thirty; let scroll;
-
-      window.onscroll = () => { 
-        thirty = $('body').height() * .3; 
-        scroll = window.scrollY; 
-        if(scroll >= thirty) {
-          // console.log(`${scroll} and ${thirty}`);
-          $("#return-btn").css("visibility", "visible");
-        }else{
-          $("#return-btn").css("visibility", "hidden");
-        }
-      }
-
-      $("#return-btn").click(function(e){
-        $("#title")[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
-      });
-    })
+    });
   }
 
   // on click, display options to add word to dictionary
