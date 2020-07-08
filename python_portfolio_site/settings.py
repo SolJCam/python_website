@@ -34,7 +34,7 @@ SECURE_SSL_REDIRECT = True
 
 # Application definition
 INSTALLED_APPS = [
-    'django.contrib.admin', # sol, freddy11
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

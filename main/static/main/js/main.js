@@ -162,26 +162,56 @@ $(document).ready(function (e) {
 
  
   // nav Project link BASIC functionality to scroll to individual projects
-  $('#project_link2').click(function(e){
-    e.preventDefault();
-    $("#project2")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-    console.log("woohoo!!!");
-  })
-  $('#project_link3').click(function(e){
-    e.preventDefault();
-    $("#project3")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-    console.log("woohoo!!!");
-  })
-  $('#project_link4').click(function(e){
-    e.preventDefault();
-    $("#project4")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-    console.log("woohoo!!!");
-  })
-  $('#project_link1').click(function(e){
-    e.preventDefault();
-    $("#project1")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-    console.log("woohoo!!!");
-  })
+  // $('#project_link2').click(function(e){
+  //   e.preventDefault();
+  //   $("#project2")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+  //   console.log("woohoo!!!");
+  // })
+  // $('#project_link3').click(function(e){
+  //   e.preventDefault();
+  //   $("#project3")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+  //   console.log("woohoo!!!");
+  // })
+  // $('#project_link4').click(function(e){
+  //   e.preventDefault();
+  //   $("#project4")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+  //   console.log("woohoo!!!");
+  // })
+  // $('#project_link1').click(function(e){
+  //   e.preventDefault();
+  //   $("#project1")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+  //   console.log("woohoo!!!");
+  // })
+
+  var projLinks = Object.values($('.go_to_proj'));
+
+  for(var i=0;i<=projLinks.length;i++){
+    let loop = i;
+    $("#"+projLinks[i].id).click(function(e){
+      e.preventDefault();
+      let num = projLinks[loop].id.slice(12,13);
+      $("#project"+num)[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+      console.log("woohoo!!!");
+
+      // return button behavior
+      let thirty; let scroll;
+
+      window.onscroll = () => { 
+        thirty = $('body').height() * .3; 
+        scroll = window.scrollY; 
+        if(scroll >= thirty) {
+          // console.log(`${scroll} and ${thirty}`);
+          $("#return-btn").css("visibility", "visible");
+        }else{
+          $("#return-btn").css("visibility", "hidden");
+        }
+      }
+
+      $("#return-btn").click(function(e){
+        $("#title")[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    })
+  }
 
   // on click, display options to add word to dictionary
   $('#add_word').click(function(e){
@@ -233,25 +263,6 @@ $(document).ready(function (e) {
       alert("Please provide a definition");
       $("#id_definition").css({"border-color":"red", "border-width": "2px"});
     }
-  })
-
-
-  // return button behavior
-  let thirty; let scroll;
-
-  window.onscroll =   () => { 
-    thirty = $('body').height() * .3; 
-    scroll = window.scrollY; 
-    if(scroll >= thirty) {
-      // console.log(`${scroll} and ${thirty}`);
-      $("#return-btn").css("visibility", "visible");
-    }else{
-      $("#return-btn").css("visibility", "hidden");
-    }
-  }
-
-  $("#return-btn").click(function(e){
-    $("#title")[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
 });

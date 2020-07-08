@@ -18,3 +18,6 @@ main/oauth2_creds.json
 
 # local settings
 python_portfolio_site/local_settings.py
+
+# staticfiles directory
+staticfiles/

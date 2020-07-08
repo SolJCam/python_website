@@ -83,6 +83,7 @@
                 <h4 class="card-title"><u>py_dictionary</u></h4>
                 <p class="card-text"><b>Description:</b> {{ project.description }}</p>
                 <p class="card-text"><b>Technologies:</b> {{ project.technology }}</p>
+                <!-- <p class="card-text"><b>Github Url:</b><a href="#"> {{ project.github_url }}</a></p> -->
                 <p class="card-text"><b>Github Url:</b><a href={{ project.github_url }}> {{ project.github_url }}</a></p>
             {% endif %}
         {% endfor %}

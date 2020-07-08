@@ -26,7 +26,7 @@
                 {% for project in projects %}
                   {% if project.title != 'py_dictionary' %}
                     <li class="nav-item links">
-                      <a id="project_link{{ project.id }}" class="nav-link" href="#"><h5 class="text-primary text-center">{{ project.title }}</h5></a>
+                      <a id="project_link{{ project.id }}" class="nav-link go_to_proj" href="#"><h5 class="text-primary text-center">{{ project.title }}</h5></a>
                     </li>
                   {% endif %}
                 {% endfor %}
@@ -46,12 +46,13 @@
             <div id="project{{ project.id }}" class="col-12">
                 <div class="row card mb-2 flex-row flex-wrap proj_img_card">
                     <div class="col-md-8 card-header border-0 proj_img_card">
-                        <img class="proj-img img-fluid h-100" src="{% static project.image %}">
+                      <img class="proj-img img-fluid h-100" src="{% static project.image %}">
                     </div>
                     <div class="col-md-4 card-body">
                         <a href="{% url 'external_project' project.id %}"><h5 class="card-title"><u>{{ project.title }}</u></h5></a> 
                         <p class="card-text"><b>Description:</b> {{ project.description }}</p>
                         <p class="card-text"><b>Technologies:</b> {{ project.technology }}</p>
+                        <!-- <p class="card-text"><b>Github Url:</b><a href="#"> {{ project.github_url }}</a></p> -->
                         <p class="card-text"><b>Github Url:</b><a href={{ project.github_url }}> {{ project.github_url }}</a></p>
                     </div>
                 </div>
