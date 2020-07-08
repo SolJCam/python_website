@@ -27,33 +27,13 @@ $(document).ready(function (e) {
   }
   var csrftoken = getCookie('csrftoken');
 
-  function scrollButton(){
-    // return button behavior
-    let thirty; let scroll;
-
-    window.onscroll = () => { 
-      thirty = $('body').height() * .3; 
-      scroll = window.scrollY; 
-      if(scroll >= thirty) {
-        // console.log(`${scroll} and ${thirty}`);
-        $("#return-btn").css("visibility", "visible");
-      }else{
-        $("#return-btn").css("visibility", "hidden");
-      }
-    }
-
-    $("#return-btn").click(function(e){
-      $("#title")[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-  }
-
-  scrollButton();
     
   // nav connect link functionality to scroll to social media links
   $('#C').click(function(e){
     e.preventDefault();
     $("#Message")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
   });
+
 
   // carousel synced-image-info behavior
   $("#1").css("background-color", "yellow");
@@ -63,7 +43,7 @@ $(document).ready(function (e) {
     let projToHighlight = relatedTarget.relatedTarget.classList[3];
     let arrayProjs = $('.proj_smry');
     let arrayProjsLen = arrayProjs.length;
-    debugger
+    // debugger
     for(let i = 0; i < arrayProjsLen; i++){
       if(arrayProjs[i].id == projToHighlight){
         arrayProjs[i].style.backgroundColor = 'yellow';
@@ -75,6 +55,7 @@ $(document).ready(function (e) {
       }
     }
   });
+
 
   // carousel hover behavior
   $('.proj_smry').hover(
@@ -122,7 +103,7 @@ $(document).ready(function (e) {
       alert("Please provide a message");
     }else{
       var email = {"Subject":$('#inputSubject').val(), "Body": [$('#inputEmail').val(), $('#inputNameF').val()+" "+$('#inputNameS').val(), $('#inputMessage').val()]};
-      debugger; 
+      // debugger; 
       fetch('/', {
         method: 'POST',
         credentials: "same-origin",
@@ -144,7 +125,6 @@ $(document).ready(function (e) {
     }
 
   });
-
 
 
   //Social Media Link Behaviour
@@ -182,23 +162,32 @@ $(document).ready(function (e) {
     }
   );
 
-  // var projLinks = Object.values($('.go_to_proj'));
-  var projLinks = $('.go_to_proj');
 
-  for(var i=0;i<=projLinks.length;i++){
-    let loop = i;
-    $("#"+projLinks[i].id).click(function(e){
-      e.preventDefault();
-      let num = projLinks[loop].id.slice(12,13);
-      $("#project"+num)[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-      scrollButton();
-      console.log("woohoo!!!");
+  // 'return to top' button behavior for projects pg
+  function scrollButton(){
+    let thirty; let scroll;
+
+    window.onscroll = () => { 
+      thirty = $('body').height() * .3; 
+      scroll = window.scrollY; 
+      if(scroll >= thirty) {
+        // console.log(`${scroll} and ${thirty}`);
+        $("#return-btn").css("visibility", "visible");
+      }else{
+        $("#return-btn").css("visibility", "hidden");
+      }
+    }
+
+    $("#return-btn").click(function(e){
+      $("#title")[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   }
 
+  scrollButton();
+
   // on click, display options to add word to dictionary
   $('#add_word').click(function(e){
-    console.log("woohoo!!!");
+    console.log("add word woohoo!!!");
     e.preventDefault();
     $( "#word" ).slideDown("slow", function() {});
     $('#submit_word').toggle();
@@ -206,13 +195,13 @@ $(document).ready(function (e) {
     $('#cancel').toggle();
   })
   $('#more_defs').click(function(e){
-    console.log("woohoo!!!");
+    console.log("add word woohoo!!!");
     e.preventDefault();
     $( "#definitions" ).slideDown("slow", function() {});
     $('#more_defs').toggle();
   })
   $('#cancel').click(function(e){
-    console.log("woohoo!!!");
+    console.log("add word woohoo!!!");
     e.preventDefault();
     $('[name="word_form"]')[0].reset();
     $( "#word" ).slideUp("slow", function() {});
@@ -247,6 +236,22 @@ $(document).ready(function (e) {
       $("#id_definition").css({"border-color":"red", "border-width": "2px"});
     }
   });
+
+  // nav link project page scrolling behavior to go to projs
+  // DO NOT MOVE; 'projLinks[i]' undefined and breaks any code that preceeds it
+  var projLinks = $('.go_to_proj');
+
+  for(var i=0;i<=projLinks.length;i++){
+    let loop = i;
+    $("#"+projLinks[i].id).click(function(e){
+      e.preventDefault();
+      // debugger
+      let num = projLinks[loop].id.slice(12,);
+      $("#project"+num)[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+      scrollButton();
+      console.log("woohoo!!!");
+    });
+  }
 
 });
 

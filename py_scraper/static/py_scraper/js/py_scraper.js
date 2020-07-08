@@ -13,7 +13,8 @@ $(document).ready(() => {
 
 	// code to acquire the CSRF cookie token to post
 	function getCookie(name) {
-	  var cookieValue = null;
+	//   var cookieValue = null;
+	  let cookieValue = null;
 	  if (document.cookie && document.cookie !== '') {
 		//   var cookies = document.cookie.split(';');
 		  let cookies = document.cookie.split(';');
@@ -48,8 +49,6 @@ $(document).ready(() => {
 				counter += 1
 				dwnldngImg = setTimeout(dwnldImg,30000,id,wrdCld);
 				console.log(id+" img file http response: "+response.status+". Counter: "+counter+" clearTimeout id: "+dwnldngImg);
-				// console.log(id+" img file http response: "+response.status+". Counter: "+counter);
-				// dwnldImg(id);
 			}else{
 				console.log("Sorry, wrdcloud img failed to generate. Please refresh page and try again")
 				alert("Sorry, "+wrdCld+" img failed to generate. Please refresh page and try again")
@@ -63,7 +62,6 @@ $(document).ready(() => {
 		fetchScraperUrl(scrape_url)
 		.then((stw)=>{
 			// debugger
-			let dwnldngImg = null;
             fetch('top_'+id+'_wrds', {
                 method: 'POST',
                 credentials: "same-origin",
