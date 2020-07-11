@@ -113,6 +113,8 @@ def external_project(request, pk):
   if 'js_ChatApp' == proj:
     response = redirect('https://solschatroom.herokuapp.com/')
     return response
+  elif 'py_dictionary' == proj:
+    return project_index(request)
   else:
     project = Project.objects.get(id=pk)
     html = project.title+'.html'

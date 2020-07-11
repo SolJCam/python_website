@@ -5,10 +5,10 @@
 {% block content %}
 <div id="" class="col-12">
     <div class="row card mb-2 flex-row flex-wrap">
-        <div class="col-md-8 card-header border-0">
+        <div class="col-md-7 card-header border-0">
             <form id="dict_form" class="mt-2 mb-3 mr-1" action="" method="get">
-                <div class="mt-2 mb-3 mr-1 input-group">
-                    {{ form.Enter_Word.label }}{{ form.Enter_Word }}
+                <div class="offset-md-3 mt-2 mb-3 mr-1 input-group">
+                    <p class='mr-3'>Enter Word:</p>{{ form.Enter_Word }}
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit"><img src="{% static 'img/magnifying-glass-2x.png' %}"></img></button>
                     </div>
@@ -36,7 +36,7 @@
             </form>
             <form id="new_word" class="mt-2 mb-3 mr-1" name="word_form" action="" method="post">
                 {% csrf_token %}
-                <div class="mt-2 mb-3 mr-1 p-3 input-group">
+                <div class="offset-md-3 mt-2 mb-3 p-3 input-group">
                     <div class="row">
                         <div id="word" class="col-12" style="display:none">
                             <div class="col-12">
@@ -68,7 +68,7 @@
                 </div>
             </form>
             <div class="input-group-append">
-                <button id="add_word" class="col-lg-3 ml-5 mr-3 btn btn-outline-primary" href="#" type="button">Add Word</button>
+                <button id="add_word" class="offset-md-4 col-lg-3 btn btn-outline-primary" href="#" type="button">Add Word</button>
                 <button id="cancel" class="col-lg-3 btn btn-outline-danger" href="#" type="button" style="display:none">cancel</button>
             </div>
             <div id="result" class="col">

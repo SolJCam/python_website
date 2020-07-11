@@ -10,17 +10,25 @@ window.onload = ()=>{
           return page; 
       })
       .then(page => {
-        //   debugger 
+          // debugger 
           console.log(page); // should now be resolved
       
-          const scale = 1;
+          let scale = null;
+
+          if (window.matchMedia("(min-width:992px)").matches) { 
+            scale = 1.1;
+          } else if (window.matchMedia("(max-width:992px)").matches) {
+            scale = 1.5;
+          }
+          // const scale = 1.2;
           const viewport = page.getViewport({scale});
-      
+
           // Apply page dimensions to the <canvas> element.
           const canvas = document.getElementById("pdf");
           const context = canvas.getContext("2d");
           canvas.height = viewport.height;
           canvas.width = viewport.width;
+          // debugger
       
           // Render the page into the <canvas> element.
           const renderContext = {

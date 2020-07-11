@@ -67,18 +67,18 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-                <div class="col-md-4 offset-md-1 ml-4 mt-5 d-block proj_smries">
+                <div class="col-md-4 offset-md-1 ml-4 mt-5 pb-3 d-block proj_smries">
                     {% for project in projects %}
                         {% if project.id == 1 %}
-                            <div id="{{ project.id }}" class="mt-md-4 proj_smry" >
-                                <h6 class="proj_titles">{{ project.title }}</h6>
+                            <div id="{{ project.id }}" class="pl-3 pt-2 pb-1 pr-2 proj_smry">
+                                <a href="{% url 'external_project' project.id %}"><h6 class="proj_titles">{{ project.title }}</h6></a>
                                 <p>{{ project.description }}</p>
                                 <div class="w-100"></div>
                             </div>
                         {% endif %}
                         {% if project.id > 1 %}
-                            <div id="{{ project.id }}" class="mt-md-4 proj_smry hover_ele">
-                                <h6 class="proj_titles">{{ project.title }}</h6>
+                            <div id="{{ project.id }}" class="pl-3 pt-2 pb-1 pr-2 proj_smry hover_ele">
+                                <a href="{% url 'external_project' project.id %}"><h6 class="proj_titles">{{ project.title }}</h6></a>
                                 <p>{{ project.description }}</p>
                                 <div class="w-100"></div>
                             </div>
