@@ -54,7 +54,7 @@
                         <p class="card-text"><b>Description:</b> {{ project.description }}</p>
                         <p class="card-text"><b>Technologies:</b> {{ project.technology }}</p>
                         <!-- <p class="card-text"><b>Github Url:</b><a href="#"> {{ project.github_url }}</a></p> -->
-                        <p class="card-text"><b>Github Url:</b><a href={{ project.github_url }} target="_blank"> {{ project.github_url }}</a></p> <!-- href: clearly django template isn't meant to work like this -->
+                        <p class="card-text"><b>Github Url:</b><a href={{ project.github_url }} target="_blank"> {{ project.github_url }}</a></p> <!-- href: clearly django template isn't meant to use href like this -->
                     </div>
                 </div>
             </div>

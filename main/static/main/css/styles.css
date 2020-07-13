@@ -258,7 +258,6 @@
 
     #carousel_img1, #carousel_img2 {
         height: 450px;
-        /* object-fit: cover; */
     }
 
     /* The following code is to create on-hover highlight behavior for carousel */

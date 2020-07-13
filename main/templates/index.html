@@ -57,12 +57,14 @@
                     {% for project in projects %}
                         {% if project.id == 1 %}
                             <div id="carousel_img1" class="mb-md-5 carousel-item active {{ project.title }} {{ project.id }}">
-                                <img src="{% static project.image %}" class="d-block img-fluid h-100" alt="...">
+                                <img src="{% static project.image %}" class="d-flex img-fluid h-100 car_img" alt="...">
+                                <!-- <img src="{% static project.image %}" class="d-block img-fluid h-100 car_img" alt="..."> -->
                             </div>
                         {% endif %}
                         {% if project.id > 1 %}
                             <div id="carousel_img2" class="mb-md-5 carousel-item {{ project.title }} {{ project.id }}">
-                                <img src="{% static project.image %}" class="d-block img-fluid h-100" alt="...">
+                                <img src="{% static project.image %}" class="d-flex img-fluid h-100 car_img" alt="...">
+                                <!-- <img src="{% static project.image %}" class="d-block img-fluid h-100 car_img" alt="..."> -->
                             </div>
                         {% endif %}
                     {% endfor %}

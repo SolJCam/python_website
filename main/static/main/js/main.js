@@ -189,6 +189,7 @@ $(document).ready(function (e) {
   $('#add_word').click(function(e){
     console.log("add word woohoo!!!");
     e.preventDefault();
+    $( "#add_word" ).toggle();
     $( "#word" ).slideDown("slow", function() {});
     $('#submit_word').toggle();
     $('#more_defs').toggle();
@@ -203,6 +204,7 @@ $(document).ready(function (e) {
   $('#cancel').click(function(e){
     console.log("add word woohoo!!!");
     e.preventDefault();
+    $( "#add_word" ).toggle();
     $('[name="word_form"]')[0].reset();
     $( "#word" ).slideUp("slow", function() {});
     $( "#definitions" ).slideUp("slow", function() {});
