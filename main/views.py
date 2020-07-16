@@ -40,7 +40,7 @@ def site_index(request):
     # oauth = json.dumps(oauth_dict)
     # yag = yagmail.SMTP(server_email, oauth2_file=oauth)
     
-    psswrd = os.environ["EGMAIL_PSSWRD"]
+    psswrd = os.environ["GMAIL_PSSWRD"]
     yag = yagmail.SMTP(server_email, psswrd) 
     # yag = yagmail.SMTP(server_email, oauth2_file="main/oauth2_creds.json")  # oauth parameter actually generates this file; no need to create
     # pdb.set_trace()
