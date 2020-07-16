@@ -11,10 +11,7 @@ py_scraper/heroku_s3.py
 del/
 
 #  heroku s3 js code
-py_scraper/static/py_scraper/js/herokuS3.js 
-
-# email credentials
-main/oauth2_creds.json
+py_scraper/static/py_scraper/js/herokuS3.js
 
 # local settings
 python_portfolio_site/local_settings.py

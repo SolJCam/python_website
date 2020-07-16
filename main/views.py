@@ -1,16 +1,18 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import yagmail, json, pdb #python debugger
+# import os
+# from cryptography.fernet import Fernet
+# from .encrypt_creds import encrypt_oauth    # currently in del directory
 from .models import Project, Word
 from .forms import InputForm, DictForm
 from .view_functions import get_meaning, add_word
 
 
-
-
 def site_index(request):
   projects = Project.objects.all()
   new_email = ""
+  # encrypt_oauth()
 
   if request.method == "POST":
     # pdb.set_trace()
@@ -25,15 +27,26 @@ def site_index(request):
       {Msg}
     '''.format(Name = new_email['Body'][1], Email = new_email['Body'][0], Msg = new_email['Body'][2])
 
-    # pdb.set_trace()
+    # key = os.environ["ENCRYPT_KEY"].encode("utf-8")
+    # f = Fernet(key)
+    # encrypted_oauth = os.environ["YAG_SMTP"].split(', ')
+    # encode_oauth = list(map(lambda x: x.encode('utf-8'), encrypted_oauth))
+    # decrypt_oauth = list(map(f.decrypt,encode_oauth))
+    # oauth_dict = {}
+    # for cred in decrypt_oauth:
+    #   creds = cred.decode("utf-8").split(':')
+    #   oauth_dict[creds[0].strip()] = creds[1].strip()
+    # # pdb.set_trace()
+    # oauth = json.dumps(oauth_dict)
+    # yag = yagmail.SMTP(server_email, oauth2_file=oauth)
     yag = yagmail.SMTP(server_email, oauth2_file="main/oauth2_creds.json")
+    # pdb.set_trace()
     yag.send(
       to=server_email,
       subject=Subject,
       contents=body, 
     )
     print(new_email)
-    return JsonResponse({'ok':True}, status=200)
 
   context = {
       'projects': projects,
@@ -75,15 +88,16 @@ def project_index(request):
       else:
         form = InputForm({'Meaning': [f"{new_word.cleaned_data['word']} is already in the dictionary."]})
 
+      # pdb.set_trace()
     else:
       # pdb.set_trace()
       error = new_word.errors.as_data()
 
       try:
         if error['word']:
-          form = InputForm({'Error': " The word entered has invalid characters. Only characters a-z, A-Z, '.' and '-' are acceptable. Please try again" })
+          form = InputForm({'Error':" The word entered has invalid characters. Only characters a-z, A-Z, '.' and '-' are acceptable. Please try again" })
       except:
-        form = InputForm({'Error': " There was an unknown server error.\n Please enter the word again" })
+        form = InputForm({'Error':" There was an unknown server error.\n Please enter the word again" })
       
   # request.GET returns QueryDict which, if empty, is therefore "false" and code moves on to render projects page. 
   # If QueryDict contains data then this was a dictonary search request. Proceed to processing and returing results  
