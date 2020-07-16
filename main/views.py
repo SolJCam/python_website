@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-import yagmail, json, pdb #python debugger
+import yagmail, json, os, pdb #python debugger
 # import os
 # from cryptography.fernet import Fernet
 # from .encrypt_creds import encrypt_oauth    # currently in del directory
