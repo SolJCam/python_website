@@ -121,16 +121,20 @@ USE_TZ = True
 #                      FOR HEROKU DEPLOYMENT
 # ------------------------------------------------------------------
 
-import os
+import os, boto3
 import django_heroku
 import dj_database_url # configure database - implicitly - using DATABASE_URL environ variable
 
+# download oauth creds for email submisson from S3 bucket
+d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
+s3_resource = boto3.resource('s3')
+s3_resource.Object("portfolio-assests", "oauth2_creds.json").download_file(os.path.join(d, "../main/oauth2_creds.json"))
 
 # path variables for local_settings.py
 PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
 SITE_ROOT = os.path.dirname(PROJECT_ROOT)
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# The below variable is necessary for config['STATIC_ROOT'].        Project paths can be built using os.path.join(BASE_DIR, <filename>)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # # Static files (CSS, JavaScript, Images)
