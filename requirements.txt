@@ -86,7 +86,7 @@ python-dateutil==2.8.1
 python-dev-tools==2020.1.25
 pytz==2019.2
 pyupgrade==1.26.2
-PyYAML==5.3
+PyYAML==5.4
 readme-renderer==24.0
 redis==3.4.1
 regex==2020.1.8
