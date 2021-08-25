@@ -8,6 +8,11 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
+
+To run Worker locally:
+start redis server - 'redis-server /etc/redis/6379.conf'
+start worker - python worker.py or rq worker msnbc cnn fox   - if no name options are passed as arguments, will listen to default, resulting in this worker not receiving any jobs.
+start dashboard - rq-dashboard
 """
 
 
@@ -23,11 +28,13 @@ DEBUG = True
 #To run test_views in interactive interpreter (shell)
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver',]
 
+# To redirect http to https
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT = True
 
 # Application definition
-
 INSTALLED_APPS = [
-    'django.contrib.admin', # sol, freddy11
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -114,27 +121,31 @@ USE_TZ = True
 #                      FOR HEROKU DEPLOYMENT
 # ------------------------------------------------------------------
 
-import os
+import os, boto3
 import django_heroku
 import dj_database_url # configure database - implicitly - using DATABASE_URL environ variable
 
+# download oauth creds for email submisson from S3 bucket
+d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
+s3_resource = boto3.resource('s3')
+s3_resource.Object("portfolio-assests", "oauth2_creds.json").download_file(os.path.join(d, "../main/oauth2_creds.json"))
 
 # path variables for local_settings.py
 PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
 SITE_ROOT = os.path.dirname(PROJECT_ROOT)
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# The below variable is necessary for config['STATIC_ROOT'].        Project paths can be built using os.path.join(BASE_DIR, <filename>)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/staticfiles/'
+# # Static files (CSS, JavaScript, Images)
+# # https://docs.djangoproject.com/en/2.2/howto/static-files/
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = '/staticfiles/'
 
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
+# # Simplified static file serving.
+# # https://warehouse.python.org/project/whitenoise/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Allow all host hosts/domain names for this site
 ALLOWED_HOSTS = ['*']

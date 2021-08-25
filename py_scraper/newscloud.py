@@ -9,11 +9,12 @@ from wordcloud import WordCloud, STOPWORDS
 
 
 # stopwords to include in both wcgenerator and wrd_count functions
-stopwrds_list = ["we", "will", "says", "view", "entertainment", "u", "news", "cnn", "fox", "/", "+", "&"] + list(STOPWORDS)
+stopwrds_list = ["we", "will", "says", "view", "entertainment", "u", "news", "cnn", "fox", "/", "+", "&", "getty", "images"] + list(STOPWORDS)
 
 def wcgenerator(newsfile, imgpath, wrdcld):
     # get data directory (using getcwd() i.e, current working directory, is needed to support running example in generated IPython notebook)
     d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
+    # pdb.set_trace()
 
     # Read the whole text.
     text = open(path.join(d, f'py_scraper/scrapedata/{newsfile}')).read()

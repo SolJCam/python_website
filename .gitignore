@@ -1,12 +1,17 @@
-# chromium logs
-selchrome.log
+# email credentials
+main/oauth2_creds.json
 
-# useful heroku commands file
-.heroku_commands.txt
+# ignore del directory
+del/
 
-# S3 credentials: since removed
-rootkey.csv
+# ignore original py_scraper production views code file
+py_scraper/heroku_s3.py
 
-# backups of proj dbs and word table data: since removed
-projects.dump
-dictionary.dump
+#  heroku s3 js code
+py_scraper/static/py_scraper/js/herokuS3.js
+
+# local settings
+python_portfolio_site/local_settings.py
+
+# staticfiles directory
+staticfiles/

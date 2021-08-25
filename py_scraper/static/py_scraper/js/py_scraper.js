@@ -3,6 +3,7 @@ console.log("scripts are being read");
 
 async function url(url) {
 	const response = await fetch(url);
+	// debugger
 	return await response.json();
 }
 
@@ -15,6 +16,7 @@ $(document).ready(() => {
 
 		url("scrape_msnbc")
 			.then((json)=>{
+				// debugger;
 				$('#msnbcwrdcld').attr('src', '/static/imgs/msnbcwrdcld.png');
 				$('#msnbcwrdcld').load(" #msnbcwrdcld");
 				for(let i=0;i<=4;i++){
