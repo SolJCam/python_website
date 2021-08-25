@@ -1,8 +1,5 @@
 ######     FILES ALREADY BEING TRACKED NEED TO BE REMOVED FOR GITIGNORE TO WORK:    
-######      git rm --cached <filename>         
-
-# useful heroku commands file
-.heroku_commands.txt
+######      git rm --cached <filename>
 
 # ignore original py_scraper production views code file
 py_scraper/heroku_s3.py

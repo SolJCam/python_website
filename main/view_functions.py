@@ -2,9 +2,11 @@ from .models import Word
 from difflib import SequenceMatcher, get_close_matches
 from django.core.exceptions import ObjectDoesNotExist
 from random import randint
-import pdb, json
+import pdb, json, os
 
-
+# module_dir = os.path.dirname('main') 
+# file_path = os.path.join(module_dir, 'dictionary.json')
+# json_words = open(file_path)
 json_words = open("main/dictionary.json")
 read_json = json_words.read()
 dict_words = json.loads(read_json)

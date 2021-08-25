@@ -13,10 +13,9 @@ d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 s3_resource = boto3.resource('s3')
 
 # stopwords to include in both wcgenerator and wrd_count functions
-stopwrds_list = ["we", "will", "says", "view", "entertainment", "u", "news", "cnn", "fox", "/", "+", "&", "new"] + list(STOPWORDS)
+stopwrds_list = ["we", "will", "says", "view", "entertainment", "u", "news", "cnn", "fox", "/", "+", "&", "getty", "images"] + list(STOPWORDS)
 
-def wcgenerator(newsfile, mskimg, wrdcld):
-    
+def wcgenerator(newsfile, mskimg, wrdcld):  
     start = time.time()
     # pdb.set_trace()
 

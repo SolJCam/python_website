@@ -19,7 +19,7 @@ try:
 
         # Chrome Driver options
         options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-        drive_path = os.path.join(d, 'drivers/chromedriver83')
+        drive_path = os.path.join(d, 'drivers/chromedriver92')
 
         # Instanciate WebDriver
         driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
@@ -63,18 +63,34 @@ def scrape_msnbc(request):
     start = time.time()
 
     # html elements where desired text data can be found
-    classes = [
-        {'span' : 'headline___38PFH'},
-        {'span' : 'video-label'},
-        {'a' : 'vilynx_disabled'},
-    ]
     ele = []
-    # retrieve all instances of elements and append to list 
-    for cl in classes:
-        try:
-            ele.append(msnbc_html.find_all('span', attrs={"class":cl['span']}))
-        except:
-            ele.append(msnbc_html.find_all('a', attrs={"class":cl['a']}))
+    a_tag = msnbc_html.find_all('a')
+    span_tag = msnbc_html.find_all('span')
+    h2_tag = msnbc_html.find_all('h2')
+    h3_tag = msnbc_html.find_all('h3')
+    h4_tag = msnbc_html.find_all('h4')
+    all_tags = [
+        a_tag,
+        span_tag,
+        h2_tag,
+        h3_tag,
+        h4_tag,
+    ]
+    
+    def get_contents(html_tag):
+        for tag in html_tag:
+            try:
+                if tag.contents and tag.contents[0].__class__.__name__ == 'Tag' and tag.get_text() != '':
+                    ele.append(tag.get_text())
+                    # pdb.set_trace()
+            except:
+                pdb.set_trace()
+                print(tag)
+
+    for diff_tags in all_tags:
+        get_contents(diff_tags)
+
+    # pdb.set_trace()
 
     msnbcfile = open(os.path.join(d, "scrapedata/msnbcnews.txt"), "w") # open text file to write scraped data to
     msnbc_string_list = list()  # list to append indv words created from splitting inner text of elements in ele
