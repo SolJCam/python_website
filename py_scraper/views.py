@@ -10,35 +10,35 @@ from py_scraper.rq_queue import q_scrape
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 s3_resource = boto3.resource('s3')
 
-# try:
-#     if os.environ["SOLS_MAC"]:
-#         options = webdriver.ChromeOptions()
-#         options.add_argument("--ignore-certificate-errors")
-#         options.add_argument("--test-type")
-#         options.add_argument("--headless")
+try:
+    if os.environ["SOLS_MAC"]:
+        options = webdriver.ChromeOptions()
+        options.add_argument("--ignore-certificate-errors")
+        options.add_argument("--test-type")
+        options.add_argument("--headless")
 
-#         # Chrome Driver options
-#         options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-#         drive_path = os.path.join(d, 'drivers/chromedriver92')
+        # Chrome Driver options
+        options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        drive_path = os.path.join(d, 'drivers/chromedriver83')
 
-#         # Instanciate WebDriver
-#         driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
+        # Instanciate WebDriver
+        driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
 
-#         # # Chromium Driver backup options
-#         # options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
-#         # drive_path = os.path.join(d, 'drivers/chromiumdriver')
+        # # Chromium Driver backup options
+        # options.binary_location = "/Users/Sol/Applications/Chromium.app/Contents/MacOS/Chromium"
+        # drive_path = os.path.join(d, 'drivers/chromiumdriver')
 
-#         # # Driver for testing (Includes log)
-#         # driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path,service_args=["--verbose", "--log-path=selchrome.log"])
+        # # Driver for testing (Includes log)
+        # driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path,service_args=["--verbose", "--log-path=selchrome.log"])
 
-# except Exception as e:
+except Exception as e:
     # Chrome/Selenium configuration for Heroku
-options = webdriver.ChromeOptions()
-options.add_argument("--headless")
-options.add_argument("--no-sandbox")
-options.add_argument("--disable-dev-shm-usage")
-options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))       # to update driver version: heroku config:set CHROMEDRIVER_VERSION=
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+    driver = webdriver.Chrome(chrome_options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))       # to update driver version: heroku config:set CHROMEDRIVER_VERSION=
 
 # Using Chromium Driver to grab CNN html data
 driver.get("https://www.cnn.com/")      # Using beautiful soup to parse html data
