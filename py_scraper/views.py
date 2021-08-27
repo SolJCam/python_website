@@ -19,7 +19,7 @@ try:
 
         # Chrome Driver options
         options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-        drive_path = os.path.join(d, 'drivers/chromedriver83')
+        drive_path = os.path.join(d, 'drivers/chromedriver92')
 
         # Instanciate WebDriver
         driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
@@ -95,12 +95,11 @@ def scrape_msnbc(request):
     msnbcfile = open(os.path.join(d, "scrapedata/msnbcnews.txt"), "w") # open text file to write scraped data to
     msnbc_string_list = list()  # list to append indv words created from splitting inner text of elements in ele
     # loop through list of elements and retrieve inner text 
-    for ec in ele:
-        for text in ec:
-            msnbcfile.write(text.text)
-            for string in text.text.split():
-                msnbc_string_list.append(string)
-    # msnbc_string_list.append("MSNBCFILE.TXT")
+    for text in ele:
+        # pdb.set_trace()
+        msnbcfile.write(text)
+        for string in text.split():
+            msnbc_string_list.append(string)
     msnbcfile.close()
 
     # pdb.set_trace()
