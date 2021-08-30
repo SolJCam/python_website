@@ -18,3 +18,6 @@ python_portfolio_site/local_settings.py
 
 # staticfiles directory
 staticfiles/
+
+# git OAuth credentials
+OAuth2Creds
