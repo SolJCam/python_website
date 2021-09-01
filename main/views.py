@@ -74,20 +74,21 @@ def git_notifications(request):
           # print(repo['name'])
           # print(f"https://api.github.com/repos/SolJCam/#{repo['name']}/commits")
 
+          pdb.set_trace()
           project = repo['name']
           message = commits_by_project.json()[0]['commit']['message']
           date = commits_by_project.json()[0]['commit']['author']['date']
 
-          dictionary_of_repos[repo['name']] = [project,message,date]
+          # dictionary_of_repos[repo['name']] = [project,message,date]
+          dictionary_of_repos[date] = [project,message]
           
-          print(dictionary_of_repos)
+          # print(dictionary_of_repos)
           # print(project+'\n'+message+'\n'+date+'\n')
 
   try:
     # pdb.set_trace()
     response = JsonResponse(dictionary_of_repos)
     return response
-    # return JsonResponse([project, message, date], safe=False)
   except:
     return HttpResponseNotFound(status=500)
 

@@ -43,24 +43,62 @@ $(document).ready(function (e) {
       // debugger
       return response.json();
     })
-    .then(data => {
+    .then(gitCommitsByDate => {
+      sortedCommits = sortCommits(gitCommitsByDate)
       // debugger
-      console.log(data);
-      compare_dates(data.date);
-      return data;
+      
+      // for(const repo in gitCommitsByDate) {
+      //   console.log(gitCommitsByDate[repo][0])
+      //   console.log(gitCommitsByDate[repo][1])
+      //   compareToMostRecentCommit(gitCommitsByDate[repo][2]);
+      // }
+      for(const repo in sortedCommits) {
+        console.log(sortedCommits[repo][0])
+        console.log(sortedCommits[repo][1])
+        compareToMostRecentCommit(Object.keys(sortedCommits));
+      }
     })
 
-  function compare_dates(UTCdate) {
-    currentDate = new Date;
-    currentDateToString = currentDate.toDateString();
-    commitDate = new Date(UTCdate.split('T')[0]);
-    commitDateToString = commitDate.toDateString();
-    if(currentDateToString == commitDateToString){
-      console.log(currentDateToString);
-      return currentDateToString;
-    }else {
-      console.log(commitDateToString);
-      return commitDateToString;
+  function sortCommits(commitsObj) {
+    // the keys from the fetched commit data are sorted into an array 
+    // the chained reduce function is passed a callback func and an initial value in the form of an empty Object (also the result argument)
+    // reduce executes the callback function on ec value of the sorted array (key) against the initial value (result) and returns the new object
+    return Object.keys(commitsObj).sort().reduce(function (result, key) {
+      result[key] = commitsObj[key];
+      return result;
+    }, {});
+  }
+
+  // function compareDates(CObj) {
+  //   Object.keys(sortedCommitsObj)
+  // }
+
+  // function compareToMostRecentCommit(UTCdate) {
+  //   currentDate = new Date;
+  //   currentDateToString = currentDate.toDateString();
+  //   commitDate = new Date(UTCdate.split('T')[0]);
+  //   commitDateToString = commitDate.toDateString();
+  //   if(currentDateToString == commitDateToString){
+  //     console.log(currentDateToString);
+  //     return currentDateToString;
+  //   }else {
+  //     console.log(commitDateToString);
+  //     return commitDateToString;
+  //   }  
+  function compareToMostRecentCommit(UTCdate) {
+    // debugger
+    for(const date in UTCdate){
+      currentDate = new Date;
+      currentDateToString = currentDate.toDateString();
+      commitDate = new Date(date.split('T')[0]);
+      commitDateToString = commitDate.toDateString();
+      if(currentDateToString < commitDateToString){
+        console.log(currentDateToString);
+        return currentDateToString;
+      }else {
+        console.log(commitDateToString);
+        return commitDateToString;
+      }
     }  
   }
 
