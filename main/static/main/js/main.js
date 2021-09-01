@@ -25,7 +25,44 @@ $(document).ready(function (e) {
     }
     return cookieValue;
   }
-  var csrftoken = getCookie('csrftoken');
+  // var csrftoken = getCookie('csrftoken');    <------------------ HEEEEYYYYYYYYYYYYYYYY I MIGHT CAUSE PROOOOOOOOOBLEMS!!! --------------->
+
+
+	// async () => {
+	// 	const response = await fetch('git_notifications');
+	// 	console.log(response)
+  //   debugger
+  //   return response.json();
+	// }
+
+  fetch('git_notifications')
+    .then(response => {
+      if(response.status == 200){
+				console.log(response);
+      }
+      // debugger
+      return response.json();
+    })
+    .then(data => {
+      // debugger
+      console.log(data);
+      compare_dates(data.date);
+      return data;
+    })
+
+  function compare_dates(UTCdate) {
+    currentDate = new Date;
+    currentDateToString = currentDate.toDateString();
+    commitDate = new Date(UTCdate.split('T')[0]);
+    commitDateToString = commitDate.toDateString();
+    if(currentDateToString == commitDateToString){
+      console.log(currentDateToString);
+      return currentDateToString;
+    }else {
+      console.log(commitDateToString);
+      return commitDateToString;
+    }  
+  }
 
     
   // nav connect link functionality to scroll to social media links

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
-import yagmail, json, pdb #python debugger
+from django.http import JsonResponse, HttpResponseNotFound, HttpResponse
+import requests, yagmail, json, pdb #python debugger
 from .models import Project, Word
 from .forms import InputForm, DictForm
 from .view_functions import get_meaning, add_word
@@ -39,6 +39,57 @@ def site_index(request):
   }
   return render(request, 'index.html', context)
 
+
+
+def git_notifications(request):
+
+  headers = { 'Accept': 'application/vnd.github.v3+json'}
+
+  req = requests.get("https://api.github.com/users/SolJCam/repos", headers=headers, auth=("username","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"))
+  # req = requests.get("https://api.github.com/users/SolJCam/repos", headers=headers)
+  # print(req.json())
+
+  list_of_portfolio_projects = [
+      'python_website',
+      'React-Search-Pics',
+      'React-Search-Videos',
+      'react-songs',
+      'react-twitch-clone',
+      'React-Widgets',
+      'socket.io'
+  ]
+
+  list_of_repos = req.json()
+
+  project = ''
+  message = ''
+  date = ''
+
+  dictionary_of_repos = {}
+  
+  for repo in list_of_repos:
+      if repo['name'] in list_of_portfolio_projects:
+          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits" )
+          # print(commits_by_project.json()[0]['commit']['message'])
+          # print(repo['name'])
+          # print(f"https://api.github.com/repos/SolJCam/#{repo['name']}/commits")
+
+          project = repo['name']
+          message = commits_by_project.json()[0]['commit']['message']
+          date = commits_by_project.json()[0]['commit']['author']['date']
+
+          dictionary_of_repos[repo['name']] = [project,message,date]
+          
+          print(dictionary_of_repos)
+          # print(project+'\n'+message+'\n'+date+'\n')
+
+  try:
+    # pdb.set_trace()
+    response = JsonResponse(dictionary_of_repos)
+    return response
+    # return JsonResponse([project, message, date], safe=False)
+  except:
+    return HttpResponseNotFound(status=500)
 
 
 
