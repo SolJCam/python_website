@@ -64,8 +64,8 @@ $(document).ready(function (e) {
     // the keys from the fetched commit data are sorted *in descending order* into an array 
     // the chained reduce function is passed a callback func and an initial value in the form of an empty Object (also the result argument)
     // reduce executes the callback function on ec value of the sorted array (key) against the initial value (result) and returns the new object
-    return Object.keys(commitsObj).sort().reduce(function (result, key) {
-    // return Object.keys(commitsObj).sort(function(a, b){return b-a}).reduce(function (result, key) {
+    // return Object.keys(commitsObj).sort().reduce(function (result, key) {
+      return Object.keys(commitsObj).sort(function(a, b){return b-a}).reduce(function (result, key) {
       result[key] = commitsObj[key];
       return result;
     }, {});
