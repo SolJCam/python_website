@@ -69,12 +69,12 @@ def git_notifications(request):
   
   for repo in list_of_repos:
       if repo['name'] in list_of_portfolio_projects:
-          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits" )
+          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits", headers=headers, auth=("username","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") )
           # print(commits_by_project.json()[0]['commit']['message'])
           # print(repo['name'])
           # print(f"https://api.github.com/repos/SolJCam/#{repo['name']}/commits")
 
-          pdb.set_trace()
+          # pdb.set_trace()
           project = repo['name']
           message = commits_by_project.json()[0]['commit']['message']
           date = commits_by_project.json()[0]['commit']['author']['date']
