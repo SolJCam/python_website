@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseNotFound, HttpResponse
 import requests, yagmail, json, pdb #python debugger
+from datetime import date
 from .models import Project, Word
 from .forms import InputForm, DictForm
 from .view_functions import get_meaning, add_word
@@ -63,28 +64,28 @@ def git_notifications(request):
 
   project = ''
   message = ''
-  date = ''
+  dates = ''
 
   dictionary_of_repos = {}
   
   for repo in list_of_repos:
-      if repo['name'] in list_of_portfolio_projects:
-          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits", headers=headers, auth=("username","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") )
-          # print(commits_by_project.json()[0]['commit']['message'])
-          # print(repo['name'])
-          # print(f"https://api.github.com/repos/SolJCam/#{repo['name']}/commits")
+    if repo['name'] in list_of_portfolio_projects:
+      # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits", headers=headers, auth=("username","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") )
+      # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("username","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") )
+      commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?until={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("username","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") )
 
-          # pdb.set_trace()
-          project = repo['name']
-          message = commits_by_project.json()[0]['commit']['message']
-          date = commits_by_project.json()[0]['commit']['author']['date']
+      # pdb.set_trace()
+      for ec in range(len(commits_by_project.json())):
+        # pdb.set_trace()
+        project = repo['name']
+        message = commits_by_project.json()[ec]['commit']['message']
+        dates = commits_by_project.json()[ec]['commit']['author']['date']
 
-          # dictionary_of_repos[repo['name']] = [project,message,date]
-          dictionary_of_repos[date] = [project,message]
+        # dictionary_of_repos[repo['name']] = [project,message,dates]
+        dictionary_of_repos[dates] = [project,message]
+      
+      # pdb.set_trace()
           
-          # print(dictionary_of_repos)
-          # print(project+'\n'+message+'\n'+date+'\n')
-
   try:
     # pdb.set_trace()
     response = JsonResponse(dictionary_of_repos)

@@ -45,16 +45,11 @@ $(document).ready(function (e) {
     })
     .then(gitCommitsByDate => {
       sortedCommits = sortCommits(gitCommitsByDate)
-      // debugger
-      
-      // for(const repo in gitCommitsByDate) {
-      //   console.log(gitCommitsByDate[repo][0])
-      //   console.log(gitCommitsByDate[repo][1])
-      //   compareToMostRecentCommit(gitCommitsByDate[repo][2]);
-      // }
-      for(const repo in sortedCommits) {
-        console.log(sortedCommits[repo][0])
-        console.log(sortedCommits[repo][1])
+      for(const date in sortedCommits) {
+        // debugger
+        console.log(sortedCommits[date][0])
+        console.log(sortedCommits[date][1])
+        console.log(date)
         // is this practical?
         compareToMostRecentCommit(Object.keys(sortedCommits));
       }
@@ -71,34 +66,24 @@ $(document).ready(function (e) {
     }, {});
   }
 
-  // function compareDates(CObj) {
-  //   Object.keys(sortedCommitsObj)
-  // }
-
-  // function compareToMostRecentCommit(UTCdate) {
-  //   currentDate = new Date;
-  //   currentDateToString = currentDate.toDateString();
-  //   commitDate = new Date(UTCdate.split('T')[0]);
-  //   commitDateToString = commitDate.toDateString();
-  //   if(currentDateToString == commitDateToString){
-  //     console.log(currentDateToString);
-  //     return currentDateToString;
-  //   }else {
-  //     console.log(commitDateToString);
-  //     return commitDateToString;
-  //   }  
-  function compareToMostRecentCommit(UTCdate) {
-    debugger
-    for(const date in UTCdate){
+  //  <---------------- change to or add different function called getTodaysCommits ----------->
+  function compareToMostRecentCommit(UTCdates) {
+    // debugger
+    for(const ecDate in UTCdates){
       currentDate = new Date;
       currentDateToString = currentDate.toDateString();
-      commitDate = new Date(date.split('T')[0]);
+      commitDate = new Date(UTCdates[ecDate].split('T')[0]); // for some reason ecDate is evaluting as the index rather than the value
       commitDateToString = commitDate.toDateString();
+      // return commitDateToString;
+      debugger
+
       if(currentDateToString < commitDateToString){
         console.log(commitDateToString);
+        console.log(sortedCommits[ecDate][0])
+        console.log(sortedCommits[ecDate][1])
         return commitDateToString;
       }else {
-        console.log(`There are no commits after ${currentDateToString}`);
+        console.log(`There are no commits on or after ${currentDateToString}`);
         return currentDateToString;
       }
     }  
