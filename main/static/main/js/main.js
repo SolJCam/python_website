@@ -44,50 +44,78 @@ $(document).ready(function (e) {
       return response.json();
     })
     .then(gitCommitsByDate => {
-      sortedCommits = sortCommits(gitCommitsByDate)
-      for(const date in sortedCommits) {
+      // sortedCommits = sortCommits(gitCommitsByDate)
+      // const todaysCommits = {}
+      const todaysCommits = []
+      // debugger
+      // for(const date in sortedCommits) {
+      for(const date in gitCommitsByDate) {
+      // for(const date in sortedCommits) {
+        commitDate = new Date(date.split('T')[0]);
+        currentDate = new Date;
         // debugger
-        console.log(sortedCommits[date][0])
-        console.log(sortedCommits[date][1])
-        console.log(date)
-        // is this practical?
-        compareToMostRecentCommit(Object.keys(sortedCommits));
+        // if (currentDate.toISOString() <= date) {
+        // console.log(commitDate);
+        if (currentDate >= commitDate) {
+          todaysCommits.push(date) 
+          // todaysCommits[date] = sortedCommits[date];
+          // console.log(currentDate, commitDate);
+          // console.log(sortedCommits[date][0]);
+          // console.log(sortedCommits[date][1]);
+          // console.log(date);
+        }
       }
+      // sortedCommits = sortCommits(todaysCommits);
+      // sortedCommitDates = todaysCommits.sort((a, b) => { return b-a } );
+      sortedCommitDates = todaysCommits.sort();
+      debugger
     })
 
-  function sortCommits(commitsObj) {
-    // the keys from the fetched commit data are sorted *in descending order* into an array 
-    // the chained reduce function is passed a callback func and an initial value in the form of an empty Object (also the result argument)
-    // reduce executes the callback function on ec value of the sorted array (key) against the initial value (result) and returns the new object
-    // return Object.keys(commitsObj).sort().reduce(function (result, key) {
-      return Object.keys(commitsObj).sort(function(a, b){return b-a}).reduce(function (result, key) {
-      result[key] = commitsObj[key];
-      return result;
-    }, {});
-  }
+  // function sortCommits(commitsObj) {
+  //   // the keys from the fetched commit data are sorted *in descending order* into an array 
+  //   // the chained reduce function is passed a callback func and an initial value in the form of an empty Object (also the result argument)
+  //   // reduce executes the callback function on ec value of the sorted array (key) against the initial value (result) and returns the new object
+  //   // return Object.keys(commitsObj).sort().reduce(function (result, key) {
+  //   return Object.keys(commitsObj).sort(function(a, b){return b-a}).reduce(function (result, key) {
+  //     result[key] = commitsObj[key];
+  //     return result;
+  //   }, {});
+  // }
 
-  //  <---------------- change to or add different function called getTodaysCommits ----------->
-  function compareToMostRecentCommit(UTCdates) {
-    // debugger
-    for(const ecDate in UTCdates){
-      currentDate = new Date;
-      currentDateToString = currentDate.toDateString();
-      commitDate = new Date(UTCdates[ecDate].split('T')[0]); // for some reason ecDate is evaluting as the index rather than the value
-      commitDateToString = commitDate.toDateString();
-      // return commitDateToString;
-      debugger
+  // //  <---------------- change to or add different function called getTodaysCommits ----------->
+  // function compareToMostRecentCommit(UTCdates) {
+  //   // debugger
+  //   for(const ecDate in UTCdates){
+  //     currentDate = new Date;
+  //     currentDateToString = currentDate.toDateString();
+  //     commitDate = new Date(UTCdates[ecDate].split('T')[0]); // for some reason ecDate is evaluting as the index rather than the value
+  //     commitDateToString = commitDate.toDateString();
+  //     // return commitDateToString;
+  //     // debugger
 
-      if(currentDateToString < commitDateToString){
-        console.log(commitDateToString);
-        console.log(sortedCommits[ecDate][0])
-        console.log(sortedCommits[ecDate][1])
-        return commitDateToString;
-      }else {
-        console.log(`There are no commits on or after ${currentDateToString}`);
-        return currentDateToString;
-      }
-    }  
-  }
+  //     if(currentDateToString < commitDateToString){
+  //       console.log(commitDateToString);
+  //       console.log(sortedCommits[ecDate][0])
+  //       console.log(sortedCommits[ecDate][1])
+  //       return commitDateToString;
+  //     }else {
+  //       console.log(`There are no commits on or after ${currentDateToString}`);
+  //       return currentDateToString;
+  //     }
+  //   }  
+  // }
+
+  // function getTodaysCommits(UTCdates) {
+  //   currentDate = new Date;
+  //   currentDateToString = currentDate.toDateString();
+  //   commitDate = new Date(UTCdates[ecDate].split('T')[0]); // for some reason ecDate is evaluting as the index rather than the value
+  //   commitDateToString = commitDate.toDateString();
+  //   // return commitDateToString;
+  //   // debugger
+
+  //   if(currentDateToString < commitDateToString){}
+  // }
+
 
     
   // nav connect link functionality to scroll to social media links
