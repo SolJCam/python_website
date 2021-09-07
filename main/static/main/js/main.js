@@ -28,93 +28,43 @@ $(document).ready(function (e) {
   // var csrftoken = getCookie('csrftoken');    <------------------ HEEEEYYYYYYYYYYYYYYYY I MIGHT CAUSE PROOOOOOOOOBLEMS!!! --------------->
 
 
-	// async () => {
-	// 	const response = await fetch('git_notifications');
-	// 	console.log(response)
-  //   debugger
-  //   return response.json();
-	// }
+	async function gitNotificatons () {
+		let response = await fetch('git_notifications');
+		let gitCommitsByDate = await response.json();
+    const newestCommits = {};
+    for(const date in gitCommitsByDate) {
+      commitDate = new Date(date.split('T')[0]);
+      // lastCommitDate = '';
+      currentDate = new Date;
+      if (currentDate >= commitDate) {
+        newestCommits[date] = gitCommitsByDate[date];
+      };
+    };
+    debugger
+    // return newestCommits;
+	}
 
-  fetch('git_notifications')
-    .then(response => {
-      if(response.status == 200){
-				console.log(response);
-      }
-      // debugger
-      return response.json();
-    })
-    .then(gitCommitsByDate => {
-      // sortedCommits = sortCommits(gitCommitsByDate)
-      // const todaysCommits = {}
-      const todaysCommits = []
-      // debugger
-      // for(const date in sortedCommits) {
-      for(const date in gitCommitsByDate) {
-      // for(const date in sortedCommits) {
-        commitDate = new Date(date.split('T')[0]);
-        currentDate = new Date;
-        // debugger
-        // if (currentDate.toISOString() <= date) {
-        // console.log(commitDate);
-        if (currentDate >= commitDate) {
-          todaysCommits.push(date) 
-          // todaysCommits[date] = sortedCommits[date];
-          // console.log(currentDate, commitDate);
-          // console.log(sortedCommits[date][0]);
-          // console.log(sortedCommits[date][1]);
-          // console.log(date);
-        }
-      }
-      // sortedCommits = sortCommits(todaysCommits);
-      // sortedCommitDates = todaysCommits.sort((a, b) => { return b-a } );
-      sortedCommitDates = todaysCommits.sort();
-      debugger
-    })
+  gitNotificatons();
 
-  // function sortCommits(commitsObj) {
-  //   // the keys from the fetched commit data are sorted *in descending order* into an array 
-  //   // the chained reduce function is passed a callback func and an initial value in the form of an empty Object (also the result argument)
-  //   // reduce executes the callback function on ec value of the sorted array (key) against the initial value (result) and returns the new object
-  //   // return Object.keys(commitsObj).sort().reduce(function (result, key) {
-  //   return Object.keys(commitsObj).sort(function(a, b){return b-a}).reduce(function (result, key) {
-  //     result[key] = commitsObj[key];
-  //     return result;
-  //   }, {});
-  // }
-
-  // //  <---------------- change to or add different function called getTodaysCommits ----------->
-  // function compareToMostRecentCommit(UTCdates) {
-  //   // debugger
-  //   for(const ecDate in UTCdates){
-  //     currentDate = new Date;
-  //     currentDateToString = currentDate.toDateString();
-  //     commitDate = new Date(UTCdates[ecDate].split('T')[0]); // for some reason ecDate is evaluting as the index rather than the value
-  //     commitDateToString = commitDate.toDateString();
-  //     // return commitDateToString;
-  //     // debugger
-
-  //     if(currentDateToString < commitDateToString){
-  //       console.log(commitDateToString);
-  //       console.log(sortedCommits[ecDate][0])
-  //       console.log(sortedCommits[ecDate][1])
-  //       return commitDateToString;
-  //     }else {
-  //       console.log(`There are no commits on or after ${currentDateToString}`);
-  //       return currentDateToString;
+  // fetch('git_notifications')
+  //   .then(response => {
+  //     if(response.status == 200){
+	// 			console.log(response);
   //     }
-  //   }  
-  // }
-
-  // function getTodaysCommits(UTCdates) {
-  //   currentDate = new Date;
-  //   currentDateToString = currentDate.toDateString();
-  //   commitDate = new Date(UTCdates[ecDate].split('T')[0]); // for some reason ecDate is evaluting as the index rather than the value
-  //   commitDateToString = commitDate.toDateString();
-  //   // return commitDateToString;
-  //   // debugger
-
-  //   if(currentDateToString < commitDateToString){}
-  // }
+  //     // debugger
+  //     return response.json();
+  //   })
+  //   .then(gitCommitsByDate => {
+  //     const newestCommits = {};
+  //     for(const date in gitCommitsByDate) {
+  //       commitDate = new Date(date.split('T')[0]);
+  //       // lastCommitDate = '';
+  //       currentDate = new Date;
+  //       if (currentDate >= commitDate) {
+  //         newestCommits[date] = gitCommitsByDate[date];
+  //       };
+  //     };
+  //   });
 
 
     
