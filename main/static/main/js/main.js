@@ -30,6 +30,9 @@ $(document).ready(function (e) {
 
 	async function gitNotificatons () {
 		let response = await fetch('git_notifications');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 		let gitCommitsByDate = await response.json();
     const newestCommits = {};
     for(const date in gitCommitsByDate) {
@@ -44,7 +47,10 @@ $(document).ready(function (e) {
     // return newestCommits;
 	}
 
-  gitNotificatons();
+  gitNotificatons()
+  .catch(e => {
+    console.log('There was a problem trying to fetch git_notifications: ' + e.message);
+  });
 
   // fetch('git_notifications')
   //   .then(response => {
