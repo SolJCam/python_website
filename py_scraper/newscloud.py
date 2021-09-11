@@ -4,7 +4,7 @@ from os import path
 from PIL import Image       # PIL: Python Imaging Library
 import numpy as np
 from wordcloud import WordCloud, STOPWORDS
-from rq import get_current_job
+# from rq import get_current_job
 
 
 # get data directory (using getcwd() i.e, current working directory, is needed to support running example in generated IPython notebook)

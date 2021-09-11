@@ -1,5 +1,7 @@
-import requests, pdb
+import requests, pdb, os
 from datetime import date, datetime
+
+d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
 def git_api():
     # if (datetime.now().strftime("%X%p") >= "12:00:00PM" and datetime.now().strftime("%X%p") <= "1:00:00PM" or
@@ -31,21 +33,26 @@ def git_api():
   dictionary_of_repos = {}
   
   # pdb.set_trace()
-  for repo in list_of_repos:
-    if repo['name'] in list_of_portfolio_projects:
-      # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits", headers=headers, auth=("username","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") )
-      # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("username","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") )
-      commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?until={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("username","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") )
+  if req.status_code == 200:
+    with open(os.path.join(d, "git_api_results.txt"), 'w') as file:
+      for repo in list_of_repos:
+        if repo['name'] in list_of_portfolio_projects:
+          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits", headers=headers, auth=("username","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") )
+          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("username","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") )
+          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?until={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("username","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") )
 
-      # pdb.set_trace()
-      for ec in range(len(commits_by_project.json())):
-        # pdb.set_trace()
-        project = repo['name']
-        message = commits_by_project.json()[ec]['commit']['message']
-        dates = commits_by_project.json()[ec]['commit']['author']['date']
+          # pdb.set_trace()
+          for ec in range(len(commits_by_project.json())):
+            # pdb.set_trace()
+            project = repo['name']
+            message = commits_by_project.json()[ec]['commit']['message']
+            dates = commits_by_project.json()[ec]['commit']['author']['date']
 
-        # dictionary_of_repos[repo['name']] = [project,message,dates]
-        dictionary_of_repos[dates] = [project,message]
+            # dictionary_of_repos[repo['name']] = [project,message,dates]
+            dictionary_of_repos[dates] = [project,message]
       
-  # pdb.set_trace()
-  return dictionary_of_repos
+      file.write(dictionary_of_repos)
+      
+      return dictionary_of_repos
+  
+  return req.json()['message']

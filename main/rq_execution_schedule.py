@@ -6,7 +6,6 @@ import pdb
 # redis_conn = conn
 def execute_git_api():
   q = Queue(connection=conn)
-  result = q.enqueue(git_api)
-  # pdb.set_trace()
+  result = q.enqueue(git_api())
   return result
 
