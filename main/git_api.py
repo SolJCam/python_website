@@ -52,7 +52,7 @@ def git_api():
             dictionary_of_repos[dates] = [project,message]
       
       file.write(dictionary_of_repos)
-      
-      return dictionary_of_repos
+    
+    return dictionary_of_repos
   
   return req.json()['message']
