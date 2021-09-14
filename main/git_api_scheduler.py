@@ -1,6 +1,5 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 from .rq_execution_schedule import execute_git_api
-from .git_api import git_api
 from datetime import datetime
 import pdb
 

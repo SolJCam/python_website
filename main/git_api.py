@@ -9,10 +9,10 @@ def git_api():
     #   datetime.now().strftime("%X%p") >= "4:00:00AM" and datetime.now().strftime("%X%p") <= "5:00:00M"):
 
   headers = { 'Accept': 'application/vnd.github.v3+json'}
-
-  req = requests.get("https://api.github.com/users/SolJCam/repos", headers=headers, auth=("username","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"))
+                                                                                        # if receiving 401 error Bad credentials, check OAuth token
+  req = requests.get("https://api.github.com/users/SolJCam/repos", headers=headers, auth=("SolJCam","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"))
   # req = requests.get("https://api.github.com/users/SolJCam/repos", headers=headers)
-  print(req.json())
+  # print(req.json())
 
   list_of_portfolio_projects = [
       'python_website',
@@ -37,9 +37,9 @@ def git_api():
     with open(os.path.join(d, "git_api_results.txt"), 'w') as file:
       for repo in list_of_repos:
         if repo['name'] in list_of_portfolio_projects:
-          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits", headers=headers, auth=("username","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") )
-          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("username","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") )
-          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?until={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("username","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") )
+          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits", headers=headers, auth=("SolJCam","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") )
+          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("SolJCam","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") )
+          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?until={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("SolJCam","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") )
 
           # pdb.set_trace()
           for ec in range(len(commits_by_project.json())):
@@ -51,7 +51,9 @@ def git_api():
             # dictionary_of_repos[repo['name']] = [project,message,dates]
             dictionary_of_repos[dates] = [project,message]
       
-      file.write(dictionary_of_repos)
+      # pdb.set_trace()
+      file.write(str(dictionary_of_repos))
+      # file.write(dictionary_of_repos)
     
     return dictionary_of_repos
   

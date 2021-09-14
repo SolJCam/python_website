@@ -6,6 +6,7 @@ from .forms import InputForm, DictForm
 from .view_functions import get_meaning, add_word
 from .git_api_scheduler import schedule_api_call
 
+from .git_api import git_api
 
 
 def site_index(request):
@@ -46,7 +47,9 @@ def git_notifications(request):
            
   try:
     # pdb.set_trace()
-    response = JsonResponse(schedule_api_call)
+    responses = git_api()
+    response = JsonResponse(responses)
+    # response = JsonResponse(schedule_api_call)
     return response
   except:
     return HttpResponseNotFound(status=500)
