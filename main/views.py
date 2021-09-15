@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseNotFound, HttpResponse
-import yagmail, json, pdb #python debugger
+import yagmail, json, os, csv, pdb #python debugger
 from .models import Project, Word
 from .forms import InputForm, DictForm
 from .view_functions import get_meaning, add_word
 from .git_api_scheduler import schedule_api_call
 
 from .git_api import git_api
+d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
 
 def site_index(request):
@@ -46,9 +47,16 @@ def site_index(request):
 def git_notifications(request):
            
   try:
-    # pdb.set_trace()
-    responses = git_api()
-    response = JsonResponse(responses)
+    api_call = git_api()
+    with open(os.path.join(d, "git_api_results.csv"), 'r') as file:
+    # with open(os.path.join(d, "git_api_results.txt"), 'r') as file:
+
+      filecontent=csv.reader(file)
+      for row in filecontent:
+        pdb.set_trace()
+        print(row)
+
+      response = JsonResponse(file)
     # response = JsonResponse(schedule_api_call)
     return response
   except:
