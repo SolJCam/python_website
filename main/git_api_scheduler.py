@@ -5,8 +5,8 @@ import pdb
 
 sched = BackgroundScheduler()
 
-# @sched.scheduled_job('interval', start_date='2021-09-01', minutes=2)
-@sched.scheduled_job('interval', start_date='2021-09-01', hours=8)
+@sched.scheduled_job('interval', start_date='2021-09-01', minutes=2)
+# @sched.scheduled_job('interval', start_date='2021-09-01', hours=8)
 def schedule_api_call():
   print('initializing api call...')
   api_response = execute_git_api()

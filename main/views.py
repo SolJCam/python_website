@@ -48,21 +48,18 @@ def git_notifications(request):
            
   try:
     # git_api()
-    ok = git_api()
-    response = ''
+    schedule_api_call()
+    response = {}
     with open(os.path.join(d, "git_api_results.csv"), 'r') as file:
-    # with open(os.path.join(d, "git_api_results.txt"), 'r') as file:
 
       filecontent=csv.reader(file)
-      pdb.set_trace()
       for row in filecontent:
-        # pdb.set_trace()
-        print(row)
+        data = row[0].split("'")
+        response[data[1]] = [data[3], data[5]]
 
-      # response = JsonResponse(file)
+    json_response = JsonResponse(response)
+    return json_response
 
-    # response = JsonResponse(schedule_api_call)
-    return response
   except:
     return HttpResponseNotFound(status=500)
 
