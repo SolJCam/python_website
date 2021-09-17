@@ -26,36 +26,26 @@ def git_api():
 
   list_of_repos = req.json()
 
-  project = ''
-  message = ''
-  dates = ''
-
   dictionary_of_repos = {}
   
-  # pdb.set_trace()
   # if req.status_code == 200:
-    # with open(os.path.join(d, "git_api_results.txt"), 'w') as file:
+  #   with open(os.path.join(d, "git_api_results.txt"), 'w') as file:
   #     for repo in list_of_repos:
   #       if repo['name'] in list_of_portfolio_projects:
-  #         # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits", headers=headers, auth=("SolJCam","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") )
   #         # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("SolJCam","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") )
   #         commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?until={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("SolJCam","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") )
 
-  #         # pdb.set_trace()
   #         for ec in range(len(commits_by_project.json())):
-  #           # pdb.set_trace()
   #           project = repo['name']
   #           message = commits_by_project.json()[ec]['commit']['message']
   #           dates = commits_by_project.json()[ec]['commit']['author']['date']
 
-  #           # dictionary_of_repos[repo['name']] = [project,message,dates]
   #           dictionary_of_repos[dates] = [project,message]
       
-  #     pdb.set_trace()
-  #     file.write(str(dictionary_of_repos))
-  #     # file.write(dictionary_of_repos)
+  #     file.write(dictionary_of_repos)
+  #     return "success"
     
-  #   return dictionary_of_repos
+  # return req.json()['message']
   
 
   
@@ -66,19 +56,21 @@ def git_api():
       
     with open(os.path.join(d, "git_api_results.csv"), 'w') as file:
   
+      writer = csv.DictWriter(file, fieldnames=["Repo"])
       for repo in list_of_repos:
         if repo['name'] in list_of_portfolio_projects:
-          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?until={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("SolJCam","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") )
+          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("SolJCam","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") )
+          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={2021-9-10}T00:00:00Z", headers=headers, auth=("SolJCam","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") )
 
-          pdb.set_trace()
           for ec in range(len(commits_by_project.json())):
             project = repo['name']
             message = commits_by_project.json()[ec]['commit']['message']
             date = commits_by_project.json()[ec]['commit']['author']['date']           
             
-            repos[date] = [project,message]
-            writer = csv.DictWriter(file, fieldnames=[commits_by_project.json()[ec]['commit']['author']['date']])
-            writer.writerow(repos)            
+            repos["Repo"] = [date,project,message]           # can't use the below here; fields are already set in the first loop
+            writer.writerow(repos)  
+            
+            # pdb.set_trace()
     
     return "success"
 

@@ -47,17 +47,20 @@ def site_index(request):
 def git_notifications(request):
            
   try:
-    git_api()
+    # git_api()
+    ok = git_api()
+    response = ''
     with open(os.path.join(d, "git_api_results.csv"), 'r') as file:
     # with open(os.path.join(d, "git_api_results.txt"), 'r') as file:
 
       filecontent=csv.reader(file)
-      # pdb.set_trace()
+      pdb.set_trace()
       for row in filecontent:
-        pdb.set_trace()
+        # pdb.set_trace()
         print(row)
 
-      response = JsonResponse(file)
+      # response = JsonResponse(file)
+
     # response = JsonResponse(schedule_api_call)
     return response
   except:
