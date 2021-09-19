@@ -1,7 +1,11 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 from .rq_execution_schedule import execute_git_api
-from datetime import datetime, date
+from datetime import datetime, date, timedelta, timezone
 import pdb
+
+UTCoffset = timedelta(hours=-4)
+ESTtimezone = timezone(UTCoffset)
+current_EST_time = datetime.now(ESTtimezone).strftime("%X%p")
 
 sched = BackgroundScheduler()
 
@@ -10,7 +14,7 @@ sched = BackgroundScheduler()
 def schedule_api_call():
   print('initializing api call...')
   api_response = execute_git_api()
-  print(f'api call complete at {datetime.now().strftime("%X%p")}')
+  print(f'api call complete at {current_EST_time}')
   return api_response
 
 sched.start()
