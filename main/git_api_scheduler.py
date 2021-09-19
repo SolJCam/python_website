@@ -1,11 +1,11 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 from .rq_execution_schedule import execute_git_api
-from datetime import datetime
+from datetime import datetime, date
 import pdb
 
 sched = BackgroundScheduler()
 
-@sched.scheduled_job('interval', start_date='2021-09-01', minutes=2)
+@sched.scheduled_job('interval', start_date=f'{date.today().isoformat()}T00:00:00Z', minutes=2)
 # @sched.scheduled_job('interval', start_date='2021-09-01', hours=8)
 def schedule_api_call():
   print('initializing api call...')
