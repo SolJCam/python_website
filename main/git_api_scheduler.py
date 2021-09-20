@@ -10,7 +10,7 @@ current_EST_time = datetime.now(ESTtimezone).strftime("%X%p")
 sched = BackgroundScheduler()
 
 @sched.scheduled_job('interval', start_date=f'{date.today().isoformat()}T00:00:00Z', minutes=2)
-# @sched.scheduled_job('interval', start_date='2021-09-01', hours=8)
+# @sched.scheduled_job('interval', start_date=f'{date.today().isoformat()}T00:00:00Z', hours=8)
 def schedule_api_call():
   print('initializing api call...')
   api_response = execute_git_api()

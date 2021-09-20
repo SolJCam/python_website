@@ -1,4 +1,4 @@
-import requests, pdb, os, csv
+import requests, os, csv, pdb
 from datetime import date, datetime
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
@@ -6,8 +6,10 @@ d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 def git_api():
 
   headers = { 'Accept': 'application/vnd.github.v3+json'}
-                                                                                        # if receiving 401 error Bad credentials, check OAuth token
-  req = requests.get("https://api.github.com/users/SolJCam/repos", headers=headers, auth=("SolJCam","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"))
+  
+                                                                                      # if receiving 401 error Bad credentials, check OAuth token
+  # req = requests.get("https://api.github.com/users/SolJCam/repos", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
+  req = requests.get("https://api.github.com/users/SolJCam/repos", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
 
   list_of_portfolio_projects = [
       'python_website',
@@ -31,8 +33,8 @@ def git_api():
       
       for repo in list_of_repos:
         if repo['name'] in list_of_portfolio_projects:
-          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("SolJCam","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") )
-          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={2021-9-10}T00:00:00Z", headers=headers, auth=("SolJCam","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") )
+          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]) )
+          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={2021-9-10}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]) )
 
           for ec in range(len(commits_by_project.json())):
             project = repo['name']
