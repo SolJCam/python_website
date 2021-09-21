@@ -5,7 +5,6 @@ import pdb
 
 UTCoffset = timedelta(hours=-4)
 ESTtimezone = timezone(UTCoffset)
-current_EST_time = datetime.now(ESTtimezone).strftime("%X%p")
 
 sched = BackgroundScheduler()
 
@@ -14,7 +13,7 @@ sched = BackgroundScheduler()
 def schedule_api_call():
   print('initializing api call...')
   api_response = execute_git_api()
-  print(f'api call complete at {current_EST_time}')
+  print(f'api call complete at {datetime.now(ESTtimezone).strftime("%X%p")}')
   return api_response
 
 sched.start()

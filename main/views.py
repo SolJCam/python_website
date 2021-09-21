@@ -47,8 +47,8 @@ def site_index(request):
 def git_notifications(request):
            
   try:
-    # git_api()
-    schedule_api_call()
+    git_api()
+    # schedule_api_call()
     response = {}
     with open(os.path.join(d, "git_api_results.csv"), 'r') as file:
 

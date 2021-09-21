@@ -61,7 +61,7 @@ def q_scrape(func, func_args, job_id):
             fox_q.empty()
             print(f'Emptied fox_q job queue\n')
 
-    # pdb.set_trace()
+    pdb.set_trace()
 
     workers = Worker.all(connection=conn)
 
