@@ -13,6 +13,7 @@ def git_api():
   req = requests.get("https://api.github.com/users/SolJCam/repos", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
 
   list_of_portfolio_projects = [
+      'animal_shelter',
       'python_website',
       'React-Search-Pics',
       'React-Search-Videos',
@@ -34,8 +35,9 @@ def git_api():
       
       for repo in list_of_repos:
         if repo['name'] in list_of_portfolio_projects:
-          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]) )
-          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={2021-9-10}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]) )
+          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?until={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
+          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
+          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since=2021-9-12T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
 
           for ec in range(len(commits_by_project.json())):
             project = repo['name']
@@ -45,7 +47,7 @@ def git_api():
             dictionary_of_repos["Repo"] = [date,project,message]           
             writer.writerow(dictionary_of_repos)  
   
-    
+    # pdb.set_trace()
     return "success"
 
   return req.json()['message']

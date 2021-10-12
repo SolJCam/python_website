@@ -1,0 +1,31 @@
+[1633881733.738][INFO]: Starting ChromeDriver 81.0.4044.69 (6813546031a4bc83f717a2ef7cd4ac6ec1199132-refs/branch-heads/4044@{#776}) on port 53819
+[1633881733.738][INFO]: Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+[1633881734.406][INFO]: [2a0bc03cef87b9b3915b486747601c37] COMMAND InitSession {
+   "capabilities": {
+      "alwaysMatch": {
+         "browserName": "chrome",
+         "goog:chromeOptions": {
+            "args": [ "--ignore-certificate-errors", "--test-type", "--headless" ],
+            "binary": "/Users/Sol/Applications/Chromium.app/Contents/MacOS/GoogleChromeCanary",
+            "extensions": [  ]
+         },
+         "platformName": "any"
+      },
+      "firstMatch": [ {
+
+      } ]
+   },
+   "desiredCapabilities": {
+      "browserName": "chrome",
+      "goog:chromeOptions": {
+         "args": [ "--ignore-certificate-errors", "--test-type", "--headless" ],
+         "binary": "/Users/Sol/Applications/Chromium.app/Contents/MacOS/GoogleChromeCanary",
+         "extensions": [  ]
+      },
+      "platform": "ANY",
+      "version": ""
+   }
+}
+[1633881734.406][INFO]: [2a0bc03cef87b9b3915b486747601c37] RESPONSE InitSession ERROR unknown error: no chrome binary at /Users/Sol/Applications/Chromium.app/Contents/MacOS/GoogleChromeCanary
+[1633881734.406][DEBUG]: Log type 'driver' lost 0 entries on destruction
+[1633881734.406][DEBUG]: Log type 'browser' lost 0 entries on destruction
