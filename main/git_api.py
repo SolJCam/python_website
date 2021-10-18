@@ -1,5 +1,5 @@
 import requests, os, csv, pdb
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 # from 
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
@@ -36,8 +36,12 @@ def git_api():
       for repo in list_of_repos:
         if repo['name'] in list_of_portfolio_projects:
           # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?until={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
-          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
-          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since=2021-9-12T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
+          # pdb.set_trace()
+          week_ago_datetime = date.today() - timedelta(days=30)
+          # week_ago_datetime = date.today() - timedelta(days=5)
+          week_ago_date = week_ago_datetime.isoformat()
+          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={week_ago_date}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
+          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={week_ago_date}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
 
           for ec in range(len(commits_by_project.json())):
             project = repo['name']
@@ -47,7 +51,7 @@ def git_api():
             dictionary_of_repos["Repo"] = [date,project,message]           
             writer.writerow(dictionary_of_repos)  
   
-    # pdb.set_trace()
+      pdb.set_trace()
     return "success"
 
   return req.json()['message']

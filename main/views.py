@@ -45,7 +45,9 @@ def site_index(request):
 
 
 def git_notifications(request):
-           
+
+  # return None
+
   try:
     git_api()
     # schedule_api_call()

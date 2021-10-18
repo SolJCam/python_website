@@ -11,10 +11,10 @@
     <body>
         <div class="container-fluid main">
             <div class="row align-items-center one">
-                <div class="col-md-1">
+                <div class="col-md-1" id="md_sz_offset_div">
                     <br>
                 </div>
-                <div class="col-md-2 bg-info rounded pt-2">
+                <div  id="git_activity_div" class="col-md-2 bg-info rounded pt-lg-2">
                     <h5 class="text-center">Recent Activity</h5>
                     <ul id="git_activity">
                         <li id="gn1"></li>
@@ -26,19 +26,28 @@
                 </div>
                 <div class="col-md">
                     <div class="row one-of-one">
-                        <div class="col mt-4">
-                            <img id="me" class="float-sm-right img-fluid mx-auto d-block rounded-circle" style="display:none;" src="{% static 'img/freshMe2.jpg' %}" alt="Responsive image">
+                        <!-- <div class="col mt-4">
+                            <img id="me" class="img-fluid float-sm-right mx-auto d-block rounded-circle" style="display:none;" src="{% static 'img/freshMe2.jpg' %}" alt="Responsive image">
+                        </div> -->
+                        <div class="col mt-md-3 pl-lg-5">
+                            <img id="me" class="img-fluid mx-auto d-block rounded-circle" style="display:none;" src="{% static 'img/freshMe2.jpg' %}" alt="Responsive image">
                         </div>
                         <div class="w-100"></div>
-                        <div class="col">
+                        <!-- <div class="col">
                             <h1 id="myname" class="col offset-lg-3 text-center text-light">Sol Cameron</h1>
                             <h3 id="mydevtype" class="col offset-lg-3 text-center">Full Stack Software Developer</h3>
+                        </div> -->
+                        <div class="col mt-md-4 pl-lg-5">
+                            <h2 id="myname" class="text-center text-light">Sol Cameron</h2>
+                            <h4 id="mydevtype" class="text-center">Full Stack Software Developer</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md">
-                    <h4 id="blurb" class="mt-lg-5 pb-lg-5 text-center font-italic" style="display:none;">"Full Stack Software Developer with a passion for using Python and Django to find elegant and efficient solutions to business needs."</h4>
-                    <nav class="offset-1 offset-sm-2 mt-4 mt-lg-5 navbar pills">
+                    <!-- <h4 id="blurb" class="mt-lg-5 pb-lg-2 text-center font-italic" style="display:none;">"Full Stack Software Developer with a passion for using Python and Django to find elegant and efficient solutions to business needs."</h4>
+                    <nav class="offset-1 offset-sm-2 mt-4 mt-lg-5 navbar pills"> -->
+                    <h4 id="blurb" class="mt-lg-5 pb-lg-2 mr-lg-5 text-center font-italic" style="display:none;">"Full Stack Software Developer with a passion for using Python and Django to find elegant and efficient solutions to business needs."</h4>
+                    <nav class="offset-sm-2 mt-4 mt-lg-5 navbar pills">
                         <ul class="nav">
                             <li role="button" class="no-gutters" id="project-nav">
                                 <div class="col">

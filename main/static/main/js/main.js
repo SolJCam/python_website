@@ -29,21 +29,21 @@ $(document).ready(function (e) {
 
 
 	async function gitNotificatons () {
-		let response = await fetch('git_notifications');
+		const response = await fetch('git_notifications');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-		let gitCommitsByDate = await response.json();
+		const gitCommitsByDate = await response.json();
+    debugger
     const newestCommits = {};
-    for(const date in gitCommitsByDate) {
-      commitDate = new Date(date.split('T')[0]);
+    for(let date in gitCommitsByDate) {
+      let commitDate = new Date(date.split('T')[0]);
       // lastCommitDate = '';
-      currentDate = new Date;
+      const currentDate = new Date;
       if (currentDate >= commitDate) {
         newestCommits[date] = gitCommitsByDate[date];
       };
     };
-    debugger
     // return newestCommits;
 	}
 

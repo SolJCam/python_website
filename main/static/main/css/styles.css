@@ -9,7 +9,7 @@
    
     /*----------------------- HEADER ELEMENTS -----------------------*/
     .one {
-        height: 640px;
+        height: 800px;
         background-color: teal;
     }
       
@@ -20,6 +20,25 @@
     #blurb {
         /* font-family: 'Ubuntu', sans-serif; */
         font-family: 'Rouge+Script';
+    }
+
+    #git_activity_div {
+        position: relative;
+        -webkit-animation-name: mydevtype; /* Chrome, Safari, Opera */
+        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+        animation-name: mydevtype;
+        animation-duration: 1s;
+    }
+    
+    @keyframes mydevtype {
+        0%  {top:200px;}
+        100%   {top:0px;}
+    }
+    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes mydevtype {
+        0%  {top:200px;}
+        100%   {top:0px;}
     }
 
     #myname {
@@ -66,6 +85,15 @@
         -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
         animation-name: nav_pills;
         animation-duration: 1s;
+    }
+
+    #md_sz_offset_div {
+        display: none;
+    }
+
+    #git_activity_div {
+        margin-left: 20px;
+        margin-right: 20px;
     }
     
     @keyframes nav_pills {
@@ -196,6 +224,25 @@
 
     #blurb {
         font-family: 'Rouge+Script';
+    }
+
+    #git_activity_div {
+        position: relative;
+        -webkit-animation-name: mydevtype; /* Chrome, Safari, Opera */
+        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+        animation-name: mydevtype;
+        animation-duration: 1s;
+    }
+    
+    @keyframes mydevtype {
+        0%  {top:200px;}
+        100%   {top:0px;}
+    }
+    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes mydevtype {
+        0%  {top:200px;}
+        100%   {top:0px;}
     }
 
     #myname {
