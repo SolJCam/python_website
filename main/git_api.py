@@ -24,7 +24,7 @@ def git_api():
   ]
 
   list_of_repos = req.json()
-  
+  all_dates = []
   
   if req.status_code == 200:
       
@@ -40,10 +40,13 @@ def git_api():
           week_ago_date = week_ago_datetime.isoformat()
           # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?until={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
           # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={week_ago_date}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
-          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={week_ago_date}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
-          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/commits?since={week_ago_date}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
+          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={week_ago_date}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
 
           pdb.set_trace()
+          for ec in range(len(commits_by_project.json())):
+            all_dates.appen(commits_by_project.json()[ec]['commit']['author']['date']) 
+            sorted_dates = sort(all_dates)
+          
           for ec in range(len(commits_by_project.json())):
             project = repo['name']
             message = commits_by_project.json()[ec]['commit']['message']
@@ -52,7 +55,6 @@ def git_api():
             dictionary_of_repos["Repo"] = [date,project,message]           
             writer.writerow(dictionary_of_repos)  
   
-      pdb.set_trace()
     return "success"
 
   return req.json()['message']

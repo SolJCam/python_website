@@ -59,6 +59,7 @@ def git_notifications(request):
         data = row[0].split("'")
         response[data[1]] = [data[3], data[5]]
 
+    # pdb.set_trace()
     json_response = JsonResponse(response)
     return json_response
 
