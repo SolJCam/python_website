@@ -42,19 +42,22 @@ def git_api():
           # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={week_ago_date}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
           commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={week_ago_date}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
 
-          pdb.set_trace()
           for ec in range(len(commits_by_project.json())):
-            all_dates.appen(commits_by_project.json()[ec]['commit']['author']['date']) 
-            sorted_dates = sort(all_dates)
+            all_dates.append(commits_by_project.json()[ec]['commit']['author']['date']) 
+            
+          # all_dates.sort(reverse=True)
+          # last_five_dates = all_dates[:5]
           
           for ec in range(len(commits_by_project.json())):
             project = repo['name']
             message = commits_by_project.json()[ec]['commit']['message']
             date = commits_by_project.json()[ec]['commit']['author']['date']           
             
-            dictionary_of_repos["Repo"] = [date,project,message]           
-            writer.writerow(dictionary_of_repos)  
-  
+            # if date in last_five_dates:
+            if date in all_dates:
+              dictionary_of_repos["Repo"] = [date,project,message]           
+              writer.writerow(dictionary_of_repos)  
+
     return "success"
 
   return req.json()['message']

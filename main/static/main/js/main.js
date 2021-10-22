@@ -34,15 +34,16 @@ $(document).ready(function (e) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 		const gitCommitsByDate = await response.json();
-    debugger
-    const newestCommits = {};
+    // const newestCommits = {};
     for(let date in gitCommitsByDate) {
-      let commitDate = new Date(date.split('T')[0]);
+      debugger
+      commit_date = date.split('T')[0];
+      // let commitDate = new Date(date.split('T')[0]);
       // lastCommitDate = '';
-      const currentDate = new Date;
-      if (currentDate >= commitDate) {
-        newestCommits[date] = gitCommitsByDate[date];
-      };
+      // const currentDate = new Date;
+      // if (currentDate >= commitDate) {
+      //   newestCommits[date] = gitCommitsByDate[date];
+      // };
     };
     // return newestCommits;
 	}
