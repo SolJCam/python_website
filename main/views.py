@@ -60,6 +60,7 @@ def git_notifications(request):
         response[data[1]] = [data[3], data[5]]
 
     json_response = JsonResponse(response)
+    # pdb.set_trace()
     return json_response
 
   except:

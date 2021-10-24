@@ -35,15 +35,24 @@ $(document).ready(function (e) {
     }
 		const gitCommitsByDate = await response.json();
     // const newestCommits = {};
+    const commitDates = []
     for(let date in gitCommitsByDate) {
-      debugger
-      commit_date = date.split('T')[0];
+      commitDates.push(date.split('T')[0]);
+      // commit_date = date.split('T')[0];
       // let commitDate = new Date(date.split('T')[0]);
       // lastCommitDate = '';
       // const currentDate = new Date;
       // if (currentDate >= commitDate) {
       //   newestCommits[date] = gitCommitsByDate[date];
       // };
+    };
+    commitDates.reverse();
+    const gitList = $('#git_activity').children();
+    for(let i = 0;i <= gitList.length();i++){
+      if(commitDates[0] > $('#gn1').val().toString()){
+        debugger
+        $(`#gn${i+1}`).val(commitDates[i]);
+      };
     };
     // return newestCommits;
 	}

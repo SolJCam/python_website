@@ -21,6 +21,3 @@
 "['2021-09-24T17:35:04Z', 'animal_shelter', 'main requirements complete']"
 "['2021-09-24T13:42:50Z', 'animal_shelter', 'add animal and update room name complete']"
 "['2021-09-23T18:27:09Z', 'animal_shelter', 'created room html file; written logic to read and send database data to url']"
-"['2021-09-22T23:18:31Z', 'animal_shelter', 'updated app and added index.html']"
-"['2021-09-22T02:05:16Z', 'animal_shelter', 'successfully ran migrations and generated db tables']"
-"['2021-09-22T00:45:43Z', 'animal_shelter', 'added application models']"
