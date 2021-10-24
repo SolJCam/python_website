@@ -32,55 +32,26 @@ $(document).ready(function (e) {
 		const response = await fetch('git_notifications');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
-    }
-		const gitCommitsByDate = await response.json();
-    // const newestCommits = {};
-    const commitDates = []
-    for(let date in gitCommitsByDate) {
-      commitDates.push(date.split('T')[0]);
-      // commit_date = date.split('T')[0];
-      // let commitDate = new Date(date.split('T')[0]);
-      // lastCommitDate = '';
-      // const currentDate = new Date;
-      // if (currentDate >= commitDate) {
-      //   newestCommits[date] = gitCommitsByDate[date];
-      // };
     };
-    commitDates.reverse();
-    const gitList = $('#git_activity').children();
-    for(let i = 0;i <= gitList.length();i++){
-      if(commitDates[0] > $('#gn1').val().toString()){
-        debugger
-        $(`#gn${i+1}`).val(commitDates[i]);
+		const gitCommitsByDate = await response.json();
+    const commitDates = []
+    const htmlGitList = $('#git_activity').children();
+    for(let date in gitCommitsByDate) {
+      commitDates.push(date)
+    };
+    for(let i = 0;i <= htmlGitList.length;i++){
+      if(commitDates[i] > htmlGitList[i].textContent.slice(0,5)){
+        let commitDate = commitDates[i].split('T')[0].slice(5)
+        let commit = gitCommitsByDate[commitDates[i]]
+        $(`#gn${i+1}`).text(commitDate+" : "+commit[0]+" : "+commit[1]);        
       };
     };
-    // return newestCommits;
 	}
 
   gitNotificatons()
   .catch(e => {
     console.log('There was a problem trying to fetch git_notifications: ' + e.message);
   });
-
-  // fetch('git_notifications')
-  //   .then(response => {
-  //     if(response.status == 200){
-	// 			console.log(response);
-  //     }
-  //     // debugger
-  //     return response.json();
-  //   })
-  //   .then(gitCommitsByDate => {
-  //     const newestCommits = {};
-  //     for(const date in gitCommitsByDate) {
-  //       commitDate = new Date(date.split('T')[0]);
-  //       // lastCommitDate = '';
-  //       currentDate = new Date;
-  //       if (currentDate >= commitDate) {
-  //         newestCommits[date] = gitCommitsByDate[date];
-  //       };
-  //     };
-  //   });
 
 
     
