@@ -7,10 +7,6 @@ d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 def git_api():
 
   headers = { 'Accept': 'application/vnd.github.v3+json'}
-  
-                                                                                      # if receiving 401 error Bad credentials, check OAuth token
-  # req = requests.get("https://api.github.com/users/SolJCam/repos", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
-  req = requests.get("https://api.github.com/users/SolJCam/repos", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
 
   list_of_portfolio_projects = [
       'animal_shelter',
@@ -23,41 +19,34 @@ def git_api():
       'socket.io'
   ]
 
-  list_of_repos = req.json()
+  week_ago_datetime = today - timedelta(days=7)
+  week_ago_date = week_ago_datetime.isoformat()
   all_dates = []
-  
-  if req.status_code == 200:
-      
-    with open(os.path.join(d, "git_api_results.csv"), 'w') as file:
-  
-      dictionary_of_repos = {}
-      writer = csv.DictWriter(file, fieldnames=["Repo"])
-      
-      for repo in list_of_repos:
-        if repo['name'] in list_of_portfolio_projects:
+  dictionary_of_repos = {}
 
-          week_ago_datetime = today - timedelta(days=30)
-          week_ago_date = week_ago_datetime.isoformat()
-          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?until={date.today().isoformat()}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
-          # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={week_ago_date}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
-          commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo['name']}/commits?since={week_ago_date}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
+  for repo in list_of_portfolio_projects:
+    try:
+                                                                                      # if receiving 401 error Bad credentials, check OAuth token
+      commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo}/commits?since={week_ago_date}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
+    except Exception as e:
+      return e.__str__()
 
-          for ec in range(len(commits_by_project.json())):
-            all_dates.append(commits_by_project.json()[ec]['commit']['author']['date']) 
-            
-          # all_dates.sort(reverse=True)
-          # last_five_dates = all_dates[:5]
-          
-          for ec in range(len(commits_by_project.json())):
-            project = repo['name']
-            message = commits_by_project.json()[ec]['commit']['message']
-            date = commits_by_project.json()[ec]['commit']['author']['date']           
-            
-            # if date in last_five_dates:
-            if date in all_dates:
-              dictionary_of_repos["Repo"] = [date,project,message]           
-              writer.writerow(dictionary_of_repos)  
+    for ec in range(len(commits_by_project.json())):
+      all_dates.append(commits_by_project.json()[ec]['commit']['author']['date']) 
 
-    return "success"
+      project = repo
+      message = commits_by_project.json()[ec]['commit']['message']
+      date = commits_by_project.json()[ec]['commit']['author']['date']   
 
-  return req.json()['message']
+      dictionary_of_repos[date] = [date,project,message]
+        
+  last_five_dates = all_dates[:5]
+  git_commits = {}
+    
+  with open(os.path.join(d, "git_api_results.csv"), 'w') as file:
+    writer = csv.DictWriter(file, fieldnames=["Repo"])
+    for date in last_five_dates:           
+      git_commits["Repo"] = dictionary_of_repos[date]
+      writer.writerow(git_commits)  
+
+  return "success"

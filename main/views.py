@@ -45,13 +45,13 @@ def site_index(request):
 
 
 def git_notifications(request):
-
-  # return None
-
+  # err_resp = git_api()
+  err_resp = schedule_api_call()
+  if err_resp != "success":
+    return JsonResponse(err_resp, safe=False)
+  
+  response = {}
   try:
-    git_api()
-    # schedule_api_call()
-    response = {}
     with open(os.path.join(d, "git_api_results.csv"), 'r') as file:
 
       filecontent=csv.reader(file)
@@ -60,11 +60,10 @@ def git_notifications(request):
         response[data[1]] = [data[3], data[5]]
 
     json_response = JsonResponse(response)
-    # pdb.set_trace()
     return json_response
 
-  except:
-    return HttpResponseNotFound(status=500)
+  except Exception as e:
+    return JsonResponse(e)
 
 
 

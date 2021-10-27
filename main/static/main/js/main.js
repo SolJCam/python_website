@@ -34,6 +34,7 @@ $(document).ready(function (e) {
       throw new Error(`HTTP error! status: ${response.status}`);
     };
 		const gitCommitsByDate = await response.json();
+    // debugger
     const commitDates = []
     const htmlGitList = $('#git_activity').children();
     for(let date in gitCommitsByDate) {
