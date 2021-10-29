@@ -18,10 +18,10 @@ try:
         options.add_argument("--headless")
 
         # Chrome Driver options
-        # options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-        # drive_path = os.path.join(d, 'drivers/chromedriver94')
-        options.binary_location = "/Applications/Google Chrome 2.app/Contents/MacOS/Google Chrome"
-        drive_path = os.path.join(d, 'drivers/chromedriver')
+        options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        drive_path = os.path.join(d, 'drivers/chromedriver94')
+        # options.binary_location = "/Applications/Google Chrome 2.app/Contents/MacOS/Google Chrome"
+        # drive_path = os.path.join(d, 'drivers/chromedriver')
 
         # Instanciate WebDriver
         driver = webdriver.Chrome(chrome_options=options,executable_path=drive_path)
