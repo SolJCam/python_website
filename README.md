@@ -30,3 +30,27 @@ Chat app that allows multiple simultaneous users. Includes the ability to upload
 - Express.js
 - Socket.io
 - Materialize
+
+## **py_animal_shelter**
+Admin dashboard that allows the user to enter different rooms and view bigraphical data on the animals stored in the database. 
+
+### **Technologies:**
+
+- Flask
+- Flask-SQLAlchemy
+- Flask-WTF
+- WTForms
+- psql
+- semantic-ui
+- jQuery
+
+# **react_search_videos**
+User provided input returns video search of YouTube API
+
+### **Technologies:**
+- react
+- axios
+- semantic ui
+
+ **API:**
+- YouTube

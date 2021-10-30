@@ -18,9 +18,9 @@ start dashboard - rq-dashboard
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
+import os
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-n$5560#1%b2=a)g5#xcq*v&j^w63vwz#t+ez@9&glos^+p*4c'
+SECRET_KEY = os.environ['SECRET']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
