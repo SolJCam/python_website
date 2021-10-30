@@ -1,5 +1,6 @@
 import requests, os, csv, pdb
 from datetime import date, datetime, timedelta
+
 today = date.today()
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
@@ -11,11 +12,7 @@ def git_api():
   list_of_portfolio_projects = [
       'animal_shelter',
       'python_website',
-      'React-Search-Pics',
       'React-Search-Videos',
-      'react-songs',
-      'react-twitch-clone',
-      'React-Widgets',
       'socket.io'
   ]
 

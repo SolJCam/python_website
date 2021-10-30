@@ -46,9 +46,9 @@ def site_index(request):
 
 def git_notifications(request):
   # err_resp = git_api()
-  err_resp = schedule_api_call()
-  if err_resp != "success":
-    return JsonResponse(err_resp, safe=False)
+  # if err_resp != "success":
+  #   return JsonResponse(err_resp, safe=False)
+  schedule_api_call()
   
   response = {}
   try:
@@ -60,6 +60,7 @@ def git_notifications(request):
         response[data[1]] = [data[3], data[5]]
 
     json_response = JsonResponse(response)
+    # pdb.set_trace()
     return json_response
 
   except Exception as e:
