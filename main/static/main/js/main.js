@@ -34,12 +34,14 @@ $(document).ready(function (e) {
       throw new Error(`HTTP error! status: ${response.status}`);
     };
 		const gitCommitsByDate = await response.json();
-    // debugger
     const commitDates = []
     const htmlGitList = $('#git_activity').children();
     for(let date in gitCommitsByDate) {
       commitDates.push(date)
     };
+    // debugger
+    commitDates.sort()
+    commitDates.reverse()
     for(let i = 0;i <= htmlGitList.length;i++){
       if(commitDates[i] > htmlGitList[i].textContent.slice(0,5)){
         let commitDate = commitDates[i].split('T')[0].slice(5)
