@@ -5,7 +5,7 @@
         <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Bilbo+Swash+Caps|Rouge+Script|Sofia|Flamenco|Geo|Stint+Ultra+Expanded|Linden+Hill|Balthazar' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="{% static 'main/css/styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'main/css/styles2.css' %}">
         <title>Sol Cameron Portfolio</title>
     </head>
     <body>
@@ -14,14 +14,14 @@
                 <div class="col-md-1" id="md_sz_offset_div">
                     <br>
                 </div>
-                <div  id="git_activity_div" class="col-md-2 bg-dark rounded pt-lg-2">
-                    <h5 class="text-center text-white">Recent Activity</h5>
+                <div  id="git_activity_div" class="col-md-2 bg-light rounded pt-lg-2">
+                    <h5 class="text-center">Recent Activity</h5>
                     <ul id="git_activity">
-                        <li id="gn1" class="notifications"><span class="badge badge-success" style="display:none">New</span><span id="cmmt1" class="commits">09-24 : animal_shelter : add animal and update room name complete</span></li>
-                        <li id="gn2" class="notifications"><span class="badge badge-success" style="display:none">New</span><span id="cmmt2" class="commits">09-24 : animal_shelter : add animal and update room name complete</span></li>
-                        <li id="gn3" class="notifications"><span class="badge badge-success" style="display:none">New</span><span id="cmmt3" class="commits">09-24 : animal_shelter : add animal and update room name complete</span></li>
-                        <li id="gn4" class="notifications"><span class="badge badge-success" style="display:none">New</span><span id="cmmt4" class="commits">09-24 : animal_shelter : add animal and update room name complete</span></li>
-                        <li id="gn5" class="notifications"><span class="badge badge-success" style="display:none">New</span><span id="cmmt5" class="commits">09-24 : animal_shelter : add animal and update room name complete</span></li>
+                        <li id="gn1">09-24 : animal_shelter : add animal and update room name complete</li>
+                        <li id="gn2">09-24 : animal_shelter : add animal and update room name complete</li>
+                        <li id="gn3">09-24 : animal_shelter : add animal and update room name complete</li>
+                        <li id="gn4">09-24 : animal_shelter : add animal and update room name complete</li>
+                        <li id="gn5">09-24 : animal_shelter : add animal and update room name complete</li>
                     </ul>    
                 </div>
                 <div class="col-md">
@@ -34,37 +34,37 @@
                         </div>
                         <div class="w-100"></div>
                         <!-- <div class="col">
-                            <h1 id="myname" class="col offset-lg-3 text-center text-white">Sol Cameron</h1>
+                            <h1 id="myname" class="col offset-lg-3 text-center text-light">Sol Cameron</h1>
                             <h3 id="mydevtype" class="col offset-lg-3 text-center">Full Stack Software Developer</h3>
                         </div> -->
                         <div class="col mt-md-4 pl-lg-5">
-                            <h2 id="myname" class="text-center text-white">Sol Cameron</h2>
-                            <h4 id="mydevtype" class="text-center text-white">Full Stack Software Developer</h4>
+                            <h2 id="myname" class="text-center text-light">Sol Cameron</h2>
+                            <h4 id="mydevtype" class="text-center">Full Stack Software Developer</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md">
                     <!-- <h4 id="blurb" class="mt-lg-5 pb-lg-2 text-center font-italic" style="display:none;">"Full Stack Software Developer with a passion for using Python and Django to find elegant and efficient solutions to business needs."</h4>
                     <nav class="offset-1 offset-sm-2 mt-4 mt-lg-5 navbar pills"> -->
-                    <h4 id="blurb" class="mt-lg-5 pb-lg-2 mr-lg-5 text-center font-italic text-white" style="display:none;">"Full Stack Software Developer with a passion for using Python and Django to find elegant and efficient solutions to business needs."</h4>
+                    <h4 id="blurb" class="mt-lg-5 pb-lg-2 mr-lg-5 text-center font-italic" style="display:none;">"Full Stack Software Developer with a passion for using Python and Django to find elegant and efficient solutions to business needs."</h4>
                     <nav class="offset-sm-2 mt-4 mt-lg-5 navbar pills">
                         <ul class="nav">
                             <li role="button" class="no-gutters" id="project-nav">
                                 <div class="col">
-                                    <img class="img-fluid img-thumbnail nav-img mx-auto d-none d-lg-block bg-dark" id="proj-link" src="{% static 'img/icons8-code-60.png' %}" alt="Responsive image">
-                                    <a id="P" class="nav-item d-lg-none d-block nav-link active text-white" href="{% url 'project_index' %}">Projects</a>
+                                    <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="proj-link" src="{% static 'img/icons8-code-60.png' %}" alt="Responsive image">
+                                    <a id="P" class="nav-item d-lg-none d-block nav-link active text-light" href="{% url 'project_index' %}">Projects</a>
                                 </div>
                             </li>
                             <li role="button" class="no-gutters" id="resume-nav" >
                                 <div class="col">
-                                    <img class="img-fluid img-thumbnail nav-img mx-auto d-none d-lg-block bg-dark" id="res-nav" src="{% static 'img/icons8-resume-60.png' %}" alt="Responsive image">
-                                    <a  id="R" class="nav-item d-lg-none d-block nav-link active text-white" href="{% url 'resume' %}" rel="nofollow" target="_blank">Resume</a>
+                                    <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="res-nav" src="{% static 'img/icons8-resume-60.png' %}" alt="Responsive image">
+                                    <a  id="R" class="nav-item d-lg-none d-block nav-link active text-light" href="{% url 'resume' %}" rel="nofollow" target="_blank">Resume</a>
                                 </div> 
                             </li>
                             <li role="button" class="no-gutters" id="connect-nav">                       
                                 <div class="col">
-                                    <img class="img-fluid img-thumbnail nav-img mx-auto d-none d-lg-block bg-dark" id="conn-nav" src="{% static 'img/icons8-connect-50 (2).png' %}" alt="Responsive image">
-                                    <a  id="C" class="nav-item d-lg-none d-block nav-link active text-white" href="#">Connect</a>
+                                    <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="conn-nav" src="{% static 'img/icons8-connect-50 (2).png' %}" alt="Responsive image">
+                                    <a  id="C" class="nav-item d-lg-none d-block nav-link active text-light" href="#">Connect</a>
                                 </div>
                             </li>
                         </ul>
@@ -95,14 +95,14 @@
                         {% if project.id == 1 %}
                             <div id="{{ project.id }}" class="pl-3 pt-2 pb-1 pr-2 proj_smry">
                                 <a href="{% url 'go_to_project' project.id %}"><h6 class="proj_titles">{{ project.title }}</h6></a>
-                                <p class="text-white">{{ project.description }}</p>
+                                <p>{{ project.description }}</p>
                                 <div class="w-100"></div>
                             </div>
                         {% endif %}
                         {% if project.id > 1 %}
                             <div id="{{ project.id }}" class="pl-3 pt-2 pb-1 pr-2 proj_smry hover_ele">
                                 <a href="{% url 'go_to_project' project.id %}"><h6 class="proj_titles">{{ project.title }}</h6></a>
-                                <p class="text-white">{{ project.description }}</p>
+                                <p>{{ project.description }}</p>
                                 <div class="w-100"></div>
                             </div>
                         {% endif %}
@@ -122,25 +122,25 @@
                     {% csrf_token %}
                     <div class="row">
                         <div class="col form-group input-group-lg">
-                            <label id="Name" for="inputName" class="text-white">Name *</label>
+                            <label id="Name" for="inputName" class="text-light">Name *</label>
                             <input type="text" id="inputNameF" class="form-control">
-                            <small class="form-text text-white">First Name</small>
+                            <small class="form-text text-light">First Name</small>
                         </div>
                         <div class="col form-group input-group-lg mt-4 pt-2">
                             <input type="text" id="inputNameS" class="form-control">
-                            <small class="form-text text-white">Last Name</small>
+                            <small class="form-text text-light">Last Name</small>
                         </div>
                     </div>
                     <div class="form-group input-group-lg">
-                        <label id="Email" for="inputEmail" class="text-white">Email Address *</label>
+                        <label id="Email" for="inputEmail" class="text-light">Email Address *</label>
                         <input type="email" id="inputEmail" class="form-control">
                     </div>
                     <div class="form-group input-group-lg">
-                        <label id="Subject" for="inputSubject" class="inputSubject text-white">Subject *</label>
+                        <label id="Subject" for="inputSubject" class="inputSubject text-light">Subject *</label>
                         <input type="text" id="inputSubject" class="form-control">
                     </div>
                     <div class="form-group input-group-lg">
-                        <label id="Message" for="inputMessage" class="inputMessage text-white">Message *</label>
+                        <label id="Message" for="inputMessage" class="inputMessage text-light">Message *</label>
                         <textarea id="inputMessage" form="email" rows="6" style="height:100%;" class="form-control"></textarea>
                     </div>
                     <div class="row">
@@ -167,7 +167,7 @@
                         <a href="" target="_blank"><img id="twtr" class=" img-fluid rounded mx-auto d-block sm" src="{% static 'img/icons8-twitter-20.png' %}" alt="Responsive image"></a>
                 </li>
             </ul>
-            <p class="offset-3 offset-sm-5 text-white cr">Copyright 2019 Sol Cameron</p>
+            <p class="offset-3 offset-sm-5 text-light cr">Copyright 2019 Sol Cameron</p>
         </footer>
     </body>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

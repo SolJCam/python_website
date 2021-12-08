@@ -3,7 +3,7 @@ from selenium import webdriver
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
-def choose_os(driver):
+def choose_os():
     try:
         if os.environ["SOLS_MAC"]:
             options = webdriver.ChromeOptions()

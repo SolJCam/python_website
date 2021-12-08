@@ -35,18 +35,23 @@ $(document).ready(function (e) {
     };
 		const gitCommitsByDate = await response.json();
     const commitDates = []
-    const htmlGitList = $('#git_activity').children();
-    for(let date in gitCommitsByDate) {
-      commitDates.push(date)
-    };
+    // const htmlGitList = $('#git_activity').children();
+    const htmlGitList = $('.commits');
     // debugger
-    commitDates.sort()
-    commitDates.reverse()
+    for(let date in gitCommitsByDate) {
+      commitDates.push(date);
+    };
+    commitDates.sort();
+    commitDates.reverse();
     for(let i = 0;i <= htmlGitList.length;i++){
       if(commitDates[i] > htmlGitList[i].textContent.slice(0,5)){
         let commitDate = commitDates[i].split('T')[0].slice(5)
         let commit = gitCommitsByDate[commitDates[i]]
-        $(`#gn${i+1}`).text(commitDate+" : "+commit[0]+" : "+commit[1]);        
+        let cur_cmmt = $(`#cmmt${i+1}`).text().split(' ')[0];
+        $(`#cmmt${i+1}`).text(commitDate+" : "+commit[0]+" : "+commit[1]); 
+        if(commitDate >= cur_cmmt){
+          $(`#gn${i+1}`).toggle();
+        }       
       };
     };
 	}
@@ -66,7 +71,8 @@ $(document).ready(function (e) {
 
 
   // carousel synced-image-info behavior
-  $("#1").css("background-color", "yellow");
+  // $("#1").css("background-color", "yellow");
+  $("#1").css("background-color", "green"); // dark mode
 
   $('#carousel').on('slide.bs.carousel', (relatedTarget) => {
     // console.log(relatedTarget);
@@ -76,11 +82,13 @@ $(document).ready(function (e) {
     // debugger
     for(let i = 0; i < arrayProjsLen; i++){
       if(arrayProjs[i].id == projToHighlight){
-        arrayProjs[i].style.backgroundColor = 'yellow';
+        arrayProjs[i].style.backgroundColor = 'green';
         if(i == 0 ){
-          arrayProjs[arrayProjsLen-1].style.backgroundColor = 'white';
+          // arrayProjs[arrayProjsLen-1].style.backgroundColor = 'white';
+          arrayProjs[arrayProjsLen-1].style.backgroundColor = 'black'; //dark mode
         }else{
-          arrayProjs[i-1].style.backgroundColor = 'white';
+          // arrayProjs[i-1].style.backgroundColor = 'white';
+          arrayProjs[i-1].style.backgroundColor = 'black'; //dark mode
         }
       }
     }
@@ -92,14 +100,15 @@ $(document).ready(function (e) {
     function(){
       let all_projs = $('.proj_smry')
       for(let i = 0; i < all_projs.length; i++){
-        all_projs[i].style.backgroundColor = 'white';
+        // all_projs[i].style.backgroundColor = 'white';
+        all_projs[i].style.backgroundColor = 'black'; // dark mode
       }
       let projs = $('.carousel-item');
       let proj_array = [];
       for(let i = 0; i < projs.length; i++){
         proj_array.push(projs[i].classList[2]);
       }
-      debugger
+      // debugger
       let title = this.children[0].innerText // Keyword 'this' does not work with arrow functions!
       title_index = proj_array.indexOf(title);
       $('#carousel').carousel(title_index);
@@ -349,5 +358,5 @@ if (window.matchMedia("(max-width:992px)").matches) {
   $("#navbarSupportedContent").toggleClass("d-flex");
 
   // toggle project image sizes on small viewports
-  $(".proj-img").toggleClass("h-100");
+  $(".proj-img").toggleClass("w-100");
 }

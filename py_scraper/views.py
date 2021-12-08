@@ -10,9 +10,8 @@ from py_scraper.selenium_os_environ import choose_os
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 s3_resource = boto3.resource('s3')
-driver_val = ''
 
-driver = choose_os(driver_val)
+driver = choose_os()
 
 # Using Chromium Driver to grab CNN html data
 driver.get("https://www.cnn.com/")      # Using beautiful soup to parse html data

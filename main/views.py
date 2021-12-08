@@ -45,10 +45,10 @@ def site_index(request):
 
 
 def git_notifications(request):
-  # err_resp = git_api()
-  # if err_resp != "success":
-  #   return JsonResponse(err_resp, safe=False)
-  schedule_api_call()
+  err_resp = git_api()
+  if err_resp != "success":
+    return JsonResponse(err_resp, safe=False)
+  # schedule_api_call()
   
   response = {}
   try:
@@ -132,11 +132,19 @@ def project_index(request):
 
 
 
-def external_project(request, pk):
+def go_to_project(request, pk):
+  external_apps = {
+    'js_ChatApp': 'https://solschatroom.herokuapp.com/',
+    'flask_animal_shelter': 'https://queens-animal-shelter.herokuapp.com/',
+    'react_youtube': 'https://react-utube.netlify.app',
+  }
+  # proj = Project.objects.get(id=pk).title
+  # if 'js_ChatApp' == proj:
+    # response = redirect('https://solschatroom.herokuapp.com/')
   # pdb.set_trace()
   proj = Project.objects.get(id=pk).title
-  if 'js_ChatApp' == proj:
-    response = redirect('https://solschatroom.herokuapp.com/')
+  if proj in external_apps.keys():
+    response = redirect(external_apps[proj])
     return response
   elif 'py_dictionary' == proj:
     return project_index(request)

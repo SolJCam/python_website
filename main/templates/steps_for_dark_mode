@@ -1,0 +1,4 @@
+To switch between dark and normal mode:
+main/views.py - ctrl + f index.html -> index2.html
+main/templates/local_apps.html - line 1 {% extends "projects.html" %} -> {% extends "projects2.html" %}
+main/static/main/js/main.js - ctrl + f dark mode -> hide line, unhide preceding line

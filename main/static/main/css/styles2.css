@@ -1,0 +1,585 @@
+/* ------- Phones --------- */
+@media only screen 
+    and (min-device-width : 375px) 
+    and (max-device-width : 812px) 
+    and (-webkit-min-device-pixel-ratio : 2) { 
+
+    /*----------------------------------- INDEX PAGE -----------------------------------*/
+
+   
+    /*----------------------- HEADER ELEMENTS -----------------------*/
+    .one {
+        height: 800px;
+        background-color: teal;
+    }
+      
+    #me {
+        max-width: 45%;
+    }
+
+    #blurb {
+        /* font-family: 'Ubuntu', sans-serif; */
+        font-family: 'Rouge+Script';
+    }
+
+    #git_activity_div {
+        position: relative;
+        -webkit-animation-name: mydevtype; /* Chrome, Safari, Opera */
+        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+        animation-name: mydevtype;
+        animation-duration: 1s;
+        max-width: 300px;
+        margin-left: 35px;
+    }
+
+    #git_activity {
+        padding-inline-start: 0px;
+    }
+
+    #gn1, #gn2, #gn3, #gn4, #gn5 {
+        overflow: auto;
+        white-space: nowrap;
+    }
+    
+    @keyframes mydevtype {
+        0%  {top:200px;}
+        100%   {top:0px;}
+    }
+    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes mydevtype {
+        0%  {top:200px;}
+        100%   {top:0px;}
+    }
+
+    #myname {
+        position: relative;
+        -webkit-animation-name: myname; /* Chrome, Safari, Opera */
+        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+        animation-name: myname;
+        animation-duration: 1s;
+    }
+    
+    @keyframes myname {
+        0%  {top:150px;}
+        100%   {top:0px;}
+    }
+      
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes myname {
+        0%  {top:150px;}
+        100%   {top:0px;}
+    }
+    
+    #mydevtype {
+        position: relative;
+        -webkit-animation-name: mydevtype; /* Chrome, Safari, Opera */
+        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+        animation-name: mydevtype;
+        animation-duration: 1s;
+    }
+    
+    @keyframes mydevtype {
+        0%  {top:200px;}
+        100%   {top:0px;}
+    }
+    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes mydevtype {
+        0%  {top:200px;}
+        100%   {top:0px;}
+    }
+    
+    .pills {
+        position: relative;
+        -webkit-animation-name: nav_pills; /* Chrome, Safari, Opera */
+        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+        animation-name: nav_pills;
+        animation-duration: 1s;
+    }
+
+    #md_sz_offset_div {
+        display: none;
+    }
+    
+    @keyframes nav_pills {
+        0%  {top:250px;}
+        100%   {top:0px;}
+    }
+    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes nav_pills {
+        0%  {top:250px;}
+        100%   {top:0px;}
+    }
+
+    #carousel_img1, #carousel_img2 {
+        height: 250px;
+    }
+
+                                /* FOOTER ELEMENTS */
+
+    .bg-con {
+        background-color: purple;
+    }
+
+    #emailtitle {
+        color: white;
+    }
+
+    #ga {
+        width: 18px;
+        height: 18px;
+    }
+    
+    #footer {
+        background-color: purple;
+    }
+
+    .socialIcons {
+        background-color: purple;
+    }
+
+    .circle {
+        height: 30px;
+        width: 30px;
+        background-color: white;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .sm {
+        margin-top: 20%;
+    }
+
+
+    /*----------------------------------- PROJECTS PAGE -----------------------------------*/
+
+   
+    /*----------------------- HEADER ELEMENTS -----------------------*/
+
+    #navbar-items {
+        width: 100%;
+    }
+
+
+    /*----------------------- PROJECT BODY ELEMENTS -----------------------*/
+    /* #proj_img {
+        max-width: 100%;
+    } */
+
+    #img_cont {
+        max-width: 65%;
+    }
+
+    #return-btn {
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        bottom: 10%;
+        visibility: hidden;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* -------------- Laptops ---------------*/
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+    /*----------------------------------- INDEX PAGE -----------------------------------*/
+
+   
+    /*----------------------- HEADER ELEMENTS -----------------------*/      
+    .one {
+        height: 700px;
+        background-color: teal;
+    }
+
+    #me {
+        max-width: 45%;
+        margin-top: -20px;
+    }
+
+    #blurb {
+        font-family: 'Rouge+Script';
+    }
+
+    #git_activity_div {
+        position: relative;
+        -webkit-animation-name: mydevtype; /* Chrome, Safari, Opera */
+        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+        animation-name: mydevtype;
+        animation-duration: 1s;
+        background-color: black;
+    }
+
+    #git_activity {
+        padding-inline-start: 0px;
+    }
+
+    #gn1, #gn2, #gn3, #gn4, #gn5 {
+        overflow: auto;
+        white-space: nowrap;
+    }
+    
+    @keyframes mydevtype {
+        0%  {top:200px;}
+        100%   {top:0px;}
+    }
+    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes mydevtype {
+        0%  {top:200px;}
+        100%   {top:0px;}
+    }
+
+    #myname {
+        position: relative;
+        -webkit-animation-name: myname; /* Chrome, Safari, Opera */
+        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+        animation-name: myname;
+        animation-duration: 1s;
+    }
+    
+    @keyframes myname {
+        0%  {top:150px;}
+        100%   {top:0px;}
+    }
+    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes myname {
+        0%  {top:150px;}
+        100%   {top:0px;}
+    }
+    
+    #mydevtype {
+        position: relative;
+        -webkit-animation-name: mydevtype; /* Chrome, Safari, Opera */
+        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+        animation-name: mydevtype;
+        animation-duration: 1s;
+    }
+    
+    @keyframes mydevtype {
+        0%  {top:200px;}
+        100%   {top:0px;}
+    }
+    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes mydevtype {
+        0%  {top:200px;}
+        100%   {top:0px;}
+    }
+    
+    .pills {
+        position: relative;
+        -webkit-animation-name: nav_pills; /* Chrome, Safari, Opera */
+        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+        animation-name: nav_pills;
+        animation-duration: 1s;
+    }
+    
+    @keyframes nav_pills {
+        0%  {top:250px;}
+        100%   {top:0px;}
+    }
+    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes nav_pills {
+        0%  {top:250px;}
+        100%   {top:0px;}
+    }
+
+    #carousel_img1, #carousel_img2 {
+        height: 450px;
+    }
+
+    /* The following code is to create on-hover highlight behavior for carousel */
+    .hover_ele {
+        background-image: linear-gradient(yellow, yellow); /* background-image is really just the solid color #ffd900 */
+        background-repeat: no-repeat; /* set background-repeat to no-repeat to have full control over the size and position of the background */
+        background-size: 0% 0%; /* background-size to make the background cover 100% of the width and height of the container */
+    }
+
+    .hover_ele:hover {
+        background-size: 100% 100%; /* background-size to make the background cover 100% of the width and height of the container */
+    }
+
+
+                                /* FOOTER ELEMENTS */
+
+    .bg-con {
+        background-color: purple;
+    }
+
+    #emailtitle {
+        color: white;
+    }
+
+    #ga {
+        width: 18px;
+        height: 18px;
+    }
+
+    #footer {
+        background-color: purple;
+    }
+
+    .socialIcons {
+        background-color: purple;
+    }
+
+    .circle {
+        height: 30px;
+        width: 30px;
+        background-color: white;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .sm {
+        margin-top: 20%;
+    }
+
+
+
+    /*----------------------------------- PROJECTS PAGE -----------------------------------*/
+
+   
+    /*----------------------- HEADER ELEMENTS -----------------------*/
+
+    #navbar-items {
+        width: 100%;
+    }
+
+    /*----------------------- PROJECT BODY ELEMENTS -----------------------*/
+    /* #proj_img {
+        max-width: 100%;
+    } */
+
+    .parallax-window {
+        min-height: 600px;
+        background: transparent;
+    }
+
+    #return-btn {
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        bottom: 5%;
+        visibility: hidden;
+    }
+
+    .proj_img_card {
+        height: 500px;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------- Tablets ----------- */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+    /*----------------------------------- INDEX PAGE -----------------------------------*/
+
+   
+    /*----------------------- HEADER ELEMENTS -----------------------*/      
+    .one {
+        height: 700px;
+        background-color: teal;
+    }
+
+    #me {
+        max-width: 45%;
+        margin-top: -20px;
+    }
+
+    #blurb {
+        font-family: 'Rouge+Script';
+    }
+
+    #myname {
+        position: relative;
+        -webkit-animation-name: myname; /* Chrome, Safari, Opera */
+        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+        animation-name: myname;
+        animation-duration: 1s;
+    }
+    
+    @keyframes myname {
+        0%  {top:150px;}
+        100%   {top:0px;}
+    }
+    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes myname {
+        0%  {top:150px;}
+        100%   {top:0px;}
+    }
+    
+    #mydevtype {
+        position: relative;
+        -webkit-animation-name: mydevtype; /* Chrome, Safari, Opera */
+        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+        animation-name: mydevtype;
+        animation-duration: 1s;
+    }
+    
+    @keyframes mydevtype {
+        0%  {top:200px;}
+        100%   {top:0px;}
+    }
+    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes mydevtype {
+        0%  {top:200px;}
+        100%   {top:0px;}
+    }
+    
+    .pills {
+        position: relative;
+        -webkit-animation-name: nav_pills; /* Chrome, Safari, Opera */
+        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+        animation-name: nav_pills;
+        animation-duration: 1s;
+    }
+    
+    @keyframes nav_pills {
+        0%  {top:250px;}
+        100%   {top:0px;}
+    }
+    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes nav_pills {
+        0%  {top:250px;}
+        100%   {top:0px;}
+    }
+
+    #carousel_img1, #carousel_img2 {
+        height: 300px;
+    }
+
+                                /* FOOTER ELEMENTS */
+
+    .bg-con {
+        background-color: purple;
+    }
+
+    #emailtitle {
+        color: white;
+    }
+
+    #ga {
+        width: 18px;
+        height: 18px;
+    }
+
+    #footer {
+        background-color: purple;
+    }
+
+    .socialIcons {
+        background-color: purple;
+    }
+
+    .circle {
+        height: 30px;
+        width: 30px;
+        background-color: white;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .sm {
+        margin-top: 20%;
+    }
+
+
+
+    /*----------------------------------- PROJECTS PAGE -----------------------------------*/
+
+   
+    /*----------------------- HEADER ELEMENTS -----------------------*/
+
+    #navbar-items {
+        width: 100%;
+    }
+
+    /*----------------------- PROJECT BODY ELEMENTS -----------------------*/
+    /* #proj_img {
+        max-width: 100%;
+    } */
+
+    /* .parallax-window {
+        min-height: 600px;
+        background: transparent;
+    } */
+
+    #return-btn {
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        bottom: 5%;
+        visibility: hidden;
+    }
+
+    .proj_img_card {
+        height: 500px;
+    }
+}
