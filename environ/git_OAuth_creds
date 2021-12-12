@@ -1,0 +1,17 @@
+Client ID: 0425d0905d5d1116aaec
+Client secret: 5251a909387d9d50373d6e0e87fd4b9d70415510
+export GIT_OAUTH='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' (Access token)
+
+
+https://github.com/settings/tokens/
+
+Note: git api notification <date>
+Expiration: 30 days
+ 
+repo 
+    repo:status         Access commit status
+    repo_deployment     Access deployment status
+    public_repo         Access public repositories
+
+user 
+    read:user           Read ALL user profile data
