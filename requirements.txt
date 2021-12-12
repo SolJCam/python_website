@@ -39,7 +39,7 @@ darglint==1.8.1
 Deprecated==1.2.13
 distlib==0.3.4
 dj-database-url==0.5.0
-Django==4.0
+Django==2.2.4
 django-heroku==0.3.1
 doc8==0.10.1
 docopt==0.6.2
