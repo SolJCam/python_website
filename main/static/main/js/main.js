@@ -57,8 +57,8 @@ $(document).ready(function (e) {
         //   $(`#badge${i+1}`).toggle();
         // }  
         // debugger
-        if(commitDate <= dateYesterday){
-        // if(commitDate >= dateYesterday){
+        // if(commitDate <= dateYesterday){
+        if(commitDate >= dateYesterday){
           $(`#badge${i+1}`).toggle();
         }      
       };
