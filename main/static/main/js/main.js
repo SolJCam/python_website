@@ -45,7 +45,7 @@ $(document).ready(function (e) {
     let today = new Date()
     let dateToday = today.toISOString().split('T')[0]
     let splitDate = dateToday.split('-')
-    let yesterday = new Date(splitDate[0], splitDate[1], splitDate[2])
+    let yesterday = new Date(splitDate[0], splitDate[1]-1, splitDate[2]-1)
     let dateYesterday = yesterday.toISOString().split('T')[0]
     for(let i = 0;i <= htmlGitList.length;i++){
       if(commitDates[i] > htmlGitList[i].textContent.slice(0,5)){
@@ -56,9 +56,9 @@ $(document).ready(function (e) {
         // if(commitDate >= cur_cmmt){
         //   $(`#badge${i+1}`).toggle();
         // }  
+        // debugger
         if(commitDate >= dateYesterday){
           $(`#badge${i+1}`).toggle();
-          // debugger
         }      
       };
     };
