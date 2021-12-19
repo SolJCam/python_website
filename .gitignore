@@ -17,7 +17,7 @@ py_scraper/static/py_scraper/js/herokuS3.js
 main/oauth2_creds.json
 
 # git api results
-main/git_api_results.csv
+# main/git_api_results.csv
 
 # local settings
 python_portfolio_site/local_settings.py
