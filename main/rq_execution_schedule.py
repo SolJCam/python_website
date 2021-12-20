@@ -1,9 +1,10 @@
 from rq import Queue
 # from worker import conn
-# from redis import Redis
-import os
-from git_api import git_api
+# from .git_api import git_api
 import pdb
+# from redis import Redis
+from git_api import git_api
+import os
 
 # conn = Redis('localhost', 6379)
 conn = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')

@@ -1,12 +1,12 @@
 from apscheduler.schedulers.background import BackgroundScheduler
-# from .rq_execution_schedule import execute_git_api
-from rq_execution_schedule import execute_git_api
+from .rq_execution_schedule import execute_git_api
+# from rq_execution_schedule import execute_git_api
 from datetime import datetime, date, timedelta, timezone
 import pdb
 
 UTCoffset = timedelta(hours=-4)
 ESTtimezone = timezone(UTCoffset)
-
+# pdb.set_trace()
 sched = BackgroundScheduler()
 
 @sched.scheduled_job('interval', start_date=f'{date.today().isoformat()}T00:00:00Z', minutes=2)
