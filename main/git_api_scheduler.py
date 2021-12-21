@@ -1,21 +1,21 @@
 from apscheduler.schedulers.background import BackgroundScheduler
-# from .rq_execution_schedule import execute_git_api
-from rq_execution_schedule import execute_git_api
+# from .rq_execution_schedule import execute_git_api          # LOCAL USE
+from rq_execution_schedule import execute_git_api             # REMOTE USE
 from datetime import datetime, date, timedelta, timezone
 import pdb
 
-UTCoffset = timedelta(hours=-4)
+UTCoffset = timedelta(hours=-5)
 ESTtimezone = timezone(UTCoffset)
-# pdb.set_trace()
+
 sched = BackgroundScheduler()
 
 @sched.scheduled_job('interval', start_date=f'{date.today().isoformat()}T00:00:00Z', minutes=2)
 # @sched.scheduled_job('interval', start_date=f'{date.today().isoformat()}T00:00:00Z', hours=8)
 def schedule_api_call():
   print('initializing api call...')
-  api_response = execute_git_api()
+  execute_git_api()
   print(f'api call complete at {datetime.now(ESTtimezone).strftime("%X%p")}')
-  return api_response
+  return "success"
 
 schedule_api_call()
 

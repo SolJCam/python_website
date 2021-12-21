@@ -4,8 +4,8 @@ import yagmail, json, os, csv, pdb #python debugger
 from .models import Project, Word
 from .forms import InputForm, DictForm
 from .view_functions import get_meaning, add_word
-# from .git_api_scheduler import schedule_api_call
-# from .git_api import git_api
+# from .git_api_scheduler import schedule_api_call    # LOCAL USE
+# from .git_api import git_api                        # LOCAL USE
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
@@ -45,11 +45,13 @@ def site_index(request):
 
 
 def git_notifications(request):
+  # LOCAL USE:
   # err_resp = git_api()
   # if err_resp != "success":
   #   return JsonResponse(err_resp, safe=False)
   
-  # schedule_api_call()
+  # schedule_api_call() 
+  # LOCAL USE    
   
   response = {}
   try:
