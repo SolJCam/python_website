@@ -17,4 +17,6 @@ def schedule_api_call():
   print(f'api call complete at {datetime.now(ESTtimezone).strftime("%X%p")}')
   return api_response
 
+schedule_api_call()
+
 sched.start()
