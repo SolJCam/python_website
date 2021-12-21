@@ -56,6 +56,7 @@ def git_notifications(request):
   response = {}
   try:
     with open(os.path.join(d, "git_api_results.csv"), 'r') as file:
+      print(file)
 
       filecontent=csv.reader(file)
       for row in filecontent:

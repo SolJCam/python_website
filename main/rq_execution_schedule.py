@@ -10,6 +10,6 @@ conn = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')         # REMOTE USE
 
 q = Queue(connection=conn)
 def execute_git_api():
-  result = q.enqueue(git_api())
+  result = q.enqueue(git_api)
   return result
 
