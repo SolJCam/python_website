@@ -30,7 +30,6 @@ $(document).ready(function (e) {
 
 	async function gitNotificatons () {
 		const response = await fetch('git_notifications');
-    debugger
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     };
