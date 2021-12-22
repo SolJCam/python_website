@@ -30,6 +30,7 @@ $(document).ready(function (e) {
 
 	async function gitNotificatons () {
 		const response = await fetch('git_notifications');
+    debugger
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     };
@@ -56,7 +57,6 @@ $(document).ready(function (e) {
         // if(commitDate >= cur_cmmt){
         //   $(`#badge${i+1}`).toggle();
         // }  
-        // debugger
         // if(commitDate <= dateYesterday){
         if(commitDate >= dateYesterday){
           $(`#badge${i+1}`).toggle();

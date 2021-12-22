@@ -46,6 +46,5 @@ def git_api():
     for date in last_five_dates:           
       git_commits["Repo"] = dictionary_of_repos[date]
       writer.writerow(git_commits)  
-  print(git_commits)
 
   return "success"
