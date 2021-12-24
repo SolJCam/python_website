@@ -1,5 +1,5 @@
-from .rq_execution_schedule import execute_git_api          # LOCAL USE
-# from rq_execution_schedule import execute_git_api             # REMOTE USE
+# from .rq_execution_schedule import execute_git_api          # LOCAL USE
+from rq_execution_schedule import execute_git_api             # REMOTE USE
 from datetime import datetime, date, timedelta, timezone
 import pdb
 
