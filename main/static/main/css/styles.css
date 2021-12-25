@@ -1,3 +1,250 @@
+    /*----------------------------------- INDEX PAGE -----------------------------------*/
+
+   
+    /*----------------------- HEADER ELEMENTS -----------------------*/
+
+.one {
+    height: 700px;
+    background-color: black; /* dark mode */
+}
+
+#me {
+    max-width: 45%;
+    margin-top: -20px;
+}      
+
+#blurb {
+    /* font-family: 'Ubuntu', sans-serif; */
+    font-family: 'Rouge+Script';
+}
+
+#git_activity {
+    padding-inline-start: 0px;
+}
+
+#gn1, #gn2, #gn3, #gn4, #gn5 {
+    overflow: auto;
+    white-space: nowrap;
+    color: white; /* dark mode */
+}
+
+#git_activity_div {
+    position: relative;
+    -webkit-animation-name: mydevtype; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    animation-name: mydevtype;
+    animation-duration: 1s;
+}
+
+#mydevtype {
+    position: relative;
+    -webkit-animation-name: mydevtype; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    animation-name: mydevtype;
+    animation-duration: 1s;
+}
+
+.badge {
+    position: absolute;
+    left: -22px;
+    animation: pulse 1s infinite;
+}
+
+/* #gn1 .badge {
+    position: absolute;
+    top: 20px;
+    left: -10px;
+    animation: pulse 1s infinite;
+}
+
+#gn2 .badge {
+    position: absolute;
+    top: 44px;
+    left: -10px;
+    animation: pulse 1s infinite;
+}
+
+#gn3 .badge {
+    position: absolute;
+    top: 68px;
+    left: -10px;
+    animation: pulse 1s infinite;
+}
+
+#gn4 .badge {
+    position: absolute;
+    top: 92px;
+    left: -10px;
+    animation: pulse 1s infinite;
+}
+
+#gn5 .badge {
+    position: absolute;
+    top: 116px;
+    left: -10px;
+    animation: pulse 1s infinite;
+} */
+
+@keyframes pulse {
+    0% {
+        -webkit-transform: scale(1);
+        opacity: .4;
+    }
+    25% {
+        -webkit-transform: scale(1.1);
+        opacity: 0.8;
+    }
+    50% {
+        -webkit-transform: scale(1.3);
+        opacity: 1.0;
+    }
+    75% {
+        -webkit-transform: scale(1.1);
+        opacity: .8;
+      }
+    100% {
+        -webkit-transform: scale(1);
+        opacity: .4;
+    }
+  }
+
+@keyframes mydevtype {
+    0%  {top:200px;}
+    100%   {top:0px;}
+}
+
+@-webkit-keyframes mydevtype {
+    0%  {top:200px;}
+    100%   {top:0px;}
+}
+
+@keyframes myname {
+    0%  {top:150px;}
+    100%   {top:0px;}
+}
+
+@-webkit-keyframes myname {
+    0%  {top:150px;}
+    100%   {top:0px;}
+}
+
+@keyframes nav_pills {
+    0%  {top:250px;}
+    100%   {top:0px;}
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes nav_pills {
+    0%  {top:250px;}
+    100%   {top:0px;}
+}
+
+#myname {
+    position: relative;
+    -webkit-animation-name: myname; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    animation-name: myname;
+    animation-duration: 1s;
+}
+
+.pills {
+    position: relative;
+    -webkit-animation-name: nav_pills; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+    animation-name: nav_pills;
+    animation-duration: 1s;
+}
+
+                                /* CAROUSEL */
+#carousel {
+    background-color: black; /* dark mode */
+}
+
+                                /* FOOTER ELEMENTS */
+.bg-con {
+    background-color: black;
+}
+
+#emailtitle {
+    color: white;
+}
+
+#ga {
+    width: 18px;
+    height: 18px;
+}
+
+#footer {
+    background-color: black;
+}
+
+.socialIcons {
+    background-color: black;
+}
+
+.circle {
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.sm {
+    margin-top: 20%;
+}
+#footer {
+    background-color: black;
+}
+
+.socialIcons {
+    background-color: black;
+}
+
+.circle {
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.sm {
+    margin-top: 20%;
+}
+#footer {
+    background-color: black;
+}
+
+.socialIcons {
+    background-color: black;
+}
+
+.circle {
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.sm {
+    margin-top: 20%;
+}
+
+    /*----------------------------------- PROJECTS PAGE -----------------------------------*/
+
+   
+    /*----------------------- HEADER ELEMENTS -----------------------*/
+
+#navbar-items {
+    width: 100%;
+}
+
+
+
+
+
 /* ------- Phones --------- */
 @media only screen 
     and (min-device-width : 375px) 
@@ -9,74 +256,21 @@
    
     /*----------------------- HEADER ELEMENTS -----------------------*/
     .one {
-        height: 640px;
-        background-color: teal;
+        height: 800px;
+        background-color: black; /* dark mode */
     }
       
     #me {
         max-width: 45%;
     }
 
-    #blurb {
-        /* font-family: 'Ubuntu', sans-serif; */
-        font-family: 'Rouge+Script';
+    #git_activity_div {
+        max-width: 300px;
+        margin-left: 35px;
     }
 
-    #myname {
-        position: relative;
-        -webkit-animation-name: myname; /* Chrome, Safari, Opera */
-        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
-        animation-name: myname;
-        animation-duration: 1s;
-    }
-    
-    @keyframes myname {
-        0%  {top:150px;}
-        100%   {top:0px;}
-    }
-      
-    /* Chrome, Safari, Opera */
-    @-webkit-keyframes myname {
-        0%  {top:150px;}
-        100%   {top:0px;}
-    }
-    
-    #mydevtype {
-        position: relative;
-        -webkit-animation-name: mydevtype; /* Chrome, Safari, Opera */
-        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
-        animation-name: mydevtype;
-        animation-duration: 1s;
-    }
-    
-    @keyframes mydevtype {
-        0%  {top:200px;}
-        100%   {top:0px;}
-    }
-    
-    /* Chrome, Safari, Opera */
-    @-webkit-keyframes mydevtype {
-        0%  {top:200px;}
-        100%   {top:0px;}
-    }
-    
-    .pills {
-        position: relative;
-        -webkit-animation-name: nav_pills; /* Chrome, Safari, Opera */
-        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
-        animation-name: nav_pills;
-        animation-duration: 1s;
-    }
-    
-    @keyframes nav_pills {
-        0%  {top:250px;}
-        100%   {top:0px;}
-    }
-    
-    /* Chrome, Safari, Opera */
-    @-webkit-keyframes nav_pills {
-        0%  {top:250px;}
-        100%   {top:0px;}
+    #md_sz_offset_div {
+        display: none;
     }
 
     #carousel_img1, #carousel_img2 {
@@ -84,50 +278,13 @@
     }
 
 
-                                /* FOOTER ELEMENTS */
-
-    .bg-con {
-        background-color: purple;
-    }
-
-    #emailtitle {
-        color: white;
-    }
-
-    #ga {
-        width: 18px;
-        height: 18px;
-    }
-    
-    #footer {
-        background-color: purple;
-    }
-
-    .socialIcons {
-        background-color: purple;
-    }
-
-    .circle {
-        height: 30px;
-        width: 30px;
-        background-color: white;
-        border-radius: 50%;
-        display: inline-block;
-    }
-
-    .sm {
-        margin-top: 20%;
-    }
-
-
 
     /*----------------------------------- PROJECTS PAGE -----------------------------------*/
 
-   
-    /*----------------------- HEADER ELEMENTS -----------------------*/
+                /*----------------------- HEADER ELEMENTS -----------------------*/
 
-    #navbar-items {
-        width: 100%;
+    .navbar-toggler {
+        background-color: white;
     }
 
 
@@ -185,86 +342,17 @@
     /*----------------------------------- INDEX PAGE -----------------------------------*/
 
    
-    /*----------------------- HEADER ELEMENTS -----------------------*/      
-    .one {
-        height: 700px;
-        background-color: teal;
-    }
-
-    #me {
-        max-width: 45%;
-        margin-top: -20px;
-    }
-
-    #blurb {
-        font-family: 'Rouge+Script';
-    }
-
-    #myname {
-        position: relative;
-        -webkit-animation-name: myname; /* Chrome, Safari, Opera */
-        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
-        animation-name: myname;
-        animation-duration: 1s;
-    }
-    
-    @keyframes myname {
-        0%  {top:150px;}
-        100%   {top:0px;}
-    }
-    
-    /* Chrome, Safari, Opera */
-    @-webkit-keyframes myname {
-        0%  {top:150px;}
-        100%   {top:0px;}
-    }
-    
-    #mydevtype {
-        position: relative;
-        -webkit-animation-name: mydevtype; /* Chrome, Safari, Opera */
-        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
-        animation-name: mydevtype;
-        animation-duration: 1s;
-    }
-    
-    @keyframes mydevtype {
-        0%  {top:200px;}
-        100%   {top:0px;}
-    }
-    
-    /* Chrome, Safari, Opera */
-    @-webkit-keyframes mydevtype {
-        0%  {top:200px;}
-        100%   {top:0px;}
-    }
-    
-    .pills {
-        position: relative;
-        -webkit-animation-name: nav_pills; /* Chrome, Safari, Opera */
-        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
-        animation-name: nav_pills;
-        animation-duration: 1s;
-    }
-    
-    @keyframes nav_pills {
-        0%  {top:250px;}
-        100%   {top:0px;}
-    }
-    
-    /* Chrome, Safari, Opera */
-    @-webkit-keyframes nav_pills {
-        0%  {top:250px;}
-        100%   {top:0px;}
-    }
+    /*----------------------- HEADER ELEMENTS -----------------------*/
 
     #carousel_img1, #carousel_img2 {
         height: 450px;
-        /* object-fit: cover; */
+        width: 500px;
     }
 
     /* The following code is to create on-hover highlight behavior for carousel */
     .hover_ele {
-        background-image: linear-gradient(yellow, yellow); /* background-image is really just the solid color #ffd900 */
+        background-image: linear-gradient(green, green); /* dark mode */
+        /* background-image: linear-gradient(yellow, yellow); */ /* background-image is really just the solid color #ffd900 */
         background-repeat: no-repeat; /* set background-repeat to no-repeat to have full control over the size and position of the background */
         background-size: 0% 0%; /* background-size to make the background cover 100% of the width and height of the container */
     }
@@ -274,51 +362,9 @@
     }
 
 
-                                /* FOOTER ELEMENTS */
-
-    .bg-con {
-        background-color: purple;
-    }
-
-    #emailtitle {
-        color: white;
-    }
-
-    #ga {
-        width: 18px;
-        height: 18px;
-    }
-
-    #footer {
-        background-color: purple;
-    }
-
-    .socialIcons {
-        background-color: purple;
-    }
-
-    .circle {
-        height: 30px;
-        width: 30px;
-        background-color: white;
-        border-radius: 50%;
-        display: inline-block;
-    }
-
-    .sm {
-        margin-top: 20%;
-    }
-
 
 
     /*----------------------------------- PROJECTS PAGE -----------------------------------*/
-
-   
-    /*----------------------- HEADER ELEMENTS -----------------------*/
-
-    #navbar-items {
-        width: 100%;
-    }
 
     /*----------------------- PROJECT BODY ELEMENTS -----------------------*/
     /* #proj_img {
@@ -337,10 +383,18 @@
         visibility: hidden;
     }
 
-    .proj_img_card {
-        height: 500px;
+    .proj-spacer {
+        height: 100px;
+        background-color: black;
     }
 
+    .card-text {
+        font-size: 0.9rem;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
 }
 
 
@@ -380,127 +434,15 @@
     /*----------------------------------- INDEX PAGE -----------------------------------*/
 
    
-    /*----------------------- HEADER ELEMENTS -----------------------*/      
-    .one {
-        height: 700px;
-        background-color: teal;
-    }
-
-    #me {
-        max-width: 45%;
-        margin-top: -20px;
-    }
-
-    #blurb {
-        font-family: 'Rouge+Script';
-    }
-
-    #myname {
-        position: relative;
-        -webkit-animation-name: myname; /* Chrome, Safari, Opera */
-        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
-        animation-name: myname;
-        animation-duration: 1s;
-    }
-    
-    @keyframes myname {
-        0%  {top:150px;}
-        100%   {top:0px;}
-    }
-    
-    /* Chrome, Safari, Opera */
-    @-webkit-keyframes myname {
-        0%  {top:150px;}
-        100%   {top:0px;}
-    }
-    
-    #mydevtype {
-        position: relative;
-        -webkit-animation-name: mydevtype; /* Chrome, Safari, Opera */
-        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
-        animation-name: mydevtype;
-        animation-duration: 1s;
-    }
-    
-    @keyframes mydevtype {
-        0%  {top:200px;}
-        100%   {top:0px;}
-    }
-    
-    /* Chrome, Safari, Opera */
-    @-webkit-keyframes mydevtype {
-        0%  {top:200px;}
-        100%   {top:0px;}
-    }
-    
-    .pills {
-        position: relative;
-        -webkit-animation-name: nav_pills; /* Chrome, Safari, Opera */
-        -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
-        animation-name: nav_pills;
-        animation-duration: 1s;
-    }
-    
-    @keyframes nav_pills {
-        0%  {top:250px;}
-        100%   {top:0px;}
-    }
-    
-    /* Chrome, Safari, Opera */
-    @-webkit-keyframes nav_pills {
-        0%  {top:250px;}
-        100%   {top:0px;}
-    }
+    /*----------------------- HEADER ELEMENTS -----------------------*/
 
     #carousel_img1, #carousel_img2 {
         height: 300px;
     }
 
-                                /* FOOTER ELEMENTS */
-
-    .bg-con {
-        background-color: purple;
-    }
-
-    #emailtitle {
-        color: white;
-    }
-
-    #ga {
-        width: 18px;
-        height: 18px;
-    }
-
-    #footer {
-        background-color: purple;
-    }
-
-    .socialIcons {
-        background-color: purple;
-    }
-
-    .circle {
-        height: 30px;
-        width: 30px;
-        background-color: white;
-        border-radius: 50%;
-        display: inline-block;
-    }
-
-    .sm {
-        margin-top: 20%;
-    }
-
 
 
     /*----------------------------------- PROJECTS PAGE -----------------------------------*/
-
-   
-    /*----------------------- HEADER ELEMENTS -----------------------*/
-
-    #navbar-items {
-        width: 100%;
-    }
 
     /*----------------------- PROJECT BODY ELEMENTS -----------------------*/
     /* #proj_img {
@@ -517,9 +459,5 @@
         position: sticky;
         bottom: 5%;
         visibility: hidden;
-    }
-
-    .proj_img_card {
-        height: 500px;
     }
 }

@@ -1,28 +1,56 @@
-# **PYTHON PORTFOLIO SITE BUILT ON DJANGO**
+# **DJANGO PORTFOLIO SITE**
 
-## Currently includes 4 apps:
+## CURRENT APPS:
 
-### **Dictionary.py** 
-online dictionary built on Restful architechture allowing users to create, delete and retrieve words and their definitions
+## **py_dictionary** 
+Online dictionary which allows users to save their own words and definitions
 
- **Technologies:**
- 
-### **folium_web_map**
-web mab displaying gradient extremes of mainland United States 
+### **Technologies:**
 
- **Technologies:**
+- difflib.SequenceMatcher
+- difflib.get_close_matches 
+- Bootstrap 
+- PostgreSQL
 
-### **py_scrapper**
-online web scrapper
+## **py_scrapper**
+Scrape news networks CNN, FOX News and MSNBC and generate a wordcloud from the result
 
- **Technologies:**
+### **Technologies:**
 
-### **chatApp**
-basic chat app that allows multiple simultaneous users who can upload images 
+- BeautifulSoup
+- Word Cloud API
+- Bootstrap
 
- **Technologies:**
+## **js_chatApp**
+Chat app that allows multiple simultaneous users. Includes the ability to upload avatar images 
+
+### **Technologies:**
 
 - Node.js
 - Express.js
 - Socket.io
 - Materialize
+
+## **py_animal_shelter**
+Admin dashboard that allows the user to enter different rooms and view bigraphical data on the animals stored in the database. 
+
+### **Technologies:**
+
+- Flask
+- Flask-SQLAlchemy
+- Flask-WTF
+- WTForms
+- psql
+- semantic-ui
+- jQuery
+
+# **react_search_videos**
+User provided input returns video search of YouTube API
+
+### **Technologies:**
+- react
+- axios
+- semantic ui
+
+ **API:**
+- YouTube

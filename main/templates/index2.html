@@ -1,0 +1,178 @@
+{% load static %} 
+<!DOCTYPE html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Bilbo+Swash+Caps|Rouge+Script|Sofia|Flamenco|Geo|Stint+Ultra+Expanded|Linden+Hill|Balthazar' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'main/css/styles2.css' %}">
+        <title>Sol Cameron Portfolio</title>
+    </head>
+    <body>
+        <div class="container-fluid main">
+            <div class="row align-items-center one">
+                <div class="col-md-1" id="md_sz_offset_div">
+                    <br>
+                </div>
+                <div  id="git_activity_div" class="col-md-2 bg-light rounded pt-lg-2">
+                    <h5 class="text-center">Recent Activity</h5>
+                    <ul id="git_activity">
+                        <li id="gn1">09-24 : animal_shelter : add animal and update room name complete</li>
+                        <li id="gn2">09-24 : animal_shelter : add animal and update room name complete</li>
+                        <li id="gn3">09-24 : animal_shelter : add animal and update room name complete</li>
+                        <li id="gn4">09-24 : animal_shelter : add animal and update room name complete</li>
+                        <li id="gn5">09-24 : animal_shelter : add animal and update room name complete</li>
+                    </ul>    
+                </div>
+                <div class="col-md">
+                    <div class="row one-of-one">
+                        <!-- <div class="col mt-4">
+                            <img id="me" class="img-fluid float-sm-right mx-auto d-block rounded-circle" style="display:none;" src="{% static 'img/freshMe2.jpg' %}" alt="Responsive image">
+                        </div> -->
+                        <div class="col mt-md-3 pl-lg-5">
+                            <img id="me" class="img-fluid mx-auto d-block rounded-circle" style="display:none;" src="{% static 'img/freshMe2.jpg' %}" alt="Responsive image">
+                        </div>
+                        <div class="w-100"></div>
+                        <!-- <div class="col">
+                            <h1 id="myname" class="col offset-lg-3 text-center text-light">Sol Cameron</h1>
+                            <h3 id="mydevtype" class="col offset-lg-3 text-center">Full Stack Software Developer</h3>
+                        </div> -->
+                        <div class="col mt-md-4 pl-lg-5">
+                            <h2 id="myname" class="text-center text-light">Sol Cameron</h2>
+                            <h4 id="mydevtype" class="text-center">Full Stack Software Developer</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <!-- <h4 id="blurb" class="mt-lg-5 pb-lg-2 text-center font-italic" style="display:none;">"Full Stack Software Developer with a passion for using Python and Django to find elegant and efficient solutions to business needs."</h4>
+                    <nav class="offset-1 offset-sm-2 mt-4 mt-lg-5 navbar pills"> -->
+                    <h4 id="blurb" class="mt-lg-5 pb-lg-2 mr-lg-5 text-center font-italic" style="display:none;">"Full Stack Software Developer with a passion for using Python and Django to find elegant and efficient solutions to business needs."</h4>
+                    <nav class="offset-sm-2 mt-4 mt-lg-5 navbar pills">
+                        <ul class="nav">
+                            <li role="button" class="no-gutters" id="project-nav">
+                                <div class="col">
+                                    <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="proj-link" src="{% static 'img/icons8-code-60.png' %}" alt="Responsive image">
+                                    <a id="P" class="nav-item d-lg-none d-block nav-link active text-light" href="{% url 'project_index' %}">Projects</a>
+                                </div>
+                            </li>
+                            <li role="button" class="no-gutters" id="resume-nav" >
+                                <div class="col">
+                                    <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="res-nav" src="{% static 'img/icons8-resume-60.png' %}" alt="Responsive image">
+                                    <a  id="R" class="nav-item d-lg-none d-block nav-link active text-light" href="{% url 'resume' %}" rel="nofollow" target="_blank">Resume</a>
+                                </div> 
+                            </li>
+                            <li role="button" class="no-gutters" id="connect-nav">                       
+                                <div class="col">
+                                    <img class="img-fluid rounded-0 nav-img mx-auto d-none d-lg-block" id="conn-nav" src="{% static 'img/icons8-connect-50 (2).png' %}" alt="Responsive image">
+                                    <a  id="C" class="nav-item d-lg-none d-block nav-link active text-light" href="#">Connect</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>                
+            </div>
+        </div>
+        <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="row carousel-inner">
+                <div class="col-md-5 offset-md-1 mt-5 ml-4 d-block proj-imgs">
+                    {% for project in projects %}
+                        {% if project.id == 1 %}
+                            <div id="carousel_img1" class="mb-md-5 carousel-item active {{ project.title }} {{ project.id }}">
+                                <img src="{% static project.image %}" class="d-flex img-fluid h-100 car_img" alt="...">
+                                <!-- <img src="{% static project.image %}" class="d-block img-fluid h-100 car_img" alt="..."> -->
+                            </div>
+                        {% endif %}
+                        {% if project.id > 1 %}
+                            <div id="carousel_img2" class="mb-md-5 carousel-item {{ project.title }} {{ project.id }}">
+                                <img src="{% static project.image %}" class="d-flex img-fluid h-100 car_img" alt="...">
+                                <!-- <img src="{% static project.image %}" class="d-block img-fluid h-100 car_img" alt="..."> -->
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="col-md-4 offset-md-1 ml-4 mt-5 pb-3 d-block proj_smries">
+                    {% for project in projects %}
+                        {% if project.id == 1 %}
+                            <div id="{{ project.id }}" class="pl-3 pt-2 pb-1 pr-2 proj_smry">
+                                <a href="{% url 'go_to_project' project.id %}"><h6 class="proj_titles">{{ project.title }}</h6></a>
+                                <p>{{ project.description }}</p>
+                                <div class="w-100"></div>
+                            </div>
+                        {% endif %}
+                        {% if project.id > 1 %}
+                            <div id="{{ project.id }}" class="pl-3 pt-2 pb-1 pr-2 proj_smry hover_ele">
+                                <a href="{% url 'go_to_project' project.id %}"><h6 class="proj_titles">{{ project.title }}</h6></a>
+                                <p>{{ project.description }}</p>
+                                <div class="w-100"></div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div> 
+            </div>
+        </div>
+        <div id="pdf-cont" class="container-fluid main" style="display:none;">
+            <div class="row align-items-center one">
+                <canvas id="pdf"></canvas>
+            </div>
+        </div>
+        <section class="row no-gutters bg-con">
+            <section class="mr-3 ml-3 col-lg-6 offset-lg-3 mt-5 mb-5 email">
+                <h3 id="emailtitle" class="text-center">Send me an email</h3>
+                <form id="email" action="" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col form-group input-group-lg">
+                            <label id="Name" for="inputName" class="text-light">Name *</label>
+                            <input type="text" id="inputNameF" class="form-control">
+                            <small class="form-text text-light">First Name</small>
+                        </div>
+                        <div class="col form-group input-group-lg mt-4 pt-2">
+                            <input type="text" id="inputNameS" class="form-control">
+                            <small class="form-text text-light">Last Name</small>
+                        </div>
+                    </div>
+                    <div class="form-group input-group-lg">
+                        <label id="Email" for="inputEmail" class="text-light">Email Address *</label>
+                        <input type="email" id="inputEmail" class="form-control">
+                    </div>
+                    <div class="form-group input-group-lg">
+                        <label id="Subject" for="inputSubject" class="inputSubject text-light">Subject *</label>
+                        <input type="text" id="inputSubject" class="form-control">
+                    </div>
+                    <div class="form-group input-group-lg">
+                        <label id="Message" for="inputMessage" class="inputMessage text-light">Message *</label>
+                        <textarea id="inputMessage" form="email" rows="6" style="height:100%;" class="form-control"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button id="submit" class="btn btn-default submit" type="submit">Send</button>
+                        </div>
+                        <div class="col">
+                            <p class="text-right" style="color:white;">* Required field</p>
+                        </div>                    
+                    </div>
+                </form>
+            </section>
+        </section>
+        <footer id="footer">
+            <ul class="offset-3 offset-sm-5 list-inline-horizontal socialIcons">
+                <li id="first" class="ml-4 list-inline-item flex-fill circle">
+                        <a href="https://www.linkedin.com/in/solcameron" target="_blank"><img id="in" class=" img-fluid rounded mx-auto d-block sm" src="{% static 'img/icons8-linkedin-18.png' %}" alt="Responsive image"></a>
+                </li>
+                <li id="second" class="list-inline-item flex-fill circle">
+                        <a href="https://github.com/SolJCam" target="_blank"><img id="gg" class=" img-fluid rounded mx-auto d-block sm" src="{% static 'img/icons8-octocat-18.png' %}" alt="Responsive image"></a>
+                </li>
+                <!-- remove "ml-4" class from linkedin above when ready to add twitter -->
+                <li id="second" class="list-inline-item flex-fill circle" style="display:none;">
+                        <a href="" target="_blank"><img id="twtr" class=" img-fluid rounded mx-auto d-block sm" src="{% static 'img/icons8-twitter-20.png' %}" alt="Responsive image"></a>
+                </li>
+            </ul>
+            <p class="offset-3 offset-sm-5 text-light cr">Copyright 2019 Sol Cameron</p>
+        </footer>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="{% static 'main/js/main.js' %}" type="text/javascript"></script>
+    <script src="{% static 'main/js/parallax.js-1.5.0/parallax.js' %}" type="text/javascript"></script>
+</html>

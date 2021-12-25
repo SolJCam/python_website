@@ -1,17 +1,29 @@
-# email credentials
-main/oauth2_creds.json
-
-# ignore del directory
-del/
+######     FILES ALREADY BEING TRACKED NEED TO BE REMOVED FOR GITIGNORE TO WORK:    
+######      git rm --cached <filename>
 
 # ignore original py_scraper production views code file
 py_scraper/heroku_s3.py
 
+# ignore del directory
+del/
+
+# ignore environ directory
+environ/
+
 #  heroku s3 js code
 py_scraper/static/py_scraper/js/herokuS3.js
+
+# email credentials
+main/oauth2_creds.json
+
+# git api results
+main/git_api_results.csv
 
 # local settings
 python_portfolio_site/local_settings.py
 
 # staticfiles directory
 staticfiles/
+
+# git OAuth credentials
+OAuth2Creds

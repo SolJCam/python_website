@@ -1,2 +1,2 @@
-web: gunicorn python_portfolio_site.wsgi --preload --timeout 360 --log-file -
-worker: python py_scraper/rq_queue.py
+web: gunicorn python_portfolio_site.wsgi --preload --timeout 20 --log-file -
+worker: python worker.py msnbc cnn fox

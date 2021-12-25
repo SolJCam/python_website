@@ -1,17 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
-
 import re
-
 from .models import Word
-
-
-def validate_word(word):
-    pattern = r"[^A-Za-z]"
-    if re.findall(pattern, word):
-        raise ValidationError(
-            (f"{word} has invalid characters. Only characters a-z, A-Z, '.' and '-' are acceptable. Please try again"), code='invalid characters'
-        )
 
 
 
@@ -21,6 +11,16 @@ class InputForm(forms.Form):
     Error = forms.CharField(label='Error')
     Meaning = forms.CharField(label='meaning', widget=forms.Textarea)
     Success = forms.CharField(label='Success!')
+
+
+def validate_word(word):
+    pattern = r"[^A-Za-z]"
+    if re.findall(pattern, word):
+        raise ValidationError(
+            ("%{value} has invalid characters. Only characters a-z, A-Z, '.' and '-' are acceptable. Please try again"), 
+            code='invalid characters',
+            params={'value': word}
+        )
 
 
 class DictForm(forms.ModelForm):
@@ -33,9 +33,3 @@ class DictForm(forms.ModelForm):
     class Meta:
         model = Word
         fields = '__all__'
-        # widgets = {
-        #     'first_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
-        #     'second_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
-        #     'third_definition': forms.Textarea(attrs={'cols': 50, 'rows': 4}), 
-        #     'more_definitions': forms.Textarea(attrs={'cols': 50, 'rows': 4}),
-        # }

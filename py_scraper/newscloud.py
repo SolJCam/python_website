@@ -1,40 +1,52 @@
-from django.http import FileResponse
-import os, pdb, re
+from django.http import FileResponse, HttpResponse, HttpRequest
+import os, pdb, re, time, boto3
 from os import path
 from PIL import Image       # PIL: Python Imaging Library
 import numpy as np
-import matplotlib.pyplot as plt
-
 from wordcloud import WordCloud, STOPWORDS
+# from rq import get_current_job
 
+
+# get data directory (using getcwd() i.e, current working directory, is needed to support running example in generated IPython notebook)
+d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
+
+s3_resource = boto3.resource('s3')
 
 # stopwords to include in both wcgenerator and wrd_count functions
 stopwrds_list = ["we", "will", "says", "view", "entertainment", "u", "news", "cnn", "fox", "/", "+", "&", "getty", "images"] + list(STOPWORDS)
 
-def wcgenerator(newsfile, imgpath, wrdcld):
-    # get data directory (using getcwd() i.e, current working directory, is needed to support running example in generated IPython notebook)
-    d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
+def wcgenerator(newsfile, mskimg, wrdcld):  
+    start = time.time()
     # pdb.set_trace()
 
-    # Read the whole text.
-    text = open(path.join(d, f'py_scraper/scrapedata/{newsfile}')).read()
-
+    # download text from Amazon s3 bucket
+    s3_resource.Object("py-scraper", newsfile).download_file(path.join(d, f"scrapedata/{newsfile}"))
+    # save instance of open text to variable
+    text = open(path.join(d, f'scrapedata/{newsfile}')).read()
     # read the mask image; an image (ideally stencil) used to define the size, shape, coutours etc of the wordcloud
-    news_mask = np.array(Image.open(path.join(d, f"py_scraper/static/masks/{imgpath}")))
-
+    news_mask = np.array(Image.open(path.join(d, f"static/masks/{mskimg}")))
+    # establish parameters for new wc image
     wc = WordCloud(background_color="white", max_words=30000, mask=news_mask, stopwords=stopwrds_list, contour_width=3, contour_color='steelblue', relative_scaling='auto')
-
     # generate word cloud
     wc.generate(text)
+    # save wc image
+    wc.to_file(path.join(d, f"static/imgs/{wrdcld}"))
+    # upload image to Amazon s3 bucket      ## Curreently not working on heroku!!
+    s3_resource.meta.client.upload_file(Filename=path.join(d, f"static/imgs/{wrdcld}"),Bucket="py-scraper",Key=wrdcld)
 
-    # store to file
-    wc.to_file(path.join(d, f"py_scraper/static/imgs/{wrdcld}"))
+    end = time.time()
+    time_elapsed = end - start
     
+    # pdb.set_trace()
+    print(f"Time elapsed to generate and save {wrdcld} word cloud: "+str(round(time_elapsed, 2))+" secs\n")
+
     return "Success!"
 
 
 
-def wrd_count(string_list, pattern):
+def wrd_count(string_list):
+    pattern = r"\b[a-z]+\b"   # pattern to find exact words and avoid duplicates due to punctuation for word count function 
+    
     wrd_hash = dict()      # dictionary to add words and number of occurences
 
     # loop list of words in string_list to count occurences of ec word
@@ -54,5 +66,5 @@ def wrd_count(string_list, pattern):
     # pdb.set_trace()
     sorted_wrd_hash = sorted(wrd_hash.items(), key=lambda x: x[1], reverse=True)   # sort words based off occurences recorded in values
     return_sorted = sorted_wrd_hash[:5]
-    
+
     return return_sorted

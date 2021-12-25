@@ -6,6 +6,11 @@ import pdb
 
 # ex. to test only one method: ./manage.py test main.tests.ProjectTestCase.<method>  
 
+# Exceute the following in python interpreter before creating models:
+# import os
+# os.environ['DJANGO_SETTINGS_MODULE'] = 'python_portfolio_site.settings'
+# import django
+# django.setup();
 
 
 class ProjectTestCase(TestCase):
@@ -16,6 +21,8 @@ class ProjectTestCase(TestCase):
         chat = Project.objects.create(title="Chat App", description="One to many online chat", technology="nodejs, socket.io and ExpressJS", github_url="https://github.com/SolJCam/socket.io")
         web_map = Project.objects.create(title="Folium Web Map", description="Beautiful animated web display of US gradient features", technology="python dateutil, MarkerCluster and Pandas", github_url="https://github.com/SolJCam/location_pyapp")
         py_scraper = Project.objects.create(title="py_scraper", description="Scrape the headlines of the homepages of the news networks CNN, FOX News and MSNBC and generate a wordcloud from the result", technology="BeautifulSoup, Word Cloud API")
+        flask_animal_shelter = Project.objects.create(title="flask_animal_shelter", description="Animal shelter dashboard that allows the admin to CRUD animal profiles", technology="Flask, SQLAlchemy, WTForms, Psql, semantic-ui", github_url="https://github.com/SolJCam/animal_shelter")
+        react_youtube = Project.objects.create(title="react_youtube", description="Return Youtube video search results from user provided input", technology="Reactjs, Axios, Nodejs, semantic UI, Youtube API", github_url="https://github.com/SolJCam/React-Search-Videos")
 
     def retrieve_project_by_some_attribute(self):
         app1 = Project.objects.get(id=1)

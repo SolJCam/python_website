@@ -9,6 +9,68 @@ $(document).ready(function (e) {
     
   console.log('2ndplz!');
 
+  // code to acquire the CSRF cookie token for email form submission
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+  }
+  // var csrftoken = getCookie('csrftoken');    <------------------ HEEEEYYYYYYYYYYYYYYYY I MIGHT CAUSE PROOOOOOOOOBLEMS!!! --------------->
+
+
+	async function gitNotificatons () {
+		const response = await fetch('git_notifications');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    };
+		const gitCommitsByDate = await response.json();
+    const commitDates = []
+    // const htmlGitList = $('#git_activity').children();
+    const htmlGitList = $('.commits');
+    for(let date in gitCommitsByDate) {
+      commitDates.push(date);
+    };
+    commitDates.sort();
+    commitDates.reverse();
+    let today = new Date()
+    let dateToday = today.toISOString().split('T')[0]
+    let splitDate = dateToday.split('-')
+    let yesterday = new Date(splitDate[0], splitDate[1]-1, splitDate[2]-1)
+    let dateYesterday = yesterday.toISOString().split('T')[0]
+    for(let i = 0;i <= htmlGitList.length;i++){
+      if(commitDates[i] > htmlGitList[i].textContent.slice(0,5)){
+        let commitDate = commitDates[i].split('T')[0]
+        let commit = gitCommitsByDate[commitDates[i]]
+        $(`#cmmt${i+1}`).text(commitDate.slice(5)+" : "+commit[0]+" : "+commit[1]); 
+        // let cur_cmmt = $(`#cmmt${i+1}`).text().split(' ')[0];
+        // if(commitDate >= cur_cmmt){
+        //   $(`#badge${i+1}`).toggle();
+        // }  
+        // if(commitDate <= dateYesterday){
+        if(commitDate >= dateYesterday){
+          $(`#badge${i+1}`).toggle();
+        }      
+      };
+    };
+	}
+
+  gitNotificatons()
+  .catch(e => {
+    console.log('There was a problem trying to fetch git_notifications: ' + e.message);
+  });
+
+
+    
   // nav connect link functionality to scroll to social media links
   $('#C').click(function(e){
     e.preventDefault();
@@ -16,31 +78,38 @@ $(document).ready(function (e) {
   });
 
 
-  $("#1").css("background-color", "yellow");
+  // carousel synced-image-info behavior
+  // $("#1").css("background-color", "yellow");
+  $("#1").css("background-color", "green"); // dark mode
 
   $('#carousel').on('slide.bs.carousel', (relatedTarget) => {
-    console.log(relatedTarget);
+    // console.log(relatedTarget);
     let projToHighlight = relatedTarget.relatedTarget.classList[3];
     let arrayProjs = $('.proj_smry');
     let arrayProjsLen = arrayProjs.length;
     // debugger
     for(let i = 0; i < arrayProjsLen; i++){
       if(arrayProjs[i].id == projToHighlight){
-        arrayProjs[i].style.backgroundColor = 'yellow';
+        arrayProjs[i].style.backgroundColor = 'green';
         if(i == 0 ){
-          arrayProjs[3].style.backgroundColor = 'white';
+          // arrayProjs[arrayProjsLen-1].style.backgroundColor = 'white';
+          arrayProjs[arrayProjsLen-1].style.backgroundColor = 'black'; //dark mode
         }else{
-          arrayProjs[i-1].style.backgroundColor = 'white';
+          // arrayProjs[i-1].style.backgroundColor = 'white';
+          arrayProjs[i-1].style.backgroundColor = 'black'; //dark mode
         }
       }
     }
   });
 
+
+  // carousel hover behavior
   $('.proj_smry').hover(
     function(){
       let all_projs = $('.proj_smry')
       for(let i = 0; i < all_projs.length; i++){
-        all_projs[i].style.backgroundColor = 'white';
+        // all_projs[i].style.backgroundColor = 'white';
+        all_projs[i].style.backgroundColor = 'black'; // dark mode
       }
       let projs = $('.carousel-item');
       let proj_array = [];
@@ -56,35 +125,53 @@ $(document).ready(function (e) {
       $('#carousel').carousel(title_index);
     }
   );
-  
+
+
   //Email submission functionality
   $('#submit').click(function(e){
+    e.preventDefault();
+    let emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w+)+$/;    // https://www.w3resource.com/javascript/form/email-validation.php
+    // let emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;   // https://tylermcginnis.com/validate-email-address-javascript/
+    // debugger; 
     if($('#inputNameF').val()==""){
-      e.preventDefault();
       alert("Please provide a name");
       $("#inputNameF").css({"border-color":"red", "border-width": "3px"});
     }else if($('#inputEmail').val()==""){
-      e.preventDefault();
       $("#inputEmail").css({"border-color":"red", "border-width": "3px"});
       alert("Please provide an email");
+    }else if(emailReg.test($('#inputEmail').val()) == false){
+      $("#inputEmail").css({"border-color":"red", "border-width": "3px"});
+      alert($('#inputEmail').val()+" is an invalid email address. Please try again");    
     }else if($('#inputSubject').val()==""){
-      e.preventDefault();
       $("#inputSubject").css({"border-color":"red", "border-width": "3px"});
       alert("Please provide a subject");
     }else if($('#inputMessage').val()==""){
-      e.preventDefault();
       $("#inputMessage").css({"border-color":"red", "border-width": "3px"});
       alert("Please provide a message");
     }else{
-      debugger
-      var email = "mailto:scameron10@yahoo.com?from="+$('#inputEmail').val()+"&subject="+$('#inputSubject').val()+"&body=<"+$('#inputNameF').val()+" "+$('#inputNameS').val()+"><"+$('#inputEmail').val()+">"+$('#inputMessage').val(); // try adding: +"&target=_top"+"&data-rel='external'" ?
-      var href = email.replace(/ /g, "%20");
-      console.log(href);
-      $("#email").attr("action", href);
+      var email = {"Subject":$('#inputSubject').val(), "Body": [$('#inputEmail').val(), $('#inputNameF').val()+" "+$('#inputNameS').val(), $('#inputMessage').val()]};
+      // debugger; 
+      fetch('/', {
+        method: 'POST',
+        credentials: "same-origin",
+        headers: {
+          "X-CSRFToken": getCookie("csrftoken"),
+          'X-Requested-With':'XMLHttpRequest',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(email),
+      })
+      .then(response => {return response.json()})
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+      alert("Thank you for emailing! Please look out for my reply!");
     }
 
   });
-
 
 
   //Social Media Link Behaviour
@@ -110,6 +197,7 @@ $(document).ready(function (e) {
     }
   );
 
+  // Eventually twitter so leave
   $("#third").hover(
     function(){
       $("#first").fadeTo("fast", 0.3);
@@ -121,56 +209,49 @@ $(document).ready(function (e) {
     }
   );
 
-  // Not sure if this code is necessary. Browser resize suggests yes, Chrome dev tools suggests no. Will know after deployment
 
-  // if (window.matchMedia("(max-width:992px)").matches) {
-  //   $("#myname").toggleClass('offset-3');
-  //   $("#mydevtype").toggleClass('offset-3');
-  //   $(".pills").toggleClass('offset-2 mt-5');
-  // }
+  // 'return to top' button behavior for projects pg
+  function scrollButton(){
+    let thirty; let scroll;
 
+    window.onscroll = () => { 
+      thirty = $('body').height() * .3; 
+      scroll = window.scrollY; 
+      if(scroll >= thirty) {
+        // console.log(`${scroll} and ${thirty}`);
+        $("#return-btn").css("visibility", "visible");
+      }else{
+        $("#return-btn").css("visibility", "hidden");
+      }
+    }
 
- 
-  // nav Project link BASIC functionality to scroll to individual projects
-  $('#project_link2').click(function(e){
-    e.preventDefault();
-    $("#project2")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-    console.log("woohoo!!!");
-  })
-  $('#project_link3').click(function(e){
-    e.preventDefault();
-    $("#project3")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-    console.log("woohoo!!!");
-  })
-  $('#project_link4').click(function(e){
-    e.preventDefault();
-    $("#project4")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-    console.log("woohoo!!!");
-  })
-  $('#project_link1').click(function(e){
-    e.preventDefault();
-    $("#project1")[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-    console.log("woohoo!!!");
-  })
+    $("#return-btn").click(function(e){
+      $("#title")[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+
+  scrollButton();
 
   // on click, display options to add word to dictionary
   $('#add_word').click(function(e){
-    console.log("woohoo!!!");
+    console.log("add word woohoo!!!");
     e.preventDefault();
+    $( "#add_word" ).toggle();
     $( "#word" ).slideDown("slow", function() {});
     $('#submit_word').toggle();
     $('#more_defs').toggle();
     $('#cancel').toggle();
   })
   $('#more_defs').click(function(e){
-    console.log("woohoo!!!");
+    console.log("add word woohoo!!!");
     e.preventDefault();
     $( "#definitions" ).slideDown("slow", function() {});
     $('#more_defs').toggle();
   })
   $('#cancel').click(function(e){
-    console.log("woohoo!!!");
+    console.log("add word woohoo!!!");
     e.preventDefault();
+    $( "#add_word" ).toggle();
     $('[name="word_form"]')[0].reset();
     $( "#word" ).slideUp("slow", function() {});
     $( "#definitions" ).slideUp("slow", function() {});
@@ -203,26 +284,23 @@ $(document).ready(function (e) {
       alert("Please provide a definition");
       $("#id_definition").css({"border-color":"red", "border-width": "2px"});
     }
-  })
-
-
-  // return button behavior
-  let thirty; let scroll;
-
-  window.onscroll =   () => { 
-    thirty = $('body').height() * .3; 
-    scroll = window.scrollY; 
-    if(scroll >= thirty) {
-      // console.log(`${scroll} and ${thirty}`);
-      $("#return-btn").css("visibility", "visible");
-    }else{
-      $("#return-btn").css("visibility", "hidden");
-    }
-  }
-
-  $("#return-btn").click(function(e){
-    $("#title")[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
+
+  // nav link project page scrolling behavior to go to projs
+  // DO NOT MOVE; 'projLinks[i]' undefined and breaks any code that preceeds it
+  var projLinks = $('.go_to_proj');
+
+  for(var i=0;i<=projLinks.length;i++){
+    let loop = i;
+    $("#"+projLinks[i].id).click(function(e){
+      e.preventDefault();
+      // debugger
+      let num = projLinks[loop].id.slice(12,);
+      $("#project"+num)[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+      scrollButton();
+      console.log("woohoo!!!");
+    });
+  }
 
 });
 
@@ -288,5 +366,5 @@ if (window.matchMedia("(max-width:992px)").matches) {
   $("#navbarSupportedContent").toggleClass("d-flex");
 
   // toggle project image sizes on small viewports
-  $(".proj-img").toggleClass("h-100");
+  $(".proj-img").toggleClass("w-100");
 }

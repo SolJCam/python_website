@@ -5,15 +5,17 @@
 {% block content %}
 <div id="" class="col-12">
     <div class="row card mb-2 flex-row flex-wrap">
-        <div class="col-md-8 card-header border-0">
-            <form id="dict_form" class="mt-2 mb-3 mr-1" action="" method="get">
-                <div class="mt-2 mb-3 mr-1 input-group">
-                    {{ form.Enter_Word.label }}{{ form.Enter_Word }}
+        <div class="col-md-7 card-header border-0">
+            <form id="dict_form" action="" method="get">
+                <div class="input-group offset-md-3">
+                    <h4 class='mr-md-3' style="color:blue"><b>Submit A Word!:</b></h4>{{ form.Enter_Word }}
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit"><img src="{% static 'img/magnifying-glass-2x.png' %}"></img></button>
                     </div>
+                </div>
+                <div class="col-md-10 offset-md-1 input-group">
                     {% if form.Error.value != None %}
-                        {{ form.Error.label }}{{ form.Error.value }}
+                        {{ form.Error.value }}
                     {% endif %}
                     {% if form.Success.value != None %}
                         {{ form.Success.value }}
@@ -36,7 +38,7 @@
             </form>
             <form id="new_word" class="mt-2 mb-3 mr-1" name="word_form" action="" method="post">
                 {% csrf_token %}
-                <div class="mt-2 mb-3 mr-1 p-3 input-group">
+                <div class="offset-md-3 mt-2 mb-3 p-3 input-group">
                     <div class="row">
                         <div id="word" class="col-12" style="display:none">
                             <div class="col-12">
@@ -68,8 +70,8 @@
                 </div>
             </form>
             <div class="input-group-append">
-                <button id="add_word" class="col-lg-3 ml-5 mr-3 btn btn-outline-primary" href="#" type="button">Add Word</button>
-                <button id="cancel" class="col-lg-3 btn btn-outline-danger" href="#" type="button" style="display:none">cancel</button>
+                <button id="add_word" class="offset-md-5 col-lg-3 btn btn-outline-primary" href="#" type="button">Add Word</button>
+                <button id="cancel" class="offset-md-5 col-lg-3 btn btn-outline-danger" href="#" type="button" style="display:none">cancel</button>
             </div>
             <div id="result" class="col">
                 <h1 id="dict_name"></h1>
@@ -78,9 +80,15 @@
             </div>
         </div>
         <div class="col-md-4 card-body">
-            <h4 class="card-title"><u>py_dictionary</u></h4>
-            <p class="card-text"><b>Description:</b> Online dictionary which allows users to save their own words to a postgresql db</p>
-            <p class="card-text"><b>Technologies:</b> difflib.SequenceMatcher, difflib.get_close_matches, Django, Bootstrap, PostgreSQL</p>
+        {% for project in projects %}
+            {% if project.title == 'py_dictionary' %}
+                <h4 class="card-title"><u>py_dictionary</u></h4>
+                <p class="card-text"><b>Description:</b> {{ project.description }}</p>
+                <p class="card-text"><b>Technologies:</b> {{ project.technology }}</p>
+                <!-- <p class="card-text"><b>Github Url:</b><a href="#"> {{ project.github_url }}</a></p> -->
+                <p class="card-text"><b>Github Url:</b><a href={{ project.github_url }} target="_blank"> {{ project.github_url }}</a></p>
+            {% endif %}
+        {% endfor %}
         </div>
     </div>
 </div>

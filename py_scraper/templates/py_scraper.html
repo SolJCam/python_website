@@ -12,15 +12,17 @@
         <div class="container-fluid py_scraper">
             <div class="row">
                 <div class="col">
-                <h1 class="text-center">Welcome to my news webscraper</h1>
+                    <h1 class="text-center">Welcome to my news webscraper</h1>
+                    <p class="text-center" style="color:darkcyan">For best results, execute one scrape at a time. Process is complete with an updated img or an alert</p>
+                    <!-- <a id="s3_upload" class="mb-4 mt-2 btn btn-success" href="#" role="button">GO!</a> -->
                 </div>
                 <div class=w-100></div>
-                <a class="offset-md-2 nav-link" href="{% url 'project_index' %}"><h5 class="text-primary">BACK</h5></a>
+                    <a class="offset-md-2 nav-link" href="{% url 'project_index' %}"><h5 class="text-primary">BACK</h5></a>
                 <div class=w-100></div>
                 <div class="container">
                     <div class="row align-items-center one">
-                        <div class="col-md-7 offset-md-1 mt-md-4 mb-3">
-                            <img id="msnbcwrdcld" src="{% static 'masks/msnbc.jpg' %}" class="img-fluid" alt="Responsive image" display="hidden">
+                        <div class="col-md-6 offset-md-2 mt-md-4 mb-3">
+                            <img id="msnbcwrdcld" src="{% static 'masks/msnbc.jpg' %}" class="img-fluid" alt="Responsive image">
                         </div>
                         <div class="col-md-3 mb-md-5">
                             <h3>Scrape MSNBC</h3>
@@ -28,17 +30,17 @@
                             <div class=w-100></div>
                             <h5>Some Top Words</h5>
                             <ul>
-                                <li id="ms-0" class="ms_top_wrds"></li>
-                                <li id="ms-1" class="ms_top_wrds"></li>
-                                <li id="ms-2" class="ms_top_wrds"></li>
-                                <li id="ms-3" class="ms_top_wrds"></li>
-                                <li id="ms-4" class="ms_top_wrds"></li>
+                                <li id="msnbc-0" class="ms_top_wrds"></li>
+                                <li id="msnbc-1" class="ms_top_wrds"></li>
+                                <li id="msnbc-2" class="ms_top_wrds"></li>
+                                <li id="msnbc-3" class="ms_top_wrds"></li>
+                                <li id="msnbc-4" class="ms_top_wrds"></li>
                             </ul>
                         </div>
                     </div>
                     <div class="row align-items-center one">
-                        <div class="col-md-7 offset-md-1 mt-4 mb-3">
-                            <img id="cnnwrdcld" src="{% static 'masks/cnn.png' %}" class="img-fluid" alt="Responsive image" display="hidden">
+                        <div class="col-md-6 offset-md-2 mt-4 mb-3">
+                            <img id="cnnwrdcld" src="{% static 'masks/cnn.png' %}" class="img-fluid" alt="Responsive image">
                         </div>
                         <div class="col-md-3 mb-md-5">
                             <h3>Scrape CNN</h3>
@@ -55,8 +57,8 @@
                         </div>
                     </div>
                     <div class="row align-items-center one">
-                        <div class="col-md-7 offset-md-1 mt-4 mb-3">
-                            <img id="foxwrdcld" src="{% static 'masks/fox.jpeg' %}" class="img-fluid" alt="Responsive image" display="hidden">
+                        <div class="col-md-6 offset-md-2 mt-md-4 mb-3">
+                            <img id="foxwrdcld" src="{% static 'masks/fox.jpeg' %}" class="img-fluid" alt="Responsive image">
                         </div>
                         <div class="col-md-3 mb-md-5">
                             <h3>Scrape FOXNews</h3>
