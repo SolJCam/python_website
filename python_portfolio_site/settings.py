@@ -78,6 +78,10 @@ WSGI_APPLICATION = 'python_portfolio_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # pip install psycopg2-binary; since updated to older working version of psycopg2=2.7.5
+        'NAME': 'projects',
+        'USER': 'Sol',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -153,16 +157,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Allow all host hosts/domain names for this site
 ALLOWED_HOSTS = ['*']
 
-DATABASES = { 'default' : dj_database_url.config(conn_max_age=600, ssl_require=True)}
+# DATABASES = { 'default' : dj_database_url.config(conn_max_age=600, ssl_require=True)}
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'].update(db_from_env)
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # load local_settings.py
-try:
-  from python_portfolio_site.local_settings import *
-except Exception as e:
-  pass
+# try:
+#   from python_portfolio_site.local_settings import *
+# except Exception as e:
+#   pass
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
