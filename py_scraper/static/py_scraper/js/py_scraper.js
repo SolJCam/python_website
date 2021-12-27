@@ -74,11 +74,11 @@ $(document).ready(() => {
             })
             .then(res => { return res.json() })
             .then(wrds => { 
-                // debugger
                 // console.log(wrds);
                 try{
 					dwnldImg(id,wrdCld);
                     for(let i=0;i<=4;i++){
+		                // debugger
                         $(`#${id}-${i}`).text(`${wrds[i][0]} : ${wrds[i][1]}`);
                         // $(`#${id}-${i}`).text(`${json['stw'][i][0]} : ${json['stw'][i][1]}`);	//herokuS3
                     }

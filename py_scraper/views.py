@@ -222,8 +222,8 @@ def top_fox_wrds(request):
                 pass
             elif nu_word != 'u.s.' or nu_word != 'U.S.':
                 word_list.append(nu_word)
-    # pdb.set_trace()
     some_top_wrds = wrd_count(word_list)
+    # pdb.set_trace()
     try:
         return JsonResponse(some_top_wrds, safe=False)
     except:

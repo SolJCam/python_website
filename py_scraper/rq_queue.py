@@ -61,16 +61,21 @@ def q_scrape(func, func_args, job_id):
             fox_q.empty()
             print(f'Emptied fox_q job queue\n')
 
-    pdb.set_trace()
 
-    workers = Worker.all(connection=conn)
+    # workers = Worker.all(connection=conn)
 
-    print(f'Worker is {workers[0].state}')
-    try:
-        print(f'Current job is {workers[0].current_job}')
-    except:
-        print(f'Currently no jobs executing on worker')
-    print('\n')
+    # from redis import Redis
+    # redis = Redis()
+    # workers = Worker.all(redis)
+
+    # pdb.set_trace()
+
+    # print(f'Worker is {workers[0].state}')
+    # try:
+    #     print(f'Current job is {workers[0].current_job}')
+    # except:
+    #     print(f'Currently no jobs executing on worker')
+    # print('\n')
 
 
     '''Allows for jobs to complete'''
@@ -123,8 +128,8 @@ def q_scrape(func, func_args, job_id):
         print(f'FailedJobRegistry for fox_q reset to: {len(FailedJobRegistry(queue=fox_q))}')
 
     print(f'Jobs by queue: \nmsnbc - {msnbc_q.count}\ncnn - {cnn_q.count}\nfox - {fox_q.count}\ntotal - {msnbc_q.count+cnn_q.count+fox_q.count}')
-    print(f'Total jobs successfully completed on worker: {workers[0].successful_job_count}')
-    print(f'Total jobs failed to complete on worker: {workers[0].failed_job_count}')
+    # print(f'Total jobs successfully completed on worker: {workers[0].successful_job_count}')
+    # print(f'Total jobs failed to complete on worker: {workers[0].failed_job_count}')
     print('\n')
 
     return 'success'
