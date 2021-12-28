@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse, HttpResponseNotFound, HttpResponse
+from django.http import JsonResponse, HttpResponseServerError
 import yagmail, json, os, csv, pdb #python debugger
 from .models import Project, Word
 from .forms import InputForm, DictForm
@@ -66,7 +66,7 @@ def git_notifications(request):
     return json_response
 
   except Exception as e:
-    return JsonResponse(e, safe=False)
+    return HttpResponseServerError(e.__str__())
 
 
 

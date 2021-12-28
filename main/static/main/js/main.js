@@ -27,11 +27,11 @@ $(document).ready(function (e) {
   }
   // var csrftoken = getCookie('csrftoken');    <------------------ HEEEEYYYYYYYYYYYYYYYY I MIGHT CAUSE PROOOOOOOOOBLEMS!!! --------------->
 
-
 	async function gitNotificatons () {
 		const response = await fetch('git_notifications');
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const serverError = await response.text();
+      throw new Error(`HTTP error status: ${response.status}, message: ${serverError}`);
     };
 		const gitCommitsByDate = await response.json();
     const commitDates = []
