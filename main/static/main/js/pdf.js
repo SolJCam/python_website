@@ -1,7 +1,7 @@
 window.onload = ()=>{
     (()=>{
       pdfjsLib
-      .getDocument("/static/assets/SolDevRes8_27.pdf")
+      .getDocument("/static/assets/SolDevRes12_1.pdf")
       .promise.then(pdfDoc => {
         // debugger 
         const page = pdfDoc.getPage(1);
