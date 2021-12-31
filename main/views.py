@@ -54,10 +54,10 @@ def git_notifications(request):
   # schedule_api_call() 
   # LOCAL USE    
   
-  s3_resource.Object("py-scraper", "git_api_results").download_file(os.path.join(d, "git_api_results"))
-  
   response = {}
   try:
+    s3_resource.Object("py-scraper", "git_api_results.csv").download_file(os.path.join(d, "git_api_results.csv"))
+  
     with open(os.path.join(d, "git_api_results.csv"), 'r') as file:
 
       filecontent=csv.reader(file)
@@ -66,6 +66,7 @@ def git_notifications(request):
         response[data[1]] = [data[3], data[5]]
 
     json_response = JsonResponse(response)
+  
     return json_response
 
   except Exception as e:
