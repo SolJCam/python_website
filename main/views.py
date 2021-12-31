@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseServerError
-import yagmail, json, os, csv, pdb #python debugger
+import yagmail, json, os, csv, pdb, boto3
 from .models import Project, Word
 from .forms import InputForm, DictForm
 from .view_functions import get_meaning, add_word
@@ -9,6 +9,7 @@ from .view_functions import get_meaning, add_word
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 
+s3_resource = boto3.resource('s3')
 
 def site_index(request):
   projects = Project.objects.all()
@@ -53,9 +54,12 @@ def git_notifications(request):
   # schedule_api_call() 
   # LOCAL USE    
   
+  s3_resource.Object("py-scraper", "git_api_results").download_file(os.path.join(d, "git_api_results"))
+  
   response = {}
   try:
-    with open(os.path.join(d, "git_api_results.csv"), 'r') as file:
+    with open(os.path.join(d, "git_api_results"), 'r') as file:
+    # with open(os.path.join(d, "git_api_results.csv"), 'r') as file:
 
       filecontent=csv.reader(file)
       for row in filecontent:

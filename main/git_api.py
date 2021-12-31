@@ -1,9 +1,11 @@
-import requests, os, csv, pdb
+import requests, os, csv, pdb, boto3
 from datetime import date, datetime, timedelta
 
 today = date.today()
 
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
+
+s3_resource = boto3.resource('s3')
 
 def git_api():
 
@@ -47,6 +49,8 @@ def git_api():
     writer = csv.DictWriter(file, fieldnames=["Repo"])
     for date in last_five_dates:           
       git_commits["Repo"] = dictionary_of_repos[date]
-      writer.writerow(git_commits)  
+      writer.writerow(git_commits) 
+
+  s3_resource.meta.client.upload_file(Filename=os.path.join(d, "git_api_results.csv"),Bucket="py-scraper",Key="git_api_results")
 
   return "success"
