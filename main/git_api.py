@@ -51,6 +51,6 @@ def git_api():
       git_commits["Repo"] = dictionary_of_repos[date]
       writer.writerow(git_commits) 
 
-  s3_resource.meta.client.upload_file(Filename=os.path.join(d, "git_api_results.csv"),Bucket="py-scraper",Key="git_api_results")
+  s3_resource.meta.client.upload_file(Filename=os.path.join(d, "git_api_results.csv"),Bucket="py-scraper",Key="git_api_results.csv")
 
   return "success"
