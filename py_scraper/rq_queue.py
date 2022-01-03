@@ -27,7 +27,7 @@ def q_scrape(func, func_args, job_id):
     if job_id == "msnbc" and job_id not in msnbc_q.job_ids:
         # pdb.set_trace()
         msnbc_q.enqueue(func, job_id=job_id, default_timeout=600, failure_ttl=300, args=(func_args[0],func_args[1],func_args[2]))
-        func(func_args[0],func_args[1],func_args[2])
+        # func(func_args[0],func_args[1],func_args[2])
         msnbc_job = Job.fetch(job_id, connection=redis_conn)
         status = msnbc_job.get_status()
         print('\n')
@@ -42,7 +42,7 @@ def q_scrape(func, func_args, job_id):
     if job_id == "cnn" and job_id not in cnn_q.job_ids:
         # pdb.set_trace()
         cnn_q.enqueue(func, job_id=job_id, default_timeout=600, failure_ttl=300, args=(func_args[0],func_args[1],func_args[2]))
-        func(func_args[0],func_args[1],func_args[2])
+        # func(func_args[0],func_args[1],func_args[2])
         cnn_job = Job.fetch(job_id, connection=redis_conn)
         status = cnn_job.get_status()
         print('\n')
@@ -54,7 +54,7 @@ def q_scrape(func, func_args, job_id):
     if job_id == "fox" and job_id not in fox_q.job_ids:
         # pdb.set_trace()
         fox_q.enqueue(func, job_id=job_id, default_timeout=600, failure_ttl=300, args=(func_args[0],func_args[1],func_args[2]))
-        func(func_args[0],func_args[1],func_args[2])
+        # func(func_args[0],func_args[1],func_args[2])
         fox_job = Job.fetch(job_id, connection=redis_conn)
         status = fox_job.get_status()
         print('\n')
