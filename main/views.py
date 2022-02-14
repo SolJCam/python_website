@@ -51,9 +51,11 @@ def git_notifications(request):
   # if err_resp != "success":
   #   return JsonResponse(err_resp, safe=False)
   
-  # schedule_api_call() 
   # LOCAL USE    
+  # schedule_api_call() 
+  # git_api()
   
+  # pdb.set_trace()
   response = {}
   try:
     s3_resource.Object("py-scraper", "git_api_results.csv").download_file(os.path.join(d, "git_api_results.csv"))

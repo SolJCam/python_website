@@ -26,8 +26,8 @@ def git_api():
   for repo in list_of_portfolio_projects:
     try:
                                                                                       # if receiving 401 error Bad credentials, check OAuth token
-      # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo}/commits?since=2021-8-1T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
-      commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo}/commits?since={week_ago_date}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
+      commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo}/commits?since=2021-10-1T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
+      # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo}/commits?since={week_ago_date}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
     except Exception as e:
       return e.__str__()
 
