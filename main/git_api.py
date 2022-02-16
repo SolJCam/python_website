@@ -15,7 +15,7 @@ def git_api():
       'animal_shelter',
       'python_website',
       'React-Search-Videos',
-      'socket.io'
+      'socket.io',
   ]
 
   week_ago_datetime = today - timedelta(days=7)

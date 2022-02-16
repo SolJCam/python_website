@@ -45,13 +45,15 @@ $(document).ready(function (e) {
     let today = new Date()
     let dateToday = today.toISOString().split('T')[0]
     let splitDate = dateToday.split('-')
-    let yesterday = new Date(splitDate[0], splitDate[1]-1, splitDate[2]-1)
+    // let yesterday = new Date(splitDate[0], splitDate[1]-1, splitDate[2]-1)
+    let yesterday = new Date(splitDate[0], splitDate[1]-1, splitDate[2]-7)
     let dateYesterday = yesterday.toISOString().split('T')[0]
     for(let i = 0;i <= htmlGitList.length;i++){
       if(commitDates[i] > htmlGitList[i].textContent.slice(0,5)){
         let commitDate = commitDates[i].split('T')[0]
         let commit = gitCommitsByDate[commitDates[i]]
         $(`#cmmt${i+1}`).text(commitDate.slice(5)+" : "+commit[0]+" : "+commit[1]); 
+        // debugger
         // let cur_cmmt = $(`#cmmt${i+1}`).text().split(' ')[0];
         // if(commitDate >= cur_cmmt){
         //   $(`#badge${i+1}`).toggle();
@@ -66,7 +68,7 @@ $(document).ready(function (e) {
 
   gitNotificatons()
   .catch(e => {
-    console.log('There was a problem trying to fetch git_notifications: ' + e.message);
+    console.log('Error: ' + e.message);
   });
 
 

@@ -55,7 +55,6 @@ def git_notifications(request):
   # schedule_api_call() 
   # git_api()
   
-  # pdb.set_trace()
   response = {}
   try:
     s3_resource.Object("py-scraper", "git_api_results.csv").download_file(os.path.join(d, "git_api_results.csv"))
@@ -68,6 +67,7 @@ def git_notifications(request):
         response[data[1]] = [data[3], data[5]]
 
     json_response = JsonResponse(response)
+    # pdb.set_trace()
   
     return json_response
 
