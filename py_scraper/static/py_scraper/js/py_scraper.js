@@ -38,7 +38,7 @@ $(document).ready(() => {
 			// debugger
 			if(response.status == 200){
 				console.log(id+" img file http response: "+response.status)
-				$('#'+wrdCld).attr('src', '/static/imgs/'+wrdCld+'.png');
+				$('#'+wrdCld).attr('src', '/staticfiles/imgs/'+wrdCld+'.png');
 				counter = null
 				clearTimeout(dwnldngImg);
 				// Deleting files. May be unnecessary in production

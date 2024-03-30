@@ -23,22 +23,19 @@ def git_api():
   all_dates = []
   dictionary_of_repos = {}
 
-  for repo in list_of_portfolio_projects:
+  for project in list_of_portfolio_projects:
     try:
                                                                                       # if receiving 401 error Bad credentials, check OAuth token
-      commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo}/commits?since=2021-10-1T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
-      # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{repo}/commits?since={week_ago_date}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
+      commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{project}/commits?since=2021-10-1T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
+      # commits_by_project = requests.get(f"https://api.github.com/repos/SolJCam/{project}/commits?since={week_ago_date}T00:00:00Z", headers=headers, auth=("SolJCam",os.environ["GIT_OAUTH"]))
     except Exception as e:
       return e.__str__()
 
     for ec in range(len(commits_by_project.json())):
-      all_dates.append(commits_by_project.json()[ec]['commit']['author']['date']) 
-
-      project = repo
-      message = commits_by_project.json()[ec]['commit']['message']
-      date = commits_by_project.json()[ec]['commit']['author']['date']   
-
-      dictionary_of_repos[date] = [date,project,message]
+      commit_notification_data = commits_by_project.json()[ec].get('commit')
+      all_dates.append(commit_notification_data.get('author').get('date')) 
+      message = commit_notification_data.get('message')
+      dictionary_of_repos[all_dates[-1]] = [all_dates[-1],project,message]
         
   all_dates.sort(reverse=True)
   last_five_dates = all_dates[:5]

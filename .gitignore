@@ -10,8 +10,11 @@ del/
 # ignore environ directory
 environ/
 
-#  heroku s3 js code
+# heroku s3 js code
 py_scraper/static/py_scraper/js/herokuS3.js
+
+# Repository rule violations: "WorkOS Production API Key secret" found in Chromedriver
+# py_scraper/drivers/
 
 # email credentials
 main/oauth2_creds.json
