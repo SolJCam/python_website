@@ -4,18 +4,16 @@ from django.core.exceptions import ObjectDoesNotExist
 from random import randint
 import pdb, json, os
 
-# module_dir = os.path.dirname('main') 
-# file_path = os.path.join(module_dir, 'dictionary.json')
-# json_words = open(file_path)
-json_words = open("main/dictionary.json")
-read_json = json_words.read()
-dict_words = json.loads(read_json)
-json_words.close()
-    
+
+module_dir = os.path.dirname(__file__) 
+dictionary_file_path = os.path.join(module_dir, 'dictionary.json')
+read_file = open(dictionary_file_path)
+dictionary= json.loads(read_file.read())
+read_file.close() 
 
 #function for checking user dictionary input and offering suggestions
 def suggest_words(word):
-    stringyfy_dict = list(map(lambda x: str(x).split(":")[0], dict_words))
+    stringyfy_dict = list(map(lambda x: str(x).split(":")[0], dictionary))
     suggestions = get_close_matches(word, stringyfy_dict)
     # pdb.set_trace()
     reply = [f"{word} is not in the dictionary. Click on a spelling suggestion below or try again:", suggestions]
@@ -25,12 +23,12 @@ def suggest_words(word):
 #function for testing variations of word against json file then database and returning best result or suggestions if necessary
 def get_meaning(wrd_input):
 
-    if wrd_input.lower() in dict_words:
-      meaning = dict_words[wrd_input.lower()][0]
-    elif wrd_input.title() in dict_words:
-      meaning = dict_words[wrd_input.title()][0]
-    elif wrd_input.upper() in dict_words:
-      meaning = dict_words[wrd_input.upper()][0]
+    if wrd_input.lower() in dictionary:
+      meaning = dictionary[wrd_input.lower()][0]
+    elif wrd_input.title() in dictionary:
+      meaning = dictionary[wrd_input.title()][0]
+    elif wrd_input.upper() in dictionary:
+      meaning = dictionary[wrd_input.upper()][0]
     else: 
       word = wrd_input.lower()
       try:

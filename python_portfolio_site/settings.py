@@ -143,10 +143,11 @@ import os, boto3
 import django_heroku
 import dj_database_url # configure database - implicitly - using DATABASE_URL environ variable
 
-# download oauth creds for email submisson from S3 bucket
+# download oauth creds for email submisson and dictionary words for dictionary app from S3 bucket
 d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 s3_resource = boto3.resource('s3')
 s3_resource.Object("portfolio-assests", "oauth2_creds.json").download_file(os.path.join(d, "../main/oauth2_creds.json"))
+s3_resource.Object("portfolio-assests", "dictionary.json").download_file(os.path.join(d, "../main/dictionary.json"))
 
 # path variables for local_settings.py
 PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
