@@ -29,7 +29,7 @@ def site_index(request):
       {Msg}
     '''.format(Name = new_email['Body'][1], Email = new_email['Body'][0], Msg = new_email['Body'][2])
 
-    yag = yagmail.SMTP(server_email, oauth2_file="main/oauth2_creds.json")  # oauth parameter actually generates this file; no need to create
+    yag = yagmail.SMTP(server_email, oauth2_file=f"main/{os.environ['GOOGLE_OAUTH']}")  # oauth parameter actually generates this file; no need to create
     # pdb.set_trace()
     yag.send(
       to=server_email,
@@ -57,7 +57,7 @@ def git_notifications(request):
   
   response = {}
   try:
-    s3_resource.Object("py-scraper", "git_api_results.csv").download_file(os.path.join(d, "git_api_results.csv"))
+    s3_resource.Object("portfolio-assests", "git_api_results.csv").download_file(os.path.join(d, "git_api_results.csv"))
   
     with open(os.path.join(d, "git_api_results.csv"), 'r') as file:
 

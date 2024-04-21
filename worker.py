@@ -4,10 +4,11 @@ import redis
 from rq import Worker, Queue, Connection
 
 '''
-For local:
-start redis server - 'redis-server /etc/redis/6379.conf'
-start worker - python worker.py or rq worker msnbc cnn fox   - if no name options are passed as arguments, will listen to default, resulting in this worker not receiving any jobs.
-start dashboard - rq-dashboard
+For local -
+Make sure redis is installed: brew install redis; pip install rq
+start redis server: redis-server
+start worker: python worker.py or rq worker msnbc cnn fox   - if no name options are passed as arguments, will listen to default, resulting in this worker not receiving any jobs.
+start dashboard: rq-dashboard
 '''
 
 # queue names to listen to. 
