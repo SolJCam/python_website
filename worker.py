@@ -15,7 +15,7 @@ start dashboard: rq-dashboard
 listen = ['msnbc', 'cnn', 'fox']
 
 # return 'redis connection url' from environment variable and setting default value in the event key does not exist
-redis_url = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
+redis_url = os.getenv('REDIS_TLS_URL', 'redis://localhost:6379')
 
 # Tell RQ what Redis connection to use
 conn = redis.from_url(redis_url)
