@@ -15,7 +15,8 @@ start dashboard: rq-dashboard
 listen = ['msnbc', 'cnn', 'fox']
 
 # return 'redis connection url' from environment variable and setting default value in the event key does not exist
-redis_url = os.getenv('REDIS_TLS_URL', 'redis://localhost:6379')
+# REDIS_TLS_URL query concatenation is a fix for crashing heroku redis using tls which needs to disable verification in not only config (settings.py) by apparantly redis url as well
+redis_url = os.getenv('REDIS_TLS_URL')+'?ssl_cert_reqs=none' if os.getenv('REDIS_TLS_URL') else 'redis://localhost:6379'
 
 # Tell RQ what Redis connection to use
 conn = redis.from_url(redis_url)
