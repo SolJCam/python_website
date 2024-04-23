@@ -153,7 +153,6 @@ d = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
 s3_resource = boto3.resource('s3')
 s3_resource.Object("portfolio-assests", os.environ['GOOGLE_OAUTH']).download_file(os.path.join(d, f"../main/{os.environ['GOOGLE_OAUTH']}")) 
 s3_resource.Object("portfolio-assests", "dictionary.json").download_file(os.path.join(d, "../main/dictionary.json"))
-pdb.set_trace()
 s3_resource.Object("solstaticfiles", "staticfiles.json").download_file(os.path.join(d, "../staticfiles/staticfiles.json"))
 
 def download_s3_bucket(bucket_name, s3_object, *s3_folders):
