@@ -14,6 +14,6 @@ def choose_os():
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
         options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-        driver = webdriver.Chrome(options=options,executable_path=os.environ.get('CHROMEDRIVER_PATH'))       # to update driver version: heroku config:set CHROMEDRIVER_VERSION=
+        driver = webdriver.Chrome(options=options)       # to update driver version: heroku config:set CHROMEDRIVER_VERSION=
 
         return driver
